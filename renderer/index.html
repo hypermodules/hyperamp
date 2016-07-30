@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HyperAmp</title>
+  <link rel="stylesheet" href="css/photon.min.css">
+  <script src="js/context-menu.js" charset="utf-8"></script>
+</head>
+<body>
+
+<div class="window">
+  <header class="toolbar toolbar-header">
+    <h1 class="title"><span class="icon icon-network"></span> HyperAmp</h1>
+
+    <div class="toolbar-actions">
+      <div class="btn-group">
+        <button class="btn btn-default">
+          <span class="icon icon-pencil icon-text"></span>
+          Compose
+        </button>
+        <button class="btn btn-default btn-dropdown">
+          <span class="icon icon-folder icon-text"></span>
+          Open
+        </button>
+      </div>
+
+      <button class="btn btn-default btn-dropdown pull-right">
+        <span class="icon icon-cog icon-text"></span>
+        Settings
+      </button>
+    </div>
+  </header>
+
+  <div class="tab-group">
+    <div class="tab-item active">
+      <span class="icon icon-cancel icon-close-tab"></span>
+      Tab 1
+    </div>
+    <div class="tab-item">
+      <span class="icon icon-cancel icon-close-tab"></span>
+      Tab 2
+    </div>
+    <div class="tab-item tab-item-fixed">
+      <span class="icon icon-plus"></span>
+    </div>
+  </div>
+
+  <!-- Your app's content goes inside .window-content -->
+  <div class="window-content">
+    <div class="pane-group">
+      <div class="pane pane-sm sidebar">
+        <nav class="nav-group">
+          <h5 class="nav-group-title">Nav</h5>
+          <span class="nav-group-item">
+            <span class="icon icon-network"></span>
+            HyperAmp
+          </span>
+          <span class="nav-group-item active">
+            <span class="icon icon-inbox"></span>
+            Inbox
+          </span>
+          <span class="nav-group-item">
+            <span class="icon icon-trash"></span>
+            Trash
+          </span>
+        </nav>
+      </div>
+
+      <div class="pane">
+        <ul class="list-group">
+          <li class="list-group-header">
+            <input class="form-control" type="text" placeholder="Search">
+          </li>
+          <li class="list-group-item active" contextable>
+            <img class="media-object pull-left" src="http://www.adiumxtras.com/images/pictures/hal_9000_revisited_1_36472_8100_image_12577.png" width="32" height="32">
+            <div class="media-body">
+              <strong>Hal</strong>
+              <p>HAL 9000 is a fictional character in Arthur C. Clarke's Space Odyssey series.</p>
+            </div>
+          </li>
+          <li class="list-group-item" contextable>
+            <img class="media-object pull-left" src="https://31.media.tumblr.com/avatar_5d9c61491fcc_128.png" width="32" height="32">
+            <div class="media-body">
+              <strong>Dave</strong>
+              <p>Dr. David Bowman serves as the protagonist of 2001: A Space Odyssey.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="pane">
+        <table class="table-striped">
+          <thead>
+            <tr>
+              <th>Sender</th>
+              <th>Subject</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hal</td>
+              <td>Hello, Dave. You're looking well today.</td>
+              <td>1 day ago</td>
+            </tr>
+            <tr>
+              <td>Hal</td>
+              <td>I'm sorry, Dave. I'm afraid I can't do that.</td>
+              <td>23 minutes ago</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
