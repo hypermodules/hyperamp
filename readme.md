@@ -1,9 +1,7 @@
-# electron-choo
-
-> Electron and choo.
+# HyperAmp
 
 Work in progress.
 
 ## License
 
-[ISC](LICENSE.md)
+[ISC](license.md)
