@@ -3,7 +3,7 @@ const list = [{
   title: 'Tell My What You See',
   artist: 'The Beatles',
   album: 'Help!'
-},{
+}, {
   title: 'C.R.E.A.M.',
   artist: 'Wu-Tang Clan',
   album: 'Enter The Wu-Tang (36 Chambers)'
