@@ -11,6 +11,7 @@ module.exports = (state, prev, send) => html`
         <div class="pane">
           ${search(state, prev, send)}
           ${table(state, prev, send)}
+          <div><a href="/preferences">Preferences</a></div>
         </div>
       </div>
     </div>
