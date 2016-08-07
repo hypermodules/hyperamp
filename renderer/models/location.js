@@ -16,7 +16,6 @@ module.exports = function location (options) {
     },
     subscriptions: [
       function catchLinks (send, done) {
-        console.log('link cought')
         window.onclick = function (e) {
           var node = (function traverse (node) {
             if (!node) return
