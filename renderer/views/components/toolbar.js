@@ -17,8 +17,11 @@ module.exports = (state, prev, send) => html`
         </button>
       </div>
 
-      <span class="btn pull-right">
+      <span class="pull-right">
         <input type="range" min="0" max="100" value="100">
+        <a href="/preferences" class="btn btn-default">
+          <span class="icon icon-cog"></span>
+        </a>
       </span>
     </div>
   </header>
