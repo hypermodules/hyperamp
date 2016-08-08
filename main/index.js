@@ -2,6 +2,9 @@ const { app, BrowserWindow, Menu } = require('electron')
 const menuTemplate = require('./menu')
 let win
 
+require('electron-debug')({ showDevTools: true })
+require('electron-context-menu')()
+
 function createWindow () {
   win = new BrowserWindow({
     title: 'Hyper Amp',
@@ -15,7 +18,6 @@ function createWindow () {
   })
 
   win.loadURL(`file://${__dirname}/../renderer/index.html`)
-  win.webContents.openDevTools()
   win.on('closed', () => {
     win = null
   })
