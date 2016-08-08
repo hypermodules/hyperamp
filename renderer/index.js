@@ -1,15 +1,14 @@
 const choo = require('choo')
-const view = require('./views/main')
-const preferences = require('./views/preferences')
-const model = require('./models/main')
 const location = require('choo-location-electron')
 const app = choo()
 
-app.model(model)
 app.model(location)
+app.model(require('./models/main'))
+app.model(require('./models/config'))
+
 app.router(route => [
-  route('/', view),
-  route('/preferences', preferences)
+  route('/', require('./views/main')),
+  route('/preferences', require('./views/preferences'))
 ])
 
 const tree = app.start({ href: false })

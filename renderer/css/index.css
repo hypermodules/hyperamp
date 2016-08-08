@@ -1,3 +1,9 @@
+@import 'photon.css';
+
 .toolbar-header .title {
   -webkit-app-region: drag;
+}
+
+.preferences .pane {
+  padding: 1rem;
 }
