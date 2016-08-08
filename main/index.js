@@ -8,8 +8,8 @@ require('electron-context-menu')()
 function createWindow () {
   win = new BrowserWindow({
     title: 'Hyper Amp',
-    width: 840,
-    height: 480,
+    width: 500,
+    height: 300,
     minWidth: 500,
     minHeight: 200,
     acceptFirstMouse: true,
