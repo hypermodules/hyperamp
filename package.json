@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "choo": "^3.2.0",
+    "choo-location-electron": "^1.0.0",
     "musicmetadata": "^2.0.4",
     "run-series": "^1.1.4",
     "run-waterfall": "^1.1.3"
