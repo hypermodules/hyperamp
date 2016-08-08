@@ -1,28 +1,31 @@
 const html = require('choo/html')
+const title = require('./components/title')
+const { app, dialog } = require('electron').remote
 
 module.exports = (state, prev, send) => {
-  const home = () => send('location:setLocation', { location: '/' })
-
-  const save = () => {
-    let inputs = [].slice.call(document.querySelectorAll('input, button'))
-    // TODO: photon doesn't have a disabled style yet
-    inputs.map(el => el.disabled = true)
-    // TODO: saving magic
-    setTimeout(home, 100)
+  function showDialog () {
+    dialog.showOpenDialog({
+      defaultPath: app.getPath('home'),
+      properties: ['openDirectory']
+    }, (paths) => {
+      // paths is undefined if user presses cancel
+      if (paths) send('config:set', { music: paths[0] })
+    })
   }
 
   return html`
     <main class="window preferences">
-      <header class="toolbar toolbar-header">
-        <h1 class="title"><span class="icon icon-note-beamed"></span> ${state.title}</h1>
-      </header>
+      <header class="toolbar toolbar-header">${title()}</header>
       <div class="window-content">
         <div class="pane-group">
           <div class="pane">
             <form>
               <div class="form-group">
                   <label>Library Folder Path</label>
-                  <input type="text" class="form-control" value="${state.config.music}">
+                  <input type="text"
+                    class="form-control"
+                    onclick=${showDialog}
+                    value="${state.config.music}">
               </div>
             </form>
           </div>
@@ -30,8 +33,7 @@ module.exports = (state, prev, send) => {
       </div>
       <footer class="toolbar toolbar-footer">
         <div class="toolbar-actions">
-          <button onclick=${home} class="btn btn-default">Cancel</button>
-          <button onclick=${save} class="btn btn-primary pull-right">Save</button>
+          <a href="/" class="btn btn-default">Back</a>
         </div>
       </footer>
     </main>

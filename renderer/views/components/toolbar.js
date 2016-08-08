@@ -1,8 +1,10 @@
 const html = require('choo/html')
+const title = require('./title')
+const volume = require('./volume')
 
 module.exports = (state, prev, send) => html`
   <header class="toolbar toolbar-header">
-    <h1 class="title"><span class="icon icon-note-beamed"></span> ${state.title}</h1>
+    ${title()}
 
     <div class="toolbar-actions">
       <div class="btn-group">
@@ -17,8 +19,9 @@ module.exports = (state, prev, send) => html`
         </button>
       </div>
 
+      ${volume(state.player.volume, send)}
+
       <span class="pull-right">
-        <input type="range" min="0" max="100" value="100">
         <a href="/preferences" class="btn btn-default">
           <span class="icon icon-cog"/>
         </a>

@@ -1,10 +1,8 @@
 const Config = require('electron-config')
-const {app} = require('electron').remote
+const { app } = require('electron').remote
 
 function init () {
   const config = new Config()
-
-  config.clear()
 
   if (config.size === 0) {
     config.set({
@@ -26,7 +24,7 @@ module.exports = {
   effects: {
     set: (data, state, send, done) => {
       config.set(data)
-      send('update', data, done)
+      send('config:update', data, done)
     }
   }
 }
