@@ -8,7 +8,7 @@ Work in progress.
 
 Only worth forking if you want to contribute to development!
 
-This project follows the [npm utopia](https://github.com/bcomnes/node-handbook#utopia-npm) principle for installing, testing, and running the program:
+This project adheres to the [Module Utopia Contract](https://module.party) for installing, testing, and running the program:
 
 ```
 npm install
