@@ -6,7 +6,7 @@ module.exports = (state, prev, send) => {
   const save = () => {
     let inputs = [].slice.call(document.querySelectorAll('input, button'))
     // TODO: photon doesn't have a disabled style yet
-    inputs.map(el => el.disabled = true)
+    inputs.map(el => { el.disabled = true })
     // TODO: saving magic
     setTimeout(home, 100)
   }
