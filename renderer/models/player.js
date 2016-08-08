@@ -1,9 +1,11 @@
 module.exports = {
   namespace: 'player',
   state: {
-    search: ''
+    search: '',
+    volume: 100
   },
   reducers: {
-    search: (data, state) => ({ search: data })
+    search: (data, state) => ({ search: data }),
+    volume: (data, state) => ({ volume: data })
   }
 }

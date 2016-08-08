@@ -11,3 +11,12 @@
 a {
   text-decoration: none;
 }
+
+.volume-control {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-app-region: no-drag;
+  width: 100px;
+  margin: 0 4px;
+}
