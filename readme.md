@@ -8,7 +8,7 @@ Work in progress.
 
 Only worth forking if you want to contribute to development!
 
-This project adheres to the [Module Utopia Contract](https://module.party) for installing, testing, and running the program:
+This project adheres to the [Module Utopia Contract](http://module.party) for installing, testing, and running the program:
 
 ```
 npm install
