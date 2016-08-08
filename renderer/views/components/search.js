@@ -6,8 +6,8 @@ module.exports = (state, prev, send) => html`
       <input
         type="text"
         class="form-control"
-        placeholder="Search"
-        oninput=${(e) => send('update', e.target.value)}>
+        value=${state.player.search}
+        oninput=${(e) => send('player:search', e.target.value)}>
     </li>
   </ul>
 `

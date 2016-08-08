@@ -1,8 +1,9 @@
 const html = require('choo/html')
+const title = require('./title')
 
 module.exports = (state, prev, send) => html`
   <header class="toolbar toolbar-header">
-    <h1 class="title"><span class="icon icon-note-beamed"></span> ${state.title}</h1>
+    ${title()}
 
     <div class="toolbar-actions">
       <div class="btn-group">

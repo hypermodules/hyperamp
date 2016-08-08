@@ -24,11 +24,11 @@ module.exports = (state, prev, send) => html`
 
 function renderList (state) {
   return list.filter(song => {
-    if (!state.search) return song
+    if (!state.player.search) return song
 
     var yep = Object.keys(song)
       .map(i => song[i].toLowerCase())
-      .filter(s => s.includes(state.search.toLowerCase()))
+      .filter(s => s.includes(state.player.search.toLowerCase()))
       .length > 0
 
     if (yep) return song
