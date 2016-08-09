@@ -6,15 +6,20 @@ module.exports = (config) => {
   return {
     namespace: 'library',
     state: {
-      files: []
+      files: [],
+      search: ''
     },
     reducers: {
-      metadata: (data, state) => {
-        return { files: state.files.concat(data) }
-      }
+      metadata: (data, state) => ({ files: state.files.concat(data) }),
+      search: (data, state) => ({ search: data })
     },
-    subscriptions: [
-      (send, done) => libStream(libPath, send, done)
-    ]
+    subscriptions: {
+      files: (send, done) => {
+        libStream(libPath, (err, metadata) => {
+          if (err) return done(err)
+          send('library:metadata', metadata, done)
+        })
+      }
+    }
   }
 }

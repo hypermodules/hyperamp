@@ -5,12 +5,12 @@ const mm = require('musicmetadata')
 
 const extensions = ['.m4a', '.mp3']
 
-module.exports = (libPath, send, done) => {
+module.exports = (libPath, cb) => {
   walker([libPath]).on('data', function (data) {
     if (!isValidFile(data)) return
 
     mm(fs.createReadStream(data.filepath), function (err, metadata) {
-      if (err) done(err)
+      if (err) return cb(err)
 
       // append path to metadata
       metadata.path = data.filepath
@@ -21,7 +21,7 @@ module.exports = (libPath, send, done) => {
         metadata.title = path.basename(basename, path.extname(basename))
       }
 
-      send('library:metadata', metadata, done)
+      cb(null, metadata)
     })
   })
 }

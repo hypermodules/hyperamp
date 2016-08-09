@@ -5,5 +5,5 @@ module.exports = (state, prev, send) => html`
     type="text"
     class="search-input form-control"
     placeholder="Search"
-    oninput=${(e) => send('player:search', e.target.value)}>
+    oninput=${(e) => send('library:search', e.target.value)}>
 `
