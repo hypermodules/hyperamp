@@ -17,9 +17,8 @@
     "electron-config": "^0.2.1",
     "electron-context-menu": "^0.4.0",
     "electron-debug": "^1.0.1",
-    "musicmetadata": "^2.0.4",
-    "run-series": "^1.1.4",
-    "run-waterfall": "^1.1.3"
+    "folder-walker": "^3.0.0",
+    "musicmetadata": "^2.0.4"
   },
   "devDependencies": {
     "devtron": "^1.3.0",
