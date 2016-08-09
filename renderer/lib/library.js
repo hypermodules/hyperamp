@@ -3,7 +3,6 @@ const path = require('path')
 const walker = require('folder-walker')
 const mm = require('musicmetadata')
 
-// const mediaLib = path.resolve(__dirname, '../mock-lib')
 const extensions = ['.m4a', '.mp3']
 
 module.exports = (libPath, send, done) => {
