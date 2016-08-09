@@ -20,3 +20,16 @@ a {
   width: 100px;
   margin: 0 4px;
 }
+
+.search-input {
+  width: auto;
+  padding: 1px 5px;
+  vertical-align: middle;
+  border-color: #ccc;
+  min-height: auto;
+}
+
+.form-control:focus {
+  border-color: #6db3fd;
+  box-shadow: 0 0 0 1px #6db3fd;
+}

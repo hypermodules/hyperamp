@@ -1,6 +1,7 @@
 const html = require('choo/html')
 const title = require('./title')
 const volume = require('./volume')
+const search = require('./search')
 
 module.exports = (state, prev, send) => html`
   <header class="toolbar toolbar-header">
@@ -22,6 +23,7 @@ module.exports = (state, prev, send) => html`
       ${volume(state.player.volume, send)}
 
       <span class="pull-right">
+        ${search(state, prev, send)}
         <a href="/preferences" class="btn btn-default">
           <span class="icon icon-cog"/>
         </a>
