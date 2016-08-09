@@ -14,7 +14,7 @@ module.exports = (state, prev, send) => html`
 `
 
 function renderList (state) {
-  let { files, search} = state.library
+  let { files, search } = state.library
   let list = sortList(files)
 
   if (search) list = filterList(list, search)
