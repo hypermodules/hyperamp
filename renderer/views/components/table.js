@@ -1,16 +1,7 @@
 const html = require('choo/html')
-const list = [{
-  title: 'Tell My What You See',
-  artist: 'The Beatles',
-  album: 'Help!'
-}, {
-  title: 'C.R.E.A.M.',
-  artist: 'Wu-Tang Clan',
-  album: 'Enter The Wu-Tang (36 Chambers)'
-}]
 
 module.exports = (state, prev, send) => html`
-  <table class="table-striped">
+  <table class="media-list table-striped">
     <thead>
       <tr>
         <th>Title</th>
@@ -23,23 +14,40 @@ module.exports = (state, prev, send) => html`
 `
 
 function renderList (state) {
-  return list.filter(song => {
-    if (!state.player.search) return song
+  let { files, search } = state.library
+  let list = sortList(files)
 
-    var yep = Object.keys(song)
-      .map(i => song[i].toLowerCase())
-      .filter(s => s.includes(state.player.search.toLowerCase()))
-      .length > 0
+  if (search) list = filterList(list, search)
 
-    if (yep) return song
-    return false
-  }).map(song => {
+  return list.map(meta => {
     return html`
       <tr>
-        <td>${song.title}</td>
-        <td>${song.artist}</td>
-        <td>${song.album}</td>
+        <td>${meta.title}</td>
+        <td>${meta.artist}</td>
+        <td>${meta.album}</td>
       </tr>
     `
+  })
+}
+
+function sortList (files) {
+  return files.sort((a, b) => {
+    if (a.artist < b.artist) return -1
+    if (a.artist > b.artist) return 1
+    if (a.title < b.title) return -1
+    if (a.title > b.title) return -1
+    return 0
+  })
+}
+
+function filterList (list, search) {
+  return list.filter(meta => {
+    var yep = Object.keys(meta)
+      .map(i => (meta[i] + '').toLowerCase())
+      .filter(s => s.includes(search.toLowerCase()))
+      .length > 0
+
+    if (yep) return meta
+    return false
   })
 }
