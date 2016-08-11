@@ -1,7 +1,7 @@
 const html = require('choo/html')
 
 module.exports = (state, prev, send) => html`
-  <table class="table-striped">
+  <table class="media-list table-striped">
     <thead>
       <tr>
         <th>Title</th>
@@ -32,8 +32,10 @@ function renderList (state) {
 
 function sortList (files) {
   return files.sort((a, b) => {
+    if (a.artist < b.artist) return -1
+    if (a.artist > b.artist) return 1
     if (a.title < b.title) return -1
-    if (a.title > b.title) return 1
+    if (a.title > b.title) return -1
     return 0
   })
 }
