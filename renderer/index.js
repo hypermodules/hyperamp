@@ -12,7 +12,7 @@ app.model(require('./models/library')(config))
 app.model(require('./models/config')(config))
 
 app.router(route => [
-  route('/', require('./views/player')),
+  route('/', require('./views/main')),
   route('/preferences', require('./views/preferences'))
 ])
 

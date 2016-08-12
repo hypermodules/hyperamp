@@ -1,6 +1,6 @@
 const html = require('choo/html')
 
-module.exports = (state, prev, send) => html`
+module.exports = (send) => html`
   <input
     type="text"
     class="search-input form-control"
