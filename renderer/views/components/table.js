@@ -9,11 +9,11 @@ module.exports = (state, prev, send) => html`
         <th>Album</th>
       </tr>
     </thead>
-    <tbody>${renderList(state)}</tbody>
+    <tbody>${renderList(state, send)}</tbody>
   </table>
 `
 
-function renderList (state) {
+function renderList (state, send) {
   let { files, search } = state.library
   let list = sortList(files)
 
@@ -21,7 +21,7 @@ function renderList (state) {
 
   return list.map(meta => {
     return html`
-      <tr>
+      <tr onclick=${(e) => send('player:play', { filepath: meta.filepath })}>
         <td>${meta.title}</td>
         <td>${meta.artist}</td>
         <td>${meta.album}</td>
@@ -35,7 +35,7 @@ function sortList (files) {
     if (a.artist < b.artist) return -1
     if (a.artist > b.artist) return 1
     if (a.title < b.title) return -1
-    if (a.title > b.title) return -1
+    if (a.title > b.title) return 1
     return 0
   })
 }

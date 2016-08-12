@@ -37,3 +37,16 @@ a {
 .media-list {
   table-layout: fixed;
 }
+
+.player {
+  display: inline-block;
+}
+
+.btn[disabled]:active {
+  background-color: #fcfcfc;
+  background: linear-gradient(to bottom, #fcfcfc 0%, #f1f1f1 100%);
+}
+
+.btn[disabled] .icon {
+  color: gainsboro;
+}

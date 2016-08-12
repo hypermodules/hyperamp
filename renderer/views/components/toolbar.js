@@ -1,6 +1,6 @@
 const html = require('choo/html')
 const title = require('./title')
-const volume = require('./volume')
+const player = require('./player')
 const search = require('./search')
 
 module.exports = (state, prev, send) => html`
@@ -8,22 +8,10 @@ module.exports = (state, prev, send) => html`
     ${title()}
 
     <div class="toolbar-actions">
-      <div class="btn-group">
-        <button class="btn btn-default">
-          <span class="icon icon-fast-backward"></span>
-        </button>
-        <button class="btn btn-default">
-          <span class="icon icon-play"></span>
-        </button>
-        <button class="btn btn-default">
-          <span class="icon icon-fast-forward"></span>
-        </button>
-      </div>
-
-      ${volume(state.player.volume, send)}
+      ${player(state.player, send)}
 
       <span class="pull-right">
-        ${search(state, prev, send)}
+        ${search(send)}
         <a href="/preferences" class="btn btn-default">
           <span class="icon icon-cog"/>
         </a>
