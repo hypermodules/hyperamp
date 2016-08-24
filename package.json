@@ -19,13 +19,18 @@
     "electron-debug": "^1.0.1",
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
-    "musicmetadata": "^2.0.4"
+    "musicmetadata": "^2.0.4",
+    "sheetify": "^5.1.0",
+    "photon": "git+ssh://git@github.com/connors/photon.git#v0.1.2-alpha"
   },
   "devDependencies": {
+    "browserify": "^13.1.0",
+    "css-extract": "^1.1.2",
     "devtron": "^1.3.0",
     "electron": "1.3.4",
     "standard": "^8.0.0",
-    "tape": "^4.6.0"
+    "tape": "^4.6.0",
+    "watchify": "^3.7.0"
   },
   "homepage": "https://github.com/hypermodules/hyperamp",
   "keywords": [
@@ -41,7 +46,14 @@
     "url": "git+https://github.com/hypermodules/hyperamp.git"
   },
   "scripts": {
-    "start": "electron main",
-    "test": "standard"
+    "start": "npm run watch & electron main",
+    "test": "standard",
+    "build": "browserify renderer/index.js -p [ css-extract -o renderer/dist/bundle.css ] -o /dev/null",
+    "watch": "watchify renderer/index.js -p [ css-extract -o renderer/dist/bundle.css ] -o /dev/null"
+  },
+  "browserify": {
+    "transform": [
+      "sheetify/transform"
+    ]
   }
 }
