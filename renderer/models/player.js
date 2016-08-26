@@ -26,7 +26,6 @@ module.exports = {
     play: (data, state, send, done) => {
       let { filepath } = data
       audio.src = filepath
-      audio.load()
       audio.play()
       send('player:playing', {
         playing: true,
