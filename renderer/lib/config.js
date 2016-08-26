@@ -1,16 +1,14 @@
 const Config = require('electron-config')
 const { app } = require('electron').remote
 
-module.exports = () => {
-  const conf = new Config()
+const conf = new Config()
 
-  if (conf.size === 0) conf.set(defaults())
-
-  return conf
-}
+if (conf.size === 0) conf.set(defaults())
 
 function defaults () {
   return {
     music: app.getPath('music')
   }
 }
+
+module.exports = conf

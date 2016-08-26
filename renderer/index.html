@@ -1,13 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
   <title>HyperAmp</title>
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-  <!-- BEGIN CHEAP HACK -->
-  <audio id="audio">
-  <!-- END CHEAP HACK -->
+  <div id="app">
+    <main class="window">
+      <header class="toolbar toolbar-header">
+        <h1 class="title">
+          <span class="icon icon-note-beamed"></span>
+          HyperAmp
+        </h1>
+      </header>
+      <div class="loading">
+        <div class="loader"></div>
+      </div>
+    </main>
+  </div>
   <script>require('./index.js')</script>
 </body>
 </html>

@@ -21,7 +21,7 @@ function renderList (state, send) {
 
   return list.map(meta => {
     return html`
-      <tr onclick=${(e) => send('player:play', { filepath: meta.filepath })}>
+      <tr onclick=${(e) => send('player:play', meta)}>
         <td>${meta.title}</td>
         <td>${meta.artist}</td>
         <td>${meta.album}</td>

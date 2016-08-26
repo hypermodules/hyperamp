@@ -1,34 +1,14 @@
-const { app, BrowserWindow, Menu } = require('electron')
-const menuTemplate = require('./menu')
-let win
+const { app } = require('electron')
+const audio = require('./audio')
+const ipc = require('./ipc')
+const menu = require('./menu')
+const player = require('./player')
 
-require('electron-debug')({ showDevTools: true })
-require('electron-context-menu')()
-
-function createWindow () {
-  win = new BrowserWindow({
-    title: 'Hyper Amp',
-    width: 600,
-    height: 400,
-    minWidth: 500,
-    minHeight: 200,
-    acceptFirstMouse: true,
-    titleBarStyle: 'hidden',
-    useContentSize: true
-  })
-
-  win.loadURL(`file://${__dirname}/../renderer/index.html`)
-  win.on('closed', () => {
-    win = null
-  })
-}
-
-app.on('ready', createWindow)
-
-// Create default menu
-app.once('ready', () => {
-  const menu = Menu.buildFromTemplate(menuTemplate)
-  Menu.setApplicationMenu(menu)
+app.on('ready', () => {
+  ipc.init()
+  menu.init()
+  audio.init()
+  player.init()
 })
 
 app.on('window-all-closed', () => {
@@ -36,5 +16,18 @@ app.on('window-all-closed', () => {
 })
 
 app.on('activate', () => {
-  if (win === null) createWindow()
+  if (player.win === null) player.init()
+})
+
+app.on('before-quit', function (e) {
+  if (app.isQuitting) return
+
+  app.isQuitting = true
+  e.preventDefault()
+  // windows.main.dispatch('saveState') // try to save state on exit
+  // ipcMain.once('savedState', () => app.quit())
+  setTimeout(() => {
+    // console.error('Saving state took too long. Quitting.')
+    app.quit()
+  }, 0) // quit after 2 secs, at most
 })
