@@ -1,21 +1,5 @@
 const html = require('choo/html')
-const parseMs = require('parse-ms')
-const addZero = require('add-zero')
-
-function formatDuration (ms) {
-  let { days, hours, minutes, seconds } = parseMs(ms)
-
-  seconds = addZero(seconds)
-
-  if (days) return `${days}:${hours}:${minutes}:${seconds}`
-
-  if (hours) {
-    minutes = addZero(seconds)
-    return `${hours}:${minutes}:${seconds}`
-  }
-
-  return `${minutes}:${seconds}`
-}
+const fd = require('format-duration')
 
 module.exports = (state, prev, send) => html`
   <table class="media-list table-striped">
@@ -41,7 +25,7 @@ function renderList (state, send) {
     return html`
       <tr onclick=${(e) => send('player:play', meta)}>
         <td>${meta.title}</td>
-        <td class="time">${formatDuration(meta.duration * 1000)}</td>
+        <td class="time">${fd(meta.duration * 1000)}</td>
         <td>${meta.artist}</td>
         <td>${meta.album}</td>
       </tr>
