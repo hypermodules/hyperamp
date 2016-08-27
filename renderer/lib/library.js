@@ -20,13 +20,13 @@ function isValidFile (data) {
 function parseMetadata (data, cb) {
   let { filepath } = data
 
-  mm(fs.createReadStream(filepath), (err, meta) => {
+  mm(fs.createReadStream(filepath), { duration: true }, (err, meta) => {
     if (err) {
       err.message += ` (file: ${filepath})`
       return cb(err)
     }
 
-    let { title, artist, album } = meta
+    let { title, artist, album, duration } = meta
 
     if (!title) {
       let { basename } = data
@@ -34,6 +34,6 @@ function parseMetadata (data, cb) {
       title = path.basename(basename, ext)
     }
 
-    cb(null, { title, artist, album, filepath })
+    cb(null, { title, artist, album, duration, filepath })
   })
 }

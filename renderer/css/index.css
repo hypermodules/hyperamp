@@ -38,6 +38,10 @@ a {
   table-layout: fixed;
 }
 
+.media-list .time {
+  text-align: right;
+}
+
 .player {
   display: inline-block;
 }
