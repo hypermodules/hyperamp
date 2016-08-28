@@ -28,7 +28,9 @@ module.exports = {
       done()
     },
     next: (data, state, send, done) => {
+      ipcRenderer.send('audio', 'next')
       console.log('not yet implemented')
+      // TODO: just realized it makes a lot of sense to manage playlist from here via search state and just send a 'audio:play' event over IPC with the relevant info
       done()
     }
   }
