@@ -1,10 +1,12 @@
 const html = require('choo/html')
+const fd = require('format-duration')
 
 module.exports = (state, prev, send) => html`
   <table class="media-list table-striped">
     <thead>
       <tr>
         <th>Title</th>
+        <th class="time">Time</th>
         <th>Artist</th>
         <th>Album</th>
       </tr>
@@ -21,8 +23,9 @@ function renderList (state, send) {
 
   return list.map(meta => {
     return html`
-      <tr onclick=${(e) => send('player:play', { filepath: meta.filepath })}>
+      <tr onclick=${(e) => send('player:play', meta)}>
         <td>${meta.title}</td>
+        <td class="time">${fd(meta.duration * 1000)}</td>
         <td>${meta.artist}</td>
         <td>${meta.album}</td>
       </tr>

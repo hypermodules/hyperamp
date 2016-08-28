@@ -18,11 +18,12 @@
     "electron-context-menu": "^0.4.0",
     "electron-debug": "^1.0.1",
     "folder-walker": "^3.0.0",
+    "format-duration": "^1.0.0",
     "musicmetadata": "^2.0.4"
   },
   "devDependencies": {
     "devtron": "^1.3.0",
-    "electron-prebuilt": "1.3.4",
+    "electron": "1.3.4",
     "standard": "^8.0.0",
     "tape": "^4.6.0"
   },

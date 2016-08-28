@@ -1,7 +1,7 @@
 const choo = require('choo')
 const log = require('choo-log')
 const location = require('choo-location-electron')
-const config = require('./lib/config')()
+const config = require('./lib/config')
 const app = window.hyperamp = choo()
 
 app.use(log())
@@ -17,4 +17,4 @@ app.router(route => [
 ])
 
 const tree = app.start({ href: false })
-document.body.appendChild(tree)
+document.body.querySelector('#app').appendChild(tree)
