@@ -49,7 +49,8 @@
     "start": "npm run watch & electron main",
     "test": "standard",
     "build": "browserify renderer/index.js -p [ css-extract -o renderer/dist/bundle.css ] -o /dev/null",
-    "watch": "watchify renderer/index.js -p [ css-extract -o renderer/dist/bundle.css ] -o /dev/null"
+    "watch": "watchify renderer/index.js -p [ css-extract -o renderer/dist/bundle.css ] -o /dev/null",
+    "prepublish": "npm run build"
   },
   "browserify": {
     "transform": [
