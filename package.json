@@ -21,7 +21,7 @@
     "format-duration": "^1.0.0",
     "musicmetadata": "^2.0.4",
     "sheetify": "^5.1.0",
-    "photon": "git+ssh://git@github.com/connors/photon.git#v0.1.2-alpha"
+    "photon": "connors/photon.git#v0.1.2-alpha"
   },
   "devDependencies": {
     "browserify": "^13.1.0",
