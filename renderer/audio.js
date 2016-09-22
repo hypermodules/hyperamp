@@ -1,5 +1,9 @@
 const { ipcRenderer } = require('electron')
 const audio = document.querySelector('#audio')
+var path = require('path')
+const startup = 'file://' + path.resolve(__dirname, '..', 'static', 'needle.mp3')
+
+play({ filepath: startup })
 
 ipcRenderer.on('audio', function (e, type) {
   let args = [].slice.call(arguments, 2)
