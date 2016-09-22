@@ -19,7 +19,6 @@ module.exports = (player, send) => {
           <span class="icon icon-${player.playing ? 'pause' : 'play'}"></span>
         </button>
         <button class="btn btn-default"
-          disabled
           onclick=${() => send('player:next')}>
           <span class="icon icon-fast-forward"></span>
         </button>
