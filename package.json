@@ -3,13 +3,33 @@
   "description": "Indescribable music player",
   "version": "0.0.0",
   "author": "Hyper Modules (https://github.com/hypermodules)",
+  "browserify": {
+    "transform": [
+      [
+        "sheetify/transform",
+        {
+          "use": [
+            [
+              "sheetify-postcss",
+              {
+                "plugins": [
+                  "postcss-copy-assets"
+                ],
+                "to": "./renderer/dist/bundle.css"
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/hypermodules/hyperamp/issues"
+  },
   "contributors": [
     "Bret Comnes <bcomnes@gmail.com> (http://bret.io)",
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
-  "bugs": {
-    "url": "https://github.com/hypermodules/hyperamp/issues"
-  },
   "dependencies": {
     "choo": "^3.2.0",
     "choo-location-electron": "^1.0.0",
@@ -20,14 +40,15 @@
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
     "musicmetadata": "^2.0.4",
-    "sheetify": "^5.1.0",
-    "photon": "connors/photon.git#v0.1.2-alpha"
+    "photon": "connors/photon.git#v0.1.2-alpha",
+    "sheetify": "^5.1.0"
   },
   "devDependencies": {
     "browserify": "^13.1.0",
     "css-extract": "^1.1.2",
     "devtron": "^1.3.0",
     "electron": "1.4.0",
+    "npm-run-all": "^3.1.0",
     "postcss-copy-assets": "^0.3.0",
     "sheetify-postcss": "^1.0.1",
     "standard": "^8.0.0",
@@ -36,10 +57,10 @@
   },
   "homepage": "https://github.com/hypermodules/hyperamp",
   "keywords": [
-    "music",
-    "player",
+    "amp",
     "hyper",
-    "amp"
+    "music",
+    "player"
   ],
   "license": "ISC",
   "main": "index.js",
@@ -48,23 +69,11 @@
     "url": "git+https://github.com/hypermodules/hyperamp.git"
   },
   "scripts": {
-    "start": "npm run watch & electron main",
-    "test": "standard",
     "build": "browserify renderer/index.js -p [ css-extract -o renderer/dist/bundle.css ] -o /dev/null",
-    "watch": "watchify renderer/index.js -p [ css-extract -o renderer/dist/bundle.css ] -o /dev/null",
-    "prepublish": "npm run build"
-  },
-  "browserify": {
-    "transform": [
-      [
-        "sheetify/transform",
-        {
-          "use": [["sheetify-postcss", {
-            "plugins": ["postcss-copy-assets"],
-            "to": "./renderer/dist/bundle.css"
-          }]]
-        }
-      ]
-    ]
+    "main": "electron main",
+    "prepublish": "npm run build",
+    "start": "run-p watch main",
+    "test": "standard",
+    "watch": "watchify renderer/index.js -p [ css-extract -o renderer/dist/bundle.css ] -o /dev/null"
   }
 }
