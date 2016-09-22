@@ -1,7 +1,4 @@
-# HyperAmp [![stability][stability-img]][stability-url]
-
-[![build][build-img]][build-url]
-[![standard][standard-img]][standard-url]
+# HyperAmp [![stability][stability-img]][stability-url] [![build][build-img]][build-url] [![standard][standard-img]][standard-url]
 
 [stability-img]: https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square
 [stability-url]: https://nodejs.org/api/documentation.html#documentation_stability_index
@@ -12,13 +9,13 @@
 
 Experimental desktop audio player and library.
 
-Work in progress.
+**:warning: This is pre-alpha! :warning:**
 
-**:warning: This is pre-alpha! :warning:️**
+Only worth checking out or forking if you want to contribute to development!
 
-Only worth forking if you want to contribute to development!
+## Install
 
-This project adheres to the [Module Utopia Contract](http://module.party) for installing, testing, and running the program:
+This project adheres to the [Contract of the Module United Nations](http://module.party).
 
 ```
 npm install
