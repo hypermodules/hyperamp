@@ -1,6 +1,6 @@
 const choo = require('choo')
 const log = require('choo-log')
-const location = require('choo-location-electron')
+const location = require('choo-location-electron')()
 const sf = require('sheetify')
 const config = require('./lib/config')
 const app = window.hyperamp = choo()
