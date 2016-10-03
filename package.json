@@ -13,7 +13,8 @@
               "sheetify-postcss",
               {
                 "plugins": [
-                  "postcss-copy-assets"
+                  "postcss-copy-assets",
+                  "postcss-import"
                 ],
                 "to": "./renderer/dist/bundle.css"
               }
@@ -50,6 +51,7 @@
     "electron": "1.4.12",
     "npm-run-all": "^3.1.0",
     "postcss-copy-assets": "^0.3.0",
+    "postcss-import": "^8.1.2",
     "sheetify-postcss": "^1.0.1",
     "standard": "^8.0.0",
     "tape": "^4.6.0",

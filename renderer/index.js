@@ -6,7 +6,7 @@ const config = require('./lib/config')
 const app = window.hyperamp = choo()
 
 // Global CSS
-sf('photon')
+// sf('photon')
 sf('./css/index.css', { global: true })
 
 app.use(log())

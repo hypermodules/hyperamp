@@ -1,0 +1,70 @@
+:root {
+  /* Variables
+  // --------------------------------------------------
+
+  // Type
+  // --------------------------------------------------
+
+
+
+  // Try to use the system's font on whatever platform the user is on.
+  */
+  --font-family-default:
+    system,
+    -apple-system,
+    ".SFNSDisplay-Regular",
+    "Helvetica Neue",
+    Helvetica,
+    "Segoe UI",
+    sans-serif;
+
+  --font-size-default: 13px;
+  --font-weight: 500;
+  --font-weight-bold: 700;
+  --font-weight-light: 300;
+  --line-height-default: 1.6;
+
+  /*
+  // Colors
+  // --------------------------------------------------
+
+  // Main colors
+  */
+  --primary-color: #3b99fc;
+  --chrome-color:  #fff;
+
+  /* Copy */
+  --gray-color: #333;
+
+  /* Borders */
+  --border-color: #ddd;
+  --dark-border-color: #c2c0c2;
+  --darker-bottom-border-color: #a19fa1;
+  --toolbar-border-color: #939293;
+
+  /* Action colors */
+  --default-color:  #fff;
+  --positive-color: #34c84a;
+  --negative-color: #fc605b;
+  --warning-color: #fdbc40;
+
+  /* Shades */
+  --dark-color: #57acf5;
+
+  /* Focus and active colors */
+  --active-color: #116cd6;
+  --focus-input-color: #6db3fd;
+
+  /* Other
+  // --------------------------------------------------
+
+  // Border radius
+  */
+  --default-border-radius: 4px;
+
+  /* Padding */
+  --padding: 10px;
+  --padding-mini: 3px;
+  --padding-less: 5px;
+  --padding-more: 20px;
+}
