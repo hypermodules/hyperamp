@@ -1,4 +1,11 @@
 const html = require('choo/html')
+const css = require('sheetify')
+
+const style = css`
+  :host {
+    display: flex;
+  }
+`
 
 module.exports = (player, send) => {
   function play () {
@@ -7,7 +14,7 @@ module.exports = (player, send) => {
   }
 
   return html`
-    <section class="player">
+    <div class="${style}">
       <div class="btn-group">
         <button class="btn btn-default"
           disabled
@@ -30,6 +37,6 @@ module.exports = (player, send) => {
         min="0.0" max="1.0" step="0.01"
         oninput=${(e) => send('player:volume', { volume: e.target.value })}
         value="${player.volume}">
-    </section>
+    </div>
   `
 }

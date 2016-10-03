@@ -12,17 +12,20 @@ const style = css`
     border-bottom: 1px solid var(--dark-border-color);
     display: flex;
     justify-content: space-between;
-    padding-top: 1.5em;
+    padding-top: 1.7em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    padding-bottom: 0.4em;
   }
 `
 
 module.exports = (state, prev, send) => html`
   <header class="toolbar toolbar-header ${style}">
-    <div>${player(state.player, send)}</div>
+    ${player(state.player, send)}
     <div>
       ${search(send)}
       <a href="/preferences" class="btn btn-default">
-        <span class="icon icon-cog"/>
+        <button></button>
       </a>
     </div>
   </header>
