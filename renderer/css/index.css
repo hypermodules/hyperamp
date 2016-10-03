@@ -1,2 +1,8 @@
-/* GLOBAL CSS */
+@import './variables.css';
+
+@import './normalize.css';
+@import './appify.css';
+
+@import './base.css';
+
 @import './misc.css';
