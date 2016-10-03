@@ -6,8 +6,9 @@ const config = require('./lib/config')
 const app = window.hyperamp = choo()
 
 // Global CSS
-// css('photon')
-css('./css/index.css', { global: true })
+css('photon')
+css('./css/misc.css', { global: true })
+// css('./css/index.css', { global: true })
 
 app.use(log())
 

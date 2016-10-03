@@ -1,10 +1,2 @@
-/* VARIABLES */
-@import './variables.css';
-
-/* RESETS */
-@import './normalize.css';
-@import './appify.css';
-
 /* GLOBAL CSS */
-@import './base.css';
 @import './misc.css';
