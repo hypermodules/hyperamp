@@ -1,5 +1,6 @@
 const html = require('choo/html')
 const css = require('sheetify')
+const { buttons } = require('./styles')
 
 const style = css`
   :host {
@@ -14,21 +15,32 @@ module.exports = (player, send) => {
   }
 
   return html`
-    <div class="${style}">
+    <div class="${style} ${buttons}">
       <div class="btn-group">
         <button class="btn btn-default"
           disabled
           onclick=${() => send('player:prev')}>
-          <span class="icon icon-fast-backward"></span>
+          <object
+            type="image/svg+xml"
+            data="icons/controller-fast-backward.svg"
+            class="icon">
+          </object>
         </button>
         <button class="btn btn-default"
           onclick=${play}>
-          <span class="icon icon-${player.playing ? 'pause' : 'play'}"></span>
+          <object
+            type="image/svg+xml"
+            data="icons/controller-${player.playing ? 'paus' : 'play'}.svg"
+            class="icon">
+          </object>
         </button>
         <button class="btn btn-default"
           disabled
           onclick=${() => send('player:next')}>
-          <span class="icon icon-fast-forward"></span>
+          <object
+            type="image/svg+xml"
+            data="icons/controller-fast-forward.svg"
+            class="icon">
         </button>
       </div>
 

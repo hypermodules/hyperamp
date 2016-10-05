@@ -12,10 +12,10 @@ const style = css`
     border-bottom: 1px solid var(--dark-border-color);
     display: flex;
     justify-content: space-between;
-    padding-top: 1.7em;
+    padding-top: 0.7em;
     padding-right: 0.5em;
-    padding-left: 0.5em;
-    padding-bottom: 0.4em;
+    padding-left: 6em;
+    padding-bottom: 0.5em;
   }
 `
 

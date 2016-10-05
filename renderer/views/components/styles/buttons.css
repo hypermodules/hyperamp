@@ -1,0 +1,100 @@
+.btn {
+  display: inline-block;
+  padding: 3px 8px;
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: default;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: var(--default-border-radius);
+  box-shadow: 0 1px 1px rgba(0,0,0,.06);
+  -webkit-app-region: no-drag;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-mini {
+  padding: 2px 6px;
+}
+
+.btn-large {
+  padding: 6px 12px;
+}
+
+.btn-form {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+/* Normal buttons */
+.btn-default {
+  color: var(--gray-color);
+  border-top-color: var(--dark-border-color);
+  border-right-color: var(--dark-border-color);
+  border-bottom-color: var(--darker-bottom-border-color);
+  border-left-color: var(--dark-border-color);
+  background-image: linear-gradient(to bottom, #fcfcfc 0%, #f1f1f1 100%);
+}
+
+.btn-default:active {
+  background-color: #ddd;
+  background-image: none;
+}
+
+/*  Button variations */
+.btn-primary,
+.btn-positive,
+.btn-negative,
+.btn-warning {
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+
+/* For primary buttons */
+.btn-primary {
+  border-color: #388df8;
+  border-bottom-color: #1267D2;
+  background-image: linear-gradient(to bottom, #6eb4f7 0%, #1a82fb 100%);
+}
+
+.btn-primary:active {
+  background-image: linear-gradient(to bottom, #559BDE 0%, #0169E2 100%);
+}
+
+/* For positive buttons */
+.btn-positive {
+  border-color: #1BAF31;
+  border-bottom-color: #0EA224;
+  background-image: linear-gradient(to bottom, #4EE264 0%, #1BAF31 100%);
+}
+
+.btn-positive:active {
+  background-image: linear-gradient(to bottom, var(--positive-color) 0%, #1BAF31 100%);
+}
+
+/* TODO port over negative and warning */
+
+/* Icons in buttons */
+.btn .icon {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  color: #737475;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Add the margin next to the icon if there is text in the button too */
+.btn .icon-text {
+  margin-right: 5px;
+}
+
