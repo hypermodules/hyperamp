@@ -1,7 +1,7 @@
 const Config = require('electron-config')
 const { app } = require('electron').remote
 
-const conf = new Config()
+const conf = new Config({ name: 'hyperamp.config' })
 
 if (conf.size === 0) conf.set(defaults())
 
