@@ -51,7 +51,7 @@ function send () {
 
 function toggleDevTools () {
   if (!audio.win) return
-  console.log('audio:toggleDevTools')
+  console.log('[AUDIO] Toggling dev tools')
   if (audio.win.webContents.isDevToolsOpened()) {
     audio.win.webContents.closeDevTools()
     audio.win.hide()
