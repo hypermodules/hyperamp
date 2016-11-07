@@ -35,7 +35,7 @@
     "choo-location-electron": "^2.0.0",
     "choo-log": "^1.4.0",
     "electron-config": "^0.2.1",
-    "electron-context-menu": "^0.6.0",
+    "electron-context-menu": "^0.7.0",
     "electron-debug": "^1.0.1",
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
