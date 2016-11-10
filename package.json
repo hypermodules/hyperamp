@@ -33,7 +33,7 @@
   "dependencies": {
     "choo": "^3.2.0",
     "choo-location-electron": "^2.0.0",
-    "choo-log": "^1.4.0",
+    "choo-log": "^2.0.1",
     "electron-config": "^0.2.1",
     "electron-context-menu": "^0.7.0",
     "electron-debug": "^1.0.1",
