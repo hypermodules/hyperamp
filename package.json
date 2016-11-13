@@ -3,27 +3,6 @@
   "description": "Indescribable music player",
   "version": "0.0.0",
   "author": "Hyper Modules (https://github.com/hypermodules)",
-  "browserify": {
-    "transform": [
-      [
-        "sheetify/transform",
-        {
-          "use": [
-            [
-              "sheetify-postcss",
-              {
-                "plugins": [
-                  "postcss-copy-assets",
-                  "postcss-import"
-                ],
-                "to": "./renderer/dist/bundle.css"
-              }
-            ]
-          ]
-        }
-      ]
-    ]
-  },
   "bugs": {
     "url": "https://github.com/hypermodules/hyperamp/issues"
   },
@@ -35,24 +14,18 @@
     "choo": "^3.2.0",
     "choo-location-electron": "^2.0.0",
     "choo-log": "^1.4.0",
+    "csjs": "^1.0.6",
     "electron-config": "^0.2.1",
     "electron-context-menu": "^0.7.0",
     "electron-debug": "^1.0.1",
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
-    "musicmetadata": "^2.0.4",
-    "photon": "connors/photon.git#v0.1.2-alpha",
-    "sheetify": "^5.1.0"
+    "musicmetadata": "^2.0.4"
   },
   "devDependencies": {
-    "browserify": "^13.1.0",
-    "css-extract": "^1.1.2",
     "devtron": "^1.3.0",
     "electron": "1.4.12",
     "npm-run-all": "^3.1.0",
-    "postcss-copy-assets": "^0.3.0",
-    "postcss-import": "^8.1.2",
-    "sheetify-postcss": "^1.0.1",
     "standard": "^8.0.0",
     "tape": "^4.6.0",
     "watchify": "^3.7.0"
@@ -71,11 +44,7 @@
     "url": "git+https://github.com/hypermodules/hyperamp.git"
   },
   "scripts": {
-    "build": "browserify renderer/index.js -p [ css-extract -o renderer/dist/bundle.css ] -o /dev/null",
-    "main": "electron main",
-    "prepublish": "npm run build",
-    "start": "run-p watch main",
-    "test": "standard",
-    "watch": "watchify renderer/index.js -p [ css-extract -o renderer/dist/bundle.css ] -o /dev/null"
+    "start": "electron main",
+    "test": "standard"
   }
 }
