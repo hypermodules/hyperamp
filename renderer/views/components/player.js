@@ -41,6 +41,7 @@ module.exports = (player, send) => {
             type="image/svg+xml"
             data="icons/controller-fast-forward.svg"
             class="icon">
+          </object>
         </button>
       </div>
 

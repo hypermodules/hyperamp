@@ -98,3 +98,67 @@
   margin-right: 5px;
 }
 
+/*
+// Button-groups.css
+// Adapted from Bootstrap's button-groups.less (https://github.com/twbs/bootstrap/blob/master/less/button-groups.less)
+// --------------------------------------------------
+
+// Button groups
+*/
+.btn-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-app-region: no-drag;
+}
+.btn-group .btn {
+  position: relative;
+  float: left;
+}
+ /*  Bring the "active" button to the front */
+.btn-group .btn:focus, .btn-group .btn:active {
+  z-index: 2;
+}
+.btn-group .btn.active {
+  z-index: 3;
+}
+
+/* Prevent double borders when buttons are next to each other */
+
+.btn-group .btn + .btn,
+.btn-group .btn + .btn-group,
+.btn-group .btn-group + .btn,
+.btn-group .btn-group + .btn-group {
+  margin-left: -1px;
+}
+.btn-group > .btn:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.btn-group > .btn:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.btn-group > .btn:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.btn-group .btn + .btn {
+  border-left: 1px solid #c2c0c2;
+}
+.btn-group .btn + .btn.active {
+  border-left: 0;
+}
+
+/* Selected state */
+.btn-group .active {
+  color: #fff;
+  border: 1px solid transparent;
+  background-color: #6d6c6d;
+  background-image: none;
+}
+
+/* Invert the icon in the active button */
+.btn-group .active .icon {
+  color: #fff;
+}
+
