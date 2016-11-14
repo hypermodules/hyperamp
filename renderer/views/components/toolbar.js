@@ -1,10 +1,11 @@
 const html = require('choo/html')
-const css = require('sheetify')
+const css = require('csjs')
+const insert = require('insert-css')
 const player = require('./player')
 const search = require('./search')
 
 const style = css`
-  :host {
+  .toolbar {
     -webkit-app-region: drag;
     min-height: 22px;
     box-shadow: inset 0 1px 0 #f5f4f5;
@@ -18,9 +19,10 @@ const style = css`
     padding-bottom: 0.5em;
   }
 `
+insert(css.getCss(style))
 
 module.exports = (state, prev, send) => html`
-  <header class="toolbar toolbar-header ${style}">
+  <header class="toolbar toolbar-header ${style.toolbar}">
     ${player(state.player, send)}
     <div>
       ${search(send)}

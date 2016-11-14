@@ -20,6 +20,7 @@
     "electron-debug": "^1.0.1",
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
+    "insert-css": "^1.1.0",
     "musicmetadata": "^2.0.4"
   },
   "devDependencies": {

@@ -1,12 +1,14 @@
 const html = require('choo/html')
-const css = require('sheetify')
-const { buttons } = require('./styles')
+const css = require('csjs')
+const insert = require('insert-css')
 
 const style = css`
-  :host {
+  .player {
     display: flex;
   }
 `
+
+insert(css.getCss(style))
 
 module.exports = (player, send) => {
   function play () {
@@ -15,7 +17,7 @@ module.exports = (player, send) => {
   }
 
   return html`
-    <div class="${style} ${buttons}">
+    <div class="${style.player}">
       <div class="btn-group">
         <button class="btn btn-default"
           disabled
