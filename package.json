@@ -41,7 +41,7 @@
     "format-duration": "^1.0.0",
     "musicmetadata": "^2.0.4",
     "photon": "connors/photon.git#v0.1.2-alpha",
-    "sheetify": "^5.1.0"
+    "sheetify": "^6.0.1"
   },
   "devDependencies": {
     "browserify": "^13.1.0",
