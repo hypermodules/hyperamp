@@ -22,28 +22,16 @@ module.exports = (player, send) => {
         <button class="btn btn-default"
           disabled
           onclick=${() => send('player:prev')}>
-          <object
-            type="image/svg+xml"
-            data="icons/controller-fast-backward.svg"
-            class="icon">
-          </object>
+          <svg style="height: 10px; width: 10px"><use xlink:href="#controller-fast-backward" /></svg>
         </button>
         <button class="btn btn-default"
           onclick=${play}>
-          <object
-            type="image/svg+xml"
-            data="icons/controller-${player.playing ? 'paus' : 'play'}.svg"
-            class="icon">
-          </object>
+          <svg style="height: 10px; width: 10px"><use xlink:href="#controller-play" /></svg>
         </button>
         <button class="btn btn-default"
           disabled
           onclick=${() => send('player:next')}>
-          <object
-            type="image/svg+xml"
-            data="icons/controller-fast-forward.svg"
-            class="icon">
-          </object>
+          <svg style="height: 10px; width: 10px"><use xlink:href="#controller-fast-forward" /></svg>
         </button>
       </div>
 

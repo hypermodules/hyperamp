@@ -3,6 +3,8 @@ const log = require('choo-log')
 const location = require('choo-location-electron')()
 const config = require('./lib/config')
 const app = window.hyperamp = choo()
+const svgSprite = require('./lib/sprite')
+document.body.innerHTML += svgSprite()
 
 // Global CSS
 
