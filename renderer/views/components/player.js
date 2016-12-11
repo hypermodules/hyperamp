@@ -2,6 +2,7 @@ const html = require('choo/html')
 const css = require('csjs')
 const insert = require('insert-css')
 const button = require('./button')
+const volume = require('./volume')
 
 const style = css`
   .player {
@@ -24,12 +25,7 @@ module.exports = (player, send) => {
         ${button(play, 'controller-play', false)}
         ${button(() => send('player:next'), 'controller-fast-forward', true)}
       </div>
-
-      <input type="range"
-        class="volume-control"
-        min="0.0" max="1.0" step="0.01"
-        oninput=${(e) => send('player:volume', { volume: e.target.value })}
-        value="${player.volume}">
+      ${volume(player.volume, (e) => send('player:volume', { volume: e.target.value }))}
     </div>
   `
 }

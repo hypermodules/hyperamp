@@ -27,19 +27,6 @@
   padding: 1rem;
 }
 
-a {
-  text-decoration: none;
-}
-
-.volume-control {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-app-region: no-drag;
-  width: 100px;
-  margin: 0 4px;
-}
-
 .search-input {
   width: auto;
   padding: 1px 5px;
