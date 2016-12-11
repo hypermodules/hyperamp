@@ -1,6 +1,7 @@
 const html = require('choo/html')
 const css = require('csjs')
 const insert = require('insert-css')
+const assign = Object.assign
 
 const style = css`
   .volume-control {
@@ -14,8 +15,6 @@ const style = css`
 `
 insert(css.getCss(style))
 
-module.exports = volume
-
 const defaults = {
   min: 0,
   max: 1,
@@ -24,7 +23,7 @@ const defaults = {
 }
 
 function volume (value, oninput, opts) {
-  opts = Object.assign({}, defaults, opts)
+  opts = assign({}, defaults, opts)
   const { min, max, step, style } = opts
   return html`
   <input type="range"
@@ -34,3 +33,5 @@ function volume (value, oninput, opts) {
     value="${value}">
 `
 }
+
+module.exports = volume

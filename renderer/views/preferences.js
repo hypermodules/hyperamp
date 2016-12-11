@@ -1,8 +1,9 @@
 const html = require('choo/html')
 const title = require('./components/title')
+const fcStyle = require('./components/form-control').style
 const { app, dialog } = require('electron').remote
 
-module.exports = (state, prev, send) => {
+function preferences (state, prev, send) {
   function showDialog () {
     dialog.showOpenDialog({
       defaultPath: app.getPath('home'),
@@ -23,7 +24,7 @@ module.exports = (state, prev, send) => {
               <div class="form-group">
                   <label>Library Folder Path</label>
                   <input type="text"
-                    class="form-control"
+                    class="${fcStyle['form-control']}"
                     onclick=${showDialog}
                     value="${state.config.music}">
               </div>
@@ -39,3 +40,5 @@ module.exports = (state, prev, send) => {
     </main>
   `
 }
+
+module.exports = preferences
