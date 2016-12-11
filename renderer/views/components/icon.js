@@ -1,4 +1,7 @@
 const html = require('choo/html')
+const assert = require('assert')
+
+assert.equal(document.body.firstChild.tagName, 'svg', 'svg sprite sheet must be mounted before icons work')
 
 function icon (name, opts) {
   if (!opts) opts = {}
