@@ -22,7 +22,7 @@ module.exports = (player, send) => {
     <div class="${style.player}">
       <div class="btn-group">
         ${button(() => send('player:prev'), 'controller-fast-backward', true)}
-        ${button(play, 'controller-play', false)}
+        ${button(play, 'controller-play')}
         ${button(() => send('player:next'), 'controller-fast-forward', true)}
       </div>
       ${volume(player.volume, (e) => send('player:volume', { volume: e.target.value }))}

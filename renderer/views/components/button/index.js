@@ -11,6 +11,7 @@ insert(css.getCss(buttonCSS))
 
 function button (onclick, iconName, disabled) {
   if (typeof onclick !== 'function') onclick = noop
+  if (disabled === undefined) disabled = false
   return html`
         <button class="btn btn-default"
           disabled=${disabled}

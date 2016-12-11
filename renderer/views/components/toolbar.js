@@ -3,6 +3,7 @@ const css = require('csjs')
 const insert = require('insert-css')
 const player = require('./player')
 const search = require('./search')
+const button = require('./button')
 
 const style = css`
   .toolbar {
@@ -26,8 +27,8 @@ module.exports = (state, prev, send) => html`
     ${player(state.player, send)}
     <div>
       ${search((e) => send('library:search', e.target.value))}
-      <a href="/preferences" class="btn btn-default">
-        <button></button>
+      <a href='/preferences'>
+        ${button(null, 'icon-cog')}
       </a>
     </div>
   </header>
