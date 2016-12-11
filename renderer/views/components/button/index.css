@@ -20,6 +20,15 @@
     box-shadow: none;
 }
 
+.btn[disabled]:active {
+  background-color: #fcfcfc;
+  background: linear-gradient(to bottom, #fcfcfc 0%, #f1f1f1 100%);
+}
+
+.btn[disabled] .icon {
+  color: gainsboro;
+}
+
 .btn-mini {
   padding: 2px 6px;
 }

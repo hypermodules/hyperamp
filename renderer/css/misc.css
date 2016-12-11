@@ -2,40 +2,6 @@
 /* MISC CSS THAT SHOULD BE BROKEN UP */
 /* ----------------------------------*/
 
-.toolbar-header .title {
-  -webkit-app-region: drag;
-}
-
-.preferences .pane {
-  padding: 1rem;
-}
-
-.form-control:focus {
-  border-color: #6db3fd;
-  box-shadow: 0 0 0 1px #6db3fd;
-}
-
-.media-list {
-  table-layout: fixed;
-}
-
-.media-list .time {
-  text-align: right;
-}
-
-.player {
-  display: inline-block;
-}
-
-.btn[disabled]:active {
-  background-color: #fcfcfc;
-  background: linear-gradient(to bottom, #fcfcfc 0%, #f1f1f1 100%);
-}
-
-.btn[disabled] .icon {
-  color: gainsboro;
-}
-
 .loading {
   height: 100%;
   width: 100%;

@@ -1,8 +1,21 @@
 const html = require('choo/html')
 const fd = require('format-duration')
+const css = require('csjs')
+const insert = require('insert-css')
+const style = css`
+  .media-list {
+    table-layout: fixed;
+  }
+
+  .media-list .time {
+    text-align: right;
+  }
+`
+
+insert(css.getCss(style))
 
 module.exports = (state, prev, send) => html`
-  <table class="media-list table-striped">
+  <table class="${style['media-list']} table-striped">
     <thead>
       <tr>
         <th>Title</th>

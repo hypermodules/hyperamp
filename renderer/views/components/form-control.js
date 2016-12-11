@@ -17,7 +17,7 @@ const style = css`
 
   .form-control:focus {
     border-color: var(--focus-input-color);
-    box-shadow: 0 0 0 3px var(--focus-input-color);
+    box-shadow: 0 0 0 1px var(--focus-input-color);
   }
 `
 
