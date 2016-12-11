@@ -1,6 +1,7 @@
 const html = require('choo/html')
 const css = require('csjs')
 const insert = require('insert-css')
+const button = require('./button')
 
 const style = css`
   .player {
@@ -19,20 +20,9 @@ module.exports = (player, send) => {
   return html`
     <div class="${style.player}">
       <div class="btn-group">
-        <button class="btn btn-default"
-          disabled
-          onclick=${() => send('player:prev')}>
-          <svg style="height: 10px; width: 10px"><use xlink:href="#controller-fast-backward" /></svg>
-        </button>
-        <button class="btn btn-default"
-          onclick=${play}>
-          <svg style="height: 10px; width: 10px"><use xlink:href="#controller-play" /></svg>
-        </button>
-        <button class="btn btn-default"
-          disabled
-          onclick=${() => send('player:next')}>
-          <svg style="height: 10px; width: 10px"><use xlink:href="#controller-fast-forward" /></svg>
-        </button>
+        ${button(() => send('player:prev'), 'controller-fast-backward', true)}
+        ${button(play, 'controller-play', false)}
+        ${button(() => send('player:next'), 'controller-fast-forward', true)}
       </div>
 
       <input type="range"
