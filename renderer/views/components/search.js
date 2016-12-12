@@ -1,9 +1,26 @@
 const html = require('choo/html')
+const css = require('csjs')
+const insert = require('insert-css')
+const fcStyle = require('./form-control').style
 
-module.exports = (send) => html`
+const style = css`
+  .search-input {
+    width: auto;
+    padding: 1px 5px;
+    vertical-align: middle;
+    border-color: #ccc;
+    min-height: auto;
+  }
+`
+insert(css.getCss(style))
+
+function search (oninput) {
+  return html`
   <input
     type="text"
-    class="search-input form-control"
+    class="${style['search-input']} ${fcStyle['form-control']}"
     placeholder="Search"
-    oninput=${(e) => send('library:search', e.target.value)}>
+    oninput=${oninput}>
 `
+}
+module.exports = search

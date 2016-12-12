@@ -1,0 +1,173 @@
+.btn {
+  display: inline-block;
+  padding: 3px 8px;
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: default;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: var(--default-border-radius);
+  box-shadow: 0 1px 1px rgba(0,0,0,.06);
+  /*-webkit-app-region: no-drag; */
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn[disabled]:active {
+  background-color: #fcfcfc;
+  background: linear-gradient(to bottom, #fcfcfc 0%, #f1f1f1 100%);
+}
+
+.btn[disabled] .icon {
+  color: gainsboro;
+}
+
+.btn-mini {
+  padding: 2px 6px;
+}
+
+.btn-large {
+  padding: 6px 12px;
+}
+
+.btn-form {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+/* Normal buttons */
+.btn-default {
+  color: var(--gray-color);
+  border-top-color: var(--dark-border-color);
+  border-right-color: var(--dark-border-color);
+  border-bottom-color: var(--darker-bottom-border-color);
+  border-left-color: var(--dark-border-color);
+  background-image: linear-gradient(to bottom, #fcfcfc 0%, #f1f1f1 100%);
+}
+
+.btn-default:active {
+  background-color: #ddd;
+  background-image: none;
+}
+
+/*  Button variations */
+.btn-primary,
+.btn-positive,
+.btn-negative,
+.btn-warning {
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+
+/* For primary buttons */
+.btn-primary {
+  border-color: #388df8;
+  border-bottom-color: #1267D2;
+  background-image: linear-gradient(to bottom, #6eb4f7 0%, #1a82fb 100%);
+}
+
+.btn-primary:active {
+  background-image: linear-gradient(to bottom, #559BDE 0%, #0169E2 100%);
+}
+
+/* For positive buttons */
+.btn-positive {
+  border-color: #1BAF31;
+  border-bottom-color: #0EA224;
+  background-image: linear-gradient(to bottom, #4EE264 0%, #1BAF31 100%);
+}
+
+.btn-positive:active {
+  background-image: linear-gradient(to bottom, var(--positive-color) 0%, #1BAF31 100%);
+}
+
+/* TODO port over negative and warning */
+
+/* Icons in buttons */
+.btn .icon {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  color: #737475;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Add the margin next to the icon if there is text in the button too */
+.btn .icon-text {
+  margin-right: 5px;
+}
+
+/*
+// Button-groups.css
+// Adapted from Bootstrap's button-groups.less (https://github.com/twbs/bootstrap/blob/master/less/button-groups.less)
+// --------------------------------------------------
+
+// Button groups
+*/
+.btn-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  /* -webkit-app-region: no-drag; */
+}
+.btn-group .btn {
+  position: relative;
+  float: left;
+}
+ /*  Bring the "active" button to the front */
+.btn-group .btn:focus, .btn-group .btn:active {
+  z-index: 2;
+}
+.btn-group .btn.active {
+  z-index: 3;
+}
+
+/* Prevent double borders when buttons are next to each other */
+
+.btn-group .btn + .btn,
+.btn-group .btn + .btn-group,
+.btn-group .btn-group + .btn,
+.btn-group .btn-group + .btn-group {
+  margin-left: -1px;
+}
+.btn-group > .btn:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.btn-group > .btn:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.btn-group > .btn:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.btn-group .btn + .btn {
+  border-left: 1px solid #c2c0c2;
+}
+.btn-group .btn + .btn.active {
+  border-left: 0;
+}
+
+/* Selected state */
+.btn-group .active {
+  color: #fff;
+  border: 1px solid transparent;
+  background-color: #6d6c6d;
+  background-image: none;
+}
+
+/* Invert the icon in the active button */
+.btn-group .active .icon {
+  color: #fff;
+}
+

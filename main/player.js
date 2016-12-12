@@ -16,8 +16,9 @@ function init () {
     height: 400,
     minWidth: 500,
     minHeight: 200,
-    titleBarStyle: 'hidden',
-    useContentSize: true
+    titleBarStyle: 'hidden-inset',
+    useContentSize: true,
+    thickFrame: true
   })
 
   win.loadURL(PLAYER_WINDOW)

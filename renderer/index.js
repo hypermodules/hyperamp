@@ -1,13 +1,12 @@
 const choo = require('choo')
 const log = require('choo-log')
 const location = require('choo-location-electron')()
-const sf = require('sheetify')
 const config = require('./lib/config')
 const app = window.hyperamp = choo()
+const svgSprite = htmlToElement(require('./lib/sprite')())
+document.body.insertBefore(svgSprite, document.body.firstChild)
 
 // Global CSS
-sf('photon')
-sf('./css/index.css', { global: true })
 
 app.use(log())
 
@@ -23,3 +22,9 @@ app.router(route => [
 
 const tree = app.start({ href: false })
 document.body.querySelector('#app').appendChild(tree)
+
+function htmlToElement (html) {
+  var template = document.createElement('template')
+  template.innerHTML = html
+  return template.content.firstChild
+}

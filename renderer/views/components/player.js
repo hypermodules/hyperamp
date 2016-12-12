@@ -1,4 +1,16 @@
 const html = require('choo/html')
+const css = require('csjs')
+const insert = require('insert-css')
+const button = require('./button')
+const volume = require('./volume')
+
+const style = css`
+  .player {
+    display: flex;
+  }
+`
+
+insert(css.getCss(style))
 
 module.exports = (player, send) => {
   function play () {
@@ -7,29 +19,13 @@ module.exports = (player, send) => {
   }
 
   return html`
-    <section class="player">
+    <div class="${style.player}">
       <div class="btn-group">
-        <button class="btn btn-default"
-          disabled
-          onclick=${() => send('player:prev')}>
-          <span class="icon icon-fast-backward"></span>
-        </button>
-        <button class="btn btn-default"
-          onclick=${play}>
-          <span class="icon icon-${player.playing ? 'pause' : 'play'}"></span>
-        </button>
-        <button class="btn btn-default"
-          disabled
-          onclick=${() => send('player:next')}>
-          <span class="icon icon-fast-forward"></span>
-        </button>
+        ${button(() => send('player:prev'), 'controller-fast-backward', true)}
+        ${button(play, `controller-${player.playing ? 'pause' : 'play'}`)}
+        ${button(() => send('player:next'), 'controller-fast-forward', true)}
       </div>
-
-      <input type="range"
-        class="volume-control"
-        min="0.0" max="1.0" step="0.01"
-        oninput=${(e) => send('player:volume', { volume: e.target.value })}
-        value="${player.volume}">
-    </section>
+      ${volume(player.volume, (e) => send('player:volume', { volume: e.target.value }))}
+    </div>
   `
 }
