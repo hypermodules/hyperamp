@@ -33,7 +33,7 @@ function preferences (state, prev, send) {
               <div class="form-group">
                   <label>Library Folder Path</label>
                   <input type="text"
-                    class="${fcStyle['form-control']}"
+                    class="${fcStyle.formControl}"
                     onclick=${showDialog}
                     value="${state.config.music}">
               </div>

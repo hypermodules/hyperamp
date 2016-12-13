@@ -2,7 +2,7 @@ const css = require('csjs')
 const insert = require('insert-css')
 
 const style = css`
-  .form-control {
+  .formControl {
     display: inline-block;
     width: 100%;
     min-height: 25px;
@@ -15,7 +15,7 @@ const style = css`
     outline: none;
   }
 
-  .form-control:focus {
+  .formControl:focus {
     border-color: var(--focus-input-color);
     box-shadow: 0 0 0 1px var(--focus-input-color);
   }

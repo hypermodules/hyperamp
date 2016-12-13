@@ -4,7 +4,7 @@ const insert = require('insert-css')
 const assign = Object.assign
 
 const style = css`
-  .volume-control {
+  .volumeControl {
     position: relative;
     display: inline-block;
     vertical-align: middle;
@@ -27,7 +27,7 @@ function volume (value, oninput, opts) {
   const { min, max, step, style } = opts
   return html`
   <input type="range"
-    class="${style['volume-control']}"
+    class="${style.volumeControl}"
     min="${min}" max="${max}" step="${step}"
     oninput=${oninput}
     value="${value}">

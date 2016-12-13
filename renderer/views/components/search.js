@@ -4,7 +4,7 @@ const insert = require('insert-css')
 const fcStyle = require('./form-control').style
 
 const style = css`
-  .search-input {
+  .searchInput {
     width: auto;
     padding: 1px 5px;
     vertical-align: middle;
@@ -18,7 +18,7 @@ function search (oninput) {
   return html`
   <input
     type="text"
-    class="${style['search-input']} ${fcStyle['form-control']}"
+    class="${style.searchInput} ${fcStyle.formControl}"
     placeholder="Search"
     oninput=${oninput}>
 `

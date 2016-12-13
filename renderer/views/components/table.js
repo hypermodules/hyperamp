@@ -3,11 +3,11 @@ const fd = require('format-duration')
 const css = require('csjs')
 const insert = require('insert-css')
 const style = css`
-  .media-list {
+  .mediaList {
     table-layout: fixed;
   }
 
-  .media-list .time {
+  .mediaList .time {
     text-align: right;
   }
 `
@@ -15,7 +15,7 @@ const style = css`
 insert(css.getCss(style))
 
 module.exports = (state, prev, send) => html`
-  <table class="${style['media-list']} table-striped">
+  <table class="${style.mediaList} table-striped">
     <thead>
       <tr>
         <th>Title</th>
