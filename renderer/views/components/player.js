@@ -21,9 +21,9 @@ module.exports = (player, send) => {
   return html`
     <div class="${style.player}">
       <div class="btn-group">
-        ${button(() => send('player:prev'), 'controller-fast-backward', true)}
-        ${button(play, `controller-${player.playing ? 'pause' : 'play'}`)}
-        ${button(() => send('player:next'), 'controller-fast-forward', true)}
+        ${button(() => send('player:prev'), 'entypo-controller-fast-backward', true)}
+        ${button(play, `entypo-controller-${player.playing ? 'paus' : 'play'}`)}
+        ${button(() => send('player:next'), 'entypo-controller-fast-forward', true)}
       </div>
       ${volume(player.volume, (e) => send('player:volume', { volume: e.target.value }))}
     </div>

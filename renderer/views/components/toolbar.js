@@ -28,7 +28,7 @@ module.exports = (state, prev, send) => html`
     <div>
       ${search((e) => send('library:search', e.target.value))}
       <a href='/preferences'>
-        ${button(null, 'icon-cog')}
+        ${button(null, 'entypo-cog')}
       </a>
     </div>
   </header>
