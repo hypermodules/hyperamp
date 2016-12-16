@@ -1,5 +1,4 @@
-const css = require('csjs')
-const insert = require('insert-css')
+const css = require('csjs-inject')
 
 const style = css`
   .formControl {
@@ -7,10 +6,11 @@ const style = css`
     width: 100%;
     min-height: 25px;
     padding: var(--padding-less) var(--padding);
+    font-family: var(--font-family-default);
     font-size: var(--font-size-default);
     line-height: var(--line-height-default);
-    background-color: var(--chrome-color);
-    border: 1px solid var(--border-color);
+    background: var(--lighten);
+    border: var(--border);
     border-radius: var(--default-border-radius);
     outline: none;
   }
@@ -20,7 +20,5 @@ const style = css`
     box-shadow: 0 0 0 1px var(--focus-input-color);
   }
 `
-
-insert(css.getCss(style))
 
 module.exports.style = style

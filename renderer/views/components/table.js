@@ -1,8 +1,14 @@
 const html = require('choo/html')
 const fd = require('format-duration')
-const css = require('csjs')
-const insert = require('insert-css')
+const css = require('csjs-inject')
+
 const style = css`
+  .pane {
+    flex: 1 0;
+    overflow-y: auto;
+    height: 100%;
+  }
+
   .mediaList {
     table-layout: fixed;
   }
@@ -12,10 +18,9 @@ const style = css`
   }
 `
 
-insert(css.getCss(style))
-
 module.exports = (state, prev, send) => html`
-  <table class="${style.mediaList} table-striped">
+  <section class="${style.pane}">
+  <table class="${style.mediaList}">
     <thead>
       <tr>
         <th>Title</th>

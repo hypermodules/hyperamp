@@ -1,18 +1,18 @@
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 3px 8px;
   margin-bottom: 0;
-  font-size: 12px;
+  font-size: 1em;
   line-height: 1.4;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  cursor: default;
   background-image: none;
   border: 1px solid transparent;
   border-radius: var(--default-border-radius);
   box-shadow: 0 1px 1px rgba(0,0,0,.06);
-  /*-webkit-app-region: no-drag; */
+  -webkit-app-region: no-drag;
 }
 
 .btn:focus {
@@ -44,12 +44,12 @@
 
 /* Normal buttons */
 .btn-default {
-  color: var(--gray-color);
-  border-top-color: var(--dark-border-color);
-  border-right-color: var(--dark-border-color);
-  border-bottom-color: var(--darker-bottom-border-color);
-  border-left-color: var(--dark-border-color);
-  background-image: linear-gradient(to bottom, #fcfcfc 0%, #f1f1f1 100%);
+  color: #fff;
+  border: var(--border);
+  background: var(--lighten);
+}
+.btn-default svg {
+  fill: #fff;
 }
 
 .btn-default:active {
@@ -170,4 +170,3 @@
 .btn-group .active .icon {
   color: #fff;
 }
-

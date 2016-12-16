@@ -1,6 +1,5 @@
 const html = require('choo/html')
-const css = require('csjs')
-const insert = require('insert-css')
+const css = require('csjs-inject')
 const button = require('./button')
 const volume = require('./volume')
 
@@ -9,8 +8,6 @@ const style = css`
     display: flex;
   }
 `
-
-insert(css.getCss(style))
 
 module.exports = (player, send) => {
   function play () {

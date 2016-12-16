@@ -5,8 +5,6 @@ const app = window.hyperamp = choo()
 const entypoSprite = require('entypo').getNode()
 document.body.insertBefore(entypoSprite, document.body.firstChild)
 
-// Global CSS
-
 app.use(log())
 
 app.model(require('./models/player'))

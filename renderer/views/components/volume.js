@@ -1,6 +1,5 @@
 const html = require('choo/html')
-const css = require('csjs')
-const insert = require('insert-css')
+const css = require('csjs-inject')
 const assign = Object.assign
 
 const style = css`
@@ -13,7 +12,6 @@ const style = css`
     margin: 0 4px;
   }
 `
-insert(css.getCss(style))
 
 const defaults = {
   min: 0,

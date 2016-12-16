@@ -2,15 +2,7 @@ const html = require('choo/html')
 const title = require('./components/title')
 const fcStyle = require('./components/form-control').style
 const { app, dialog } = require('electron').remote
-const css = require('csjs')
-const insert = require('insert-css')
-const style = css`
-  .pane {
-    padding: 1rem;
-  }
-`
-
-insert(css.getCss(style))
+const styles = require('./styles')
 
 function preferences (state, prev, send) {
   function showDialog () {
@@ -24,11 +16,11 @@ function preferences (state, prev, send) {
   }
 
   return html`
-    <main class="window preferences">
+    <main class="${styles.window}">
       <header class="toolbar toolbar-header">${title()}</header>
       <div class="window-content">
         <div class="pane-group">
-          <div class="${style.pane}">
+          <div class="${styles.pane}">
             <form>
               <div class="form-group">
                   <label>Library Folder Path</label>

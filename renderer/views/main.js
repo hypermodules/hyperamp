@@ -1,16 +1,11 @@
 const html = require('choo/html')
 const toolbar = require('./components/toolbar')
 const table = require('./components/table')
+const styles = require('./styles')
 
 module.exports = (state, prev, send) => html`
-  <main class="window">
+  <main class="${styles.window}">
     ${toolbar(state, prev, send)}
-    <div class="window-content">
-      <div class="pane-group">
-        <div class="pane">
-          ${table(state, prev, send)}
-        </div>
-      </div>
-    </div>
+    ${table(state, prev, send)}
   </main>
 `

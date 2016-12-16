@@ -13,14 +13,13 @@
   "dependencies": {
     "choo-location-electron": "^2.0.0",
     "choo-log": "^3.0.0",
-    "csjs": "^1.0.6",
+    "csjs-inject": "^1.0.1",
     "electron-config": "^0.2.1",
     "electron-context-menu": "^0.8.0",
     "electron-debug": "^1.0.1",
     "entypo": "^1.0.2",
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
-    "insert-css": "^2.0.0",
     "musicmetadata": "^2.0.4"
   },
   "devDependencies": {

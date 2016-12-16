@@ -1,5 +1,5 @@
-const css = require('csjs')
-const insert = require('insert-css')
+const css = require('csjs-inject')
+
 const style = css`
   .loading {
     height: 100%;
@@ -70,7 +70,5 @@ const style = css`
     }
   }
 `
-
-insert(css.getCss(style))
 
 module.exports.style = style

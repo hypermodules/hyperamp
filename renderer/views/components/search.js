@@ -1,6 +1,5 @@
 const html = require('choo/html')
-const css = require('csjs')
-const insert = require('insert-css')
+const css = require('csjs-inject')
 const fcStyle = require('./form-control').style
 
 const style = css`
@@ -8,11 +7,9 @@ const style = css`
     width: auto;
     padding: 1px 5px;
     vertical-align: middle;
-    border-color: #ccc;
     min-height: auto;
   }
 `
-insert(css.getCss(style))
 
 function search (oninput) {
   return html`

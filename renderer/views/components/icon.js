@@ -5,8 +5,8 @@ assert.equal(document.body.firstChild.tagName, 'svg', 'svg sprite sheet must be 
 
 function icon (name, opts) {
   if (!opts) opts = {}
-  const height = opts.height || 10
-  const width = opts.width || 10
+  const height = opts.height || '1em'
+  const width = opts.width || '1em'
   return html`<svg width="${width}" height="${height}"><use xlink:href="#${name}" /></svg>`
 }
 

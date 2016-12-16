@@ -18,10 +18,13 @@ function init () {
     minHeight: 200,
     titleBarStyle: 'hidden-inset',
     useContentSize: true,
+    show: false,
     thickFrame: true
   })
 
   win.loadURL(PLAYER_WINDOW)
+
+  win.once('ready-to-show', win.show)
 
   win.on('closed', () => {
     player.win = null

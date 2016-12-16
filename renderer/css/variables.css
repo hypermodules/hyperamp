@@ -34,6 +34,14 @@
 
   // Main colors
   */
+
+  /* begin experiment */
+  --bg: #192633;
+  --copy: #bcc0c4;
+  --lighten: rgba(255, 255, 255, .08);
+  --border: 1px solid var(--lighten);
+  /* end experiment */
+
   --primary-color: #3b99fc;
   --chrome-color:  #fff;
 

@@ -1,6 +1,5 @@
 const html = require('choo/html')
-const css = require('csjs')
-const insert = require('insert-css')
+const css = require('csjs-inject')
 const player = require('./player')
 const search = require('./search')
 const button = require('./button')
@@ -8,22 +7,18 @@ const button = require('./button')
 const style = css`
   .toolbar {
     -webkit-app-region: drag;
-    min-height: 22px;
-    box-shadow: inset 0 1px 0 #f5f4f5;
-    background: linear-gradient(#e8e6e8, #d1cfd1);
-    border-bottom: 1px solid var(--dark-border-color);
-    display: flex;
-    justify-content: space-between;
-    padding-top: 0.7em;
-    padding-right: 0.5em;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    height: 40px;
+    padding-right: 1em;
     padding-left: 6em;
-    padding-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `
-insert(css.getCss(style))
 
 module.exports = (state, prev, send) => html`
-  <header class="toolbar toolbar-header ${style.toolbar}">
+  <header class="${style.toolbar}">
     ${player(state.player, send)}
     <div>
       ${search((e) => send('library:search', e.target.value))}
