@@ -8,26 +8,26 @@ module.exports = {
     volume: 100
   },
   reducers: {
-    playing: (data, state) => data,
-    volume: (data, state) => {
+    playing: (state, data) => data,
+    volume: (state, data) => {
       ipcRenderer.send('audio', 'volume', data)
       return data
     }
   },
   effects: {
-    play: (data, state, send, done) => {
+    play: (state, data, send, done) => {
       ipcRenderer.send('audio', 'play', data)
       send('player:playing', { playing: true, current: data }, done)
     },
-    pause: (data, state, send, done) => {
+    pause: (state, data, send, done) => {
       ipcRenderer.send('audio', 'pause')
       send('player:playing', { playing: false }, done)
     },
-    prev: (data, state, send, done) => {
+    prev: (state, data, send, done) => {
       console.log('not yet implemented')
       done()
     },
-    next: (data, state, send, done) => {
+    next: (state, data, send, done) => {
       console.log('not yet implemented')
       done()
     }
