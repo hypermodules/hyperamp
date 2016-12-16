@@ -11,7 +11,7 @@
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
   "dependencies": {
-    "choo": "^3.2.0",
+    "choo": "^4.0.1",
     "choo-location-electron": "^2.0.0",
     "choo-log": "^3.0.0",
     "csjs": "^1.0.6",
