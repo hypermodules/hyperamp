@@ -10,8 +10,8 @@ module.exports = (config) => {
       search: ''
     },
     reducers: {
-      metadata: (data, state) => ({ files: state.files.concat(data) }),
-      search: (data, state) => ({ search: data })
+      metadata: (state, data) => ({ files: state.files.concat(data) }),
+      search: (state, data) => ({ search: data })
     },
     subscriptions: {
       files: (send, done) => {

@@ -3,10 +3,10 @@ module.exports = (config) => {
     namespace: 'config',
     state: config.store,
     reducers: {
-      update: (data, state) => data
+      update: (state, data) => data
     },
     effects: {
-      set: (data, state, send, done) => {
+      set: (state, data, send, done) => {
         config.set(data)
         send('config:update', data, done)
       }
