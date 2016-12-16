@@ -27,8 +27,7 @@
   "devDependencies": {
     "electron": "1.4.12",
     "standard": "^8.0.0",
-    "tape": "^4.6.0",
-    "watchify": "^3.7.0"
+    "tape": "^4.6.0"
   },
   "homepage": "https://github.com/hypermodules/hyperamp",
   "keywords": [
