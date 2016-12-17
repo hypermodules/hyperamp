@@ -70,4 +70,5 @@ h6 { font-size: 12px; }
 
 a {
   text-decoration: none;
+  display: inline-block;
 }

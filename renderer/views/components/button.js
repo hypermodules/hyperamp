@@ -1,5 +1,5 @@
 const html = require('choo/html')
-const icon = require('../icon')
+const icon = require('./icon')
 const css = require('csjs-inject')
 
 const style = css`
