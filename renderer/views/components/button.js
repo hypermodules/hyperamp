@@ -19,19 +19,19 @@ const style = css`
     border-radius: var(--default-border-radius);
     box-shadow: 0 1px 1px rgba(0,0,0,.06);
     -webkit-app-region: no-drag;
-    color: #fff;
+    color: var(--copy);
     border: var(--border);
-    background: var(--lighten);
+    background: transparent;
     box-sizing: border-box;
   }
 
   .btn svg {
-    fill: #fff;
+    fill: var(--copy);
   }
 
   .btn:active {
-    background-color: #ddd;
-    background-image: none;
+    background: var(--lighter);
+    border: var(--border);
   }
 
   .btn:focus {
@@ -40,12 +40,11 @@ const style = css`
   }
 
   .btn[disabled] svg {
-    fill: gainsboro;
+    fill: var(--lighter);
   }
 
-  .btn[disabled]:active {
-    background-color: #fcfcfc;
-    background: linear-gradient(to bottom, #fcfcfc 0%, #f1f1f1 100%);
+  .btn[disabled] {
+    background-color: var(--bg);
   }
 
   .btnGroup {

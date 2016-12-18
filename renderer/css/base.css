@@ -1,14 +1,7 @@
-/* ----------------------------------*/
-/* Base styles                       */
-/* ----------------------------------*/
-
-::-webkit-scrollbar { width: 2px }
-::-webkit-scrollbar-track { background-color: #192633 }
-::-webkit-scrollbar-thumb { background-color: #fff }
-
 html {
   -webkit-user-select: none;
   cursor: default !important; /* always be defaultin */
+  font-size: var(--font-size-default);
   overflow: hidden;
   width: 100%;
 }
@@ -22,6 +15,7 @@ body {
   color: var(--copy);
   font-family: var(--font-family-default);
   font-size: var(--font-size-default);
+  font-weight: var(--font-weight-default);
   line-height: var(--line-height-default);
   margin: 0;
   overflow: hidden;

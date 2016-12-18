@@ -16,11 +16,10 @@ const style = css`
 
 function search (oninput) {
   return html`
-  <input
-    type="text"
-    class="${style.searchInput} ${fcStyle.formControl}"
-    placeholder="Search"
-    oninput=${oninput}>
-`
+    <input type="text"
+      class="${fcStyle.formControl} ${style.searchInput}"
+      placeholder="Search"
+      oninput=${oninput}>
+  `
 }
 module.exports = search

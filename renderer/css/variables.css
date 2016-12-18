@@ -1,45 +1,53 @@
-/* ----------------*/
-/* GLOBAL CSS VARS */
-/* ----------------*/
-
 :root {
-  /* Variables
-  // --------------------------------------------------
+  /* scrollbar */
 
-  // Type
-  // --------------------------------------------------
+  --scrollbar-bg: var(--dark);
+  --scrollbar-thumb-bg: var(--bg-light);
 
+  /* type */
 
-
-  // Try to use the system's font on whatever platform the user is on.
-  */
-  --font-family-default:
-    system,
-    -apple-system,
-    ".SFNSDisplay-Regular",
-    "Helvetica Neue",
-    Helvetica,
-    "Segoe UI",
-    sans-serif;
+  /* use system fonts */
+  --font-family-default: -apple-system, BlinkMacSystemFont, /* MacOS and iOS */
+               'avenir next', avenir, /* MacOS and iOS */
+               'Segoe UI', /* Windows */
+               'lucida grande', /* Older MacOS */
+               'helvetica neue', helvetica, /* Older MacOS */
+               'Fira Sans', /* Firefox OS */
+               roboto, noto, /* Google stuff */
+               'Droid Sans', /* Old Google stuff */
+               cantarell, oxygen, ubuntu, /* Linux stuff */
+               'franklin gothic medium', 'century gothic', /* Windows stuff */
+               'Liberation Sans', /* Linux */
+               sans-serif; /* Everything else */
 
   --font-size-default: 13px;
-  --font-weight: 500;
-  --font-weight-bold: 700;
-  --font-weight-light: 300;
+  --font-weight-default: 300;
+  --font-weight-bold: 500;
+  --font-weight-light: 100;
   --line-height-default: 1.6;
 
-  /*
-  // Colors
-  // --------------------------------------------------
-
-  // Main colors
-  */
+  /* colors */
 
   /* begin experiment */
-  --bg: #192633;
-  --copy: #bcc0c4;
-  --lighten: rgba(255, 255, 255, .08);
-  --border: 1px solid var(--lighten);
+  /* colors */
+  --bg: rgb(25,38,51);
+  --copy: rgb(188,192,196);
+
+  /* tints */
+  --bg-light: rgb(47,59,71);
+
+  /* alphas */
+  --lighter: rgba(255,255,255,.25);
+  --light: rgba(255,255,255,.08);
+  --lighten: rgba(255,255,255,.025);
+  --dark: rgba(0,0,0,.08);
+
+  /* borders */
+  --border: 1px solid var(--light);
+
+  /* states */
+  --active-bg: #293643;
+  --active-border: 1px solid var(--lighter);
   /* end experiment */
 
   --primary-color: #3b99fc;
@@ -53,6 +61,7 @@
   --dark-border-color: #c2c0c2;
   --darker-bottom-border-color: #a19fa1;
   --toolbar-border-color: #939293;
+  --default-border-radius: 4px;
 
   /* Action colors */
   --default-color:  #fff;
@@ -66,13 +75,6 @@
   /* Focus and active colors */
   --active-color: #116cd6;
   --focus-input-color: #6db3fd;
-
-  /* Other
-  // --------------------------------------------------
-
-  // Border radius
-  */
-  --default-border-radius: 4px;
 
   /* Padding */
   --padding: 10px;
