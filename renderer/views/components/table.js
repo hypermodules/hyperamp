@@ -32,11 +32,9 @@ const style = css`
     padding: 2px 15px;
   }
 
-  ${''/* tbody {
-    display: block;
-    overflow: auto;
-    width: 100%;
-  }*/}
+  /* note: sticky table header
+  https://codepen.io/tjvantoll/pen/JEKIu
+  */
 
   .mediaList  .time {
     text-align: right;
