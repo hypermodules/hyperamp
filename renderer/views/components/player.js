@@ -19,11 +19,25 @@ module.exports = (player, send) => {
   return html`
     <div class="${style.player}">
       <div class="${button.style.btnGroup}">
-        ${button(() => send('player:prev'), 'entypo-controller-fast-backward', true)}
-        ${button(play, `entypo-controller-${player.playing ? 'paus' : 'play'}`)}
-        ${button(() => send('player:next'), 'entypo-controller-fast-forward', true)}
+        ${button({
+          onclick: () => send('player:prev'),
+          iconName: 'entypo-controller-fast-backward',
+          disabled: true
+        })}
+        ${button({
+          onclick: play,
+          iconName: `entypo-controller-${player.playing ? 'paus' : 'play'}`
+        })}
+        ${button({
+          onclick: () => send('player:next'),
+          iconName: 'entypo-controller-fast-forward',
+          disabled: true
+        })}
       </div>
-      ${volume(player.volume, (e) => send('player:volume', { volume: e.target.value }))}
+      ${volume({
+        value: player.volume,
+        oninput: (e) => send('player:volume', { volume: e.target.value })
+      })}
     </div>
   `
 }

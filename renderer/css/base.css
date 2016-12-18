@@ -63,6 +63,7 @@ h5 { font-size: 14px; }
 h6 { font-size: 12px; }
 
 a {
+  color: var(--link);
   text-decoration: none;
   display: inline-block;
 }

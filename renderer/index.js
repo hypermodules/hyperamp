@@ -11,7 +11,7 @@ app.model(require('./models/player'))
 app.model(require('./models/library')(config))
 app.model(require('./models/config')(config))
 
-app.router({ default: '/404' }, [
+app.router({ default: '/' }, [
   ['/', require('./views/main')],
   ['/preferences', require('./views/preferences')]
 ])

@@ -10,7 +10,7 @@ const style = css`
     margin-bottom: 0;
     font-size: 1em;
     line-height: 1.4;
-    height: 24px;
+    min-height: 24px;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -75,15 +75,18 @@ const style = css`
   }
 `
 
-function button (onclick, iconName, disabled) {
+function button ({ onclick, iconName, disabled }, children) {
   if (typeof onclick !== 'function') onclick = noop
   if (disabled === undefined) disabled = false
+
   return html`
-        <button class="${style.btn}"
-          disabled=${disabled}
-          onclick=${onclick}>
-          ${icon(iconName)}
-        </button>`
+    <button class="${style.btn}"
+      disabled=${disabled}
+      onclick=${onclick}>
+      ${iconName ? icon({ name: iconName }) : null}
+      ${children || null}
+    </button>
+  `
 }
 
 module.exports = button

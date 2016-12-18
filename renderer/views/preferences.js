@@ -1,5 +1,6 @@
 const html = require('choo/html')
 const toolbar = require('./components/toolbar')
+const button = require('./components/button')
 const fcStyle = require('./components/form-control').style
 const { app, dialog } = require('electron').remote
 const styles = require('./styles')
@@ -19,25 +20,23 @@ function preferences (state, prev, send) {
     <main class="${styles.window}">
       ${toolbar(state, prev, send)}
       <div class="window-content">
-        <div class="pane-group">
-          <div class="${styles.pane}">
-            <form>
-              <div class="form-group">
-                  <label>Library Folder Path</label>
-                  <input type="text"
-                    class="${fcStyle.formControl}"
-                    onclick=${showDialog}
-                    value="${state.config.music}">
-              </div>
-            </form>
-          </div>
+        <div class="${styles.pane}">
+          <form class=${fcStyle.form}>
+            <div class="${fcStyle.formGroup}">
+                <label>Media Folder:</label>
+                <input type="text"
+                  class="${fcStyle.formControl}"
+                  onclick=${showDialog}
+                  value="${state.config.music}"
+                  readonly="true">
+            </div>
+          </form>
+          ${button({
+            onclick: () => send('location:set', '/'),
+            iconName: 'entypo-chevron-left'
+          }, 'Back')}
         </div>
       </div>
-      <footer class="toolbar toolbar-footer">
-        <div class="toolbar-actions">
-          <a href="/" class="btn btn-default">Back</a>
-        </div>
-      </footer>
     </main>
   `
 }

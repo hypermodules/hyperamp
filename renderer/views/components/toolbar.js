@@ -26,9 +26,9 @@ module.exports = (state, prev, send) => html`
   <header class="${style.toolbar}">
     ${player(state.player, send)}
     <div class="${style.rightCluster}">
-      ${search((e) => send('library:search', e.target.value))}
+      ${search({ oninput: (e) => send('library:search', e.target.value) })}
       <a href='/preferences'>
-        ${button(null, 'entypo-cog')}
+        ${button({ iconName: 'entypo-cog' })}
       </a>
     </div>
   </header>
