@@ -8,7 +8,9 @@ const style = css`
     padding: 1px 5px;
     vertical-align: middle;
     min-height: auto;
-    margin: 0 4px;
+    margin: 0 5px;
+    height: 24px;
+    box-sizing: border-box;
   }
 `
 

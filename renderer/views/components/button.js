@@ -10,6 +10,7 @@ const style = css`
     margin-bottom: 0;
     font-size: 1em;
     line-height: 1.4;
+    height: 24px;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
