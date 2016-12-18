@@ -9,7 +9,7 @@ const style = css`
     vertical-align: middle;
     -webkit-app-region: no-drag;
     width: 100px;
-    margin: 0 4px;
+    margin: 0 5px;
   }
 `
 
