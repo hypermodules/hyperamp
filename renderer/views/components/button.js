@@ -22,7 +22,6 @@ const style = css`
     color: var(--copy);
     border: var(--border);
     background: transparent;
-    box-sizing: border-box;
   }
 
   .btn svg {

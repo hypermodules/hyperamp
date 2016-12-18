@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   -webkit-user-select: none;
   cursor: default !important; /* always be defaultin */

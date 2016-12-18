@@ -14,7 +14,6 @@ const style = css`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-sizing: border-box;
   }
 
   .rightCluster {
