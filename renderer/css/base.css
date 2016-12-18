@@ -4,6 +4,11 @@ html {
   font-size: var(--font-size-default);
   overflow: hidden;
   width: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 html, body {

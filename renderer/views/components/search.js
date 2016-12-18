@@ -10,7 +10,6 @@ const style = css`
     min-height: auto;
     margin: 0 5px;
     height: 24px;
-    box-sizing: border-box;
   }
 `
 
