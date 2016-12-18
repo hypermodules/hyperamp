@@ -20,16 +20,16 @@ const defaults = {
   style: style
 }
 
-function volume (value, oninput, opts) {
+function volume (opts) {
   opts = assign({}, defaults, opts)
-  const { min, max, step, style } = opts
+  const { value, oninput, min, max, step, style } = opts
   return html`
-  <input type="range"
-    class="${style.volumeControl}"
-    min="${min}" max="${max}" step="${step}"
-    oninput=${oninput}
-    value="${value}">
-`
+    <input type="range"
+      class="${style.volumeControl}"
+      min="${min}" max="${max}" step="${step}"
+      oninput=${oninput}
+      value="${value}">
+  `
 }
 
 module.exports = volume

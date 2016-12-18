@@ -1,6 +1,12 @@
 const css = require('csjs-inject')
 
 const style = css`
+  .form {
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-bottom: var(--border);
+  }
+
   .formControl {
     color: #fff;
     display: inline-block;
@@ -9,6 +15,7 @@ const style = css`
     padding: var(--padding-less) var(--padding);
     font-family: var(--font-family-default);
     font-size: var(--font-size-default);
+    font-weight: var(--font-weight-default);
     line-height: var(--line-height-default);
     background: var(--lighten);
     border: var(--border);
@@ -19,6 +26,22 @@ const style = css`
   .formControl:focus {
     background: var(--active-bg);
     border: var(--active-border);
+  }
+
+  .formGroup {
+    display: flex;
+    align-items: center;
+  }
+
+  .formGroup label {
+    margin-right: 1em;
+    width: 30%;
+    white-space: nowrap;
+  }
+
+  .formGroup input {
+    display: inline-flex;
+    flex; 1;
   }
 `
 
