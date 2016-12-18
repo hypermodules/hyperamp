@@ -1,5 +1,5 @@
 const html = require('choo/html')
-const title = require('./components/title')
+const toolbar = require('./components/toolbar')
 const fcStyle = require('./components/form-control').style
 const { app, dialog } = require('electron').remote
 const styles = require('./styles')
@@ -17,7 +17,7 @@ function preferences (state, prev, send) {
 
   return html`
     <main class="${styles.window}">
-      <header class="toolbar toolbar-header">${title()}</header>
+      ${toolbar(state, prev, send)}
       <div class="window-content">
         <div class="pane-group">
           <div class="${styles.pane}">

@@ -7,7 +7,7 @@ const button = require('./button')
 const style = css`
   .toolbar {
     -webkit-app-region: drag;
-    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    border-bottom: var(--border);
     height: 40px;
     padding-right: 1em;
     padding-left: 6em;

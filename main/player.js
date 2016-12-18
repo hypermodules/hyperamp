@@ -12,10 +12,10 @@ require('electron-context-menu')()
 function init () {
   let win = player.win = new BrowserWindow({
     title: 'Hyper Amp',
-    width: 600,
-    height: 400,
-    minWidth: 500,
-    minHeight: 200,
+    width: 800,
+    height: 600,
+    minWidth: 640,
+    minHeight: 400,
     titleBarStyle: 'hidden-inset',
     useContentSize: true,
     show: false,
