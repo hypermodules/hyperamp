@@ -85,7 +85,7 @@ function button ({ onclick, iconName, disabled }, children) {
       disabled=${disabled}
       onclick=${onclick}>
       ${iconName ? icon({ name: iconName }) : null}
-      ${children ? children : null}
+      ${children || null}
     </button>
   `
 }
