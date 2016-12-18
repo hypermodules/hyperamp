@@ -6,13 +6,8 @@
 ::-webkit-scrollbar-track { background-color: #192633 }
 ::-webkit-scrollbar-thumb { background-color: #fff }
 
-* {
-  cursor: default;
-  box-sizing: border-box;
-  -webkit-user-select: none;
-}
-
 html {
+  -webkit-user-select: none;
   cursor: default !important; /* always be defaultin */
   overflow: hidden;
   width: 100%;
