@@ -32,6 +32,11 @@ const style = css`
     padding: 2px 15px;
   }
 
+  thead th:active,
+  tbody tr:active {
+    background: var(--light);
+  }
+
   /* note: sticky table header
   https://codepen.io/tjvantoll/pen/JEKIu
   */
