@@ -1,13 +1,14 @@
-* {
-  box-sizing: border-box;
-}
-
 html {
   -webkit-user-select: none;
   cursor: default !important; /* always be defaultin */
   font-size: var(--font-size-default);
   overflow: hidden;
   width: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 html, body {
