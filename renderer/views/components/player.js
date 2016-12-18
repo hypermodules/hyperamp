@@ -6,6 +6,7 @@ const volume = require('./volume')
 const style = css`
   .player {
     display: flex;
+    align-items: center;
   }
 `
 
@@ -17,7 +18,7 @@ module.exports = (player, send) => {
 
   return html`
     <div class="${style.player}">
-      <div class="btn-group">
+      <div class="${button.style.btnGroup}">
         ${button(() => send('player:prev'), 'entypo-controller-fast-backward', true)}
         ${button(play, `entypo-controller-${player.playing ? 'paus' : 'play'}`)}
         ${button(() => send('player:next'), 'entypo-controller-fast-forward', true)}

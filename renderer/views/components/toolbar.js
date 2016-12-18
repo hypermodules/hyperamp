@@ -14,13 +14,19 @@ const style = css`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .rightCluster {
+    display: flex;
+    align-items: center;
   }
 `
 
 module.exports = (state, prev, send) => html`
   <header class="${style.toolbar}">
     ${player(state.player, send)}
-    <div>
+    <div class="${style.rightCluster}">
       ${search((e) => send('library:search', e.target.value))}
       <a href='/preferences'>
         ${button(null, 'entypo-cog')}

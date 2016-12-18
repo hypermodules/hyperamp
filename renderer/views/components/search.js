@@ -8,6 +8,7 @@ const style = css`
     padding: 1px 5px;
     vertical-align: middle;
     min-height: auto;
+    margin: 0 4px;
   }
 `
 
