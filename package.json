@@ -19,11 +19,13 @@
     "entypo": "^1.0.2",
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
+    "level": "^1.5.0",
     "musicmetadata": "^2.0.4"
   },
   "devDependencies": {
     "choo": "^4.0.1",
     "electron": "1.4.12",
+    "electron-rebuild": "^1.4.0",
     "standard": "^8.0.0",
     "tape": "^4.6.0"
   },
@@ -42,6 +44,7 @@
   },
   "scripts": {
     "start": "electron main",
-    "test": "standard"
+    "test": "standard",
+    "rebuild": "electron-rebuild"
   }
 }
