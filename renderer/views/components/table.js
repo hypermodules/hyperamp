@@ -5,8 +5,9 @@ const css = require('csjs-inject')
 const style = css`
   .pane {
     flex: 1 0;
-    overflow-y: overlay;
-    height: 100%;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   .mediaList {
@@ -18,48 +19,72 @@ const style = css`
     text-align: left;
   }
 
-  tr:nth-child(even), thead {
+  .mediaList td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mediaList tr:nth-child(even), thead {
     background: var(--lighten);
   }
 
-  th {
+  .mediaList th {
     font-weight: var(--font-weight-default);
     border-right: var(--border);
     border-bottom: var(--border);
   }
 
-  td, th {
+  .mediaList td, th {
     padding: 2px 15px;
   }
 
-  thead th:active,
-  tbody tr:active {
+  .mediaList thead th:active,
+  .mediaList tbody tr:active {
     background: var(--light);
+  }
+
+  .tableHeader {
+    flex: 0 0;
+  }
+
+  .tableBody {
+    flex: 1 0;
+    overflow: overlay;
   }
 
   /* note: sticky table header
   https://codepen.io/tjvantoll/pen/JEKIu
   */
 
+  /* use colgroup to sanely apply width properties  */
+  /* https://docs.webplatform.org/wiki/html/elements/colgroup */
+
   .mediaList  .time {
     text-align: right;
-    max-width: 5em;
+    width: 6em;
   }
 `
 
 module.exports = (state, prev, send) => html`
   <section class="${style.pane}">
-    <table class="${style.mediaList}">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th class="${style.time}">Time</th>
-          <th>Artist</th>
-          <th>Album</th>
-        </tr>
-      </thead>
-      <tbody>${renderList(state, send)}</tbody>
-    </table>
+    <div class=${style.tableHeader}>
+      <table class="${style.mediaList}">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th class="${style.time}">Time</th>
+            <th>Artist</th>
+            <th>Album</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class=${style.tableBody}>
+      <table class="${style.mediaList} ${style.tableBody}">
+        <tbody>${renderList(state, send)}</tbody>
+      </table>
+    </div>
   </section>
 `
 
