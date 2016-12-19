@@ -34,6 +34,9 @@ const style = css`
     border-right: var(--border);
     border-bottom: var(--border);
   }
+  .mediaList th:last-child {
+    border-right: none;
+  }
 
   .mediaList td, th {
     padding: 2px 15px;
@@ -52,10 +55,6 @@ const style = css`
     flex: 1 0;
     overflow: overlay;
   }
-
-  /* note: sticky table header
-  https://codepen.io/tjvantoll/pen/JEKIu
-  */
 
   /* use colgroup to sanely apply width properties  */
   /* https://docs.webplatform.org/wiki/html/elements/colgroup */
@@ -106,10 +105,18 @@ function renderList (state, send) {
   })
 }
 
+// TODO: expose sort to state to allow sort using column headers
 function sortList (files) {
   return files.sort((a, b) => {
+    // sort by artist
     if (a.artist < b.artist) return -1
     if (a.artist > b.artist) return 1
+
+    // then by album
+    if (a.album < b.album) return -1
+    if (a.album > b.album) return 1
+
+    // then by title
     if (a.title < b.title) return -1
     if (a.title > b.title) return 1
     return 0
