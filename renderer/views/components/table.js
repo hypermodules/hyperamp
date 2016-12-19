@@ -18,22 +18,22 @@ const style = css`
     text-align: left;
   }
 
-  tr:nth-child(even), thead {
+  .mediaList tr:nth-child(even), thead {
     background: var(--lighten);
   }
 
-  th {
+  .mediaList th {
     font-weight: var(--font-weight-default);
     border-right: var(--border);
     border-bottom: var(--border);
   }
 
-  td, th {
+  .mediaList td, th {
     padding: 2px 15px;
   }
 
-  thead th:active,
-  tbody tr:active {
+  .mediaList thead th:active,
+  .mediaList tbody tr:active {
     background: var(--light);
   }
 
