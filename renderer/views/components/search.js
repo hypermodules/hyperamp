@@ -13,7 +13,7 @@ const style = css`
   }
 `
 
-function search (oninput) {
+function search ({ oninput }) {
   return html`
     <input type="text"
       class="${fcStyle.formControl} ${style.searchInput}"
@@ -21,4 +21,5 @@ function search (oninput) {
       oninput=${oninput}>
   `
 }
+
 module.exports = search
