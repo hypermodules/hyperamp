@@ -15,7 +15,7 @@ const style = css`
 
 function search ({ oninput }) {
   return html`
-    <input type="text"
+    <input type="search"
       class="${fcStyle.formControl} ${style.searchInput}"
       placeholder="Search"
       oninput=${oninput}>
