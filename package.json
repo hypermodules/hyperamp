@@ -20,7 +20,8 @@
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
     "level": "^1.5.0",
-    "musicmetadata": "^2.0.4"
+    "musicmetadata": "^2.0.4",
+    "pauls-electron-rpc": "^2.1.2"
   },
   "devDependencies": {
     "choo": "^4.0.1",

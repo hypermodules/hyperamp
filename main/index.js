@@ -3,8 +3,10 @@ const audio = require('./audio')
 const ipc = require('./ipc')
 const menu = require('./menu')
 const player = require('./player')
+const config = require('./config')
 
 app.on('ready', () => {
+  config.init()
   ipc.init()
   menu.init()
   audio.init()
