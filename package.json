@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "choo": "^4.0.1",
-    "electron": "1.4.13",
+    "electron": "1.4.14",
     "standard": "^8.0.0",
     "tape": "^4.6.0"
   },
