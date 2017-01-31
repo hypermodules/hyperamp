@@ -21,7 +21,8 @@
     "format-duration": "^1.0.0",
     "level": "^1.5.0",
     "musicmetadata": "^2.0.4",
-    "pauls-electron-rpc": "^2.1.2"
+    "pauls-electron-rpc": "^2.1.2",
+    "level-secondary": "bcomnes/level-secondary.git#remove-sublevel"
   },
   "devDependencies": {
     "choo": "^4.0.1",
