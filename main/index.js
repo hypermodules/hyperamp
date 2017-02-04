@@ -1,16 +1,13 @@
 const { app } = require('electron')
 const audio = require('./audio')
-const ipc = require('./ipc')
 const menu = require('./menu')
 const player = require('./player')
-const config = require('./config')
+var config = require('./config')
 
 app.on('ready', () => {
-  config.init()
-  ipc.init()
-  menu.init()
-  audio.init()
-  player.init()
+  menu.init(config)
+  audio.init(config)
+  player.init(config)
 })
 
 app.on('window-all-closed', () => {

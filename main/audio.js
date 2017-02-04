@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const AUDIO_WINDOW = 'file://' + path.resolve(__dirname, '..', 'renderer', 'audio.html')
 const audio = module.exports = {
@@ -27,6 +27,12 @@ function init () {
   })
 
   win.loadURL(AUDIO_WINDOW)
+
+  ipcMain.on('audio', function (/* ev, args... */) {
+    // forward audio ipc events
+    var args = [].slice.call(arguments, 1)
+    win.send.apply(win, args)
+  })
 
   // prevent killing the audio process
   win.on('close', function (e) {
