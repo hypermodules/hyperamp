@@ -33,6 +33,10 @@ module.exports = (player, send) => {
           iconName: 'entypo-controller-fast-forward',
           disabled: true
         })}
+        ${button({
+          onclick: () => send('library:loadSongs'),
+          iconName: 'entypo-arrow-with-circle-right'
+        })}
       </div>
       ${volume({
         value: player.volume,

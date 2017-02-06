@@ -7,7 +7,7 @@ play({ filepath: startup })
 
 function play (data) {
   console.log('audio: play', data)
-  if (data && data.filepath) audio.src = data.filepath
+  if (data && data.value && data.value.filepath) audio.src = data.value.filepath
   audio.play()
 }
 

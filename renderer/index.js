@@ -6,6 +6,8 @@ document.body.insertBefore(entypoSprite, document.body.firstChild)
 
 app.use(log())
 
+window.files = []
+
 app.model(require('./models/config'))
 app.model(require('./models/player'))
 app.model(require('./models/library'))

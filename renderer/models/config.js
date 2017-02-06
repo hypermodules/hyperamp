@@ -1,4 +1,6 @@
-var config = require('electron').remote.require('./config.js')
+var electron = require('electron')
+var config = electron.remote.require('./config.js')
+var ipcRenderer = electron.ipcRenderer
 
 var configModel = {
   namespace: 'config',
@@ -8,9 +10,9 @@ var configModel = {
   },
   effects: {
     set: (state, data, send, done) => {
-      console.log(data)
-      console.log(config.set(data))
-      send('config:update', data, done)
+      config.set(data) // Update the config
+      ipcRenderer.send('config', data) // Notify main process
+      send('config:update', data, done) // update UI state
     }
   }
 }

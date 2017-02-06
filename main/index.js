@@ -3,8 +3,10 @@ const audio = require('./audio')
 const menu = require('./menu')
 const player = require('./player')
 var config = require('./config')
+var library = require('./library')
 
 app.on('ready', () => {
+  library.init()
   menu.init(config)
   audio.init(config)
   player.init(config)
