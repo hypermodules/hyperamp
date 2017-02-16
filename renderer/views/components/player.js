@@ -1,9 +1,9 @@
-const html = require('choo/html')
-const css = require('csjs-inject')
-const button = require('./button')
-const volume = require('./volume')
+var html = require('choo/html')
+var css = require('csjs-inject')
+var button = require('./button')
+var volume = require('./volume')
 
-const style = css`
+var style = css`
   .player {
     display: flex;
     align-items: center;

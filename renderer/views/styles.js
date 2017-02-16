@@ -1,4 +1,4 @@
-const css = require('csjs-inject')
+var css = require('csjs-inject')
 
 module.exports = css`
   .window {

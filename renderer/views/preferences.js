@@ -1,9 +1,9 @@
-const html = require('choo/html')
-const toolbar = require('./components/toolbar')
-const button = require('./components/button')
-const fcStyle = require('./components/form-control').style
-const { app, dialog } = require('electron').remote
-const styles = require('./styles')
+var html = require('choo/html')
+var toolbar = require('./components/toolbar')
+var button = require('./components/button')
+var fcStyle = require('./components/form-control').style
+var { app, dialog } = require('electron').remote
+var styles = require('./styles')
 
 function preferences (state, prev, send) {
   function showDialog () {

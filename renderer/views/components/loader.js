@@ -1,6 +1,6 @@
-const css = require('csjs-inject')
+var css = require('csjs-inject')
 
-const style = css`
+var style = css`
   .loading {
     height: 100%;
     width: 100%;

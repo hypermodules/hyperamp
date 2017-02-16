@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron')
+var { ipcRenderer } = require('electron')
 
 module.exports = {
   namespace: 'player',

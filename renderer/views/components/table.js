@@ -1,8 +1,8 @@
-const html = require('choo/html')
-const fd = require('format-duration')
-const css = require('csjs-inject')
+var html = require('choo/html')
+var fd = require('format-duration')
+var css = require('csjs-inject')
 
-const style = css`
+var style = css`
   .pane {
     flex: 1 0;
     overflow-y: hidden;
@@ -92,8 +92,8 @@ module.exports = (state, prev, send) => html`
 `
 
 function renderList (state, send) {
-  let { files, search } = state.library
-  let list = sortList(files)
+  var { files, search } = state.library
+  var list = sortList(files)
 
   if (search) list = filterList(list, search)
 

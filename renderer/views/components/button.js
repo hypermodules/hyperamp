@@ -1,8 +1,8 @@
-const html = require('choo/html')
-const icon = require('./icon')
-const css = require('csjs-inject')
+var html = require('choo/html')
+var icon = require('./icon')
+var css = require('csjs-inject')
 
-const style = css`
+var style = css`
   .btn {
     display: flex;
     align-items: center;
