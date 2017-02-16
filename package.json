@@ -22,11 +22,17 @@
     "musicmetadata": "^2.0.4"
   },
   "devDependencies": {
+    "@tap-format/spec": "^0.2.0",
     "choo": "^4.0.1",
+    "dependency-check": "^2.8.0",
     "electron": "1.4.15",
     "electron-rebuild": "^1.4.0",
+    "npm-run-all": "^4.0.1",
+    "snazzy": "^6.0.0",
+    "spectron": "^3.6.0",
     "standard": "^8.0.0",
-    "tape": "^4.6.0"
+    "tape": "^4.6.3",
+    "xvfb-maybe": "^0.1.3"
   },
   "homepage": "https://github.com/hypermodules/hyperamp",
   "keywords": [
@@ -36,14 +42,17 @@
     "player"
   ],
   "license": "ISC",
-  "main": "index.js",
+  "main": "main/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hypermodules/hyperamp.git"
   },
   "scripts": {
     "start": "electron main",
-    "test": "standard",
+    "test": "run-s test:*",
+    "test:deps": "dependency-check ./package.json",
+    "test:lint": "standard | snazzy",
+    "test:tape": "xvfb-maybe tape test/* | tap-format-spec",
     "rebuild": "electron-rebuild",
     "prepare": "npm run rebuild"
   }
