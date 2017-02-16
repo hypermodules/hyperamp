@@ -5,9 +5,16 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
+      - xvfb
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX=g++-4.8; fi
   - export JOBS=max
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+before_script:
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
 node_js:
   - '6'
 sudo: false
