@@ -76,7 +76,6 @@ module.exports = (state, prev, send) => html`
         <thead>
           <tr>
             <th>Title</th>
-            <th class="${style.track}">Track</th>
             <th class="${style.time}">Time</th>
             <th>Artist</th>
             <th>Album</th>
@@ -94,19 +93,17 @@ module.exports = (state, prev, send) => html`
 
 function renderList (state, send) {
   let { files, search } = state.library
-  // let list = sortList(files)
-  let list = files
+  let list = sortList(files)
 
   if (search) list = filterList(list, search)
 
-  return list.map(file => {
+  return list.map(meta => {
     return html`
-      <tr id="${file.key}" onclick=${(e) => send('player:play', file)}>
-        <td>${file.value.meta.title}</td>
-        <td class="${style.track}">${file.value.meta.track.no} of ${file.value.meta.track.of}</td>
-        <td class="${style.time}">${file.value.meta.duration ? fd(file.value.meta.duration * 1000) : ''}</td>
-        <td>${file.value.meta.artist}</td>
-        <td>${file.value.meta.album}</td>
+      <tr onclick=${(e) => send('player:play', meta)}>
+        <td>${meta.title}</td>
+        <td class="${style.time}">${meta.duration ? fd(meta.duration * 1000) : ''}</td>
+        <td>${meta.artist}</td>
+        <td>${meta.album}</td>
       </tr>
     `
   })

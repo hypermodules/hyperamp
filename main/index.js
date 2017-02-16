@@ -1,15 +1,13 @@
-const { app } = require('electron')
-const audio = require('./audio')
-const menu = require('./menu')
-const player = require('./player')
-var config = require('./config')
-var library = require('./library')
+var { app } = require('electron')
+var audio = require('./audio')
+var menu = require('./menu')
+var player = require('./player')
+require('./config')
 
 app.on('ready', () => {
-  library.init()
-  menu.init(config)
-  audio.init(config)
-  player.init(config)
+  menu.init()
+  audio.init()
+  player.init()
 })
 
 app.on('window-all-closed', () => {

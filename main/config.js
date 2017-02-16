@@ -1,7 +1,7 @@
-const { app } = require('electron')
-const Config = require('electron-config')
+var { app } = require('electron')
+var Config = require('electron-config')
 
-const config = new Config({ name: 'hyperamp.config' })
+var config = new Config({ name: 'hyperamp.config' })
 if (config.size === 0) config.set(defaults())
 
 function defaults () {
@@ -10,5 +10,4 @@ function defaults () {
   }
 }
 
-console.log(config.store)
 module.exports = config

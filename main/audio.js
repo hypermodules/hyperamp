@@ -1,7 +1,7 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
-const path = require('path')
-const AUDIO_WINDOW = 'file://' + path.resolve(__dirname, '..', 'renderer', 'audio.html')
-const audio = module.exports = {
+var { app, BrowserWindow, ipcMain } = require('electron')
+var path = require('path')
+var AUDIO_WINDOW = 'file://' + path.resolve(__dirname, '..', 'renderer', 'audio.html')
+var audio = module.exports = {
   init,
   send,
   show,
@@ -10,7 +10,7 @@ const audio = module.exports = {
 }
 
 function init () {
-  let win = audio.win = new BrowserWindow({
+  var win = audio.win = new BrowserWindow({
     title: 'hyperamp-hidden-window',
     backgroundColor: '#1E1E1E',
     center: true,

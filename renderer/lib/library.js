@@ -1,8 +1,8 @@
-const fs = require('fs')
-const path = require('path')
-const walker = require('folder-walker')
-const mm = require('musicmetadata')
-const validExtensions = ['m4a', 'mp3']
+var fs = require('fs')
+var path = require('path')
+var walker = require('folder-walker')
+var mm = require('musicmetadata')
+var validExtensions = ['m4a', 'mp3']
 
 module.exports = (libPath, cb) => {
   walker([libPath]).on('data', data => {
@@ -13,12 +13,12 @@ module.exports = (libPath, cb) => {
 
 function isValidFile (data) {
   if (data.type !== 'file') return false
-  let ext = path.extname(data.basename).substring(1)
+  var ext = path.extname(data.basename).substring(1)
   return validExtensions.includes(ext)
 }
 
 function parseMetadata (data, cb) {
-  let { filepath } = data
+  var { filepath } = data
 
   mm(fs.createReadStream(filepath), { duration: true }, (err, meta) => {
     if (err) {
@@ -26,14 +26,14 @@ function parseMetadata (data, cb) {
       return cb(err)
     }
 
-    let { title, artist, album, duration } = meta
+    var { title, artist, album, duration } = meta
 
     if (!title) {
-      let { basename } = data
-      let ext = path.extname(basename)
+      var { basename } = data
+      var ext = path.extname(basename)
       title = path.basename(basename, ext)
     }
 
-    cb(null, {meta: { title, artist, album, duration, filepath }})
+    cb(null, { title, artist, album, duration, filepath })
   })
 }

@@ -1,7 +1,7 @@
-const { ipcRenderer } = require('electron')
-const audio = document.querySelector('#audio')
+var { ipcRenderer } = require('electron')
+var audio = document.querySelector('#audio')
 var path = require('path')
-const startup = 'file://' + path.resolve(__dirname, '..', 'static', 'needle.mp3')
+var startup = 'file://' + path.resolve(__dirname, '..', 'static', 'needle.mp3')
 
 play({ filepath: startup })
 
