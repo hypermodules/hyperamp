@@ -24,6 +24,7 @@
   "devDependencies": {
     "choo": "^4.0.1",
     "electron": "1.4.15",
+    "electron-rebuild": "^1.4.0",
     "standard": "^8.0.0",
     "tape": "^4.6.0"
   },
@@ -42,6 +43,8 @@
   },
   "scripts": {
     "start": "electron main",
-    "test": "standard"
+    "test": "standard",
+    "rebuild": "electron-rebuild",
+    "prepare": "npm run rebuild"
   }
 }

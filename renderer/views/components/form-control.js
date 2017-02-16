@@ -1,6 +1,6 @@
-const css = require('csjs-inject')
+var css = require('csjs-inject')
 
-const style = css`
+var style = css`
   .form {
     padding-bottom: 1em;
     margin-bottom: 1em;

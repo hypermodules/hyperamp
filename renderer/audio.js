@@ -1,17 +1,9 @@
-const { ipcRenderer } = require('electron')
-const audio = document.querySelector('#audio')
+var { ipcRenderer } = require('electron')
+var audio = document.querySelector('#audio')
 var path = require('path')
-const startup = 'file://' + path.resolve(__dirname, '..', 'static', 'needle.mp3')
+var startup = 'file://' + path.resolve(__dirname, '..', 'static', 'needle.mp3')
 
 play({ filepath: startup })
-
-ipcRenderer.on('audio', function (e, type) {
-  let args = [].slice.call(arguments, 2)
-
-  if (type === 'play') return play.apply(null, args)
-  if (type === 'pause') return pause.apply(null, args)
-  if (type === 'volume') return volume.apply(null, args)
-})
 
 function play (data) {
   console.log('audio: play', data)
@@ -19,12 +11,16 @@ function play (data) {
   audio.play()
 }
 
-function pause () {
+ipcRenderer.on('play', function (ev, data) {
+  play(data)
+})
+
+ipcRenderer.on('pause', function (ev, data) {
   console.log('audio: pause')
   audio.pause()
-}
+})
 
-function volume (data) {
+ipcRenderer.on('volume', function (ev, data) {
   console.log('audio: volume')
   audio.volume = data.volume
-}
+})

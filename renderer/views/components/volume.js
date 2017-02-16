@@ -1,8 +1,8 @@
-const html = require('choo/html')
-const css = require('csjs-inject')
-const assign = Object.assign
+var html = require('choo/html')
+var css = require('csjs-inject')
+var assign = Object.assign
 
-const style = css`
+var style = css`
   .volumeControl {
     position: relative;
     display: inline-block;
@@ -13,7 +13,7 @@ const style = css`
   }
 `
 
-const defaults = {
+var defaults = {
   min: 0,
   max: 1,
   step: 0.01,
@@ -22,7 +22,7 @@ const defaults = {
 
 function volume (opts) {
   opts = assign({}, defaults, opts)
-  const { value, oninput, min, max, step, style } = opts
+  var { value, oninput, min, max, step, style } = opts
   return html`
     <input type="range"
       class="${style.volumeControl}"

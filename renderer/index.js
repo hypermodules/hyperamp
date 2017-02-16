@@ -1,20 +1,21 @@
-const choo = require('choo')
-const log = require('choo-log')
-const config = require('./lib/config')
-const app = window.hyperamp = choo()
-const entypoSprite = require('entypo').getNode()
+var choo = require('choo')
+var log = require('choo-log')
+var app = window.hyperamp = choo()
+var entypoSprite = require('entypo').getNode()
 document.body.insertBefore(entypoSprite, document.body.firstChild)
 
 app.use(log())
 
+window.files = []
+
+app.model(require('./models/config'))
 app.model(require('./models/player'))
-app.model(require('./models/library')(config))
-app.model(require('./models/config')(config))
+app.model(require('./models/library'))
 
 app.router({ default: '/' }, [
   ['/', require('./views/main')],
   ['/preferences', require('./views/preferences')]
 ])
 
-const tree = app.start()
+var tree = app.start()
 document.body.querySelector('#app').appendChild(tree)

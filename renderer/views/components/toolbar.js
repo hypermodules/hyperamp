@@ -1,10 +1,10 @@
-const html = require('choo/html')
-const css = require('csjs-inject')
-const player = require('./player')
-const search = require('./search')
-const button = require('./button')
+var html = require('choo/html')
+var css = require('csjs-inject')
+var player = require('./player')
+var search = require('./search')
+var button = require('./button')
 
-const style = css`
+var style = css`
   .toolbar {
     -webkit-app-region: drag;
     border-bottom: var(--border);

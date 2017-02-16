@@ -1,8 +1,8 @@
-const html = require('choo/html')
-const css = require('csjs-inject')
-const fcStyle = require('./form-control').style
+var html = require('choo/html')
+var css = require('csjs-inject')
+var fcStyle = require('./form-control').style
 
-const style = css`
+var style = css`
   .searchInput {
     width: auto;
     padding: 1px 5px;

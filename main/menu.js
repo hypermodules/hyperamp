@@ -1,13 +1,13 @@
-const { app, shell, Menu } = require('electron')
-const audio = require('./audio')
-const pkg = require('../package.json')
+var { app, shell, Menu } = require('electron')
+var audio = require('./audio')
+var pkg = require('../package.json')
 
 module.exports = {
   init
 }
 
 function init () {
-  let menu = Menu.buildFromTemplate(getTemplate())
+  var menu = Menu.buildFromTemplate(getTemplate())
   Menu.setApplicationMenu(menu)
 }
 
