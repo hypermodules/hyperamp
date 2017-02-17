@@ -14,7 +14,7 @@ test('does the thing turn on?', t => {
     return app.client.waitUntilWindowLoaded().getWindowCount()
   })
   .then(count => {
-    t.is(count, 6, 'there are 6 browser windows for some reason')
+    t.is(count, 4, 'there are 4 browser windows for some reason')
   })
   .catch(err => {
     t.error(err, 'an error occured. uh oh')
