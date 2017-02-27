@@ -1,4 +1,17 @@
 language: node_js
+node_js:
+  - 7
+dist: trusty
+sudo: false
+os:
+  - osx
+  - linux
+cache:
+  directories:
+    - node_modules
+    - ~/.npm
+    - ~/.electron
+    - ~/.nvm
 addons:
   apt:
     sources:
@@ -6,6 +19,9 @@ addons:
     packages:
       - g++-4.8
       - xvfb
+      - icnsutils
+      - graphicsmagick
+      - xz-utils
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX=g++-4.8; fi
   - export JOBS=max
@@ -13,9 +29,5 @@ before_install:
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
-node_js:
-  - '6'
-sudo: false
-cache:
-  directories:
-    - node_modules
+after_success:
+  - npm run dist

@@ -1,0 +1,29 @@
+build: off
+
+os: unstabl
+
+platform:
+  - x64
+  - x86
+
+cache:
+  - node_modules
+  - '%APPDATA%\npm-cache'
+  - '%USERPROFILE%\.electron'
+
+install:
+  - ps: Install-Product node 7 x64
+  - npm install
+
+test_script:
+  - node --version
+  - npm --version
+  - npm test
+
+on_success:
+  - npm run dist
+
+environment:
+  GH_TOKEN:
+    secure: mtm1UAUZ0tByhVTYD+cTXy530JM6N9D6bE6aXR37EUMW7JzF91LMuqXBjSEzUf7z
+

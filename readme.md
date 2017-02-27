@@ -27,7 +27,7 @@ We're using [electron](https://github.com/electron/electron) and [choo](https://
 
 ## Screenshot
 
-![screenshot](screenshot.png)
+<img src="screenshot.png" srcset="/screenshot-2x.png 2x" />
 
 ## License
 
