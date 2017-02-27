@@ -68,6 +68,9 @@
         "dmg"
       ]
     },
+    "nsis": {
+      "perMachine": true
+    },
     "dmg": {
       "contents": [
         {
@@ -81,9 +84,6 @@
           "path": "/Applications"
         }
       ]
-    },
-    "nsis": {
-      "perMachine": true
     }
   }
 }
