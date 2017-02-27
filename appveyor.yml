@@ -1,10 +1,7 @@
 build: off
 
-os: unstabl
-
 platform:
   - x64
-  - x86
 
 cache:
   - node_modules
