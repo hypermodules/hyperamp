@@ -12,6 +12,7 @@
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
   "dependencies": {
+    "choo": "^4.1.0",
     "choo-log": "^3.0.0",
     "csjs-inject": "^1.0.1",
     "electron-config": "^0.2.1",
@@ -24,7 +25,6 @@
   },
   "devDependencies": {
     "@tap-format/spec": "^0.2.0",
-    "choo": "^4.0.1",
     "dependency-check": "^2.8.0",
     "electron": "1.4.15",
     "electron-builder": "^14.4.0",
@@ -52,7 +52,7 @@
   "scripts": {
     "start": "electron main",
     "test": "run-s test:*",
-    "test:deps": "dependency-check ./package.json",
+    "test:deps": "dependency-check ./package.json --entry renderer/index.js --no-dev --ignore-module electron",
     "test:lint": "standard | snazzy",
     "test:tape": "xvfb-maybe tape test/* | tap-format-spec",
     "rebuild": "electron-rebuild",
