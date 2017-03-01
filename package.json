@@ -26,7 +26,7 @@
   "devDependencies": {
     "@tap-format/spec": "^0.2.0",
     "dependency-check": "^2.8.0",
-    "electron": "1.4.15",
+    "electron": "1.6.1",
     "electron-builder": "^14.4.0",
     "electron-rebuild": "^1.4.0",
     "npm-run-all": "^4.0.1",
