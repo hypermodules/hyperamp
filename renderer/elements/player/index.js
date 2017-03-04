@@ -21,10 +21,7 @@ function player (state, send) {
           iconName: 'entypo-controller-fast-forward'
         })}
       </div>
-      ${volume({
-        value: state.volume,
-        oninput: (e) => send('player:volume', { volume: e.target.value })
-      })}
+      ${volume(state, send)}
     </div>
   `
 }
