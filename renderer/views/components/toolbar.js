@@ -27,9 +27,10 @@ module.exports = (state, prev, send) => html`
     ${player(state.player, send)}
     <div class="${style.rightCluster}">
       ${search({ oninput: (e) => send('library:search', e.target.value) })}
-      <a href='/preferences'>
-        ${button({ iconName: 'entypo-cog' })}
-      </a>
+      ${button({
+        onclick: () => console.log('load songs here'),
+        iconName: 'entypo-plus'
+      })}
     </div>
   </header>
 `
