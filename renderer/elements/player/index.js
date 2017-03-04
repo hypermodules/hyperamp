@@ -10,8 +10,7 @@ function player (state, send) {
       <div class="${buttonStyles.btnGroup}">
         ${button({
           onclick: () => send('player:prev'),
-          iconName: 'entypo-controller-fast-backward',
-          disabled: true
+          iconName: 'entypo-controller-fast-backward'
         })}
         ${button({
           onclick: () => play(state, send),
@@ -19,8 +18,7 @@ function player (state, send) {
         })}
         ${button({
           onclick: () => send('player:next'),
-          iconName: 'entypo-controller-fast-forward',
-          disabled: true
+          iconName: 'entypo-controller-fast-forward'
         })}
       </div>
       ${volume({

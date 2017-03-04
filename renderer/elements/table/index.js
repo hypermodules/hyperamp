@@ -32,9 +32,15 @@ function renderList (state, send) {
 
   if (search) list = filterList(list, search)
 
-  return list.map(meta => {
+  function playSong (meta) {
+    send('player:updatePlaylist', list)
+    send('player:play', meta)
+  }
+
+  return list.map((meta, i) => {
+    meta.index = i
     return html`
-      <tr onclick=${(e) => send('player:play', meta)}>
+      <tr onclick=${playSong.bind(null, meta)}>
         <td>${meta.title}</td>
         <td class="${styles.time}">${meta.duration ? fd(meta.duration * 1000) : ''}</td>
         <td>${meta.artist}</td>

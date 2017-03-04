@@ -16,20 +16,36 @@ module.exports = {
   },
   effects: {
     play: (state, data, send, done) => {
-      ipcRenderer.send('audio', 'play', data)
+      ipcRenderer.send('play', data)
       send('player:playing', { playing: true, current: data }, done)
     },
     pause: (state, data, send, done) => {
-      ipcRenderer.send('audio', 'pause')
+      ipcRenderer.send('pause')
       send('player:playing', { playing: false }, done)
     },
     prev: (state, data, send, done) => {
-      console.log('not yet implemented')
+      ipcRenderer.send('prev')
       done()
     },
     next: (state, data, send, done) => {
-      console.log('not yet implemented')
+      ipcRenderer.send('next')
       done()
+    },
+    updatePlaylist: (state, data, send, done) => {
+      ipcRenderer.send('playlist', data)
+      done()
+    }
+  },
+  subscriptions: {
+    play: (send, done) => {
+      ipcRenderer.on('play', (ev, meta) => {
+        send('player:playing', { playing: true, current: meta }, done)
+      })
+    },
+    pause: (send, done) => {
+      ipcRenderer.on('pause', (ev, meta) => {
+        send('player:playing', {playing: false, current: meta}, done)
+      })
     }
   }
 }

@@ -7,5 +7,6 @@ module.exports = (state, prev, send) => html`
   <main class="${styles.window}">
     ${toolbar(state, prev, send)}
     ${table(state, prev, send)}
+    ${JSON.stringify(state.player.current || {})}
   </main>
 `
