@@ -1,12 +1,13 @@
 var html = require('choo/html')
 var button = require('../button')
+var buttonStyles = require('../button/styles')
 var volume = require('../volume')
 var styles = require('./styles')
 
 function player (state, send) {
   return html`
     <div class="${styles.player}">
-      <div class="${button.style.btnGroup}">
+      <div class="${buttonStyles.btnGroup}">
         ${button({
           onclick: () => send('player:prev'),
           iconName: 'entypo-controller-fast-backward',
