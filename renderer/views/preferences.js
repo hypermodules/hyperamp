@@ -12,7 +12,10 @@ function preferences (state, prev, send) {
       properties: ['openDirectory']
     }, (paths) => {
       // paths is undefined if user presses cancel
-      if (paths) send('config:set', { music: paths[0] })
+      if (paths) {
+        send('config:set', { music: paths[0] })
+        send('library:loadSongs')
+      }
     })
   }
 
