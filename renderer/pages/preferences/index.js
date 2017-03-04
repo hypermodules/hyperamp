@@ -1,9 +1,9 @@
 var html = require('choo/html')
-var toolbar = require('./components/toolbar')
-var button = require('./components/button')
-var fcStyle = require('./components/form-control').style
+var toolbar = require('../../elements/toolbar')
+var button = require('../../elements/button')
+var formStyles = require('../../elements/form/styles')
 var { app, dialog } = require('electron').remote
-var styles = require('./styles')
+var styles = require('../styles')
 
 function preferences (state, prev, send) {
   function showDialog () {
@@ -24,11 +24,11 @@ function preferences (state, prev, send) {
       ${toolbar(state, prev, send)}
       <div class="window-content">
         <div class="${styles.pane}">
-          <form class=${fcStyle.form}>
-            <div class="${fcStyle.formGroup}">
+          <form class=${formStyles.form}>
+            <div class="${formStyles.formGroup}">
                 <label>Media Folder:</label>
                 <input type="text"
-                  class="${fcStyle.formControl}"
+                  class="${formStyles.formControl}"
                   onclick=${showDialog}
                   value="${state.config.music}"
                   readonly="true">

@@ -1,6 +1,6 @@
 var css = require('csjs-inject')
 
-var style = css`
+module.exports = css`
   .form {
     padding-bottom: 1em;
     margin-bottom: 1em;
@@ -44,5 +44,3 @@ var style = css`
     flex; 1;
   }
 `
-
-module.exports.style = style

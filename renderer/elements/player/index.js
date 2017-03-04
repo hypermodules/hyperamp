@@ -1,23 +1,11 @@
 var html = require('choo/html')
-var css = require('csjs-inject')
-var button = require('./button')
-var volume = require('./volume')
+var button = require('../button')
+var volume = require('../volume')
+var styles = require('./styles')
 
-var style = css`
-  .player {
-    display: flex;
-    align-items: center;
-  }
-`
-
-module.exports = (player, send) => {
-  function play () {
-    if (player.playing) return send('player:pause')
-    send('player:play')
-  }
-
+function player (state, send) {
   return html`
-    <div class="${style.player}">
+    <div class="${styles.player}">
       <div class="${button.style.btnGroup}">
         ${button({
           onclick: () => send('player:prev'),
@@ -25,8 +13,8 @@ module.exports = (player, send) => {
           disabled: true
         })}
         ${button({
-          onclick: play,
-          iconName: `entypo-controller-${player.playing ? 'paus' : 'play'}`
+          onclick: () => play(state, send),
+          iconName: `entypo-controller-${state.playing ? 'paus' : 'play'}`
         })}
         ${button({
           onclick: () => send('player:next'),
@@ -35,9 +23,16 @@ module.exports = (player, send) => {
         })}
       </div>
       ${volume({
-        value: player.volume,
+        value: state.volume,
         oninput: (e) => send('player:volume', { volume: e.target.value })
       })}
     </div>
   `
 }
+
+function play (state, send) {
+  if (state.playing) return send('player:pause')
+  send('player:play')
+}
+
+module.exports = player

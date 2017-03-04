@@ -1,32 +1,14 @@
 var html = require('choo/html')
-var css = require('csjs-inject')
-var player = require('./player')
-var search = require('./search')
-var button = require('./button')
+var player = require('../player')
+var search = require('../search')
+var button = require('../button')
 var { app, dialog } = require('electron').remote
-
-var style = css`
-  .toolbar {
-    -webkit-app-region: drag;
-    border-bottom: var(--border);
-    height: 40px;
-    padding-right: 1em;
-    padding-left: 6em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .rightCluster {
-    display: flex;
-    align-items: center;
-  }
-`
+var styles = require('./styles')
 
 module.exports = (state, prev, send) => html`
-  <header class="${style.toolbar}">
+  <header class="${styles.toolbar}">
     ${player(state.player, send)}
-    <div class="${style.rightCluster}">
+    <div class="${styles.rightCluster}">
       ${search({ oninput: (e) => send('library:search', e.target.value) })}
       ${addFiles(send)}
     </div>
