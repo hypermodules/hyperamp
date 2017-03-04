@@ -4,7 +4,7 @@ var app = window.hyperamp = choo()
 var entypoSprite = require('entypo').getNode()
 document.body.insertBefore(entypoSprite, document.body.firstChild)
 
-// app.use(log())
+app.use(log())
 
 window.files = []
 
