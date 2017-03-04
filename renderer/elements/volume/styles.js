@@ -1,6 +1,8 @@
 var css = require('csjs-inject')
 
 module.exports = css`
+  .volumeButton { padding: 0 }
+
   .volumeControl {
     position: relative;
     display: inline-block;

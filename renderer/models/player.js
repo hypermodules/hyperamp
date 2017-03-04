@@ -5,13 +5,18 @@ module.exports = {
   state: {
     playing: false,
     current: null,
-    volume: 100
+    volume: 100,
+    mute: false
   },
   reducers: {
     playing: (state, data) => data,
     volume: (state, data) => {
       ipcRenderer.send('audio', 'volume', data)
       return data
+    },
+    mute: (state, data) => {
+      ipcRenderer.send('audio', 'mute')
+      return { mute: !state.mute }
     }
   },
   effects: {

@@ -52,6 +52,7 @@ module.exports = css`
   .btnGroup {
     display: flex;
     flex-direction: row;
+    margin-right: 1em;
   }
 
   .btnGroup .btn:not(:last-child) {
