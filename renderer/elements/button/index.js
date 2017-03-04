@@ -1,7 +1,6 @@
 var html = require('choo/html')
 var icon = require('../icon')
 var styles = require('./styles')
-var cn = require('classnames')
 
 function button ({ className, onclick, iconName, disabled }, children) {
   return html`
