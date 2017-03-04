@@ -13,8 +13,8 @@ app.model(require('./models/player'))
 app.model(require('./models/library'))
 
 app.router({ default: '/' }, [
-  ['/', require('./views/main')],
-  ['/preferences', require('./views/preferences')]
+  ['/', require('./pages/main')],
+  ['/preferences', require('./pages/preferences')]
 ])
 
 var tree = app.start()

@@ -1,8 +1,6 @@
-var html = require('choo/html')
-var icon = require('./icon')
 var css = require('csjs-inject')
 
-var style = css`
+module.exports = css`
   .btn {
     display: flex;
     align-items: center;
@@ -74,22 +72,3 @@ var style = css`
     border-bottom-left-radius: 0;
   }
 `
-
-function button ({ onclick, iconName, disabled }, children) {
-  if (typeof onclick !== 'function') onclick = noop
-  if (disabled === undefined) disabled = false
-
-  return html`
-    <button class="${style.btn}"
-      disabled=${disabled}
-      onclick=${onclick}>
-      ${iconName ? icon({ name: iconName }) : null}
-      ${children || null}
-    </button>
-  `
-}
-
-module.exports = button
-module.exports.style = style
-
-function noop () {}
