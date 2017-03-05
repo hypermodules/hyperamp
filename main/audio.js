@@ -56,7 +56,7 @@ function init () {
   })
 
   ipcMain.on('prev', function (ev) {
-    if (audio.current.length > 0) {
+    if (audio.playlist.length > 0) {
       var prevIndex = audio.current.index > 0 ? audio.current.index - 1 : audio.playlist.length - 1
       audio.current = audio.playlist[prevIndex]
       win.send('play', audio.current)
@@ -65,7 +65,7 @@ function init () {
   })
 
   ipcMain.on('next', function (ev) {
-    if (audio.current.length > 0) {
+    if (audio.playlist.length > 0) {
       var nextIndex = audio.current.index < audio.playlist.length - 1 ? audio.current.index + 1 : 0
       audio.current = audio.playlist[nextIndex]
       win.send('play', audio.current)
