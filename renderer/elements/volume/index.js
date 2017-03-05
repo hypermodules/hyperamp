@@ -21,7 +21,7 @@ function volume (state, send) {
           class='${styles.volumeControl}'
           min='${opts.min}' max='${opts.max}' step='${opts.step}'
           oninput=${(e) => send('player:volume', { volume: e.target.value })}
-          value='${state.volume}'>
+          value='${state.player.volume}'>
       `)}
     </div>
   `

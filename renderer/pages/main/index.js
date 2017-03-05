@@ -1,12 +1,13 @@
 var html = require('choo/html')
-var toolbar = require('../../elements/toolbar')
+var header = require('../../elements/header')
 var table = require('../../elements/table')
+var footer = require('../../elements/footer')
 var styles = require('../styles')
 
 module.exports = (state, prev, send) => html`
   <main class="${styles.window}">
-    ${toolbar(state, prev, send)}
+    ${header(state, prev, send)}
     ${table(state, prev, send)}
-    ${JSON.stringify(state.player.current || {})}
+    ${footer(state, prev, send)}
   </main>
 `

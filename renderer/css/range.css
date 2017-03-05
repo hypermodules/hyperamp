@@ -2,7 +2,6 @@ input[type=range] {
   -webkit-app-region: no-drag;
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
   background: transparent; /* Otherwise white in Chrome */
-  padding: 0 1em;
 }
 
 input[type=range]::-webkit-slider-thumb {

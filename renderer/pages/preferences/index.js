@@ -1,5 +1,5 @@
 var html = require('choo/html')
-var toolbar = require('../../elements/toolbar')
+var header = require('../../elements/header')
 var button = require('../../elements/button')
 var formStyles = require('../../elements/form/styles')
 var { app, dialog } = require('electron').remote
@@ -21,7 +21,7 @@ function preferences (state, prev, send) {
 
   return html`
     <main class="${styles.window}">
-      ${toolbar(state, prev, send)}
+      ${header(state, prev, send)}
       <div class="window-content">
         <div class="${styles.pane}">
           <form class=${formStyles.form}>
