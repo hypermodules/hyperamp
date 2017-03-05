@@ -12,7 +12,7 @@ module.exports = css`
     justify-content: space-between;
   }
 
-  .rightCluster {
+  .leftCluster, .rightCluster {
     display: flex;
     align-items: center;
   }
