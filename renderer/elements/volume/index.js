@@ -14,7 +14,7 @@ function volume (state, send) {
     <div class='${buttonStyles.btnGroup}'>
       ${button({
         onclick: () => send('player:mute'),
-        iconName: state.mute ? 'entypo-sound-mute' : 'entypo-sound'
+        iconName: state.player.mute ? 'entypo-sound-mute' : 'entypo-sound'
       })}
       ${button({ className: styles.volumeButton }, html`
         <input type='range'
