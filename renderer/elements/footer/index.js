@@ -45,9 +45,9 @@ module.exports = (state, prev, send) => {
             <input type='range'
               class='${styles.scrubber}'
               min='${opts.min}' max='${opts.max}' step='${opts.step}'
-              oninput=${(e) => send('player:position', e.target.value)}
+              oninput=${(e) => send('player:position', { position: e.target.value })}
               disabled=${title === null}
-              value='0'>
+              value=${state.player.position}>
           `)}
         </div>
       </div>

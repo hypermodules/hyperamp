@@ -39,6 +39,7 @@ module.exports = css`
   }
 
   .scrubber {
+    cursor: default;
     position: relative;
     vertical-align: middle;
     -webkit-app-region: no-drag;

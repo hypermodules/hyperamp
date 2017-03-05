@@ -5,6 +5,7 @@ module.exports = css`
 
   .volumeControl {
     position: relative;
+    cursor: default;
     display: inline-block;
     vertical-align: middle;
     -webkit-app-region: no-drag;

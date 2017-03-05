@@ -27,8 +27,12 @@ module.exports = css`
   }
 
   .btn:active {
-    background: var(--lighter);
+    color: var(--link);
     border: var(--border);
+  }
+
+  .btn:active svg {
+    fill: var(--link);
   }
 
   .btn:focus {
