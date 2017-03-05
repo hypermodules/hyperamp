@@ -28,7 +28,7 @@ function table (state, prev, send) {
 
 function renderList (state, send) {
   var { files, search } = state.library
-  var list = sortList(files)
+  var list = files
 
   if (search) list = filterList(list, search)
 
@@ -47,24 +47,6 @@ function renderList (state, send) {
         <td>${meta.album}</td>
       </tr>
     `
-  })
-}
-
-// TODO: expose sort to state to allow sort using column headers
-function sortList (files) {
-  return files.sort((a, b) => {
-    // sort by artist
-    if (a.artist < b.artist) return -1
-    if (a.artist > b.artist) return 1
-
-    // then by album
-    if (a.album < b.album) return -1
-    if (a.album > b.album) return 1
-
-    // then by title
-    if (a.title < b.title) return -1
-    if (a.title > b.title) return 1
-    return 0
   })
 }
 
