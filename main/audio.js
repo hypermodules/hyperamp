@@ -9,7 +9,8 @@ var audio = module.exports = {
   toggleDevTools,
   win: null,
   playlist: [],
-  current: {}
+  current: {},
+  playing: false
 }
 
 function init () {
@@ -43,27 +44,33 @@ function init () {
 
   ipcMain.on('play', function (ev, meta) {
     if (meta) audio.current = meta
+    audio.playing = true
     win.send('play', meta)
     player.win.send('play', audio.current)
   })
 
   ipcMain.on('pause', function (ev) {
+    audio.playing = false
     win.send('pause')
     player.win.send('pause', audio.current)
   })
 
   ipcMain.on('prev', function (ev) {
-    var prevIndex = audio.current.index > 0 ? audio.current.index - 1 : audio.playlist.length - 1
-    audio.current = audio.playlist[prevIndex]
-    win.send('play', audio.current)
-    player.win.send('play', audio.current)
+    if (audio.current.length > 0) {
+      var prevIndex = audio.current.index > 0 ? audio.current.index - 1 : audio.playlist.length - 1
+      audio.current = audio.playlist[prevIndex]
+      win.send('play', audio.current)
+      player.win.send('play', audio.current)
+    }
   })
 
   ipcMain.on('next', function (ev) {
-    var nextIndex = audio.current.index < audio.playlist.length - 1 ? audio.current.index + 1 : 0
-    audio.current = audio.playlist[nextIndex]
-    win.send('play', audio.current)
-    player.win.send('play', audio.current)
+    if (audio.current.length > 0) {
+      var nextIndex = audio.current.index < audio.playlist.length - 1 ? audio.current.index + 1 : 0
+      audio.current = audio.playlist[nextIndex]
+      win.send('play', audio.current)
+      player.win.send('play', audio.current)
+    }
   })
 
   // prevent killing the audio process

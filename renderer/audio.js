@@ -40,3 +40,8 @@ ipcRenderer.on('mute', function () {
 
   console.log(`audio: mute ${shouldMute ? 'on' : 'off'}`)
 })
+
+audio.addEventListener('ended', function () {
+  console.log('audio: playback ended: ' + audio.src)
+  ipcRenderer.send('next')
+})
