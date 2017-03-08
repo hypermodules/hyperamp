@@ -29,7 +29,7 @@ module.exports = {
   },
   subscriptions: {
     'called-once-when-the-app-loads': (send, done) => {
-      send('library:loadSongs', done)
+      // send('library:loadSongs', done)
     }
   }
 }
