@@ -4,7 +4,7 @@ node_js:
 dist: trusty
 sudo: false
 os:
-  - osx
+#  - osx
   - linux
 cache:
   directories:
