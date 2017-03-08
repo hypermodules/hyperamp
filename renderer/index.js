@@ -1,4 +1,5 @@
 var choo = require('choo')
+var persist = require('choo-persist')
 var log = require('choo-log')
 var app = window.hyperamp = choo()
 var entypoSprite = require('entypo').getNode()
@@ -17,5 +18,8 @@ app.router({ default: '/' }, [
   ['/preferences', require('./pages/preferences')]
 ])
 
-var tree = app.start()
-document.body.querySelector('#app').appendChild(tree)
+persist((persist) => {
+  app.use(persist)
+  var tree = app.start()
+  document.body.querySelector('#app').appendChild(tree)
+})
