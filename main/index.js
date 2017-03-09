@@ -2,7 +2,7 @@ var { app, ipcMain } = require('electron')
 var audio = require('./audio')
 var menu = require('./menu')
 var player = require('./player')
-require('./config')
+var config = require('./config')
 
 var state = {
   playlist: [],
@@ -13,7 +13,7 @@ var state = {
 app.on('ready', () => {
   menu.init()
   audio.init()
-  player.init()
+  player.init(config)
 
   var windows = [player, audio]
   function broadcast (/* args */) {
@@ -76,7 +76,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('activate', () => {
-  if (player.win === null) player.init()
+  if (player.win === null) player.init(config)
 })
 
 app.on('before-quit', function (e) {
@@ -86,8 +86,9 @@ app.on('before-quit', function (e) {
   e.preventDefault()
   // windows.main.dispatch('saveState') // try to save state on exit
   // ipcMain.once('savedState', () => app.quit())
+  app.quit()
   setTimeout(() => {
-    // console.error('Saving state took too long. Quitting.')
+    console.error('Saving state took too long. Quitting.')
     app.quit()
-  }, 0) // quit after 2 secs, at most
+  }, 2000) // quit after 2 secs, at most
 })

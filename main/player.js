@@ -11,11 +11,8 @@ var player = module.exports = {
 require('electron-debug')({ showDevTools: true })
 require('electron-context-menu')()
 
-function init () {
-  player.windowState = windowStateKeeper({
-    width: 800,
-    height: 600
-  })
+function init (config) {
+  player.windowState = windowStateKeeper(config.get('playerWindowState'))
   var win = player.win = new BrowserWindow({
     title: 'Hyper Amp',
     x: player.windowState.x,
@@ -37,6 +34,12 @@ function init () {
   win.once('ready-to-show', win.show)
 
   win.on('closed', () => {
+    config.set('playerWindowState', {
+      x: player.windowState.x,
+      y: player.windowState.y,
+      width: player.windowState.width,
+      height: player.windowState.height
+    })
     player.win = null
   })
 }
