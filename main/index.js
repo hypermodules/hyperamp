@@ -2,18 +2,22 @@ var { app, ipcMain } = require('electron')
 var audio = require('./audio')
 var menu = require('./menu')
 var player = require('./player')
-var config = require('./config')
+var Config = require('electron-config')
+var xtend = require('xtend')
 
-var state = {
+var persist = new Config({ name: 'hyperamp-persist' })
+
+var state = xtend({
   playlist: [],
   current: {},
+  volume: 50,
   playing: false
-}
+}, persist.store)
 
 app.on('ready', () => {
   menu.init()
   audio.init()
-  player.init(config)
+  player.init()
 
   var windows = [player, audio]
   function broadcast (/* args */) {
@@ -67,7 +71,7 @@ app.on('ready', () => {
   })
 
   ipcMain.on('sync-state', function (ev) {
-    console.warn('sync-state not implemented')
+    ev.sender.send('sync-state', state)
   })
 })
 
@@ -76,7 +80,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('activate', () => {
-  if (player.win === null) player.init(config)
+  if (player.win === null) player.init()
 })
 
 app.on('before-quit', function (e) {
@@ -84,11 +88,14 @@ app.on('before-quit', function (e) {
 
   app.isQuitting = true
   e.preventDefault()
-  // windows.main.dispatch('saveState') // try to save state on exit
-  // ipcMain.once('savedState', () => app.quit())
-  app.quit()
   setTimeout(() => {
     console.error('Saving state took too long. Quitting.')
     app.quit()
   }, 2000) // quit after 2 secs, at most
+  persist.set({
+    playlist: state.playlist,
+    current: state.current,
+    volume: state.volume
+  })
+  app.quit()
 })
