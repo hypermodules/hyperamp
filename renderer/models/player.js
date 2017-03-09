@@ -14,21 +14,26 @@ module.exports = {
       ipcRenderer.send('audio', 'mute')
       return { mute: !state.mute }
     },
-    playing: (state, data) => data,
+    playing: (state, data) => ({playing: data}),
     position: (state, data) => data,
     volume: (state, data) => {
       ipcRenderer.send('audio', 'volume', data)
       return data
-    }
+    },
+    current: (state, data) => ({current: data})
   },
   effects: {
+    queue: (state, data, send, done) => {
+      ipcRenderer.send('queue', data)
+      send('player:current', data, done)
+    },
     play: (state, data, send, done) => {
-      ipcRenderer.send('play', data)
-      send('player:playing', { playing: true, current: data }, done)
+      ipcRenderer.send('play')
+      send('player:playing', true, done)
     },
     pause: (state, data, send, done) => {
       ipcRenderer.send('pause')
-      send('player:playing', { playing: false }, done)
+      send('player:playing', false, done)
     },
     prev: (state, data, send, done) => {
       ipcRenderer.send('prev')
@@ -45,13 +50,18 @@ module.exports = {
   },
   subscriptions: {
     play: (send, done) => {
-      ipcRenderer.on('play', (ev, meta) => {
-        send('player:playing', { playing: true, current: meta }, done)
+      ipcRenderer.on('play', (ev) => {
+        send('player:playing', true, done)
       })
     },
     pause: (send, done) => {
-      ipcRenderer.on('pause', (ev, meta) => {
-        send('player:playing', {playing: false, current: meta}, done)
+      ipcRenderer.on('pause', (ev) => {
+        send('player:playing', false, done)
+      })
+    },
+    queue: (send, done) => {
+      ipcRenderer.on('queue', (ev, meta) => {
+        send('player:current', meta, done)
       })
     }
   }

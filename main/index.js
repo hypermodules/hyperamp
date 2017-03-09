@@ -5,7 +5,6 @@ var player = require('./player')
 require('./config')
 
 var state = {
-  win: null,
   playlist: [],
   current: {},
   playing: false
@@ -15,6 +14,14 @@ app.on('ready', () => {
   menu.init()
   audio.init()
   player.init()
+
+  var windows = [player, audio]
+  function broadcast (/* args */) {
+    var args = [].slice.call(arguments, 0)
+    windows.forEach((winObj) => {
+      if (winObj.win) winObj.win.send.apply(winObj.win, args)
+    })
+  }
 
   ipcMain.on('audio', function (/* ev, args... */) {
     // forward audio ipc events
@@ -26,25 +33,27 @@ app.on('ready', () => {
     state.playlist = playlist
   })
 
-  ipcMain.on('play', function (ev, meta) {
-    if (meta) audio.current = meta
+  ipcMain.on('queue', function (ev, meta) {
+    state.current = meta
+    broadcast('queue', meta)
+  })
+
+  ipcMain.on('play', function (ev) {
     state.playing = true
-    audio.win.send('play', meta)
-    player.win.send('play', audio.current)
+    broadcast('play')
   })
 
   ipcMain.on('pause', function (ev) {
     state.playing = false
-    audio.win.send('pause')
-    player.win.send('pause', audio.current)
+    broadcast('pause')
   })
 
   ipcMain.on('prev', function (ev) {
     if (state.playlist.length > 0) {
       var prevIndex = state.current.index > 0 ? state.current.index - 1 : state.playlist.length - 1
       state.current = state.playlist[prevIndex]
-      audio.win.send('play', state.current)
-      player.win.send('play', state.current)
+      broadcast('queue', state.current)
+      if (state.playing) { broadcast('play') }
     }
   })
 
@@ -52,8 +61,8 @@ app.on('ready', () => {
     if (state.playlist.length > 0) {
       var nextIndex = state.current.index < state.playlist.length - 1 ? state.current.index + 1 : 0
       state.current = state.playlist[nextIndex]
-      audio.win.send('play', state.current)
-      player.win.send('play', state.current)
+      broadcast('queue', state.current)
+      if (state.playing) { broadcast('play') }
     }
   })
 })
