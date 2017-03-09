@@ -17,6 +17,7 @@ module.exports = {
     clear: (state, data) => ({ files: [] })
   },
   effects: {
+    // TODO Implement proper state management for folder walking
     loadSongs: (state, data, send, done) => {
       send('library:clear', (err) => {
         if (err) return done(err)
@@ -38,10 +39,7 @@ module.exports = {
     syncState: (send, done) => {
       ipcRenderer.on('sync-state', (ev, state) => {
         console.log(state)
-        send('library:files', state.playlist, err => {
-          if (err) return done(err)
-          send('player:current', state.current, done)
-        })
+        done()
       })
     }
   }

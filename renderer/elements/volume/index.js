@@ -13,8 +13,8 @@ function volume (state, send) {
   return html`
     <div class='${buttonStyles.btnGroup}'>
       ${button({
-        onclick: () => send('player:mute'),
-        iconName: state.player.mute ? 'entypo-sound-mute' : 'entypo-sound'
+        onclick: () => (state.player.muted ? send('player:unmute') : send('player:mute')),
+        iconName: state.player.muted ? 'entypo-sound-mute' : 'entypo-sound'
       })}
       ${button({ className: styles.volumeButton }, html`
         <input type='range'

@@ -7,14 +7,11 @@ module.exports = {
     playing: false,
     current: state.current,
     volume: state.volume,
-    mute: false,
+    muted: state.muted,
     position: 0
   },
   reducers: {
-    mute: (state, data) => {
-      ipcRenderer.send('audio', 'mute')
-      return { mute: !state.mute }
-    },
+    muted: (state, data) => ({ muted: data }),
     playing: (state, data) => ({playing: data}),
     position: (state, data) => data,
     volume: (state, data) => {
@@ -44,6 +41,14 @@ module.exports = {
       ipcRenderer.send('next')
       done()
     },
+    mute: (state, data, send, done) => {
+      ipcRenderer.send('mute')
+      send('player:muted', true, done)
+    },
+    unmute: (state, data, send, done) => {
+      ipcRenderer.send('unmute')
+      send('player:muted', false, done)
+    },
     updatePlaylist: (state, data, send, done) => {
       ipcRenderer.send('playlist', data)
       done()
@@ -63,6 +68,16 @@ module.exports = {
     queue: (send, done) => {
       ipcRenderer.on('queue', (ev, meta) => {
         send('player:current', meta, done)
+      })
+    },
+    mute: (send, done) => {
+      ipcRenderer.on('mute', (ev) => {
+        send('player:muted', true, done)
+      })
+    },
+    unmute: (send, done) => {
+      ipcRenderer.on('unmuted', (ev) => {
+        send('player:muted', false, done)
       })
     }
   }

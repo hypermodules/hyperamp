@@ -11,7 +11,8 @@ var state = xtend({
   playlist: [],
   current: {},
   volume: 50,
-  playing: false
+  playing: false,
+  muted: false
 }, persist.store)
 
 module.exports = state
@@ -70,6 +71,16 @@ app.on('ready', () => {
       broadcast('queue', state.current)
       if (state.playing) { broadcast('play') }
     }
+  })
+
+  ipcMain.on('mute', function (ev) {
+    state.muted = true
+    broadcast('mute')
+  })
+
+  ipcMain.on('unmute', function (ev) {
+    state.muted = false
+    broadcast('unmute')
   })
 
   ipcMain.on('sync-state', function (ev) {

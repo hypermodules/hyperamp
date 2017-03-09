@@ -2,7 +2,11 @@ var { ipcRenderer } = require('electron')
 var audio = document.querySelector('#audio')
 var path = require('path')
 var startup = 'file://' + path.resolve(__dirname, '..', 'static', 'needle.mp3')
-var lastVolume = null
+var mainState = require('electron').remote.require('./index.js')
+
+var state = {
+  muted: mainState.muted
+}
 
 // Warm up our needle
 queue({ filepath: startup })
@@ -28,23 +32,21 @@ ipcRenderer.on('pause', function (ev, data) {
 })
 
 ipcRenderer.on('volume', function (ev, data) {
-  console.log(`audio: volume${lastVolume ? ' (muted)' : ''}`, data.volume)
-  if (lastVolume === null) audio.volume = data.volume
-  else lastVolume = data.volume
+  console.log(`audio: volume ${data.volume}`)
+  state.volume = data.volume
+  if (!state.muted) data.volume = audio.volume
 })
 
 ipcRenderer.on('mute', function () {
-  var shouldMute = lastVolume === null
+  audio.volume = 0
+  state.muted = true
+  console.log(`audio: mute on`)
+})
 
-  if (shouldMute) {
-    lastVolume = audio.volume
-    audio.volume = 0
-  } else {
-    audio.volume = lastVolume
-    lastVolume = null
-  }
-
-  console.log(`audio: mute ${shouldMute ? 'on' : 'off'}`)
+ipcRenderer.on('unmute', function () {
+  audio.volume = state.volume
+  state.muted = false
+  console.log(`audio: mute off`)
 })
 
 audio.addEventListener('ended', function () {
