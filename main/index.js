@@ -65,6 +65,10 @@ app.on('ready', () => {
       if (state.playing) { broadcast('play') }
     }
   })
+
+  ipcMain.on('sync-state', function (ev) {
+    console.warn('sync-state not implemented')
+  })
 })
 
 app.on('window-all-closed', () => {
