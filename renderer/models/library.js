@@ -1,11 +1,12 @@
 var libStream = require('../lib/library')
 var config = require('electron').remote.require('./config.js')
+var state = require('electron').remote.require('./index.js')
 var ipcRenderer = require('electron').ipcRenderer
 
 module.exports = {
   namespace: 'library',
   state: {
-    files: [],
+    files: state.playlist,
     search: ''
   },
   reducers: {
@@ -31,7 +32,7 @@ module.exports = {
   },
   subscriptions: {
     'called-once-when-the-app-loads': (send, done) => {
-      ipcRenderer.send('sync-state')
+      // ipcRenderer.send('sync-state')
       done()
     },
     syncState: (send, done) => {

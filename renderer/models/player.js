@@ -1,11 +1,12 @@
 var { ipcRenderer } = require('electron')
+var state = require('electron').remote.require('./index.js')
 
 module.exports = {
   namespace: 'player',
   state: {
     playing: false,
-    current: null,
-    volume: 100,
+    current: state.current,
+    volume: state.volume,
     mute: false,
     position: 0
   },

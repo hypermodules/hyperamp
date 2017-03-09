@@ -14,6 +14,8 @@ var state = xtend({
   playing: false
 }, persist.store)
 
+module.exports = state
+
 app.on('ready', () => {
   menu.init()
   audio.init()
