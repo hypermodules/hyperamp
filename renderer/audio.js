@@ -4,16 +4,22 @@ var path = require('path')
 var startup = 'file://' + path.resolve(__dirname, '..', 'static', 'needle.mp3')
 var lastVolume = null
 
-play({ filepath: startup })
+// Warm up our needle
+queue({ filepath: startup })
+audio.play()
 
-function play (data) {
-  console.log('audio: play', data)
+function queue (data) {
+  console.log('audio: queue', data)
   if (data && data.filepath) audio.src = data.filepath
-  audio.play()
 }
 
+ipcRenderer.on('queue', function (ev, meta) {
+  queue(meta)
+})
+
 ipcRenderer.on('play', function (ev, data) {
-  play(data)
+  console.log('audio: play')
+  audio.play()
 })
 
 ipcRenderer.on('pause', function (ev, data) {

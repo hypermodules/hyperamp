@@ -34,7 +34,8 @@ function renderList (state, send) {
 
   function playSong (meta) {
     send('player:updatePlaylist', list)
-    send('player:play', meta)
+    send('player:queue', meta)
+    send('player:play')
   }
 
   return list.map((meta, i) => {
