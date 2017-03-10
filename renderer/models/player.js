@@ -1,13 +1,13 @@
 var { ipcRenderer } = require('electron')
-var state = require('electron').remote.require('./index.js')
+var parallel = require('run-parallel')
 
 module.exports = {
   namespace: 'player',
   state: {
     playing: false,
-    current: state.current,
-    volume: state.volume,
-    muted: state.muted,
+    current: {},
+    volume: 50,
+    muted: false,
     position: 0
   },
   reducers: {
@@ -78,6 +78,15 @@ module.exports = {
     unmute: (send, done) => {
       ipcRenderer.on('unmuted', (ev) => {
         send('player:muted', false, done)
+      })
+    },
+    syncState: (send, done) => {
+      ipcRenderer.on('sync-state', (ev, state) => {
+        parallel([
+          send.bind(null, 'player:current', state.current),
+          send.bind(null, 'player:volume', state.volume),
+          send.bind(null, 'player:muted', state.muted)
+        ], done)
       })
     }
   }
