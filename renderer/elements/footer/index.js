@@ -1,4 +1,5 @@
 var html = require('choo/html')
+var throttle = require('lodash.throttle')
 var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
@@ -46,7 +47,7 @@ module.exports = (state, prev, send) => {
             <input type='range'
               class='${styles.scrubber}'
               min='${opts.min}' max='${opts.max}' step='${opts.step}'
-              oninput=${(e) => send('player:seek', (e.target.value / opts.max) * state.player.current.duration)}
+              oninput=${throttle((e) => send('player:seek', (e.target.value / opts.max) * state.player.current.duration), 50)}
               disabled=${title === null}
               value=${progress}>
           `)}

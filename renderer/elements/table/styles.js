@@ -65,4 +65,8 @@ module.exports = css`
   .mediaList  .track {
     width: 6em;
   }
+
+  .bold {
+    font-weight: bold;
+  }
 `

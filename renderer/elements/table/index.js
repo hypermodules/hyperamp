@@ -41,7 +41,9 @@ function renderList (state, send) {
   return list.map((meta, i) => {
     meta.index = i
     return html`
-      <tr id="${meta.filepath}" onclick=${playSong.bind(null, meta)}>
+      <tr id="${meta.filepath}"
+          onclick=${playSong.bind(null, meta)}
+          className="${state.player.current.index === i ? styles.bold : ''}" >
         <td>${meta.title}</td>
         <td class="${styles.time}">${meta.duration ? fd(meta.duration * 1000) : ''}</td>
         <td>${meta.artist}</td>
