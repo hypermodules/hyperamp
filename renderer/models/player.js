@@ -8,12 +8,14 @@ module.exports = {
     current: {},
     volume: 50,
     muted: false,
-    position: 0
+    position: 0,
+    currentTime: 0
   },
   reducers: {
     muted: (state, data) => ({ muted: data }),
     playing: (state, data) => ({playing: data}),
     position: (state, data) => data,
+    currentTime: (state, data) => ({ currentTime: data }),
     volume: (state, data) => ({ volume: data }),
     current: (state, data) => ({current: data})
   },
@@ -84,6 +86,11 @@ module.exports = {
     volume: (send, done) => {
       ipcRenderer.on('volume', (ev, level) => {
         send('player:volume', level, done)
+      })
+    },
+    timeupdate: (send, done) => {
+      ipcRenderer.on('timeupdate', (ev, currentTime) => {
+        send('player:currentTime', currentTime, done)
       })
     },
     syncState: (send, done) => {

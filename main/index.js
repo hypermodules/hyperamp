@@ -30,12 +30,6 @@ app.on('ready', () => {
     })
   }
 
-  ipcMain.on('audio', function (/* ev, args... */) {
-    // forward audio ipc events
-    var args = [].slice.call(arguments, 1)
-    audio.win.send.apply(audio.win, args)
-  })
-
   ipcMain.on('volume', function (ev, level) {
     state.volume = level
     audio.win.send('volume', level)
@@ -86,6 +80,11 @@ app.on('ready', () => {
   ipcMain.on('unmute', function (ev) {
     state.muted = false
     broadcast('unmute')
+  })
+
+  ipcMain.on('timeupdate', function (ev, currentTime) {
+    state.currentTime = currentTime
+    player.win.send('timeupdate', currentTime)
   })
 
   ipcMain.on('sync-state', function (ev) {

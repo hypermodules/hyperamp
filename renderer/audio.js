@@ -53,3 +53,8 @@ audio.addEventListener('ended', function () {
   console.log('audio: playback ended: ' + audio.src)
   ipcRenderer.send('next')
 })
+
+audio.addEventListener('timeupdate', function (ev) {
+  console.log('audio: currentTime: ' + audio.currentTime)
+  ipcRenderer.send('timeupdate', audio.currentTime)
+})

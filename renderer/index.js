@@ -18,3 +18,5 @@ app.router({ default: '/' }, [
 ])
 var tree = app.start()
 document.body.querySelector('#app').appendChild(tree)
+
+window.app = app
