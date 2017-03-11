@@ -36,6 +36,11 @@ app.on('ready', () => {
     audio.win.send.apply(audio.win, args)
   })
 
+  ipcMain.on('volume', function (ev, level) {
+    state.volume = level
+    audio.win.send('volume', level)
+  })
+
   ipcMain.on('playlist', function (ev, playlist) {
     state.playlist = playlist
   })

@@ -31,10 +31,10 @@ ipcRenderer.on('pause', function (ev, data) {
   audio.pause()
 })
 
-ipcRenderer.on('volume', function (ev, data) {
-  console.log(`audio: volume ${data.volume}`)
-  state.volume = data.volume
-  if (!state.muted) data.volume = audio.volume
+ipcRenderer.on('volume', function (ev, volume) {
+  console.log(`audio: volume ${volume}`)
+  state.volume = volume
+  if (!state.muted) audio.volume = volume
 })
 
 ipcRenderer.on('mute', function () {

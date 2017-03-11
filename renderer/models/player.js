@@ -14,10 +14,7 @@ module.exports = {
     muted: (state, data) => ({ muted: data }),
     playing: (state, data) => ({playing: data}),
     position: (state, data) => data,
-    volume: (state, data) => {
-      ipcRenderer.send('audio', 'volume', data)
-      return data
-    },
+    volume: (state, data) => ({ volume: data }),
     current: (state, data) => ({current: data})
   },
   effects: {
@@ -52,6 +49,10 @@ module.exports = {
     updatePlaylist: (state, data, send, done) => {
       ipcRenderer.send('playlist', data)
       done()
+    },
+    changeVolume: (state, data, send, done) => {
+      ipcRenderer.send('volume', data)
+      send('player:volume', data, done)
     }
   },
   subscriptions: {
@@ -80,8 +81,14 @@ module.exports = {
         send('player:muted', false, done)
       })
     },
+    volume: (send, done) => {
+      ipcRenderer.on('volume', (ev, level) => {
+        send('player:volume', level, done)
+      })
+    },
     syncState: (send, done) => {
       ipcRenderer.on('sync-state', (ev, state) => {
+        console.log(state)
         parallel([
           send.bind(null, 'player:current', state.current),
           send.bind(null, 'player:volume', state.volume),

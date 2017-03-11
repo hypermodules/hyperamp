@@ -20,7 +20,7 @@ function volume (state, send) {
         <input type='range'
           class='${styles.volumeControl}'
           min='${opts.min}' max='${opts.max}' step='${opts.step}'
-          oninput=${(e) => send('player:volume', { volume: e.target.value })}
+          oninput=${(e) => send('player:changeVolume', e.target.value)}
           value='${state.player.volume}'>
       `)}
     </div>
