@@ -11,14 +11,18 @@ module.exports = {
     muted: false,
     position: 0,
     currentTime: 0,
-    artwork: null
+    picture: null
   },
   reducers: {
     muted: (state, data) => ({ muted: data }),
     playing: (state, data) => ({playing: data}),
     currentTime: (state, data) => ({ currentTime: data }),
     volume: (state, data) => ({ volume: data }),
-    current: (state, data) => ({current: data})
+    current: (state, data) => ({current: data}),
+    picture: (state, data) => {
+      console.log(data)
+      return {picture: data}
+    }
   },
   effects: {
     queue: (state, data, send, done) => {
@@ -27,10 +31,12 @@ module.exports = {
       parallel([
         send.bind(null, 'player:current', data),
         (cb) => {
-          metadata(data.filepath, (err, metadta) => {
+          metadata(data.filepath, (err, metadata) => {
             if (err) return cb(err)
+            console.log(metadata)
+            window.metadata = metadata
             var picture = metadata.common.picture ? metadata.common.picture : null
-            send('player:artwork', picture, cb)
+            send('player:picture', picture, cb)
           })
         }
       ], done)
