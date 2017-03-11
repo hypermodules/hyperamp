@@ -2,13 +2,20 @@ var { app, ipcMain } = require('electron')
 var audio = require('./audio')
 var menu = require('./menu')
 var player = require('./player')
-require('./config')
+var Config = require('electron-config')
+var xtend = require('xtend')
 
-var state = {
+var persist = new Config({ name: 'hyperamp-persist' })
+
+var state = xtend({
   playlist: [],
   current: {},
-  playing: false
-}
+  volume: 50,
+  playing: false,
+  muted: false
+}, persist.store)
+
+module.exports = state
 
 app.on('ready', () => {
   menu.init()
@@ -23,10 +30,9 @@ app.on('ready', () => {
     })
   }
 
-  ipcMain.on('audio', function (/* ev, args... */) {
-    // forward audio ipc events
-    var args = [].slice.call(arguments, 1)
-    audio.win.send.apply(audio.win, args)
+  ipcMain.on('volume', function (ev, level) {
+    state.volume = level
+    audio.win.send('volume', level)
   })
 
   ipcMain.on('playlist', function (ev, playlist) {
@@ -65,6 +71,30 @@ app.on('ready', () => {
       if (state.playing) { broadcast('play') }
     }
   })
+
+  ipcMain.on('mute', function (ev) {
+    state.muted = true
+    broadcast('mute')
+  })
+
+  ipcMain.on('unmute', function (ev) {
+    state.muted = false
+    broadcast('unmute')
+  })
+
+  ipcMain.on('timeupdate', function (ev, currentTime) {
+    state.currentTime = currentTime
+    player.win.send('timeupdate', currentTime)
+  })
+
+  ipcMain.on('seek', function (ev, newTime) {
+    state.currentTime = newTime
+    audio.win.send('seek', newTime)
+  })
+
+  ipcMain.on('sync-state', function (ev) {
+    ev.sender.send('sync-state', state)
+  })
 })
 
 app.on('window-all-closed', () => {
@@ -80,10 +110,14 @@ app.on('before-quit', function (e) {
 
   app.isQuitting = true
   e.preventDefault()
-  // windows.main.dispatch('saveState') // try to save state on exit
-  // ipcMain.once('savedState', () => app.quit())
   setTimeout(() => {
-    // console.error('Saving state took too long. Quitting.')
+    console.error('Saving state took too long. Quitting.')
     app.quit()
-  }, 0) // quit after 2 secs, at most
+  }, 2000) // quit after 2 secs, at most
+  persist.set({
+    playlist: state.playlist,
+    current: state.current,
+    volume: state.volume
+  })
+  app.quit()
 })

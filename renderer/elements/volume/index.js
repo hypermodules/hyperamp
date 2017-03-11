@@ -2,6 +2,7 @@ var html = require('choo/html')
 var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
+var throttle = require('lodash.throttle')
 
 var opts = {
   min: 0,
@@ -13,14 +14,14 @@ function volume (state, send) {
   return html`
     <div class='${buttonStyles.btnGroup}'>
       ${button({
-        onclick: () => send('player:mute'),
-        iconName: state.player.mute ? 'entypo-sound-mute' : 'entypo-sound'
+        onclick: () => (state.player.muted ? send('player:unmute') : send('player:mute')),
+        iconName: state.player.muted ? 'entypo-sound-mute' : 'entypo-sound'
       })}
       ${button({ className: styles.volumeButton }, html`
         <input type='range'
           class='${styles.volumeControl}'
           min='${opts.min}' max='${opts.max}' step='${opts.step}'
-          oninput=${(e) => send('player:volume', { volume: e.target.value })}
+          oninput=${throttle((e) => send('player:changeVolume', e.target.value), 200)}
           value='${state.player.volume}'>
       `)}
     </div>

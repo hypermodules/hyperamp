@@ -2,6 +2,7 @@ var { BrowserWindow } = require('electron')
 var windowStateKeeper = require('electron-window-state')
 var path = require('path')
 var PLAYER_WINDOW = 'file://' + path.resolve(__dirname, '..', 'renderer', 'index.html')
+
 var player = module.exports = {
   init,
   win: null,
@@ -12,10 +13,7 @@ require('electron-debug')({ showDevTools: true })
 require('electron-context-menu')()
 
 function init () {
-  player.windowState = windowStateKeeper({
-    width: 800,
-    height: 600
-  })
+  player.windowState = windowStateKeeper({ width: 800, height: 600 })
   var win = player.win = new BrowserWindow({
     title: 'Hyper Amp',
     x: player.windowState.x,

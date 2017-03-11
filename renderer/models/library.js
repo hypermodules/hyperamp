@@ -1,5 +1,6 @@
 var libStream = require('../lib/library')
 var config = require('electron').remote.require('./config.js')
+var ipcRenderer = require('electron').ipcRenderer
 
 module.exports = {
   namespace: 'library',
@@ -8,12 +9,14 @@ module.exports = {
     search: ''
   },
   reducers: {
+    files: (state, data) => ({ files: data }),
     metadata: (state, data) => ({ files: state.files.concat(data) }),
     sort: (state, date) => ({ files: sortList(state.files) }),
     search: (state, data) => ({ search: data }),
     clear: (state, data) => ({ files: [] })
   },
   effects: {
+    // TODO Implement proper state management for folder walking
     loadSongs: (state, data, send, done) => {
       send('library:clear', (err) => {
         if (err) return done(err)
@@ -29,7 +32,13 @@ module.exports = {
   },
   subscriptions: {
     'called-once-when-the-app-loads': (send, done) => {
-      // send('library:loadSongs', done)
+      ipcRenderer.send('sync-state')
+      done()
+    },
+    syncState: (send, done) => {
+      ipcRenderer.on('sync-state', (ev, state) => {
+        send('library:files', state.playlist, done)
+      })
     }
   }
 }
