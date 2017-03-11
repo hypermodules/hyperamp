@@ -32,7 +32,7 @@ app.on('ready', () => {
 
   ipcMain.on('volume', function (ev, level) {
     state.volume = level
-    audio.win.send('volume', level)
+    if (audio.win) audio.win.send('volume', level)
   })
 
   ipcMain.on('playlist', function (ev, playlist) {
@@ -84,12 +84,12 @@ app.on('ready', () => {
 
   ipcMain.on('timeupdate', function (ev, currentTime) {
     state.currentTime = currentTime
-    player.win.send('timeupdate', currentTime)
+    if (player.win) player.win.send('timeupdate', currentTime)
   })
 
   ipcMain.on('seek', function (ev, newTime) {
     state.currentTime = newTime
-    audio.win.send('seek', newTime)
+    if (player.win) audio.win.send('seek', newTime)
   })
 
   ipcMain.on('sync-state', function (ev) {
