@@ -1,5 +1,6 @@
 var { ipcRenderer } = require('electron')
 var parallel = require('run-parallel')
+var metadata = require('../lib/metadata')
 
 module.exports = {
   namespace: 'player',
@@ -9,7 +10,8 @@ module.exports = {
     volume: 50,
     muted: false,
     position: 0,
-    currentTime: 0
+    currentTime: 0,
+    artwork: null
   },
   reducers: {
     muted: (state, data) => ({ muted: data }),
@@ -22,6 +24,16 @@ module.exports = {
     queue: (state, data, send, done) => {
       ipcRenderer.send('queue', data)
       send('player:current', data, done)
+      parallel([
+        send.bind(null, 'player:current', data),
+        (cb) => {
+          metadata(data.filepath, (err, metadta) => {
+            if (err) return cb(err)
+            var picture = metadata.common.picture ? metadata.common.picture : null
+            send('player:artwork', picture, cb)
+          })
+        }
+      ], done)
     },
     play: (state, data, send, done) => {
       ipcRenderer.send('play')
