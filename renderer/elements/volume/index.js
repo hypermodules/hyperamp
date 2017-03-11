@@ -2,6 +2,7 @@ var html = require('choo/html')
 var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
+var throttle = require('lodash.throttle')
 
 var opts = {
   min: 0,
@@ -20,7 +21,7 @@ function volume (state, send) {
         <input type='range'
           class='${styles.volumeControl}'
           min='${opts.min}' max='${opts.max}' step='${opts.step}'
-          oninput=${(e) => send('player:changeVolume', e.target.value)}
+          oninput=${throttle((e) => send('player:changeVolume', e.target.value), 200)}
           value='${state.player.volume}'>
       `)}
     </div>

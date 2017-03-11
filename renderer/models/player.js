@@ -92,7 +92,8 @@ module.exports = {
         parallel([
           send.bind(null, 'player:current', state.current),
           send.bind(null, 'player:volume', state.volume),
-          send.bind(null, 'player:muted', state.muted)
+          send.bind(null, 'player:muted', state.muted),
+          send.bind(null, 'player:playing', state.playing)
         ], done)
       })
     }
