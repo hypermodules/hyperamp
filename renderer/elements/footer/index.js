@@ -6,7 +6,7 @@ var buttonStyles = require('../button/styles')
 var opts = {
   min: 0,
   max: 100,
-  step: 0.5
+  step: 0.1
 }
 
 function play (state, send) {
@@ -19,8 +19,7 @@ module.exports = (state, prev, send) => {
   var title = current.title || null
   var artist = current.artist || null
   var album = current.album || null
-  var duration = (state.player.currentTime / state.player.current.duration) * opts.max
-  console.log(duration)
+  var progress = (state.player.currentTime / state.player.current.duration) * opts.max
   return html`
     <footer class="${styles.footer}">
       <div class="${styles.albumArt}"></div>
@@ -47,9 +46,9 @@ module.exports = (state, prev, send) => {
             <input type='range'
               class='${styles.scrubber}'
               min='${opts.min}' max='${opts.max}' step='${opts.step}'
-              oninput=${(e) => send('player:position', { position: e.target.value })}
+              oninput=${(e) => send('player:seek', (e.target.value / opts.max) * state.player.current.duration)}
               disabled=${title === null}
-              value=${duration}>
+              value=${progress}>
           `)}
         </div>
       </div>

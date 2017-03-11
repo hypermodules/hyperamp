@@ -49,6 +49,11 @@ ipcRenderer.on('unmute', function () {
   console.log(`audio: mute off`)
 })
 
+ipcRenderer.on('seek', function (ev, newTime) {
+  console.log('audio: seek: ' + audio.newTime)
+  audio.currentTime = newTime
+})
+
 audio.addEventListener('ended', function () {
   console.log('audio: playback ended: ' + audio.src)
   ipcRenderer.send('next')

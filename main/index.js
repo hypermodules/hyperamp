@@ -87,6 +87,11 @@ app.on('ready', () => {
     player.win.send('timeupdate', currentTime)
   })
 
+  ipcMain.on('seek', function (ev, newTime) {
+    state.currentTime = newTime
+    audio.win.send('seek', newTime)
+  })
+
   ipcMain.on('sync-state', function (ev) {
     ev.sender.send('sync-state', state)
   })

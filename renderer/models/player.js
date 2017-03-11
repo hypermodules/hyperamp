@@ -14,7 +14,6 @@ module.exports = {
   reducers: {
     muted: (state, data) => ({ muted: data }),
     playing: (state, data) => ({playing: data}),
-    position: (state, data) => data,
     currentTime: (state, data) => ({ currentTime: data }),
     volume: (state, data) => ({ volume: data }),
     current: (state, data) => ({current: data})
@@ -51,6 +50,10 @@ module.exports = {
     updatePlaylist: (state, data, send, done) => {
       ipcRenderer.send('playlist', data)
       done()
+    },
+    seek: (state, data, send, done) => {
+      ipcRenderer.send('seek', data)
+      send('player:currentTime', data, done)
     },
     changeVolume: (state, data, send, done) => {
       ipcRenderer.send('volume', data)
