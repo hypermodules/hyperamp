@@ -19,6 +19,8 @@ module.exports = css`
     position: absolute;
     left: 0;
     bottom: 0;
+    background-size: cover;
+    background-position: center;
   }
 
   .meta {

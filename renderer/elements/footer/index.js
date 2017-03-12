@@ -4,6 +4,7 @@ var fd = require('format-duration')
 var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
+var artworkCache = require('../../lib/artwork-cache')
 
 var opts = {
   min: 0,
@@ -22,9 +23,13 @@ module.exports = (state, prev, send) => {
   var artist = current.artist || null
   var album = current.album || null
   var progress = (state.player.currentTime / state.player.current.duration) * opts.max
+  var backgroundImg = artworkCache[state.player.picture]
   return html`
     <footer class="${styles.footer}">
-      <div class="${styles.albumArt}"></div>
+      <div
+        style="background-image: ${state.player.picture ? 'url(' + backgroundImg + ')' : ''}"
+        class="${styles.albumArt}">
+      </div>
       <div class="${styles.meta}">
         <p class="${styles.title}">${title || 'No Track Selected'}</p>
         <p class="${styles.artist}">
@@ -55,8 +60,9 @@ module.exports = (state, prev, send) => {
               value=${progress}>
           `)}
         </div>
-        <div>${fd(state.player.currentTime * 1000)} -${fd((state.player.current.duration - state.player.currentTime) * 1000)}</div>
       </div>
     </footer>
   `
 }
+
+// <div>${fd(state.player.currentTime * 1000)} -${fd((state.player.current.duration - state.player.currentTime) * 1000)}</div>
