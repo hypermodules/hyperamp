@@ -1,7 +1,10 @@
 var html = require('choo/html')
+var throttle = require('lodash.throttle')
+// var fd = require('format-duration')
 var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
+var artworkCache = require('../../lib/artwork-cache')
 
 var opts = {
   min: 0,
@@ -20,9 +23,13 @@ module.exports = (state, prev, send) => {
   var artist = current.artist || null
   var album = current.album || null
   var progress = (state.player.currentTime / state.player.current.duration) * opts.max
+  var backgroundImg = artworkCache[state.player.picture]
   return html`
     <footer class="${styles.footer}">
-      <div class="${styles.albumArt}"></div>
+      <div
+        style="background-image: ${state.player.picture ? 'url(' + backgroundImg + ')' : ''}"
+        class="${styles.albumArt}">
+      </div>
       <div class="${styles.meta}">
         <p class="${styles.title}">${title || 'No Track Selected'}</p>
         <p class="${styles.artist}">
@@ -46,7 +53,9 @@ module.exports = (state, prev, send) => {
             <input type='range'
               class='${styles.scrubber}'
               min='${opts.min}' max='${opts.max}' step='${opts.step}'
-              oninput=${(e) => send('player:seek', (e.target.value / opts.max) * state.player.current.duration)}
+              oninput=${throttle(
+                (e) => send('player:seek', (e.target.value / opts.max) * state.player.current.duration),
+                50)}
               disabled=${title === null}
               value=${progress}>
           `)}
@@ -55,3 +64,5 @@ module.exports = (state, prev, send) => {
     </footer>
   `
 }
+
+// <div>${fd(state.player.currentTime * 1000)} -${fd((state.player.current.duration - state.player.currentTime) * 1000)}</div>

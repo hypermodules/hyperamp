@@ -1,5 +1,6 @@
 var { ipcRenderer } = require('electron')
 var parallel = require('run-parallel')
+var artwork = require('../lib/artwork')
 
 module.exports = {
   namespace: 'player',
@@ -8,20 +9,30 @@ module.exports = {
     current: {},
     volume: 50,
     muted: false,
-    position: 0,
     currentTime: 0
   },
   reducers: {
-    muted: (state, data) => ({ muted: data }),
+    muted: (state, data) => ({muted: data}),
     playing: (state, data) => ({playing: data}),
-    currentTime: (state, data) => ({ currentTime: data }),
-    volume: (state, data) => ({ volume: data }),
-    current: (state, data) => ({current: data})
+    currentTime: (state, data) => ({currentTime: data}),
+    volume: (state, data) => ({volume: data}),
+    current: (state, data) => ({current: data}),
+    picture: (state, data) => ({picture: data})
   },
   effects: {
     queue: (state, data, send, done) => {
       ipcRenderer.send('queue', data)
       send('player:current', data, done)
+      parallel([
+        send.bind(null, 'player:current', data),
+        (cb) => {
+          artwork(data.filepath, (err, hash) => {
+            if (err) return cb(err)
+            console.log(hash)
+            send('player:picture', hash, cb)
+          })
+        }
+      ], done)
     },
     play: (state, data, send, done) => {
       ipcRenderer.send('play')

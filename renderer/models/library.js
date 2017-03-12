@@ -11,7 +11,6 @@ module.exports = {
   reducers: {
     files: (state, data) => ({ files: data }),
     metadata: (state, data) => ({ files: state.files.concat(data) }),
-    sort: (state, date) => ({ files: sortList(state.files) }),
     search: (state, data) => ({ search: data }),
     clear: (state, data) => ({ files: [] })
   },
@@ -28,6 +27,9 @@ module.exports = {
           })
         })
       })
+    },
+    sort: (state, data, send, done) => {
+      send('library:files', sortList(state.files), done)
     }
   },
   subscriptions: {

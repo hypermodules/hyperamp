@@ -1,17 +1,15 @@
-# HyperAmp [![stability][stability-img]][stability-url] [![build][build-img]][build-url] [![standard][standard-img]][standard-url][![Build status](https://ci.appveyor.com/api/projects/status/ajdq0to9sk4ahexa?svg=true)](https://ci.appveyor.com/project/bcomnes/hyperamp)
+# HyperAmp [![stability][stability-img]][stability-url] [![build][build-img]][build-url] [![appveyor-status][appveyor-img]][appveyor-url]
 
-[stability-img]: https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square
+[stability-img]: https://img.shields.io/badge/stability-experimental-orange.svg
 [stability-url]: https://nodejs.org/api/documentation.html#documentation_stability_index
-[build-img]: https://img.shields.io/travis/hypermodules/hyperamp/master.svg?style=flat-square
+[build-img]: https://img.shields.io/travis/hypermodules/hyperamp/master.svg
 [build-url]: https://travis-ci.org/hypermodules/hyperamp
-[standard-img]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
+[standard-img]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
 [standard-url]: https://github.com/feross/standard
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/ajdq0to9sk4ahexa?svg=true
+[appveyor-url]: https://ci.appveyor.com/project/bcomnes/hyperamp
 
-Experimental desktop audio player and library.
-
-**:warning: This is pre-alpha! :warning:**
-
-Only worth checking out or forking if you want to contribute to development!
+Experimental audio player built with web technologies ([choo](https://github.com/yoshuawuyts/choo) + [electron](https://github.com/electron/electron)).
 
 ## Install
 
@@ -22,8 +20,6 @@ npm install
 npm test
 npm start
 ```
-
-We're using [electron](https://github.com/electron/electron) and [choo](https://github.com/yoshuawuyts/choo) under the hood.
 
 ## Screenshot
 
