@@ -1,6 +1,6 @@
 var html = require('choo/html')
 var throttle = require('lodash.throttle')
-var fd = require('format-duration')
+// var fd = require('format-duration')
 var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
