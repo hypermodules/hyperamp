@@ -12,7 +12,7 @@
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
   "dependencies": {
-    "choo": "^4.1.0",
+    "choo": "^5.0.0-5",
     "choo-log": "^3.0.0",
     "csjs-inject": "^1.0.1",
     "electron-config": "^0.2.1",
@@ -27,6 +27,7 @@
     "lodash.throttle": "^4.1.1",
     "music-metadata": "^0.6.1",
     "musicmetadata": "^2.0.4",
+    "nanocomponent": "^2.0.3",
     "run-parallel": "^1.1.6",
     "xtend": "^4.0.1"
   },
