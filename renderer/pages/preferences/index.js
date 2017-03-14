@@ -5,7 +5,7 @@ var formStyles = require('../../elements/form/styles')
 var { app, dialog } = require('electron').remote
 var styles = require('../styles')
 
-function preferences (state, prev, send) {
+function preferences (state, emit) {
   function showDialog () {
     dialog.showOpenDialog({
       defaultPath: app.getPath('home'),
