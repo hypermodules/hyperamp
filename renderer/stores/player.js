@@ -1,122 +1,134 @@
 var { ipcRenderer } = require('electron')
-var parallel = require('run-parallel')
 var artwork = require('../lib/artwork')
 
-module.exports = {
-  namespace: 'player',
-  state: {
-    playing: false,
-    current: {},
-    volume: 50,
-    muted: false,
-    currentTime: 0
-  },
-  reducers: {
-    muted: (state, data) => ({muted: data}),
-    playing: (state, data) => ({playing: data}),
-    currentTime: (state, data) => ({currentTime: data}),
-    volume: (state, data) => ({volume: data}),
-    current: (state, data) => ({current: data}),
-    picture: (state, data) => ({picture: data})
-  },
-  effects: {
-    queue: (state, data, send, done) => {
-      ipcRenderer.send('queue', data)
-      send('player:current', data, done)
-      parallel([
-        send.bind(null, 'player:current', data),
-        (cb) => {
-          artwork(data.filepath, (err, hash) => {
-            if (err) return cb(err)
-            console.log(hash)
-            send('player:picture', hash, cb)
-          })
-        }
-      ], done)
-    },
-    play: (state, data, send, done) => {
+module.exports = playerStore
+
+function playerStore () {
+  function store (state, emitter) {
+    var localState = state.player
+
+    if (!localState) {
+      localState.playing = false
+      localState.current = {}
+      localState.volume = 50
+      localState.muted = false
+      localState.currentTime = 0
+    }
+
+    emitter.on('player:muted', muted)
+    emitter.on('player:playing', playing)
+    emitter.on('player:currentTime', currentTime)
+    emitter.on('player:volume', volume)
+    emitter.on('player:current', current)
+    emitter.on('player:picture', picture)
+
+    function muted (bool) {
+      localState.muted = bool
+      emitter.emit('render')
+    }
+
+    function playing (bool) {
+      localState.playing = bool
+      emitter.emit('render')
+    }
+
+    function currentTime (time) {
+      localState.currentTime = time
+      emitter.emit('render')
+    }
+
+    function volume (time) {
+      localState.volume = time
+      emitter.emit('render')
+    }
+
+    function current (time) {
+      localState.current = time
+      emitter.emit('render')
+    }
+
+    function picture (time) {
+      localState.current = time
+      emitter.emit('render')
+    }
+
+    emitter.on('player:queue', queue)
+    emitter.on('player:play', play)
+    emitter.on('player:pause', pause)
+    emitter.on('player:prev', prev)
+    emitter.on('player:next', next)
+    emitter.on('player:mute', mute)
+    emitter.on('player:unmute', unmute)
+    emitter.on('player:updatePlaylist', updatePlaylist)
+    emitter.on('player:seek', seek)
+    emitter.on('player:changeVolume', changeVolume)
+
+    function queue (meta) {
+      ipcRenderer.send('queue', meta)
+      emitter.emit('player:current', meta)
+      artwork(meta.filepath, (err, hash) => {
+        if (err) return emitter.emit('error', err)
+        emitter.emit('player:picture', hash)
+      })
+    }
+
+    function play () {
       ipcRenderer.send('play')
-      send('player:playing', true, done)
-    },
-    pause: (state, data, send, done) => {
+      emitter.emit('player:playing', true)
+    }
+
+    function pause () {
       ipcRenderer.send('pause')
-      send('player:playing', false, done)
-    },
-    prev: (state, data, send, done) => {
-      ipcRenderer.send('prev')
-      done()
-    },
-    next: (state, data, send, done) => {
+      emitter.emit('player:playing', false)
+    }
+
+    function next () {
       ipcRenderer.send('next')
-      done()
-    },
-    mute: (state, data, send, done) => {
-      ipcRenderer.send('mute')
-      send('player:muted', true, done)
-    },
-    unmute: (state, data, send, done) => {
+    }
+
+    function prev () {
+      ipcRenderer.send('prev')
+    }
+
+    function mute () {
       ipcRenderer.send('unmute')
-      send('player:muted', false, done)
-    },
-    updatePlaylist: (state, data, send, done) => {
-      ipcRenderer.send('playlist', data)
-      done()
-    },
-    seek: (state, data, send, done) => {
-      ipcRenderer.send('seek', data)
-      send('player:currentTime', data, done)
-    },
-    changeVolume: (state, data, send, done) => {
-      ipcRenderer.send('volume', data)
-      send('player:volume', data, done)
+      emitter.emit('player:muted', true)
     }
-  },
-  subscriptions: {
-    play: (send, done) => {
-      ipcRenderer.on('play', (ev) => {
-        send('player:playing', true, done)
-      })
-    },
-    pause: (send, done) => {
-      ipcRenderer.on('pause', (ev) => {
-        send('player:playing', false, done)
-      })
-    },
-    queue: (send, done) => {
-      ipcRenderer.on('queue', (ev, meta) => {
-        send('player:current', meta, done)
-      })
-    },
-    mute: (send, done) => {
-      ipcRenderer.on('mute', (ev) => {
-        send('player:muted', true, done)
-      })
-    },
-    unmute: (send, done) => {
-      ipcRenderer.on('unmuted', (ev) => {
-        send('player:muted', false, done)
-      })
-    },
-    volume: (send, done) => {
-      ipcRenderer.on('volume', (ev, level) => {
-        send('player:volume', level, done)
-      })
-    },
-    timeupdate: (send, done) => {
-      ipcRenderer.on('timeupdate', (ev, currentTime) => {
-        send('player:currentTime', currentTime, done)
-      })
-    },
-    syncState: (send, done) => {
-      ipcRenderer.on('sync-state', (ev, state) => {
-        console.log(state)
-        parallel([
-          send.bind(null, 'player:current', state.current),
-          send.bind(null, 'player:volume', state.volume),
-          send.bind(null, 'player:muted', state.muted),
-          send.bind(null, 'player:playing', state.playing)
-        ], done)
-      })
+
+    function unmute () {
+      ipcRenderer.send('mute')
+      emitter.emit('player:muted', false)
     }
+
+    function updatePlaylist (playlist) {
+      ipcRenderer.send('playlist', playlist)
+    }
+
+    function seek (time) {
+      ipcRenderer.send('seek', time)
+      emitter.emit('player:currentTime', time)
+    }
+
+    function changeVolume (lev) {
+      ipcRenderer.send('volume', lev)
+      emitter.emit('player:volume', lev)
+    }
+
+    ipcRenderer.on('play', () => emitter.emit('player:playing', true))
+    ipcRenderer.on('pause', () => emitter.emit('player:playing', false))
+    ipcRenderer.on('queue', (ev, meta) => emitter.emit('player:current', meta))
+    ipcRenderer.on('mute', () => emitter.emit('player:muted', true))
+    ipcRenderer.on('unmute', () => emitter.emit('player:muted', true))
+    ipcRenderer.on('volume', (ev, lev) => emitter.emit('player:volume', lev))
+    ipcRenderer.on('timeupdate', (ev, time) => emitter.emit('player:currentTime', time))
+    ipcRenderer.on('syncState', (ev, mainState) => {
+      localState.playing = state.playing
+      localState.current = state.current
+      localState.volume = state.volume
+      localState.muted = state.muted
+      emitter.emit('render')
+    })
   }
+
+  return store
 }

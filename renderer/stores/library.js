@@ -1,48 +1,71 @@
 var libStream = require('../lib/library')
 var config = require('electron').remote.require('./config.js')
 var ipcRenderer = require('electron').ipcRenderer
+var nanotick = require('nanotick')
+var tick = nanotick()
 
-module.exports = {
-  namespace: 'library',
-  state: {
-    files: [],
-    search: ''
-  },
-  reducers: {
-    files: (state, data) => ({ files: data }),
-    metadata: (state, data) => ({ files: state.files.concat(data) }),
-    search: (state, data) => ({ search: data }),
-    clear: (state, data) => ({ files: [] })
-  },
-  effects: {
-    // TODO Implement proper state management for folder walking
-    loadSongs: (state, data, send, done) => {
-      send('library:clear', (err) => {
-        if (err) return done(err)
-        libStream(config.get('music'), (err, metadata) => {
-          if (err) return done(err)
-          send('library:metadata', metadata, err => {
-            if (err) return done(err)
-            send('library:sort', done)
-          })
-        })
-      })
-    },
-    sort: (state, data, send, done) => {
-      send('library:files', sortList(state.files), done)
+module.exports = libraryStore
+
+function libraryStore () {
+  function store (state, emitter) {
+    var localState = state.library
+
+    if (!localState) {
+      localState.files = []
+      localState.search = ''
     }
-  },
-  subscriptions: {
-    'called-once-when-the-app-loads': (send, done) => {
-      ipcRenderer.send('sync-state')
-      done()
-    },
-    syncState: (send, done) => {
-      ipcRenderer.on('sync-state', (ev, state) => {
-        send('library:files', state.playlist, done)
+
+    emitter.on('library:clear', clear)
+    emitter.on('library:addOne', addOne)
+    emitter.on('library:search', search)
+    emitter.on('library:loadSongs', loadSongs)
+    emitter.on('library:files', files)
+    emitter.on('library:sort', sort)
+
+    ipcRenderer.on('sync-state', syncState)
+
+    function syncState (ev, mainState) {
+      emitter.emit('library:files', mainState.playlist)
+    }
+
+    function clear () {
+      localState.files = []
+      emitter.emit('render')
+    }
+
+    function addOne (meta) {
+      localState.files.concat(meta)
+      emitter.emit('render')
+    }
+
+    function loadSongs () {
+      emitter.emit('library:clear')
+      libStream(config.get('music'), handleFile)
+    }
+
+    function handleFile (err, meta) {
+      if (err) return emitter.emit('error', err)
+      emitter.emit('library:addOne', meta)
+    }
+
+    function files (playlist) {
+      localState.files = playlist
+      emitter.emit('render')
+    }
+
+    function sort () {
+      tick(function () {
+        emitter.emit('library:files', sortList(localState.files))
       })
+    }
+
+    function search (string) {
+      localState.search = string
+      emitter.emit('render')
     }
   }
+
+  return store
 }
 
 // TODO: expose sort to state to allow sort using column headers

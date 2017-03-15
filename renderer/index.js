@@ -1,4 +1,5 @@
 var choo = require('choo')
+var ipcRenderer = require('electron').ipcRenderer
 // var log = require('choo-log')
 var app = window.hyperamp = choo()
 
@@ -20,3 +21,5 @@ app.use(libraryStore)
 app.route('/', mainView)
 app.route('/preferences', preferences)
 app.mount('#app')
+
+ipcRenderer.send('sync-state')

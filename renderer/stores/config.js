@@ -1,20 +1,27 @@
 var electron = require('electron')
 var config = electron.remote.require('./config.js')
 var ipcRenderer = electron.ipcRenderer
+var mutate = require('xtend/mutable')
 
-var configModel = {
-  namespace: 'config',
-  state: config.store,
-  reducers: {
-    update: (state, data) => data
-  },
-  effects: {
-    set: (state, data, send, done) => {
-      config.set(data) // Update the config
-      ipcRenderer.send('config', data) // Notify main process
-      send('config:update', data, done) // update UI state
+function configStore () {
+  function store (state, emitter) {
+    var localState = state.config
+
+    if (!localState) {
+      localState = config.store
+    }
+
+    emitter.on('config:set', set)
+
+    function set (data) {
+      mutate(localState, data)
+      ipcRenderer.send('config', data)
+      config.set(data)
+      emitter.emit('render')
     }
   }
+
+  return store
 }
 
-module.exports = configModel
+module.exports = configStore
