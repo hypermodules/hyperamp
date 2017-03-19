@@ -87,12 +87,12 @@ function playerStore (state, emitter) {
   }
 
   function mute () {
-    ipcRenderer.send('unmute')
+    ipcRenderer.send('mute')
     muted(true)
   }
 
   function unmute () {
-    ipcRenderer.send('mute')
+    ipcRenderer.send('unmute')
     muted(false)
   }
 
