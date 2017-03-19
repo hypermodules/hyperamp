@@ -1,5 +1,5 @@
 var html = require('choo/html')
-var debounce = require('lodash.debounce')
+// var debounce = require('lodash.debounce')
 // var fd = require('format-duration')
 var styles = require('./styles')
 var button = require('../button')
@@ -22,7 +22,7 @@ module.exports = (state, emit) => {
   var title = current.title || null
   var artist = current.artist || null
   var album = current.album || null
-  var progress = (state.player.currentTime / state.player.current.duration) * opts.max
+  var progress = (state.player.currentTime / state.player.current.duration) * opts.max || 0.1
   var backgroundImg = artworkCache[state.player.picture]
   return html`
     <footer class="${styles.footer}">
@@ -53,11 +53,9 @@ module.exports = (state, emit) => {
             <input id='position' type='range'
               class='${styles.scrubber}'
               min='${opts.min}' max='${opts.max}' step='${opts.step}'
-              oninput=${debounce(
-                (e) => emit('player:seek', (e.target.value / opts.max) * state.player.current.duration),
-                50, { maxWait: 200 })}
+              oninput=${(e) => emit('player:seek', (e.target.value / opts.max) * state.player.current.duration)}
               disabled=${title === null}
-              value=${progress.toPrecision(3)}>
+              value=${progress}>
           `)}
         </div>
       </div>
