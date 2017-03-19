@@ -7,6 +7,7 @@ function configStore (state, emitter) {
   var localState = state.config
 
   if (!localState) {
+    localState = state.config = {}
     localState = config.store
   }
 

@@ -2,7 +2,7 @@ var html = require('choo/html')
 var fd = require('format-duration')
 var styles = require('./styles')
 
-function table (state, prev, send) {
+function table (state, emit) {
   return html`
     <section class="${styles.pane}">
       <div class=${styles.tableHeader}>
@@ -19,23 +19,23 @@ function table (state, prev, send) {
       </div>
       <div class=${styles.tableBody}>
         <table class="${styles.mediaList} ${styles.tableBody}">
-          <tbody>${renderList(state, send)}</tbody>
+          <tbody>${renderList(state, emit)}</tbody>
         </table>
       </div>
     </section>
   `
 }
 
-function renderList (state, send) {
+function renderList (state, emit) {
   var { files, search } = state.library
   var list = files
 
   if (search) list = filterList(list, search)
 
   function playSong (meta) {
-    send('player:updatePlaylist', list)
-    send('player:queue', meta)
-    send('player:play')
+    emit('player:updatePlaylist', list)
+    emit('player:queue', meta)
+    emit('player:play')
   }
 
   return list.map((meta, i) => {

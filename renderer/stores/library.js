@@ -10,6 +10,7 @@ function libraryStore (state, emitter) {
   var localState = state.library
 
   if (!localState) {
+    localState = state.library = {}
     localState.files = []
     localState.search = ''
   }

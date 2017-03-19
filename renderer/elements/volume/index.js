@@ -10,18 +10,18 @@ var opts = {
   step: 0.01
 }
 
-function volume (state, send) {
+function volume (state, emit) {
   return html`
     <div class='${buttonStyles.btnGroup}'>
       ${button({
-        onclick: () => (state.player.muted ? send('player:unmute') : send('player:mute')),
+        onclick: () => (state.player.muted ? emit('player:unmute') : emit('player:mute')),
         iconName: state.player.muted ? 'entypo-sound-mute' : 'entypo-sound'
       })}
       ${button({ className: styles.volumeButton }, html`
         <input type='range'
           class='${styles.volumeControl}'
           min='${opts.min}' max='${opts.max}' step='${opts.step}'
-          oninput=${throttle((e) => send('player:changeVolume', e.target.value), 200)}
+          oninput=${throttle((e) => emit('player:changeVolume', e.target.value), 200)}
           value='${state.player.volume}'>
       `)}
     </div>

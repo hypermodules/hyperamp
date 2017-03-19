@@ -7,6 +7,7 @@ function playerStore (state, emitter) {
   var localState = state.player
 
   if (!localState) {
+    localState = state.player = {}
     localState.playing = false
     localState.current = {}
     localState.volume = 50
