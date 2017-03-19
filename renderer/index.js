@@ -8,6 +8,7 @@ document.body.insertBefore(entypoSprite, document.body.firstChild)
 
 // app.use(log())
 
+app.use(logger)
 app.use(require('./stores/config'))
 app.use(require('./stores/player'))
 app.use(require('./stores/library'))
@@ -17,3 +18,9 @@ app.route('/', require('./pages/main'))
 app.mount('#app')
 
 ipcRenderer.send('sync-state')
+
+function logger (state, emitter) {
+  emitter.on('*', function (messageName, data) {
+    console.log('event', messageName, data)
+  })
+}
