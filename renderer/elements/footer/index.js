@@ -1,5 +1,5 @@
 var html = require('choo/html')
-var throttle = require('lodash.throttle')
+var debounce = require('lodash.debounce')
 // var fd = require('format-duration')
 var styles = require('./styles')
 var button = require('../button')
@@ -50,12 +50,12 @@ module.exports = (state, emit) => {
             iconName: 'entypo-controller-fast-forward'
           })}
           ${button({ className: styles.scrubberControl }, html`
-            <input type='range'
+            <input id='position' type='range'
               class='${styles.scrubber}'
               min='${opts.min}' max='${opts.max}' step='${opts.step}'
-              oninput=${throttle(
+              oninput=${debounce(
                 (e) => emit('player:seek', (e.target.value / opts.max) * state.player.current.duration),
-                50)}
+                50, { maxWait: 200 })}
               disabled=${title === null}
               value=${progress.toPrecision(3)}>
           `)}

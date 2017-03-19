@@ -2,7 +2,7 @@ var html = require('choo/html')
 var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
-var throttle = require('lodash.throttle')
+var debounce = require('lodash.debounce')
 
 var opts = {
   min: 0,
@@ -18,10 +18,10 @@ function volume (state, emit) {
         iconName: state.player.muted ? 'entypo-sound-mute' : 'entypo-sound'
       })}
       ${button({ className: styles.volumeButton }, html`
-        <input type='range'
+        <input id="volume" type='range'
           class='${styles.volumeControl}'
           min='${opts.min}' max='${opts.max}' step='${opts.step}'
-          oninput=${throttle((e) => emit('player:changeVolume', e.target.value), 200)}
+          oninput=${debounce((e) => emit('player:changeVolume', e.target.value), 5, { maxWait: 20 })}
           value='${state.player.volume}'>
       `)}
     </div>

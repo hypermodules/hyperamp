@@ -12,7 +12,7 @@ function playerStore (state, emitter) {
     localState.current = {}
     localState.volume = 0.50
     localState.muted = false
-    localState.currentTime = 0
+    localState.currentTime = 0.1
     localState.picture = null
   }
 

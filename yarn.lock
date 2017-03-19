@@ -966,26 +966,9 @@ electron-builder-http@15.6.2, electron-builder-http@~15.6.2:
     debug "2.6.3"
     fs-extra-p "^4.1.0"
 
-electron-builder-util@15.6.2:
+electron-builder-util@15.6.2, electron-builder-util@~15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/electron-builder-util/-/electron-builder-util-15.6.2.tgz#005ea4d1b38834f17968af0930ebe05f91ab3d06"
-  dependencies:
-    "7zip-bin" "^2.0.4"
-    bluebird-lst "^1.0.2"
-    chalk "^1.1.3"
-    debug "2.6.3"
-    electron-builder-http "~15.6.2"
-    fs-extra-p "^4.1.0"
-    ini "^1.3.4"
-    is-ci "^1.0.10"
-    node-emoji "^1.5.1"
-    source-map-support "^0.4.13"
-    stat-mode "^0.2.2"
-    tunnel-agent "^0.6.0"
-
-electron-builder-util@~15.6.2:
-  version "15.6.3"
-  resolved "https://registry.yarnpkg.com/electron-builder-util/-/electron-builder-util-15.6.3.tgz#7c722005eb9bd56e5905488271af484f88c61686"
   dependencies:
     "7zip-bin" "^2.0.4"
     bluebird-lst "^1.0.2"
@@ -2202,6 +2185,10 @@ locate-path@^2.0.0:
 lodash.assign@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
+
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
 lodash.get@^4.4.2:
   version "4.4.2"
