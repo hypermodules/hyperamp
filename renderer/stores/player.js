@@ -10,17 +10,11 @@ function playerStore (state, emitter) {
     localState = state.player = {}
     localState.playing = false
     localState.current = {}
-    localState.volume = 50
+    localState.volume = 0.50
     localState.muted = false
     localState.currentTime = 0
+    localState.picture = null
   }
-
-  emitter.on('player:muted', muted)
-  emitter.on('player:playing', playing)
-  emitter.on('player:currentTime', currentTime)
-  emitter.on('player:volume', volume)
-  emitter.on('player:current', current)
-  emitter.on('player:picture', picture)
 
   function muted (bool) {
     localState.muted = bool
@@ -37,18 +31,18 @@ function playerStore (state, emitter) {
     emitter.emit('render')
   }
 
-  function volume (time) {
-    localState.volume = time
+  function volume (lev) {
+    localState.volume = lev
     emitter.emit('render')
   }
 
-  function current (time) {
-    localState.current = time
+  function current (meta) {
+    localState.current = meta
     emitter.emit('render')
   }
 
-  function picture (time) {
-    localState.current = time
+  function picture (hash) {
+    localState.picture = hash
     emitter.emit('render')
   }
 
@@ -62,24 +56,26 @@ function playerStore (state, emitter) {
   emitter.on('player:updatePlaylist', updatePlaylist)
   emitter.on('player:seek', seek)
   emitter.on('player:changeVolume', changeVolume)
+  emitter.on('player:sync-state', syncState)
+  emitter.on('player:time-update', currentTime)
 
   function queue (meta) {
     ipcRenderer.send('queue', meta)
-    emitter.emit('player:current', meta)
+    current(meta)
     artwork(meta.filepath, (err, hash) => {
       if (err) return emitter.emit('error', err)
-      emitter.emit('player:picture', hash)
+      picture(hash)
     })
   }
 
   function play () {
     ipcRenderer.send('play')
-    emitter.emit('player:playing', true)
+    playing(true)
   }
 
   function pause () {
     ipcRenderer.send('pause')
-    emitter.emit('player:playing', false)
+    playing(false)
   }
 
   function next () {
@@ -92,12 +88,12 @@ function playerStore (state, emitter) {
 
   function mute () {
     ipcRenderer.send('unmute')
-    emitter.emit('player:muted', true)
+    muted(true)
   }
 
   function unmute () {
     ipcRenderer.send('mute')
-    emitter.emit('player:muted', false)
+    muted(false)
   }
 
   function updatePlaylist (playlist) {
@@ -106,26 +102,28 @@ function playerStore (state, emitter) {
 
   function seek (time) {
     ipcRenderer.send('seek', time)
-    emitter.emit('player:currentTime', time)
+    currentTime(time)
   }
 
   function changeVolume (lev) {
     ipcRenderer.send('volume', lev)
-    emitter.emit('player:volume', lev)
+    volume(lev)
   }
 
-  ipcRenderer.on('play', () => emitter.emit('player:playing', true))
-  ipcRenderer.on('pause', () => emitter.emit('player:playing', false))
-  ipcRenderer.on('queue', (ev, meta) => emitter.emit('player:current', meta))
-  ipcRenderer.on('mute', () => emitter.emit('player:muted', true))
-  ipcRenderer.on('unmute', () => emitter.emit('player:muted', true))
-  ipcRenderer.on('volume', (ev, lev) => emitter.emit('player:volume', lev))
-  ipcRenderer.on('timeupdate', (ev, time) => emitter.emit('player:currentTime', time))
-  ipcRenderer.on('syncState', (ev, mainState) => {
-    localState.playing = state.playing
-    localState.current = state.current
-    localState.volume = state.volume
-    localState.muted = state.muted
+  function syncState (mainState) {
+    localState.playing = mainState.playing
+    localState.current = mainState.current
+    localState.volume = mainState.volume
+    localState.muted = mainState.muted
     emitter.emit('render')
-  })
+  }
+
+  ipcRenderer.on('play', () => playing(true))
+  ipcRenderer.on('pause', () => playing(false))
+  ipcRenderer.on('queue', (ev, meta) => current(meta))
+  ipcRenderer.on('mute', () => muted(true))
+  ipcRenderer.on('unmute', () => muted(false))
+  ipcRenderer.on('volume', (ev, lev) => volume(lev))
+  ipcRenderer.on('timeupdate', (ev, time) => emitter.emit('player:time-update', time))
+  ipcRenderer.on('sync-state', (ev, mainState) => emitter.emit('player:sync-state', mainState))
 }

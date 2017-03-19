@@ -34,7 +34,7 @@ function libraryStore (state, emitter) {
   }
 
   function addOne (meta) {
-    localState.files.concat(meta)
+    localState.files.push(meta)
     emitter.emit('render')
   }
 

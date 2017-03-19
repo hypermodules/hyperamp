@@ -57,7 +57,7 @@ module.exports = (state, emit) => {
                 (e) => emit('player:seek', (e.target.value / opts.max) * state.player.current.duration),
                 50)}
               disabled=${title === null}
-              value=${progress}>
+              value=${progress.toPrecision(3)}>
           `)}
         </div>
       </div>
