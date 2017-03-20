@@ -537,7 +537,7 @@ choo-log@^3.0.0:
     pad-left "^2.1.0"
     pad-right "^0.2.2"
 
-choo@^5.0.0-5:
+choo@next:
   version "5.0.0-5"
   resolved "https://registry.yarnpkg.com/choo/-/choo-5.0.0-5.tgz#be2242b0a7bd114a14659fa4eacbe5715064bb73"
   dependencies:
@@ -2374,8 +2374,8 @@ nanomorph@^2.1.3:
     xtend "^4.0.1"
 
 nanomorph@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/nanomorph/-/nanomorph-4.0.0.tgz#a77dc7e37d4ba50f53eb65777a5dbdd710fb9847"
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/nanomorph/-/nanomorph-4.0.2.tgz#d473234306806b58a0bdc268899c2ea9895c2dbe"
 
 nanomount@^1.0.0:
   version "1.0.1"
