@@ -28,4 +28,3 @@ function logger (state, emitter) {
 
 // Hack to activate sliders
 document.querySelector('#position').value = 0
-document.querySelector('#volume').value = 0
