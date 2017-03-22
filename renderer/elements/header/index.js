@@ -11,7 +11,10 @@ module.exports = (state, emit) => html`
       ${volume(state, emit)}
     </div>
     <div class="${styles.rightCluster}">
-      ${search({ oninput: (e) => emit('library:search', e.target.value) })}
+      ${search({
+        oninput: (e) => emit('library:search', e.target.value),
+        value: state.library.search
+      })}
       ${addFiles(emit)}
     </div>
   </header>

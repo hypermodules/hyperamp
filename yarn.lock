@@ -537,9 +537,9 @@ choo-log@^3.0.0:
     pad-left "^2.1.0"
     pad-right "^0.2.2"
 
-choo@next:
-  version "5.0.0-5"
-  resolved "https://registry.yarnpkg.com/choo/-/choo-5.0.0-5.tgz#be2242b0a7bd114a14659fa4eacbe5715064bb73"
+choo@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/choo/-/choo-5.0.0.tgz#1ba85655114f6cc0617c10139b7043f0649b8b45"
   dependencies:
     bel "^4.5.1"
     document-ready "^1.0.3"
