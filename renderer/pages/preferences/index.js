@@ -5,7 +5,7 @@ var formStyles = require('../../elements/form/styles')
 var { app, dialog } = require('electron').remote
 var styles = require('../styles')
 
-function preferences (state, prev, send) {
+function preferences (state, emit) {
   function showDialog () {
     dialog.showOpenDialog({
       defaultPath: app.getPath('home'),
@@ -13,15 +13,15 @@ function preferences (state, prev, send) {
     }, (paths) => {
       // paths is undefined if user presses cancel
       if (paths) {
-        send('config:set', { music: paths[0] })
-        send('library:loadSongs')
+        emit('config:set', { music: paths[0] })
+        emit('library:loadSongs')
       }
     })
   }
 
   return html`
     <main class="${styles.window}">
-      ${header(state, prev, send)}
+      ${header(state, emit)}
       <div class="window-content">
         <div class="${styles.pane}">
           <form class=${formStyles.form}>
@@ -35,7 +35,7 @@ function preferences (state, prev, send) {
             </div>
           </form>
           ${button({
-            onclick: () => send('location:set', '/'),
+            onclick: () => emit('location:set', '/'),
             iconName: 'entypo-chevron-left'
           }, 'Back')}
         </div>

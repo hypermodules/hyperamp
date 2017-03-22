@@ -1,22 +1,20 @@
 var choo = require('choo')
+var ipcRenderer = require('electron').ipcRenderer
 var log = require('choo-log')
 var app = window.hyperamp = choo()
+
 var entypoSprite = require('entypo').getNode()
 document.body.insertBefore(entypoSprite, document.body.firstChild)
 
 app.use(log())
 
-window.files = []
+app.use(require('./stores/config'))
+app.use(require('./stores/player'))
+app.use(require('./stores/library'))
 
-app.model(require('./models/config'))
-app.model(require('./models/player'))
-app.model(require('./models/library'))
-
-app.router({ default: '/' }, [
-  ['/', require('./pages/main')],
-  ['/preferences', require('./pages/preferences')]
-])
+app.route('/', require('./pages/main'))
+// app.route('/preferences', require('./pages/preferences'))
 var tree = app.start()
 document.body.querySelector('#app').appendChild(tree)
 
-window.app = app
+ipcRenderer.send('sync-state')

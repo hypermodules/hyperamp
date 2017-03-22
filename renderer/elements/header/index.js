@@ -5,19 +5,22 @@ var button = require('../button')
 var { app, dialog } = require('electron').remote
 var styles = require('./styles')
 
-module.exports = (state, prev, send) => html`
+module.exports = (state, emit) => html`
   <header class="${styles.toolbar}">
     <div class="${styles.leftCluster}">
-      ${volume(state, send)}
+      ${volume(state, emit)}
     </div>
     <div class="${styles.rightCluster}">
-      ${search({ oninput: (e) => send('library:search', e.target.value) })}
-      ${addFiles(send)}
+      ${search({
+        oninput: (e) => emit('library:search', e.target.value),
+        value: state.library.search
+      })}
+      ${addFiles(emit)}
     </div>
   </header>
 `
 
-function addFiles (send) {
+function addFiles (emit) {
   function showDialog () {
     dialog.showOpenDialog({
       defaultPath: app.getPath('home'),
@@ -25,8 +28,8 @@ function addFiles (send) {
     }, (paths) => {
       // paths is undefined if user presses cancel
       if (paths) {
-        send('config:set', { music: paths[0] })
-        send('library:loadSongs')
+        emit('config:set', { music: paths[0] })
+        emit('library:loadSongs')
       }
     })
   }
