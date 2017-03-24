@@ -10,6 +10,7 @@ function playerStore (state, emitter) {
     localState = state.player = {}
     localState.playing = false
     localState.current = {}
+    localState.selected = {}
     localState.volume = 0.50
     localState.muted = false
     localState.currentTime = 0.1
@@ -46,6 +47,11 @@ function playerStore (state, emitter) {
     emitter.emit('render')
   }
 
+  function select (meta) {
+    localState.selected = meta
+    emitter.emit('render')
+  }
+
   emitter.on('player:queue', queue)
   emitter.on('player:play', play)
   emitter.on('player:pause', pause)
@@ -58,6 +64,7 @@ function playerStore (state, emitter) {
   emitter.on('player:changeVolume', changeVolume)
   emitter.on('player:sync-state', syncState)
   emitter.on('player:time-update', currentTime)
+  emitter.on('player:select', select)
 
   function queue (meta) {
     ipcRenderer.send('queue', meta)

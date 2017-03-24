@@ -40,8 +40,7 @@ module.exports = css`
     padding: 2px 15px;
   }
 
-  .mediaList thead th:active,
-  .mediaList tbody tr:active {
+  .mediaList tbody tr.selected {
     background: var(--light);
   }
 
