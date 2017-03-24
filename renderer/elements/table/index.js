@@ -38,12 +38,22 @@ function renderList (state, emit) {
     emit('player:play')
   }
 
+  function selectSong (meta) {
+    emit('player:select', meta)
+  }
+
   return list.map((meta, i) => {
     meta.index = i
+    var classes = [
+      state.player.current.index === i ? styles.bold : '',
+      state.player.selected.index === i ? styles.selected : ''
+    ].join(' ')
+
     return html`
       <tr id="${meta.filepath}"
-          onclick=${playSong.bind(null, meta)}
-          className="${state.player.current.index === i ? styles.bold : ''}" >
+          onclick=${selectSong.bind(null, meta)}
+          ondblclick=${playSong.bind(null, meta)}
+          className="${classes}">
         <td>${meta.title}</td>
         <td class="${styles.time}">${meta.duration ? fd(meta.duration * 1000) : ''}</td>
         <td>${meta.artist}</td>
