@@ -7,9 +7,16 @@ module.exports = {
   init
 }
 
+function getSubmenu (menus, label) {
+  return menus.reduce(function (accum, menu) {
+    if (menu.label === label) return menu
+    else return accum
+  }, null).submenu
+}
+
 var menuTemplate = defaultMenu(app, shell)
-var viewMenu = menuTemplate[2].submenu
-var helpMenu = menuTemplate[4].submenu
+var viewMenu = getSubmenu(menuTemplate, 'View')
+var helpMenu = getSubmenu(menuTemplate, 'Help')
 
 viewMenu.splice(1, 0, {
   label: 'Hard Reload (Clear Cache)',
