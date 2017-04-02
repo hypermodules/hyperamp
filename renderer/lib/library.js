@@ -2,7 +2,7 @@ var fs = require('fs')
 var path = require('path')
 var walker = require('folder-walker')
 var mm = require('musicmetadata')
-var validExtensions = ['m4a', 'mp3']
+var validExtensions = ['m4a', 'mp3', 'ogg']
 
 module.exports = (libPath, cb) => {
   walker([libPath]).on('data', data => {
