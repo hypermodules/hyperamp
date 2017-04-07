@@ -12,7 +12,7 @@
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
   "dependencies": {
-    "cache-element": "^2.0.1",
+    "cache-element": "^3.0.0",
     "choo": "^5.0.0",
     "choo-log": "^6.0.0",
     "csjs-inject": "^1.0.1",
