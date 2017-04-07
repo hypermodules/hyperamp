@@ -45,7 +45,7 @@
     "npm-run-all": "^4.0.1",
     "snazzy": "^6.0.0",
     "spectron": "^3.6.0",
-    "standard": "^9.0.0",
+    "standard": "^10.0.1",
     "tape": "^4.6.3",
     "xvfb-maybe": "^0.1.3"
   },
