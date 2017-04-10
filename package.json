@@ -73,7 +73,7 @@
   "build": {
     "appId": "com.hypermodules.hyperamp",
     "mac": {
-      "category": "public.app-category.utilities",
+      "category": "public.app-category.music",
       "target": [
         "dmg"
       ]
