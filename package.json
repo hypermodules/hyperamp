@@ -12,7 +12,6 @@
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
   "dependencies": {
-    "cache-element": "^2.0.1",
     "choo": "^5.0.0",
     "choo-log": "^6.0.0",
     "csjs-inject": "^1.0.1",
@@ -30,7 +29,6 @@
     "music-metadata": "^0.6.1",
     "musicmetadata": "^2.0.4",
     "nanobus": "^3.0.0",
-    "nanocomponent": "^2.0.3",
     "nanologger": "^1.0.2",
     "nanotick": "^1.1.6",
     "run-parallel": "^1.1.6",

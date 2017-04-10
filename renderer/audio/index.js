@@ -2,19 +2,18 @@ var { ipcRenderer } = require('electron')
 var log = require('nanologger')('player')
 var AudioPlayer = require('./audio-player')
 var path = require('path')
+var mainState = require('electron').remote.require('./index.js')
 var needle = 'file://' + path.resolve(__dirname, 'needle.mp3')
 var startupNode = document.querySelector('#needle')
 
-startupNode.src = needle
-startupNode.play()
+needleSound(startupNode, needle, mainState)
 
-var mainState = require('electron').remote.require('./index.js')
 var audioNode = document.querySelector('#audio')
 var player = window.player = new AudioPlayer(audioNode, mainState)
 
-player.on('*', function (event, data) {
-  log.info(event, data)
-})
+// player.on('*', function (event, data) {
+//   log.info(event, data)
+// })
 
 player.on('ended', function () {
   ipcRenderer.send('next')
@@ -55,3 +54,11 @@ ipcRenderer.on('unmute', function () {
 ipcRenderer.on('seek', function (ev, newTime) {
   player.seek(newTime)
 })
+
+function needleSound (node, file, state) {
+  // We dont really need this but its fun
+  node.volume = state.volume
+  node.muted = state.muted
+  node.src = file
+  node.play()
+}

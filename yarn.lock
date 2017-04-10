@@ -90,7 +90,7 @@ acorn@^4.0.3:
   version "4.0.11"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.11.tgz#edcda3bd937e7556410d42ed5860f67399c794c0"
 
-acorn@^5.0.0, acorn@^5.0.1:
+acorn@^5.0.1:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.0.3.tgz#c460df08491463f028ccb82eab3730bf01087b3d"
 
@@ -1410,15 +1410,6 @@ extsprintf@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.0.2.tgz#e1080e0658e300b06294990cc70e1502235fd550"
 
-falafel@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/falafel/-/falafel-2.1.0.tgz#96bb17761daba94f46d001738b3cedf3a67fe06c"
-  dependencies:
-    acorn "^5.0.0"
-    foreach "^2.0.5"
-    isarray "0.0.1"
-    object-keys "^1.0.6"
-
 fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
@@ -1786,7 +1777,7 @@ hyperscript-attribute-to-property@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hyperscript-attribute-to-property/-/hyperscript-attribute-to-property-1.0.0.tgz#825308d49bb8e2957923f731981bcc811cad7aff"
 
-hyperx@^2.0.3, hyperx@^2.3.0:
+hyperx@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/hyperx/-/hyperx-2.3.0.tgz#70f473d66d4ad550ddd1c83e4be2651276bbf1e2"
   dependencies:
@@ -1866,10 +1857,6 @@ insert-css@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/insert-css/-/insert-css-0.2.0.tgz#d15789971662d9899c28977fb6220d5381d2451a"
 
-insert-styles@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/insert-styles/-/insert-styles-1.2.1.tgz#9cd84c2096bd541ea3e1923612b7b604c9c1d532"
-
 interpret@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.2.tgz#f4f623f0bb7122f15f5717c8e254b8161b5c5b2d"
@@ -1907,10 +1894,6 @@ is-ci@^1.0.10:
 is-date-object@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-date-object/-/is-date-object-1.0.1.tgz#9aa20eb6aeebbff77fbd33e74ca01b33581d3a16"
-
-is-dom@^1.0.7:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/is-dom/-/is-dom-1.0.9.tgz#483832d52972073de12b9fe3f60320870da8370d"
 
 is-finite@^1.0.0, is-finite@^1.0.1:
   version "1.0.2"
@@ -2265,6 +2248,14 @@ meow@^3.1.0:
     redent "^1.0.0"
     trim-newlines "^1.0.0"
 
+microcomponent@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/microcomponent/-/microcomponent-2.0.1.tgz#5515ba8ef0090239e089bafc6f0297e6ab72b705"
+  dependencies:
+    nanocomponent "4.0.0"
+    nanologger "^1.0.2"
+    nanomorph "^4.0.3"
+
 mime-db@~1.27.0:
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.27.0.tgz#820f572296bbd20ec25ed55e5b5de869e5436eb1"
@@ -2359,15 +2350,17 @@ nanobus@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/nanobus/-/nanobus-3.0.0.tgz#1436257ab89dbe50bbcf95cfa9a411965453c80c"
 
-nanocomponent@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/nanocomponent/-/nanocomponent-2.0.3.tgz#caea6a39a77d97e4f71da9c2a35e6197c70b72eb"
+nanocomponent@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/nanocomponent/-/nanocomponent-4.0.0.tgz#31d0fe4690b70d6608d43ef00c276c4851c0fc51"
   dependencies:
-    observe-resize "^1.1.0"
-    on-intersect "^1.1.0"
     on-load "^3.2.0"
-    polite-element "^1.0.2"
-    yo-yoify "^3.5.0"
+
+nanocomponent@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/nanocomponent/-/nanocomponent-3.0.1.tgz#3766a2925b8b4a04b8df06e7a5e2e1e3073e5088"
+  dependencies:
+    on-load "^3.2.0"
 
 nanologger@^1.0.1, nanologger@^1.0.2:
   version "1.0.2"
@@ -2376,6 +2369,10 @@ nanologger@^1.0.1, nanologger@^1.0.2:
 nanomorph@^4.0.0:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/nanomorph/-/nanomorph-4.0.2.tgz#d473234306806b58a0bdc268899c2ea9895c2dbe"
+
+nanomorph@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/nanomorph/-/nanomorph-4.0.3.tgz#0bf10f005e3ac9700d894efcb93aa0b8020f6ace"
 
 nanomount@^1.0.0:
   version "1.0.1"
@@ -2519,27 +2516,13 @@ object-inspect@~1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.2.2.tgz#c82115e4fcc888aea14d64c22e4f17f6a70d5e5a"
 
-object-keys@^1.0.6, object-keys@^1.0.8:
+object-keys@^1.0.8:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.0.11.tgz#c54601778ad560f1142ce0e01bcca8b56d13426d"
 
 object-keys@~0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-0.4.0.tgz#28a6aae7428dd2c3a92f3d95f21335dd204e0336"
-
-observe-resize@^1.1.0:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/observe-resize/-/observe-resize-1.1.3.tgz#934f4fa836dd7ac8d7852971a62c19067499a21c"
-  dependencies:
-    insert-styles "^1.2.1"
-    is-dom "^1.0.7"
-
-on-intersect@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/on-intersect/-/on-intersect-1.1.0.tgz#8d83dff970fc0d272fc9083a53773e83163ff737"
-  dependencies:
-    global "^4.3.1"
-    is-dom "^1.0.7"
 
 on-load@^3.2.0:
   version "3.2.0"
@@ -2749,13 +2732,6 @@ pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
-polite-element@^1.0.2:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/polite-element/-/polite-element-1.0.5.tgz#1dda4357b26e8ba7b16a0988e9103201f913ee54"
-  dependencies:
-    global "^4.3.1"
-    nanomorph "^4.0.0"
-
 prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
@@ -2890,7 +2866,7 @@ read-pkg@^2.0.0:
     normalize-package-data "^2.3.2"
     path-type "^2.0.0"
 
-readable-stream@^2.0.0, "readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.4, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2:
+readable-stream@^2.0.0, "readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.4, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.2.2:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.6.tgz#8b43aed76e71483938d12a8d46c6cf1a00b1f816"
   dependencies:
@@ -3527,13 +3503,6 @@ throttleit@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/throttleit/-/throttleit-0.0.2.tgz#cfedf88e60c00dd9697b61fdd2a8343a9b680eaf"
 
-through2@^2.0.1:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
-  dependencies:
-    readable-stream "^2.1.5"
-    xtend "~4.0.1"
-
 through2@~0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/through2/-/through2-0.2.3.tgz#eb3284da4ea311b6cc8ace3653748a52abf25a3f"
@@ -3822,7 +3791,7 @@ xmldom@0.1.x:
   version "0.1.27"
   resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
 
-xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
+xtend@^4.0.0, xtend@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
 
@@ -3888,16 +3857,6 @@ yauzl@2.4.1:
   resolved "https://registry.yarnpkg.com/yauzl/-/yauzl-2.4.1.tgz#9528f442dab1b2284e58b4379bb194e22e0c4005"
   dependencies:
     fd-slicer "~1.0.1"
-
-yo-yoify@^3.5.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/yo-yoify/-/yo-yoify-3.7.0.tgz#1de9673427946ddd81f6a94fae56dd297c9d242a"
-  dependencies:
-    acorn "^5.0.0"
-    falafel "^2.0.0"
-    hyperx "^2.0.3"
-    on-load "^3.2.0"
-    through2 "^2.0.1"
 
 zip-stream@^1.0.0:
   version "1.1.1"
