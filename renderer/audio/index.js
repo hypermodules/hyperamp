@@ -11,9 +11,9 @@ needleSound(startupNode, needle, mainState)
 var audioNode = document.querySelector('#audio')
 var player = window.player = new AudioPlayer(audioNode, mainState)
 
-// player.on('*', function (event, data) {
-//   log.info(event, data)
-// })
+player.on('*', function (event, data) {
+  log.info(event, data)
+})
 
 player.on('ended', function () {
   ipcRenderer.send('next')
