@@ -12,7 +12,8 @@
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
   "dependencies": {
-    "choo": "^5.0.0",
+    "cache-component": "^3.0.0-3",
+    "choo": "^5.0.1",
     "choo-log": "^6.0.0",
     "csjs-inject": "^1.0.1",
     "electron-config": "^0.2.1",

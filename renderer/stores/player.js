@@ -27,14 +27,12 @@ function playerStore (state, emitter) {
     emitter.emit('render')
   }
 
-  function currentTime (time) {
+  function currentTime (time, shouldRender) {
     localState.currentTime = time
-    emitter.emit('render')
   }
 
   function volume (lev) {
     localState.volume = lev
-    emitter.emit('render')
   }
 
   function current (meta) {
@@ -131,6 +129,9 @@ function playerStore (state, emitter) {
   ipcRenderer.on('mute', () => muted(true))
   ipcRenderer.on('unmute', () => muted(false))
   ipcRenderer.on('volume', (ev, lev) => volume(lev))
-  ipcRenderer.on('timeupdate', (ev, time) => emitter.emit('player:time-update', time))
+  ipcRenderer.on('timeupdate', (ev, time) => {
+    emitter.emit('player:time-update', time)
+    emitter.emit('render')
+  })
   ipcRenderer.on('sync-state', (ev, mainState) => emitter.emit('player:sync-state', mainState))
 }
