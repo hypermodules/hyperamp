@@ -13,16 +13,29 @@ function AudioPlayer (audioNode, state) {
   this.queue(state.current)
   this.audio.volume = state.volume
   this.audio.muted = state.muted
+  this.seeking = false
+  this.seekDebounceTimer = null
 
   this._endedListener = this.audio.addEventListener('ended', function () {
-    self.emit('ended')
+    if (!self.seekig) self.emit('ended')
   })
 
   this._timeListener = this.audio.addEventListener('timeupdate', function (ev) {
-    self.emit('timeupdate', self.audio.currentTime)
+    if (!self.seekig) self.emit('timeupdate', self.audio.currentTime)
   })
 }
 AudioPlayer.prototype = Object.create(Nanobus.prototype)
+
+AudioPlayer.seekDebounce = function () {
+  this.seeking = true
+  if (this.seekDebounceTimer) this.seekDebounceTimer.stop()
+  var self = this
+  this.seekDebounceTimer = setTimeout(function () {
+    self.seeking = false
+    self.seekDebounceTimer = null
+    // TODO: check if we are at the end and we lost the endedEvent
+  }, 1000)
+}
 
 AudioPlayer.prototype.queue = function (data) {
   this.emit('queued', data)
@@ -56,6 +69,7 @@ AudioPlayer.prototype.unmute = function () {
 }
 
 AudioPlayer.prototype.seek = function (newTime) {
+  this.seekDebounce()
   this.emit('seek', newTime)
   this.audio.currentTime = newTime
 }

@@ -31,11 +31,13 @@ app.on('ready', () => {
   }
 
   ipcMain.on('volume', function (ev, level) {
+    // player -> audio
     state.volume = level
     if (audio.win) audio.win.send('volume', level)
   })
 
   ipcMain.on('playlist', function (ev, playlist) {
+    // player -> main
     state.playlist = playlist
   })
 
@@ -83,11 +85,13 @@ app.on('ready', () => {
   })
 
   ipcMain.on('timeupdate', function (ev, currentTime) {
+    // audio -> player
     state.currentTime = currentTime
     if (player.win) player.win.send('timeupdate', currentTime)
   })
 
   ipcMain.on('seek', function (ev, newTime) {
+    // player -> audio
     state.currentTime = newTime
     if (player.win) audio.win.send('seek', newTime)
   })
