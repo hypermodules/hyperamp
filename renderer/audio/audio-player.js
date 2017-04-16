@@ -21,7 +21,10 @@ function AudioPlayer (audioNode, state) {
   })
 
   this._timeListener = this.audio.addEventListener('timeupdate', function (ev) {
-    if (!self.seekig) self.emit('timeupdate', self.audio.currentTime)
+    if (!self.seekig) {
+      self.emit('timeupdate', self.audio.currentTime)
+      this.emit('timeupdate', self.audio.currentTime)
+    }
   })
 }
 AudioPlayer.prototype = Object.create(Nanobus.prototype)
