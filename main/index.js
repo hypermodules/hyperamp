@@ -117,7 +117,7 @@ app.on('before-quit', function (e) {
   setTimeout(() => {
     console.error('Saving state took too long. Quitting.')
     app.quit()
-  }, 2000) // quit after 2 secs, at most
+  }, 5000) // quit after 5 secs, at most
   persist.set({
     playlist: state.playlist,
     current: state.current,

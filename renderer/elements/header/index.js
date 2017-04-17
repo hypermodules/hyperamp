@@ -1,21 +1,52 @@
 var html = require('choo/html')
-var volume = require('../volume')
-var search = require('../search')
+var VolumeCluster = require('../volume')
+var volume = new VolumeCluster()
+var Search = require('../search')
+var search = new Search()
 var button = require('../button')
 var { app, dialog } = require('electron').remote
 var styles = require('./styles')
+var Component = require('cache-component')
+
+function Header () {
+  if (!(this instanceof Header)) return new Header()
+
+  Component.call(this)
+}
+
+Header.prototype = Object.create(Component.prototype)
+
+Header.prototype._render = function (state, emit) {
+  return html`
+    <header class="${styles.toolbar}">
+      <div class="${styles.leftCluster}">
+        ${volume.render(state, emit)}
+      </div>
+      <div class="${styles.rightCluster}">
+        ${search({
+          onchange: (val) => emit('library:search', val),
+          value: state.library.search
+        })}
+        ${addFiles(emit)}
+      </div>
+    </header>
+  `
+}
 
 module.exports = (state, emit) => html`
   <header class="${styles.toolbar}">
     <div class="${styles.leftCluster}">
-      ${volume(state, emit)}
+      ${volume.render(state, emit)}
     </div>
     <div class="${styles.rightCluster}">
-      ${search({
-        oninput: (e) => emit('library:search', e.target.value),
+      ${search.render({
+        onchange: (val) => emit('library:search', val),
         value: state.library.search
       })}
-      ${addFiles(emit)}
+      ${button({
+        onclick: () => {},
+        iconName: 'entypo-plus'
+      })}
     </div>
   </header>
 `

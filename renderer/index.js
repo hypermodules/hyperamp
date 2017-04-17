@@ -14,7 +14,6 @@ app.use(require('./stores/library'))
 
 app.route('/', require('./pages/main'))
 // app.route('/preferences', require('./pages/preferences'))
-var tree = app.start()
-document.body.querySelector('#app').appendChild(tree)
+app.mount('#app')
 
 ipcRenderer.send('sync-state')

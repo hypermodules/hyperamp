@@ -1,4 +1,7 @@
 var Nanobus = require('nanobus')
+var window = require('global/window')
+var setTimeout = window.setTimeout
+var clearTimeout = window.clearTimeout
 
 module.exports = AudioPlayer
 
@@ -21,19 +24,18 @@ function AudioPlayer (audioNode, state) {
   })
 
   this._timeListener = this.audio.addEventListener('timeupdate', function (ev) {
-    if (!self.seekig) {
-      self.emit('timeupdate', self.audio.currentTime)
-      this.emit('timeupdate', self.audio.currentTime)
-    }
+    if (!self.seeking) self.emit('timeupdate', self.audio.currentTime)
   })
 }
+
 AudioPlayer.prototype = Object.create(Nanobus.prototype)
 
-AudioPlayer.seekDebounce = function () {
+AudioPlayer.prototype.seekDebounce = function () {
   this.seeking = true
-  if (this.seekDebounceTimer) this.seekDebounceTimer.stop()
+  if (this.seekDebounceTimer) clearTimeout(this.seekDebounceTimer)
   var self = this
   this.seekDebounceTimer = setTimeout(function () {
+    console.log('debounce cleared')
     self.seeking = false
     self.seekDebounceTimer = null
     // TODO: check if we are at the end and we lost the endedEvent
