@@ -14,10 +14,11 @@ install:
 test_script:
   - node --version
   - npm --version
-  - npm test
+  - yarn --version
+  - yarn run test
 
 on_success:
-  - npm run dist
+  - yarn run dist
 
 environment:
   GH_TOKEN:

@@ -1038,9 +1038,9 @@ electron-config@^0.2.1:
   dependencies:
     conf "^0.11.1"
 
-electron-context-menu@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/electron-context-menu/-/electron-context-menu-0.8.0.tgz#60c4b5e29d5514007be8728a6ebdf3cb694c4e3e"
+electron-context-menu@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/electron-context-menu/-/electron-context-menu-0.9.0.tgz#8a66bef502f0524255a1350a2b4704dbaacfd503"
   dependencies:
     electron-dl "^1.2.0"
     electron-is-dev "^0.1.1"
@@ -1155,9 +1155,9 @@ electron-window-state@^4.0.2:
     jsonfile "^2.2.3"
     mkdirp "^0.5.1"
 
-electron@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-1.6.2.tgz#b0ccd7703f86d09c4d2a7273455c3f993f158994"
+electron@1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-1.6.5.tgz#6408d738025bc34f7c0ce8ee8827539475680a99"
   dependencies:
     electron-download "^3.0.1"
     extract-zip "^1.0.3"
