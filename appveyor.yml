@@ -4,8 +4,6 @@ platform:
   - x64
 
 cache:
-  - node_modules -> package.json
-  - '%APPDATA%\npm-cache -> package.json'
   - '%USERPROFILE%\.electron'
   - "%LOCALAPPDATA%\\Yarn"
 
