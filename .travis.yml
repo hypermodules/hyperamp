@@ -1,11 +1,14 @@
+sudo: false
+dist: trusty
 language: node_js
 node_js:
   - 7
-dist: trusty
-sudo: false
 os:
-#  - osx
+  - osx
   - linux
+matrix:
+  allow_failures:
+    - os: osx
 cache:
   yarn: true
   directories:
@@ -14,10 +17,7 @@ cache:
     - ~/.nvm
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
       - xvfb
       - icnsutils
       - graphicsmagick
