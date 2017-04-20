@@ -9,7 +9,6 @@ os:
 cache:
   yarn: true
   directories:
-    - node_modules
     - ~/.npm
     - ~/.electron
     - ~/.nvm
