@@ -16,7 +16,7 @@
     "choo-log": "^6.0.0",
     "csjs-inject": "^1.0.1",
     "electron-config": "^0.2.1",
-    "electron-context-menu": "^0.8.0",
+    "electron-context-menu": "^0.9.0",
     "electron-debug": "^1.0.1",
     "electron-default-menu": "^1.0.0",
     "electron-window-state": "^4.0.2",
