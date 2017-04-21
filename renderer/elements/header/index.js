@@ -4,9 +4,12 @@ var volume = new VolumeCluster()
 var Search = require('../search')
 var search = new Search()
 var button = require('../button')
+var buttonStyles = require('../button/styles')
 var { app, dialog } = require('electron').remote
 var styles = require('./styles')
 var Component = require('cache-component')
+
+window.volumeCluster = volume
 
 function Header () {
   if (!(this instanceof Header)) return new Header()
@@ -64,10 +67,13 @@ module.exports = (state, emit) => html`
         onchange: (val) => emit('library:search', val),
         value: state.library.search
       })}
-      ${button({
-        onclick: () => {},
-        iconName: 'entypo-plus'
-      })}
+      <div class="${buttonStyles.btnGroup}">
+        ${addFiles(emit)}
+        ${button({
+          onclick: () => emit('pushState', '#preferences'),
+          iconName: 'entypo-cog'
+        })}
+      </div>
     </div>
   </header>
 `
