@@ -11,10 +11,31 @@ var Component = require('cache-component')
 function Header () {
   if (!(this instanceof Header)) return new Header()
 
+  this._handleSearch = this._handleSearch.bind(this)
   Component.call(this)
 }
 
 Header.prototype = Object.create(Component.prototype)
+
+Header.prototype._handleSearch = function (val) {
+  this._emit('library:search', val)
+}
+
+Header.prototype._handleAddButton = function () {
+  dialog.showOpenDialog({
+    defaultPath: app.getPath('home'),
+    properties: ['openDirectory']
+  },
+  this._handlePaths)
+}
+
+Header.prototype._handlePaths = function (paths) {
+      // paths is undefined if user presses cancel
+  if (paths) {
+    this.emit('config:set', { music: paths[0] })
+    emit('library:loadSongs')
+  }
+}
 
 Header.prototype._render = function (state, emit) {
   return html`
@@ -24,7 +45,7 @@ Header.prototype._render = function (state, emit) {
       </div>
       <div class="${styles.rightCluster}">
         ${search({
-          onchange: (val) => emit('library:search', val),
+          onchange: this._handleSearch,
           value: state.library.search
         })}
         ${addFiles(emit)}
