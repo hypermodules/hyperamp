@@ -32,6 +32,7 @@
     "music-metadata": "^0.6.1",
     "musicmetadata": "^2.0.4",
     "nanobus": "^3.0.0",
+    "nanocomponent": "^4.0.0",
     "nanologger": "^1.0.2",
     "nanotick": "^1.1.6",
     "run-parallel": "^1.1.6",

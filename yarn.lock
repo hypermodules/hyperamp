@@ -2413,6 +2413,12 @@ nanobus@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/nanobus/-/nanobus-3.0.0.tgz#1436257ab89dbe50bbcf95cfa9a411965453c80c"
 
+nanocomponent@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/nanocomponent/-/nanocomponent-4.0.0.tgz#31d0fe4690b70d6608d43ef00c276c4851c0fc51"
+  dependencies:
+    on-load "^3.2.0"
+
 nanohistory@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/nanohistory/-/nanohistory-1.0.0.tgz#65a3d29bc5f40f6305ec67d120b8be38e95719e8"

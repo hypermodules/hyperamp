@@ -47,7 +47,6 @@ VolumeCluster.prototype._render = function (state, emit) {
   this._muted = muted
   this._volume = volume
   this._emit = emit
-  console.log('Render')
   return html`
     <div class='${buttonStyles.btnGroup}'>
       ${button({

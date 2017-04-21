@@ -35,7 +35,7 @@ function preferences (state, emit) {
             </div>
           </form>
           ${button({
-            onclick: () => emit('location:set', '/'),
+            onclick: () => emit('pushState', '#'),
             iconName: 'entypo-chevron-left'
           }, 'Back')}
         </div>
