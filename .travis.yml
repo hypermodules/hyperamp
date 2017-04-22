@@ -1,24 +1,23 @@
+sudo: false
+dist: trusty
 language: node_js
 node_js:
   - 7
-dist: trusty
-sudo: false
 os:
-#  - osx
+  - osx
   - linux
+matrix:
+  allow_failures:
+    - os: osx
 cache:
   yarn: true
   directories:
-    - node_modules
     - ~/.npm
     - ~/.electron
     - ~/.nvm
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
       - xvfb
       - icnsutils
       - graphicsmagick
@@ -30,9 +29,12 @@ before_install:
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$PATH
+  - node --version
+  - npm --version
+  - yarn --version
 install:
   - yarn
 script:
-  - npm run test
+  - yarn run test
 after_success:
-  - npm run dist
+  - yarn run dist

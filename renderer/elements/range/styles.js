@@ -1,15 +1,11 @@
 var css = require('csjs-inject')
 
 module.exports = css`
-  .volumeButton { padding: 0 }
-
-  .volumeSlider {
-    position: relative;
+  .range {
     cursor: default;
-    display: inline-block;
+    position: relative;
     vertical-align: middle;
     -webkit-app-region: no-drag;
-    width: 100px;
-    margin: 0 5px;
+    width: 100%;
   }
 `

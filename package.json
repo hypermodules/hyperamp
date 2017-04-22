@@ -3,7 +3,7 @@
   "productName": "Hyperamp",
   "description": "Indescribable music player",
   "version": "0.0.1",
-  "author": "Hyper Modules (https://github.com/hypermodules)",
+  "author": "Hypermodules (https://github.com/hypermodules)",
   "bugs": {
     "url": "https://github.com/hypermodules/hyperamp/issues"
   },
@@ -12,8 +12,10 @@
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
   "dependencies": {
-    "choo": "^5.0.0",
+    "cache-component": "^4.0.0",
+    "choo": "^5.2.0",
     "choo-log": "^6.0.0",
+    "classnames": "^2.2.5",
     "csjs-inject": "^1.0.1",
     "electron-config": "^0.2.1",
     "electron-context-menu": "^0.9.0",
@@ -23,12 +25,14 @@
     "entypo": "^2.0.0",
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
+    "global": "^4.3.2",
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.throttle": "^4.1.1",
     "music-metadata": "^0.6.1",
     "musicmetadata": "^2.0.4",
-    "nanobus": "^3.0.0",
+    "nanobus": "^3.1.0",
+    "nanocomponent": "^4.0.0",
     "nanologger": "^1.0.2",
     "nanotick": "^1.1.6",
     "run-parallel": "^1.1.6",
@@ -42,7 +46,7 @@
     "electron-rebuild": "^1.4.0",
     "npm-run-all": "^4.0.1",
     "snazzy": "^7.0.0",
-    "spectron": "^3.6.0",
+    "spectron": "^3.6.2",
     "standard": "^10.0.1",
     "tape": "^4.6.3",
     "xvfb-maybe": "^0.1.3"
