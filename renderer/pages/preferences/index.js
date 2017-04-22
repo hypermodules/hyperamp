@@ -1,9 +1,11 @@
 var html = require('choo/html')
-var header = require('../../elements/header')
+var Header = require('../../elements/header')
 var button = require('../../elements/button')
 var formStyles = require('../../elements/form/styles')
 var { app, dialog } = require('electron').remote
 var styles = require('../styles')
+
+var header = new Header()
 
 function preferences (state, emit) {
   function showDialog () {
@@ -18,10 +20,9 @@ function preferences (state, emit) {
       }
     })
   }
-
   return html`
     <main class="${styles.window}">
-      ${header(state, emit)}
+      ${header.render(state, emit)}
       <div class="window-content">
         <div class="${styles.pane}">
           <form class=${formStyles.form}>
