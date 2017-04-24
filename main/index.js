@@ -1,4 +1,4 @@
-var { app, ipcMain } = require('electron')
+var { app, ipcMain, globalShortcut } = require('electron')
 var audio = require('./audio')
 var menu = require('./menu')
 var player = require('./player')
@@ -46,33 +46,45 @@ app.on('ready', () => {
     broadcast('queue', meta)
   })
 
-  ipcMain.on('play', function (ev) {
+  function play () {
     state.playing = true
     broadcast('play')
-  })
+  }
 
-  ipcMain.on('pause', function (ev) {
+  ipcMain.on('play', play)
+
+  function pause () {
     state.playing = false
     broadcast('pause')
-  })
+  }
 
-  ipcMain.on('prev', function (ev) {
+  ipcMain.on('pause', pause)
+
+  function playPause () {
+    state.playing ? pause() : play()
+  }
+
+  function prev () {
     if (state.playlist.length > 0) {
       var prevIndex = state.current.index > 0 ? state.current.index - 1 : state.playlist.length - 1
       state.current = state.playlist[prevIndex]
       broadcast('queue', state.current)
       if (state.playing) { broadcast('play') }
     }
-  })
+  }
 
-  ipcMain.on('next', function (ev) {
+  ipcMain.on('prev', prev)
+
+  function next () {
     if (state.playlist.length > 0) {
       var nextIndex = state.current.index < state.playlist.length - 1 ? state.current.index + 1 : 0
       state.current = state.playlist[nextIndex]
       broadcast('queue', state.current)
       if (state.playing) { broadcast('play') }
     }
-  })
+  }
+
+  ipcMain.on('next', next)
 
   ipcMain.on('mute', function (ev) {
     state.muted = true
@@ -99,6 +111,11 @@ app.on('ready', () => {
   ipcMain.on('sync-state', function (ev) {
     ev.sender.send('sync-state', state)
   })
+
+  globalShortcut.register('MediaNextTrack', next)
+  globalShortcut.register('MediaPreviousTrack', prev)
+  // globalShortcut.register('MediaStop', )
+  globalShortcut.register('MediaPlayPause', playPause)
 })
 
 app.on('window-all-closed', () => {

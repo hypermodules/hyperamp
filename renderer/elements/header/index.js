@@ -38,8 +38,8 @@ Header.prototype._handleAddButton = function () {
 Header.prototype._handlePaths = function (paths) {
       // paths is undefined if user presses cancel
   if (paths) {
-    this.emit('config:set', { music: paths[0] })
-    this.emit('library:loadSongs')
+    this._emit('config:set', { music: paths[0] })
+    this._emit('library:loadSongs')
   }
 }
 

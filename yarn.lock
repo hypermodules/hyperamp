@@ -474,9 +474,9 @@ builtins@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/builtins/-/builtins-1.0.3.tgz#cb94faeb61c8696451db36534e1422f94f0aee88"
 
-cache-component@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/cache-component/-/cache-component-4.0.0.tgz#88dad828ae5f0902defa9a73d83d6f4dcb7733f2"
+cache-component@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/cache-component/-/cache-component-4.0.1.tgz#5211c2a9763f818d1dfca0cb7b9adca90a5bd9fe"
   dependencies:
     global "^4.3.1"
     nanomorph "^4.0.4"
