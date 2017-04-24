@@ -30,21 +30,27 @@ app.on('ready', () => {
     })
   }
 
-  ipcMain.on('volume', function (ev, level) {
+  function volume (ev, level) {
     // player -> audio
     state.volume = level
     if (audio.win) audio.win.send('volume', level)
-  })
+  }
 
-  ipcMain.on('playlist', function (ev, playlist) {
+  ipcMain.on('volume', volume)
+
+  function playlist (ev, playlist) {
     // player -> main
     state.playlist = playlist
-  })
+  }
 
-  ipcMain.on('queue', function (ev, meta) {
+  ipcMain.on('playlist', playlist)
+
+  function queue (ev, meta) {
     state.current = meta
     broadcast('queue', meta)
-  })
+  }
+
+  ipcMain.on('queue', queue)
 
   function play () {
     state.playing = true
@@ -86,27 +92,35 @@ app.on('ready', () => {
 
   ipcMain.on('next', next)
 
-  ipcMain.on('mute', function (ev) {
+  function mute (ev) {
     state.muted = true
     broadcast('mute')
-  })
+  }
 
-  ipcMain.on('unmute', function (ev) {
+  ipcMain.on('mute', mute)
+
+  function unmute (ev) {
     state.muted = false
     broadcast('unmute')
-  })
+  }
 
-  ipcMain.on('timeupdate', function (ev, currentTime) {
+  ipcMain.on('unmute', unmute)
+
+  function timeupdate (ev, currentTime) {
     // audio -> player
     state.currentTime = currentTime
     if (player.win) player.win.send('timeupdate', currentTime)
-  })
+  }
 
-  ipcMain.on('seek', function (ev, newTime) {
+  ipcMain.on('timeupdate', timeupdate)
+
+  function seek (ev, newTime) {
     // player -> audio
     state.currentTime = newTime
     if (player.win) audio.win.send('seek', newTime)
-  })
+  }
+
+  ipcMain.on('seek', seek)
 
   ipcMain.on('sync-state', function (ev) {
     ev.sender.send('sync-state', state)
@@ -118,20 +132,24 @@ app.on('ready', () => {
   globalShortcut.register('MediaPlayPause', playPause)
 })
 
-app.on('window-all-closed', () => {
+function allWindowsClosed () {
   if (process.platform !== 'darwin') app.quit()
-})
+}
 
-app.on('activate', () => {
+app.on('window-all-closed', allWindowsClosed)
+
+function activate () {
   if (player.win === null) player.init()
-})
+}
 
-app.on('before-quit', function (e) {
+app.on('activate', activate)
+
+function beforeQuit (e) {
   if (app.isQuitting) return
 
   app.isQuitting = true
   e.preventDefault()
-  setTimeout(() => {
+  setTimeout(function () {
     console.error('Saving state took too long. Quitting.')
     app.quit()
   }, 5000) // quit after 5 secs, at most
@@ -141,4 +159,6 @@ app.on('before-quit', function (e) {
     volume: state.volume
   })
   app.quit()
-})
+}
+
+app.on('before-quit', beforeQuit)
