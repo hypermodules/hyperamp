@@ -53,7 +53,7 @@ Range.prototype._update = function ({value, onchange, className}) {
     this._onchange = onchange
   }
   if (this.className !== className) {
-    this.className = className
+    this._className = className
     this._element.class = className
   }
   if (this._value !== value) {
