@@ -49,10 +49,10 @@ Range.prototype._render = function ({value, onchange, className}) {
 Range.prototype._update = function ({value, onchange, className}) {
   assert.equal(typeof onchange, 'function', 'Range: onchange should be a function')
 
-  if (this.onchange !== onchange) {
+  if (this._onchange !== onchange) {
     this._onchange = onchange
   }
-  if (this.className !== className) {
+  if (this._className !== className) {
     this._className = className
     this._element.class = className
   }
