@@ -6,7 +6,7 @@
 [build-url]: https://travis-ci.org/hypermodules/hyperamp
 [standard-img]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
 [standard-url]: https://github.com/feross/standard
-[appveyor-img]: https://ci.appveyor.com/api/projects/status/ajdq0to9sk4ahexa?svg=true
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/34x775v3nly2ml2b?svg=true
 [appveyor-url]: https://ci.appveyor.com/project/bcomnes/hyperamp
 
 Experimental audio player built with web technologies ([choo](https://github.com/yoshuawuyts/choo) + [electron](https://github.com/electron/electron)).
