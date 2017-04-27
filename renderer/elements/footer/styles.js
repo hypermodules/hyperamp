@@ -10,13 +10,16 @@ module.exports = css`
     position: relative;
     padding: 0 0 1em;
     text-align: center;
-    min-width: 222px;
+    min-width: 250px;
+    max-width: 250px;
     justify-content: space-between;
   }
 
   .albumCover {
     position: relative;
     width: 100%; /* desired width */
+    border-radius: 4px;
+    overflow: hidden;
   }
   .albumCover:before {
     content: '';
@@ -34,7 +37,6 @@ module.exports = css`
     background: #eee;
     background-size: cover;
     background-position: center;
-    border-radius: 4px;
   }
 
   .track {
@@ -66,6 +68,10 @@ module.exports = css`
   }
 
   @media (max-width: 460px) {
-    .footer { width: 100% }
+    .footer {
+      min-width: initial;
+      max-width: initial;
+      width: 100%;
+    }
   }
 `
