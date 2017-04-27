@@ -14,7 +14,12 @@ module.exports = css`
     padding: 1rem;
   }
 
-  .grow { flex: 1 }
+  .grow {
+    flex: 1 0;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+  }
 
   @media (max-width: 460px) {
     .grow { display: none }
