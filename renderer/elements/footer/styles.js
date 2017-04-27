@@ -40,7 +40,7 @@ module.exports = css`
   }
 
   .track {
-    padding: 1em;
+    padding: .5em;
     width: 100%;
   }
 

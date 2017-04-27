@@ -5,7 +5,7 @@ module.exports = css`
     -webkit-app-region: drag;
     border-bottom: var(--border);
     height: 40px;
-    padding: 0 .5em;
+    padding: 0 .5em 0 6.5em;
     display: flex;
     align-items: center;
     justify-content: space-between;
