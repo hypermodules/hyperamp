@@ -26,19 +26,29 @@ module.exports = (state, emit) => {
   var progress = (state.player.currentTime / state.player.current.duration) * opts.max || 0.1
   var backgroundImg = artworkCache[state.player.picture]
   return html`
-    <footer class="${styles.footer}">
-      <div class="${styles.albumCover}">
-        <div class="${styles.albumArt}"
-          style="background-image: ${state.player.picture ? 'url(' + backgroundImg + ')' : ''}">
+    <div class="${styles.footer}">
+      <div class="${styles.track}">
+        <div class="${styles.albumCover}">
+          <div class="${styles.albumArt}"
+            style="background-image: ${state.player.picture ? 'url(' + backgroundImg + ')' : ''}">
+          </div>
         </div>
-      </div>
-      <div class="${styles.meta}">
-        <p class="${styles.title}">${title || 'No Track Selected'}</p>
-        <p class="${styles.artist}">
-          ${Array.isArray(artist) ? artist.join(', ') : artist || 'No Artist'}
-          ${album != null && album !== '' ? ` - ${album}` : null}
-        </p>
+        <div class="${styles.meta}">
+          <p class="${styles.title}">${title || 'No Track Selected'}</p>
+          <p class="${styles.artist}">
+            ${Array.isArray(artist) ? artist.join(', ') : artist || 'No Artist'}
+            ${album != null && album !== '' ? ` - ${album}` : null}
+          </p>
+        </div>
         <div class="${styles.controls}">
+          ${button({ className: styles.scrubberControl }, html`
+            <input id='position' type='range'
+              class='${styles.scrubber}'
+              min='${opts.min}' max='${opts.max}' step='${opts.step}'
+              oninput=${(e) => emit('player:seek', (e.target.value / opts.max) * state.player.current.duration)}
+              disabled=${title === null}
+              value=${progress}>
+          `)}
           <div class="${buttonStyles.btnGroup} ${styles.trackControls}">
             ${button({
               onclick: () => emit('player:prev'),
@@ -53,18 +63,11 @@ module.exports = (state, emit) => {
               iconName: 'entypo-controller-fast-forward'
             })}
           </div>
-          ${button({ className: styles.scrubberControl }, html`
-            <input id='position' type='range'
-              class='${styles.scrubber}'
-              min='${opts.min}' max='${opts.max}' step='${opts.step}'
-              oninput=${(e) => emit('player:seek', (e.target.value / opts.max) * state.player.current.duration)}
-              disabled=${title === null}
-              value=${progress}>
-          `)}
-          ${volume.render(state, emit)}
         </div>
       </div>
-    </footer>
+
+      ${volume.render(state, emit)}
+    </div>
   `
 }
 

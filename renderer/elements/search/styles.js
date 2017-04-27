@@ -6,7 +6,7 @@ module.exports = css`
     padding: 1px 5px;
     vertical-align: middle;
     min-height: auto;
-    margin-right: 2em;
+    margin-right: 1em;
     height: 24px;
   }
 `

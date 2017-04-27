@@ -3,12 +3,15 @@ var css = require('csjs-inject')
 module.exports = css`
   .footer {
     -webkit-app-region: drag;
-    border-right: var(--border);
+    border-left: var(--border);
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
     padding: 0 0 1em;
+    text-align: center;
+    min-width: 222px;
+    justify-content: space-between;
   }
 
   .albumCover {
@@ -31,25 +34,27 @@ module.exports = css`
     background: #eee;
     background-size: cover;
     background-position: center;
+    border-radius: 4px;
   }
 
-  .meta {
-    display: flex;
-    flex: 1 1 0;
-    flex-direction: column;
+  .track {
     padding: 1em;
+    width: 100%;
   }
+
+  .meta { margin: 1rem 0 }
 
   .title, .artist { margin: 0 }
   .title { font-weight: 600 }
 
-  .controls { margin: 1em 0 0 }
-
+  .controls {
+    font-size: 2em;
+    margin: 1rem 0;
+  }
   .trackControls { flex: 1 }
-
   .scrubberControl {
-    display: inline-flex;
-    flex: 1 1 100%;
+    margin: 1rem 0;
+    width: 100%
   }
 
   .scrubber {
@@ -58,5 +63,9 @@ module.exports = css`
     vertical-align: middle;
     -webkit-app-region: no-drag;
     width: 100%;
+  }
+
+  @media (max-width: 460px) {
+    .footer { width: 100% }
   }
 `

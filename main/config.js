@@ -10,6 +10,4 @@ function defaults () {
   }
 }
 
-console.log(config)
-
 module.exports = config
