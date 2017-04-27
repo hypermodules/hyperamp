@@ -9,7 +9,7 @@ var player = module.exports = {
   windowState: null
 }
 
-require('electron-debug')({ showDevTools: true })
+require('electron-debug')({ showDevTools: false })
 require('electron-context-menu')()
 
 function init () {
@@ -25,6 +25,7 @@ function init () {
     titleBarStyle: 'hidden-inset',
     useContentSize: true,
     show: false,
+    backgroundColor: '#fff',
     thickFrame: true
   })
 

@@ -24,7 +24,7 @@ module.exports = css`
   }
 
   .mediaList tr:nth-child(even), thead {
-    background: var(--lighten);
+    background: var(--darken);
   }
 
   .mediaList th {
@@ -41,7 +41,7 @@ module.exports = css`
   }
 
   .mediaList tbody tr.selected {
-    background: var(--light);
+    background: var(--dark);
   }
 
   .tableHeader {
@@ -65,7 +65,7 @@ module.exports = css`
     width: 6em;
   }
 
-  .bold {
-    font-weight: bold;
+  .playing {
+    color: var(--link);
   }
 `

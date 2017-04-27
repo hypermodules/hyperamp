@@ -3,6 +3,8 @@ var config = electron.remote.require('./config.js')
 var ipcRenderer = electron.ipcRenderer
 var mutate = require('xtend/mutable')
 
+console.log('config', config)
+
 function configStore (state, emitter) {
   var localState = state.config
 

@@ -45,7 +45,7 @@ function renderList (state, emit) {
   return list.map((meta, i) => {
     meta.index = i
     var classes = [
-      state.player.current.index === i ? styles.bold : '',
+      state.player.current.index === i ? styles.playing : '',
       state.player.selected.index === i ? styles.selected : ''
     ].join(' ')
 

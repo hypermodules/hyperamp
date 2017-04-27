@@ -3,7 +3,7 @@ var css = require('csjs-inject')
 module.exports = css`
   .window {
     display: flex;
-    flex-direction: column;
+    ${''/* flex-direction: column; */}
     position: absolute;
     top: 0;
     right: 0;

@@ -5,8 +5,7 @@ module.exports = css`
     -webkit-app-region: drag;
     border-bottom: var(--border);
     height: 40px;
-    padding-right: 1em;
-    padding-left: 6em;
+    padding: 0 1em;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,4 +15,6 @@ module.exports = css`
     display: flex;
     align-items: center;
   }
+  .leftCluster { flex: 1 }
+  .rightCluster { margin-left: auto }
 `

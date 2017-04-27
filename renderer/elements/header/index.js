@@ -49,13 +49,12 @@ Header.prototype._render = function (state, emit) {
   return html`
     <header class="${styles.toolbar}">
       <div class="${styles.leftCluster}">
-        ${volume.render(state, emit)}
-      </div>
-      <div class="${styles.rightCluster}">
         ${search.render({
           onchange: this._handleSearch,
           value: state.library.search
         })}
+      </div>
+      <div class="${styles.rightCluster}">
         <div class="${buttonStyles.btnGroup}">
           ${button({
             onclick: this._handleAddButton,

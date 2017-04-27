@@ -59,6 +59,8 @@ module.exports = css`
     margin-right: 1em;
   }
 
+  .btnGroup:last-child { margin-right: 0 }
+
   .btnGroup .btn:not(:last-child) {
     border-right: none;
   }

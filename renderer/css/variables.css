@@ -30,9 +30,9 @@
 
   /* begin experiment */
   /* colors */
-  --bg: rgb(25,38,51);
-  --copy: rgb(188,192,196);
-  --link: #fff;
+  --bg: #fff;
+  --copy: #222;
+  --link: #f63;
 
   /* tints */
   --bg-light: rgb(47,59,71);
@@ -42,12 +42,13 @@
   --light: rgba(255,255,255,.08);
   --lighten: rgba(255,255,255,.025);
   --dark: rgba(0,0,0,.08);
+  --darken: rgba(0,0,0,.025);
 
   /* borders */
-  --border: 1px solid var(--light);
+  --border: 1px solid var(--dark);
 
   /* states */
-  --active-bg: #293643;
+  --active-bg: #eee;
   --active-border: 1px solid var(--lighter);
   /* end experiment */
 

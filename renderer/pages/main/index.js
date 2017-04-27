@@ -11,9 +11,11 @@ var header = new Header()
 function main (state, emit) {
   return html`
     <main class="${styles.window}">
-      ${header.render(state, emit)}
-      ${table(state, emit)}
       ${footer(state, emit)}
+      <div>
+        ${header.render(state, emit)}
+        ${table(state, emit)}
+      </div>
     </main>
   `
 }

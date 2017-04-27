@@ -31,7 +31,7 @@ function preferences (state, emit) {
                 <input type="text"
                   class="${formStyles.formControl}"
                   onclick=${showDialog}
-                  value="${state.config.music}"
+                  value="${state.config.music || ''}"
                   readonly="true">
             </div>
           </form>
