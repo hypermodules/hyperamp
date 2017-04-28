@@ -1,10 +1,11 @@
 html {
-  -webkit-user-select: none;
+  background: var(--bg);
+  box-sizing: border-box;
   cursor: default !important; /* always be defaultin */
   font-size: var(--font-size-default);
   overflow: hidden;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-user-select: none;
 }
 
 *, *:before, *:after {
@@ -16,7 +17,6 @@ html, body {
 }
 
 body {
-  background: var(--bg);
   color: var(--copy);
   font-family: var(--font-family-default);
   font-size: var(--font-size-default);
@@ -25,6 +25,12 @@ body {
   margin: 0;
   overflow: hidden;
   padding: 0;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
 }
 
 hr {

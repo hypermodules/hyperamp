@@ -3,7 +3,6 @@ var css = require('csjs-inject')
 module.exports = css`
   .window {
     display: flex;
-    flex-direction: column;
     position: absolute;
     top: 0;
     right: 0;
@@ -13,5 +12,16 @@ module.exports = css`
 
   .pane {
     padding: 1rem;
+  }
+
+  .grow {
+    flex: 1 0;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 460px) {
+    .grow { display: none }
   }
 `

@@ -5,6 +5,7 @@ var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
 var artworkCache = require('../../lib/artwork-cache')
+var volume = require('../volume')()
 
 var opts = {
   min: 0,
@@ -25,30 +26,21 @@ module.exports = (state, emit) => {
   var progress = (state.player.currentTime / state.player.current.duration) * opts.max || 0.1
   var backgroundImg = artworkCache[state.player.picture]
   return html`
-    <footer class="${styles.footer}">
-      <div
-        style="background-image: ${state.player.picture ? 'url(' + backgroundImg + ')' : ''}"
-        class="${styles.albumArt}">
-      </div>
-      <div class="${styles.meta}">
-        <p class="${styles.title}">${title || 'No Track Selected'}</p>
-        <p class="${styles.artist}">
-          ${Array.isArray(artist) ? artist.join(', ') : artist || 'No Artist'}
-          ${album != null && album !== '' ? ` - ${album}` : null}
-        </p>
-        <div class="${buttonStyles.btnGroup} ${styles.controls}">
-          ${button({
-            onclick: () => emit('player:prev'),
-            iconName: 'entypo-controller-fast-backward'
-          })}
-          ${button({
-            onclick: () => play(state, emit),
-            iconName: `entypo-controller-${state.player.playing ? 'paus' : 'play'}`
-          })}
-          ${button({
-            onclick: () => emit('player:next'),
-            iconName: 'entypo-controller-fast-forward'
-          })}
+    <div class="${styles.footer}">
+      <div class="${styles.track}">
+        <div class="${styles.albumCover}">
+          <div class="${styles.albumArt}"
+            style="background-image: ${state.player.picture ? 'url(' + backgroundImg + ')' : ''}">
+          </div>
+        </div>
+        <div class="${styles.meta}">
+          <p class="${styles.title}">${title || 'No Track Selected'}</p>
+          <p class="${styles.artist}">
+            ${Array.isArray(artist) ? artist.join(', ') : artist || 'No Artist'}
+            ${album != null && album !== '' ? ` - ${album}` : null}
+          </p>
+        </div>
+        <div class="${styles.controls}">
           ${button({ className: styles.scrubberControl }, html`
             <input id='position' type='range'
               class='${styles.scrubber}'
@@ -57,9 +49,25 @@ module.exports = (state, emit) => {
               disabled=${title === null}
               value=${progress}>
           `)}
+          <div class="${buttonStyles.btnGroup} ${styles.trackControls}">
+            ${button({
+              onclick: () => emit('player:prev'),
+              iconName: 'entypo-controller-fast-backward'
+            })}
+            ${button({
+              onclick: () => play(state, emit),
+              iconName: `entypo-controller-${state.player.playing ? 'paus' : 'play'}`
+            })}
+            ${button({
+              onclick: () => emit('player:next'),
+              iconName: 'entypo-controller-fast-forward'
+            })}
+          </div>
         </div>
       </div>
-    </footer>
+
+      ${volume.render(state, emit)}
+    </div>
   `
 }
 

@@ -48,7 +48,7 @@ VolumeCluster.prototype._render = function (state, emit) {
   this._volume = volume
   this._emit = emit
   return html`
-    <div class='${buttonStyles.btnGroup}'>
+    <div class='${buttonStyles.btnGroup} ${styles.volumeCluster}'>
       ${button({
         onclick: this._toggleMute,
         iconName: muted ? 'entypo-sound-mute' : 'entypo-sound'
