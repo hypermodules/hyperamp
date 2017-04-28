@@ -72,6 +72,7 @@ Header.prototype._render = function (state, emit) {
 }
 
 Header.prototype._update = function (state, emit) {
+  // TODO improve this
   return true
 }
 
