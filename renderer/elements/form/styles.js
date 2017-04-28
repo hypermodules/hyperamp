@@ -8,7 +8,7 @@ module.exports = css`
   }
 
   .formControl {
-    color: #fff;
+    color: var(--copy);
     display: inline-block;
     width: 100%;
     min-height: 25px;

@@ -1,18 +1,18 @@
 ::-webkit-scrollbar {
-  width: .5rem;
-  background-color: var(--scrollbar-bg);
+  width: .6rem;
+  background-color: var(--darken);
 }
 
 ::-webkit-scrollbar-corner {
-  background-color: var(--scrollbar-bg);
+  background-color: var(--lighten);
 }
 
 ::-webkit-scrollbar-thumb {
   /*border: 1px solid var(--scrollbar-bg);*/
   /*border-radius: 10px;*/
-  background: var(--scrollbar-thumb-bg);
+  background: #ddd;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--scrollbar-bg);
+  background-color: var(--darken);
 }

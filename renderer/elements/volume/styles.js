@@ -1,6 +1,8 @@
 var css = require('csjs-inject')
 
 module.exports = css`
+  .volumeCluster {}
+
   .volumeButton { padding: 0 }
 
   .volumeSlider {

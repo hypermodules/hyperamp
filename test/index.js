@@ -2,7 +2,7 @@ var Application = require('spectron').Application
 var test = require('tape')
 var path = require('path')
 
-test.skip('does the thing turn on?', t => {
+test('does the thing turn on?', t => {
   var app = new Application({
     path: getElectronPath(),
     args: [path.join(__dirname, '..', 'main', 'index.js')]

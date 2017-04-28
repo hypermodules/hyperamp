@@ -3,41 +3,60 @@ var css = require('csjs-inject')
 module.exports = css`
   .footer {
     -webkit-app-region: drag;
-    border-top: var(--border);
+    border-left: var(--border);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    height: 100px;
-    padding-left: 100px;
     position: relative;
+    padding: 0 0 1em;
+    text-align: center;
+    min-width: 250px;
+    max-width: 250px;
+    justify-content: space-between;
+  }
+
+  .albumCover {
+    position: relative;
+    width: 100%; /* desired width */
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .albumCover:before {
+    content: '';
+    display: block;
+    padding-top: 100%; /* initial ratio of 1:1*/
   }
 
   .albumArt {
-    background: black;
-    border-right: var(--border);
-    height: 99px;
-    width: 99px;
     position: absolute;
+    top: 0;
     left: 0;
     bottom: 0;
+    right: 0;
+
+    background: #eee;
     background-size: cover;
     background-position: center;
   }
 
-  .meta {
-    display: flex;
-    flex: 1 1 0;
-    flex-direction: column;
-    padding: 0 1em;
+  .track {
+    padding: .5em;
+    width: 100%;
   }
+
+  .meta { margin: 1rem 0 }
 
   .title, .artist { margin: 0 }
   .title { font-weight: 600 }
 
-  .controls { margin: 1em 0 0 }
-
+  .controls {
+    font-size: 2em;
+    margin: 1rem 0;
+  }
+  .trackControls { flex: 1 }
   .scrubberControl {
-    display: inline-flex;
-    flex: 1 1 100%;
+    margin: 1rem 0;
+    width: 100%
   }
 
   .scrubber {
@@ -46,5 +65,13 @@ module.exports = css`
     vertical-align: middle;
     -webkit-app-region: no-drag;
     width: 100%;
+  }
+
+  @media (max-width: 460px) {
+    .footer {
+      min-width: initial;
+      max-width: initial;
+      width: 100%;
+    }
   }
 `

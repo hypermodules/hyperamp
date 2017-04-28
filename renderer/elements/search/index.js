@@ -20,7 +20,6 @@ function Search (opts) {
 Search.prototype = Object.create(Component.prototype)
 
 Search.prototype._handleInput = function (ev) {
-  console.log(ev)
   if (this._onchange) this._onchange(this._element.value)
 }
 

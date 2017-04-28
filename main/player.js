@@ -9,7 +9,7 @@ var player = module.exports = {
   windowState: null
 }
 
-require('electron-debug')({ showDevTools: true })
+require('electron-debug')({ showDevTools: 'undocked' })
 require('electron-context-menu')()
 
 function init () {
@@ -21,10 +21,11 @@ function init () {
     width: player.windowState.width,
     height: player.windowState.height,
     minWidth: 275,
-    minHeight: 40,
+    minHeight: 460,
     titleBarStyle: 'hidden-inset',
     useContentSize: true,
     show: false,
+    backgroundColor: '#fff',
     thickFrame: true
   })
 

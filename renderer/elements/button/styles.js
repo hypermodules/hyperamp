@@ -15,10 +15,8 @@ module.exports = css`
     background-image: none;
     border: 1px solid transparent;
     border-radius: var(--default-border-radius);
-    box-shadow: 0 1px 1px rgba(0,0,0,.06);
     -webkit-app-region: no-drag;
     color: var(--copy);
-    border: var(--border);
     background: transparent;
   }
 
@@ -28,7 +26,6 @@ module.exports = css`
 
   .btn:active {
     color: var(--link);
-    border: var(--border);
   }
 
   .btn:active svg {
@@ -51,12 +48,12 @@ module.exports = css`
   .btnGroup {
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 
   .btnGroup {
     display: flex;
     flex-direction: row;
-    margin-right: 1em;
   }
 
   .btnGroup .btn:not(:last-child) {
