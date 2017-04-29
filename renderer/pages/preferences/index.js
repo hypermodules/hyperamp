@@ -1,7 +1,8 @@
 var html = require('choo/html')
 var Header = require('../../elements/header')
 var button = require('../../elements/button')
-var footer = require('../../elements/footer')
+var Footer = require('../../elements/footer')
+var footer = new Footer()
 var formStyles = require('../../elements/form/styles')
 var { app, dialog } = require('electron').remote
 var styles = require('../styles')
@@ -44,7 +45,7 @@ function preferences (state, emit) {
           </div>
         </div>
       </div>
-      ${footer(state, emit)}
+      ${footer.render(state, emit)}
     </main>
   `
 }

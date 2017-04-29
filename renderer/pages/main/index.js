@@ -1,7 +1,8 @@
 var html = require('choo/html')
 var Header = require('../../elements/header')
 var table = require('../../elements/table')
-var footer = require('../../elements/footer')
+var Footer = require('../../elements/footer')
+var footer = new Footer()
 var styles = require('../styles')
 
 module.exports = main
@@ -15,7 +16,7 @@ function main (state, emit) {
         ${header.render(state, emit)}
         ${table(state, emit)}
       </div>
-      ${footer(state, emit)}
+      ${footer.render(state, emit)}
     </main>
   `
 }

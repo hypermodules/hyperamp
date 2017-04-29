@@ -1,6 +1,5 @@
 var html = require('choo/html')
 var Search = require('../search')
-var search = new Search()
 var button = require('../button')
 var buttonStyles = require('../button/styles')
 var { app, dialog } = require('electron').remote
@@ -10,10 +9,13 @@ var Component = require('cache-component')
 function Header (opts) {
   if (!(this instanceof Header)) return new Header()
   this._emit = null
+  this._searchString = ''
 
   this._handleSearch = this._handleSearch.bind(this)
   this._handleAddButton = this._handleAddButton.bind(this)
   this._handlePaths = this._handlePaths.bind(this)
+
+  this._search = new Search()
   Component.call(this)
 }
 
@@ -41,12 +43,13 @@ Header.prototype._handlePaths = function (paths) {
 
 Header.prototype._render = function (state, emit) {
   this._emit = emit
+  this._searchString = state.library.search
   return html`
     <header class="${styles.toolbar}">
       <div class="${styles.leftCluster}">
-        ${search.render({
+        ${this._search.render({
           onchange: this._handleSearch,
-          value: state.library.search
+          value: this._searchString
         })}
       </div>
       <div class="${styles.rightCluster}">
@@ -66,16 +69,8 @@ Header.prototype._render = function (state, emit) {
 }
 
 Header.prototype._update = function (state, emit) {
-  // TODO improve this
-  return true
-}
-
-Header.prototype._unload = function () {
-  console.log('unload')
-}
-
-Header.prototype._load = function () {
-  console.log('load')
+  if (this._searchString !== state.library.search) return true
+  return false
 }
 
 module.exports = Header
