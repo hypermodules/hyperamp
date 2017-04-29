@@ -16,16 +16,18 @@ npm test
 npm start
 ```
 
+<div align="center">
+
 ## Screenshot
 
-<div align="center">
-  <img src="screenshot.png"</img>
-  <img src="screenshot-2.png"</img>
-<div align="center">
+<img src="screenshot.png"</img>
+<img src="screenshot-2.png"</img>
 
 ## License
 
 [ISC](license.md)
+
+</div>
 
 [stability-img]: https://img.shields.io/badge/stability-experimental-orange.svg
 [stability-url]: https://nodejs.org/api/documentation.html#documentation_stability_index
