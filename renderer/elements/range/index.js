@@ -15,6 +15,7 @@ function Range (opts) {
   }, opts)
   this._value = this._opts.default
   this._onchange = null
+  this._disabled = false
   this._className = styles.range
   this._handleInput = this._handleInput.bind(this)
   Component.call(this)
@@ -26,12 +27,13 @@ Range.prototype._handleInput = function (e) {
   if (this._onchange) this._onchange(this._element.value)
 }
 
-Range.prototype._render = function ({value, onchange, className}) {
+Range.prototype._render = function ({value, onchange, className, disabled}) {
   assert.equal(typeof onchange, 'function', 'Range: onchange should be a function')
 
   this._onchange = onchange
   this._value = value
   if (className !== undefined) this._className = className
+  if (disabled !== undefined) this._disabled = disabled
 
   return html`
     <input type='range'
@@ -40,6 +42,7 @@ Range.prototype._render = function ({value, onchange, className}) {
         min='${this._opts.min}'
         max='${this._opts.max}'
         step='${this._opts.step}'
+        disabled=${this._disabled}
         oninput=${this._handleInput}
         value='${this._value}'>
   `

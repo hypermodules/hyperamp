@@ -2,28 +2,15 @@ var html = require('choo/html')
 // var debounce = require('lodash.debounce')
 // var fd = require('format-duration')
 var styles = require('./styles')
-var button = require('../button')
-var buttonStyles = require('../button/styles')
 var artworkCache = require('../../lib/artwork-cache')
 var volume = require('../volume')()
-
-var opts = {
-  min: 0,
-  max: 100,
-  step: 0.1
-}
-
-function play (state, emit) {
-  if (state.player.playing) return emit('player:pause')
-  emit('player:play')
-}
+var playerControls = require('../player')()
 
 module.exports = (state, emit) => {
   var current = state.player.current || {}
   var title = current.title || null
   var artist = current.artist || null
   var album = current.album || null
-  var progress = (state.player.currentTime / state.player.current.duration) * opts.max || 0.1
   var backgroundImg = artworkCache[state.player.picture]
   return html`
     <div class="${styles.footer}">
@@ -40,30 +27,7 @@ module.exports = (state, emit) => {
             ${album != null && album !== '' ? ` - ${album}` : null}
           </p>
         </div>
-        <div class="${styles.controls}">
-          ${button({ className: styles.scrubberControl }, html`
-            <input id='position' type='range'
-              class='${styles.scrubber}'
-              min='${opts.min}' max='${opts.max}' step='${opts.step}'
-              oninput=${(e) => emit('player:seek', (e.target.value / opts.max) * state.player.current.duration)}
-              disabled=${title === null}
-              value=${progress}>
-          `)}
-          <div class="${buttonStyles.btnGroup} ${styles.trackControls}">
-            ${button({
-              onclick: () => emit('player:prev'),
-              iconName: 'entypo-controller-fast-backward'
-            })}
-            ${button({
-              onclick: () => play(state, emit),
-              iconName: `entypo-controller-${state.player.playing ? 'paus' : 'play'}`
-            })}
-            ${button({
-              onclick: () => emit('player:next'),
-              iconName: 'entypo-controller-fast-forward'
-            })}
-          </div>
-        </div>
+        ${playerControls.render(state, emit)}
       </div>
 
       ${volume.render(state, emit)}
