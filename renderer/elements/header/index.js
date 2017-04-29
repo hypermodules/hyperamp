@@ -1,6 +1,4 @@
 var html = require('choo/html')
-var VolumeCluster = require('../volume')
-var volume = new VolumeCluster()
 var Search = require('../search')
 var search = new Search()
 var button = require('../button')
@@ -8,8 +6,6 @@ var buttonStyles = require('../button/styles')
 var { app, dialog } = require('electron').remote
 var styles = require('./styles')
 var Component = require('cache-component')
-
-window.volumeCluster = volume
 
 function Header (opts) {
   if (!(this instanceof Header)) return new Header()
@@ -44,7 +40,6 @@ Header.prototype._handlePaths = function (paths) {
 }
 
 Header.prototype._render = function (state, emit) {
-  console.log('render')
   this._emit = emit
   return html`
     <header class="${styles.toolbar}">

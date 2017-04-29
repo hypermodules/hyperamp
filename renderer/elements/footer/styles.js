@@ -49,24 +49,6 @@ module.exports = css`
   .title, .artist { margin: 0 }
   .title { font-weight: 600 }
 
-  .controls {
-    font-size: 2em;
-    margin: 1rem 0;
-  }
-  .trackControls { flex: 1 }
-  .scrubberControl {
-    margin: 1rem 0;
-    width: 100%
-  }
-
-  .scrubber {
-    cursor: default;
-    position: relative;
-    vertical-align: middle;
-    -webkit-app-region: no-drag;
-    width: 100%;
-  }
-
   @media (max-width: 460px) {
     .footer {
       min-width: initial;
