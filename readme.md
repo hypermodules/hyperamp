@@ -18,7 +18,10 @@ npm start
 
 ## Screenshot
 
-![screenshot](screenshot.png)
+<div align="center">
+  <img src="screenshot.png"</img>
+  <img src="screenshot-2.png"</img>
+<div align="center">
 
 ## License
 
