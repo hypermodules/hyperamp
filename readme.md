@@ -20,8 +20,8 @@ npm start
 
 ## Screenshot
 
-<img src="screenshot.png"</img>
-<img src="screenshot-2.png"</img>
+<img src="screenshot.png" />
+<img src="screenshot-2.png" />
 
 ## License
 
