@@ -21,21 +21,21 @@ function TableRows (opts) {
   this._selectTrack = this._selectTrack.bind(this)
   this._playTrack = this._playTrack.bind(this)
   this._rowMap = this._rowMap.bind(this)
+  this._mutateCurrentIndex = this._mutateCurrentIndex.bind(this)
+  this._mutateSelectedIndex = this._mutateSelectedIndex.bind(this)
 
   Component.call(this)
 }
 TableRows.prototype = Object.create(Component.prototype)
 
 TableRows.prototype._selectTrack = function (ev) {
-  var key = ev.target.id
-  // TODO snag the index rather than they most likely
-  this._emit('player:select', key)
+  var index = ev.target.dataset.index
+  this._emit('player:select', index)
 }
 
 TableRows.prototype._playTrack = function (ev) {
-  var key = ev.target.id
-  // TODO snag the index rather than they most likely
-  this._emit('player:queue', key)
+  var index = ev.target.dataset.index
+  this._emit('player:queue', index)
   this._emit('player:play')
 }
 
@@ -61,6 +61,20 @@ TableRows.prototype._rowMap = function (key, idx) {
   `
 }
 
+TableRows.prototype._mutateCurrentIndex = function (newIdx) {
+  var oldKey = this._trackOrder[this._currentIndex]
+  var newKey = this._trackOrder[newIdx]
+  document.getElementById(oldKey).classList.toggle(styles.playing, false)
+  document.getElementById(newKey).classList.toggle(styles.playing, true)
+}
+
+TableRows.prototype._mutateSelectedIndex = function (newIdx) {
+  var oldKey = this._trackOrder[this._currentIndex]
+  var newKey = this._trackOrder[newIdx]
+  document.getElementById(oldKey).classList.toggle(styles.selected, false)
+  document.getElementById(newKey).classList.toggle(styles.selected, true)
+}
+
 TableRows.prototype._render = function (state, emit) {
   this._emit = emit
   // Save references to state track order and dicts
@@ -68,19 +82,26 @@ TableRows.prototype._render = function (state, emit) {
   this._trackDict = state.library.trackDict
   // Save state
   // Current index is the index of a queued track
-  this._currentIndex = state.player.current.index
+  this._currentIndex = state.player.currentIndex
   // Selected index is the index of the highlighted track
-  this._selectedIndex = state.player.selected.index
+  this._selectedIndex = state.player.selectedIndex
 
   return this._playScope.map(this._rowMap)
 }
 
 TableRows.prototype._update = function (state, emit) {
+  // Re-render
+  // Note, these are only shallow compares.  You must slice or reobject your state
   if (this._trackOrder !== state.library.trackOrder) return true
   if (this._trackDict !== state.library.trackDict) return true
-  // TODO: we can mutate these
-  if (this._currentIndex !== state.player.current.index) return true
-  if (this._selectedIndex !== state.player.selected.index) return true
+  // Mutate
+  if (this._currentIndex !== state.player.currentIndex) {
+    this._mutateCurrentIndex(state.player.currentIndex)
+  }
+  if (this._selectedIndex !== state.player.selected.index) {
+    this._mutateSelectedIndex(state.player.selectedIndex)
+  }
+  // Cache!
   return false
 }
 
