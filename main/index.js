@@ -8,7 +8,9 @@ var xtend = require('xtend')
 var persist = new Config({ name: 'hyperamp-persist' })
 
 var state = xtend({
+  // This keeps track of all known files
   trackDict: {},
+  // This keeps track of the order and subset of tracks
   trackOrder: [],
   currentKey: null,
   currentIndex: null,
