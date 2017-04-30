@@ -1,5 +1,7 @@
 # HyperAmp
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/hypermodules/hyperamp.svg)](https://greenkeeper.io/)
+
 Experimental audio player built with web technologies ([choo](https://github.com/yoshuawuyts/choo) + [electron](https://github.com/electron/electron)).
 
 Mac/Linux      | Windows      | Version
