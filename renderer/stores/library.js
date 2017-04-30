@@ -82,3 +82,15 @@ function sortList (files) {
     return 0
   })
 }
+
+function filterList (list, search) {
+  return list.filter(meta => {
+    var yep = Object.keys(meta)
+      .map(i => (meta[i] + '').toLowerCase())
+      .filter(s => s.includes(search.toLowerCase()))
+      .length > 0
+
+    if (yep) return meta
+    return false
+  })
+}
