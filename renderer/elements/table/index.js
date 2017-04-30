@@ -66,6 +66,8 @@ TableRows.prototype._mutateCurrentKey = function (newKey) {
 
   document.getElementById(oldKey).classList.toggle(styles.playing, false)
   document.getElementById(newKey).classList.toggle(styles.playing, true)
+
+  this._currentKey = newKey
 }
 
 TableRows.prototype._mutateSelectedKey = function (newKey) {
@@ -73,6 +75,8 @@ TableRows.prototype._mutateSelectedKey = function (newKey) {
 
   document.getElementById(oldKey).classList.toggle(styles.selected, false)
   document.getElementById(newKey).classList.toggle(styles.selected, true)
+
+  this._selectedKey = newKey
 }
 
 TableRows.prototype._render = function (state, emit) {
