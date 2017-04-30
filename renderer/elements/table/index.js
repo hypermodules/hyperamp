@@ -14,28 +14,28 @@ function TableRows (opts) {
   this._emit = null
   this._trackOrder = []
   this._trackDict = {}
-  this._currentIndex = null
-  this._selectedIndex = null
+  this._currentKey = null
+  this._selectedKey = null
 
   // Bound methods
   this._selectTrack = this._selectTrack.bind(this)
   this._playTrack = this._playTrack.bind(this)
   this._rowMap = this._rowMap.bind(this)
-  this._mutateCurrentIndex = this._mutateCurrentIndex.bind(this)
-  this._mutateSelectedIndex = this._mutateSelectedIndex.bind(this)
+  this._mutateCurrentKey = this._mutateCurrentKey.bind(this)
+  this._mutateSelectedKey = this._mutateSelectedKey.bind(this)
 
   Component.call(this)
 }
 TableRows.prototype = Object.create(Component.prototype)
 
 TableRows.prototype._selectTrack = function (ev) {
-  var index = ev.target.dataset.index
-  this._emit('player:select', index)
+  var key = ev.target.id
+  this._emit('player:select', key)
 }
 
 TableRows.prototype._playTrack = function (ev) {
-  var index = ev.target.dataset.index
-  this._emit('player:queue', index)
+  var key = ev.target.id
+  this._emit('player:queue', key)
   this._emit('player:play')
 }
 
@@ -44,8 +44,8 @@ TableRows.prototype._rowMap = function (key, idx) {
   var meta = this._trackDict[key]
   // Generate state based styles
   var classes = {}
-  classes[styles.playing] = this._currentIndex === idx
-  classes[styles.selected] = this._selectedIndex === idx
+  classes[styles.playing] = this._currentKey === key
+  classes[styles.selected] = this._selectedKey === key
 
   return html`
     <tr id="${key}"
@@ -61,16 +61,16 @@ TableRows.prototype._rowMap = function (key, idx) {
   `
 }
 
-TableRows.prototype._mutateCurrentIndex = function (newIdx) {
-  var oldKey = this._trackOrder[this._currentIndex]
-  var newKey = this._trackOrder[newIdx]
+TableRows.prototype._mutateCurrentKey = function (newKey) {
+  var oldKey = this._currentKey
+
   document.getElementById(oldKey).classList.toggle(styles.playing, false)
   document.getElementById(newKey).classList.toggle(styles.playing, true)
 }
 
-TableRows.prototype._mutateSelectedIndex = function (newIdx) {
-  var oldKey = this._trackOrder[this._currentIndex]
-  var newKey = this._trackOrder[newIdx]
+TableRows.prototype._mutateSelectedKey = function (newKey) {
+  var oldKey = this._selectedKey
+
   document.getElementById(oldKey).classList.toggle(styles.selected, false)
   document.getElementById(newKey).classList.toggle(styles.selected, true)
 }
@@ -82,9 +82,9 @@ TableRows.prototype._render = function (state, emit) {
   this._trackDict = state.library.trackDict
   // Save state
   // Current index is the index of a queued track
-  this._currentIndex = state.player.currentIndex
+  this._currentKey = state.player.currentKey
   // Selected index is the index of the highlighted track
-  this._selectedIndex = state.player.selectedIndex
+  this._selectedKey = state.player.selectedKey
 
   return this._playScope.map(this._rowMap)
 }
@@ -95,11 +95,11 @@ TableRows.prototype._update = function (state, emit) {
   if (this._trackOrder !== state.library.trackOrder) return true
   if (this._trackDict !== state.library.trackDict) return true
   // Mutate
-  if (this._currentIndex !== state.player.currentIndex) {
+  if (this._currentKey !== state.player.currentKey) {
     this._mutateCurrentIndex(state.player.currentIndex)
   }
-  if (this._selectedIndex !== state.player.selected.index) {
-    this._mutateSelectedIndex(state.player.selectedIndex)
+  if (this._selectedIndex !== state.player.selectedKey) {
+    this._mutateSelectedIndex(state.player.selectedKey)
   }
   // Cache!
   return false
