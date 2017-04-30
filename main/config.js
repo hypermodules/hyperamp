@@ -6,7 +6,7 @@ if (config.size === 0) config.set(defaults())
 
 function defaults () {
   return {
-    music: app.getPath('music')
+    fileList: [app.getPath('music')]
   }
 }
 

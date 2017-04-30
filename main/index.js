@@ -8,8 +8,11 @@ var xtend = require('xtend')
 var persist = new Config({ name: 'hyperamp-persist' })
 
 var state = xtend({
-  playlist: [],
-  current: {},
+  trackDict: {},
+  trackOrder: [],
+  currentKey: null,
+  currentIndex: null,
+  search: null,
   volume: 50,
   playing: false,
   muted: false
@@ -22,6 +25,7 @@ app.on('ready', () => {
   audio.init()
   player.init()
 
+  // Emit things to all windows
   var windows = [player, audio]
   function broadcast (/* args */) {
     var args = [].slice.call(arguments, 0)
@@ -154,8 +158,11 @@ function beforeQuit (e) {
     app.quit()
   }, 5000) // quit after 5 secs, at most
   persist.set({
-    playlist: state.playlist,
-    current: state.current,
+    trackDict: state.trackDict,
+    trackOrder: state.trackOrder,
+    currentKey: state.currentKey,
+    currentIndex: state.currentIndex,
+    search: state.search,
     volume: state.volume
   })
   app.quit()
