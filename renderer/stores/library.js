@@ -1,8 +1,4 @@
-var libStream = require('../lib/library')
-var config = require('electron').remote.require('./config.js')
 var ipcRenderer = require('electron').ipcRenderer
-var nanotick = require('nanotick')
-var tick = nanotick()
 
 module.exports = libraryStore
 
@@ -11,58 +7,55 @@ function libraryStore (state, emitter) {
 
   if (!localState) {
     localState = state.library = {}
-    localState.files = []
+    localState.trackDict = {}
+    localState.trackOrder = []
     localState.search = ''
   }
 
-  emitter.on('library:clear', clear)
-  emitter.on('library:addOne', addOne)
   emitter.on('library:search', search)
-  emitter.on('library:loadSongs', loadSongs)
-  emitter.on('library:files', files)
-  emitter.on('library:sort', sort)
+  emitter.on('library:update-library', updateLibrary)
+  emitter.on('library:update-track-dict', updateTrackDict)
+  emitter.on('library:update-track-order', updateTrackOrder)
 
-  ipcRenderer.on('sync-state', syncState)
-
-  function syncState (ev, mainState) {
-    emitter.emit('library:files', mainState.playlist)
+  function updateTrackDict (newTrackDict) {
+    localState.trackDict = newTrackDict
   }
 
-  function clear () {
-    localState.files = []
-    emitter.emit('render')
+  function updateTrackOrder (newTrackOrder) {
+    localState.trackOrder = newTrackOrder
   }
 
-  function addOne (meta) {
-    localState.files.push(meta)
-    emitter.emit('render')
-  }
-
-  function loadSongs () {
-    emitter.emit('library:clear')
-    libStream(config.get('music'), handleFile)
-  }
-
-  function handleFile (err, meta) {
-    if (err) return emitter.emit('error', err)
-    emitter.emit('library:addOne', meta)
-  }
-
-  function files (playlist) {
-    localState.files = playlist
-    emitter.emit('render')
-  }
-
-  function sort () {
-    tick(function () {
-      emitter.emit('library:files', sortList(localState.files))
-    })
+  function updateLibrary () {
+    ipcRenderer.emit('update-library')
   }
 
   function search (string) {
+    ipcRenderer.emit('search')
     localState.search = string
     emitter.emit('render')
   }
+
+  function syncState (ev, mainState) {
+    localState.search = mainState.search
+    emitter.emit('library:update-track-dict', mainState.trackDict)
+    emitter.emit('library:update-track-order', mainState.trackOrder)
+    emitter.emit('render')
+  }
+
+  ipcRenderer.on('sync-state', syncState)
+  ipcRenderer.on('track-dict', (ev, newTrackDict) => {
+    updateTrackDict(newTrackDict)
+    emitter.emit('render')
+  })
+  ipcRenderer.on('track-order', (ev, newTrackOrder) => {
+    updateTrackOrder(newTrackOrder)
+    emitter.emit('render')
+  })
+  ipcRenderer.on('update-library', (ev, newTrackDict, newTrackOrder) => {
+    updateTrackDict(newTrackDict)
+    updateTrackOrder(newTrackOrder)
+    emitter.emit('render')
+  })
 }
 
 // TODO: expose sort to state to allow sort using column headers

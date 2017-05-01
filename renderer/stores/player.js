@@ -9,12 +9,14 @@ function playerStore (state, emitter) {
   if (!localState) {
     localState = state.player = {}
     localState.playing = false
-    localState.current = {}
-    localState.selected = {}
+    localState.currentKey = null
+    localState.currentIndex = null
+    localState.selectedKey = null
+    localState.selectedIndex = null
     localState.volume = 0.50
     localState.muted = false
-    localState.currentTime = 0.1
-    localState.picture = null
+    localState.currentTime = 0.0
+    localState.artworkHash = null
   }
 
   function muted (bool) {

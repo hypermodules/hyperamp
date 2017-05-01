@@ -1,6 +1,7 @@
 var html = require('choo/html')
 var Search = require('../search')
 var button = require('../button')
+var config = require('electron').remote.require('./config.js')
 var buttonStyles = require('../button/styles')
 var { app, dialog } = require('electron').remote
 var styles = require('./styles')
@@ -26,18 +27,19 @@ Header.prototype._handleSearch = function (val) {
 }
 
 Header.prototype._handleAddButton = function () {
+  var paths = config.get('paths')
+  var defaultPath = paths[paths.length - 1] || app.getPath('music')
   dialog.showOpenDialog({
-    defaultPath: app.getPath('home'),
-    properties: ['openDirectory']
+    defaultPath: defaultPath,
+    properties: ['multiSelections']
   },
   this._handlePaths)
 }
 
 Header.prototype._handlePaths = function (paths) {
-      // paths is undefined if user presses cancel
   if (paths) {
-    this._emit('config:set', { music: paths[0] })
-    this._emit('library:loadSongs')
+    this._emit('config:set', { paths: paths })
+    this._emit('library:update-library')
   }
 }
 
