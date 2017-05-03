@@ -7,6 +7,10 @@ function libraryStore (state, emitter) {
 
   if (!localState) {
     localState = state.library = {}
+    localState.currentKey = null
+    localState.currentIndex = null
+    localState.selectedKey = null
+    localState.selectedIndex = null
     localState.trackDict = {}
     localState.trackOrder = []
     localState.search = ''

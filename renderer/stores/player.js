@@ -9,13 +9,9 @@ function playerStore (state, emitter) {
   if (!localState) {
     localState = state.player = {}
     localState.playing = false
-    localState.currentKey = null
-    localState.currentIndex = null
-    localState.selectedKey = null
-    localState.selectedIndex = null
+    localState.currentTime = 0.0
     localState.volume = 0.50
     localState.muted = false
-    localState.currentTime = 0.0
     localState.artworkHash = null
   }
 
@@ -119,7 +115,8 @@ function playerStore (state, emitter) {
 
   function syncState (mainState) {
     localState.playing = mainState.playing
-    localState.current = mainState.current
+    localState.currentKey = mainState.currentKey
+    localState.currentIndex = mainState.currentIndex
     localState.volume = mainState.volume
     localState.muted = mainState.muted
     emitter.emit('render')
