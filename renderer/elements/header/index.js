@@ -39,7 +39,7 @@ Header.prototype._handleAddButton = function () {
 Header.prototype._handlePaths = function (paths) {
   if (paths) {
     this._emit('config:set', { paths: paths })
-    this._emit('library:update-library')
+    this._emit('library:update-library', paths)
   }
 }
 

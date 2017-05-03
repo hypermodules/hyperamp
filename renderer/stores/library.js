@@ -7,8 +7,6 @@ function libraryStore (state, emitter) {
 
   if (!localState) {
     localState = state.library = {}
-    localState.currentKey = null
-    localState.currentIndex = null
     localState.selectedKey = null
     localState.selectedIndex = null
     localState.trackDict = {}
@@ -29,8 +27,8 @@ function libraryStore (state, emitter) {
     localState.trackOrder = newTrackOrder
   }
 
-  function updateLibrary () {
-    ipcRenderer.emit('update-library')
+  function updateLibrary (paths) {
+    ipcRenderer.emit('update-library', paths)
   }
 
   function search (string) {
@@ -59,35 +57,5 @@ function libraryStore (state, emitter) {
     updateTrackDict(newTrackDict)
     updateTrackOrder(newTrackOrder)
     emitter.emit('render')
-  })
-}
-
-// TODO: expose sort to state to allow sort using column headers
-function sortList (files) {
-  return files.sort((a, b) => {
-    // sort by artist
-    if (a.artist < b.artist) return -1
-    if (a.artist > b.artist) return 1
-
-    // then by album
-    if (a.album < b.album) return -1
-    if (a.album > b.album) return 1
-
-    // then by title
-    if (a.title < b.title) return -1
-    if (a.title > b.title) return 1
-    return 0
-  })
-}
-
-function filterList (list, search) {
-  return list.filter(meta => {
-    var yep = Object.keys(meta)
-      .map(i => (meta[i] + '').toLowerCase())
-      .filter(s => s.includes(search.toLowerCase()))
-      .length > 0
-
-    if (yep) return meta
-    return false
   })
 }
