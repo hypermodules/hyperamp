@@ -13,7 +13,7 @@ var state = xtend({
   trackOrder: [], // array of track keys
   currentIndex: null, // Currently queued track index
   loading: false, // Mutex for performing a scan for new tracks
-  search: null, // search string used to derive current trackOrder
+  search: '', // search string used to derive current trackOrder
   volume: 50,
   playing: false,
   muted: false

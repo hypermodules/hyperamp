@@ -6,18 +6,17 @@ function libraryStore (state, emitter) {
   var localState = state.library
 
   if (!localState) {
-    localState = state.library = {}
-    localState.selectedKey = null
-    localState.selectedIndex = null
     localState.trackDict = {}
     localState.trackOrder = []
     localState.search = ''
+    localState.selectedIndex = null
   }
 
   emitter.on('library:search', search)
   emitter.on('library:update-library', updateLibrary)
   emitter.on('library:update-track-dict', updateTrackDict)
   emitter.on('library:update-track-order', updateTrackOrder)
+  emitter.on('library:select', select)
 
   function updateTrackDict (newTrackDict) {
     localState.trackDict = newTrackDict
@@ -34,13 +33,17 @@ function libraryStore (state, emitter) {
   function search (string) {
     ipcRenderer.emit('search')
     localState.search = string
+  }
+
+  function select (selectedIndex) {
+    localState.selectedIndex = selectedIndex
     emitter.emit('render')
   }
 
   function syncState (ev, mainState) {
     localState.search = mainState.search
-    emitter.emit('library:update-track-dict', mainState.trackDict)
-    emitter.emit('library:update-track-order', mainState.trackOrder)
+    localState.trackDict = mainState.trackDict
+    localState.trackOrder = mainState.trackOrder
     emitter.emit('render')
   }
 
