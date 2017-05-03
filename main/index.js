@@ -120,15 +120,13 @@ app.on('ready', () => {
 
   ipcMain.on('seek', seek)
 
-  ipcMain.on('sync-state', function (ev) {
-    ev.sender.send('sync-state', state)
-  })
-
   function handleNewTracks (err, newTrackDict) {
     state.loading = false
     if (err) return console.warn(err)
     state.trackDict = newTrackDict
-    var newTrackOrder = state.trackOrder = Object.keys(newTrackDict).sort(sortList)
+    var newTrackOrder = state.trackOrder = Object.keys(newTrackDict)
+                                            .filter(filterList(state.search))
+                                            .sort(sortList)
     broadcast('update-library', newTrackDict, newTrackOrder)
   }
 
@@ -136,6 +134,26 @@ app.on('ready', () => {
     if (state.loading) state.loading.destroy()
     state.loading = makeTrackDict(handleNewTracks)
   })
+
+  function search (ev, searchString) {
+    state.search = searchString
+    var newTrackOrder = state.trackOrder = Object.keys(state.TrackDict)
+                                              .filter(filterList(state.search))
+                                              .sort(sortList)
+    broadcast('track-order', newTrackOrder)
+  }
+
+  ipcMain.on('search', search)
+
+  // Sync All State to anyone who asks for it
+
+  function syncState (ev) {
+    ev.sender.send('sync-state', state)
+  }
+
+  ipcMain.on('sync-state', syncState)
+
+  // System Shortcuts
 
   globalShortcut.register('MediaNextTrack', next)
   globalShortcut.register('MediaPreviousTrack', prev)
@@ -160,8 +178,9 @@ function sortList (keyA, keyB) {
   return 0
 }
 
-function filterList (list, search) {
-  return list.filter(meta => {
+function filterList (search) {
+  return function (key) {
+    var meta = state.trackDict[key]
     var yep = Object.keys(meta)
       .map(i => (meta[i] + '').toLowerCase())
       .filter(s => s.includes(search.toLowerCase()))
@@ -169,7 +188,7 @@ function filterList (list, search) {
 
     if (yep) return meta
     return false
-  })
+  }
 }
 
 function allWindowsClosed () {
