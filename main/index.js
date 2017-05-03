@@ -4,15 +4,16 @@ var menu = require('./menu')
 var player = require('./player')
 var Config = require('electron-config')
 var xtend = require('xtend')
+var makeTrackDict = require('./library')
 
 var persist = new Config({ name: 'hyperamp-persist' })
 
 var state = xtend({
-  trackDict: {},
-  trackOrder: [],
-  currentKey: null,
-  currentIndex: null,
-  search: '',
+  trackDict: {}, // object of known tracks
+  trackOrder: [], // array of track keys
+  currentIndex: null, // Currently queued track index
+  loading: false, // Mutex for performing a scan for new tracks
+  search: null, // search string used to derive current trackOrder
   volume: 50,
   playing: false,
   muted: false
@@ -42,16 +43,9 @@ app.on('ready', () => {
 
   ipcMain.on('volume', volume)
 
-  function playlist (ev, playlist) {
-    // player -> main
-    state.playlist = playlist
-  }
-
-  ipcMain.on('playlist', playlist)
-
-  function queue (ev, meta) {
-    state.current = meta
-    broadcast('queue', meta)
+  function queue (ev, newIndex) {
+    state.currentIndex = newIndex
+    broadcast('queue', newIndex)
   }
 
   ipcMain.on('queue', queue)
@@ -75,23 +69,23 @@ app.on('ready', () => {
   }
 
   function prev () {
-    if (state.playlist.length > 0) {
-      var prevIndex = state.current.index > 0 ? state.current.index - 1 : state.playlist.length - 1
-      state.current = state.playlist[prevIndex]
-      broadcast('queue', state.current)
+    if (state.trackOrder.length > 0) {
+      var newIndex = state.currentIndex > 0 ? state.currentIndex - 1 : state.trackOrder.length - 1
+      state.currentIndex = newIndex
+      broadcast('queue', newIndex)
       if (state.playing) { broadcast('play') }
-    }
+    } else { console.warn('Can go back, empty trackOrder array') }
   }
 
   ipcMain.on('prev', prev)
 
   function next () {
-    if (state.playlist.length > 0) {
-      var nextIndex = state.current.index < state.playlist.length - 1 ? state.current.index + 1 : 0
-      state.current = state.playlist[nextIndex]
-      broadcast('queue', state.current)
+    if (state.trackOrder.length > 0) {
+      var newIndex = state.currentIndex < state.trackOrder.length - 1 ? state.currentIndex + 1 : 0
+      state.currentIndex = newIndex
+      broadcast('queue', newIndex)
       if (state.playing) { broadcast('play') }
-    }
+    } else { console.warn('Can go forward, empty trackOrder array') }
   }
 
   ipcMain.on('next', next)
@@ -130,11 +124,53 @@ app.on('ready', () => {
     ev.sender.send('sync-state', state)
   })
 
+  function handleNewTracks (err, newTrackDict) {
+    state.loading = false
+    if (err) return console.warn(err)
+    state.trackDict = newTrackDict
+    var newTrackOrder = state.trackOrder = Object.keys(newTrackDict).sort(sortList)
+    broadcast('update-library', newTrackDict, newTrackOrder)
+  }
+
+  ipcMain.on('update-library', function (ev, paths) {
+    if (state.loading) state.loading.destroy()
+    state.loading = makeTrackDict(handleNewTracks)
+  })
+
   globalShortcut.register('MediaNextTrack', next)
   globalShortcut.register('MediaPreviousTrack', prev)
-  // globalShortcut.register('MediaStop', )
   globalShortcut.register('MediaPlayPause', playPause)
+  // globalShortcut.register('MediaStop', stop)
 })
+
+function sortList (keyA, keyB) {
+  var aObj = state.trackDict[keyA]
+  var bObj = state.trackDict[keyB]
+    // sort by artist
+  if (aObj.artist < bObj.artist) return -1
+  if (aObj.artist > bObj.artist) return 1
+
+    // then by album
+  if (aObj.album < bObj.album) return -1
+  if (aObj.album > bObj.album) return 1
+
+    // then by title
+  if (aObj.title < bObj.title) return -1
+  if (aObj.title > bObj.title) return 1
+  return 0
+}
+
+function filterList (list, search) {
+  return list.filter(meta => {
+    var yep = Object.keys(meta)
+      .map(i => (meta[i] + '').toLowerCase())
+      .filter(s => s.includes(search.toLowerCase()))
+      .length > 0
+
+    if (yep) return meta
+    return false
+  })
+}
 
 function allWindowsClosed () {
   if (process.platform !== 'darwin') app.quit()
