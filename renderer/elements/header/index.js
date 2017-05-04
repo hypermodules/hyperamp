@@ -18,7 +18,7 @@ function Header (opts) {
   this._handlePaths = this._handlePaths.bind(this)
   this._handleNav = this._handleNav.bind(this)
 
-  this._search = new Search()
+  this._searchComp = new Search()
   Component.call(this)
 }
 Header.prototype = Object.create(Component.prototype)
@@ -59,7 +59,7 @@ Header.prototype._render = function (state, emit) {
   return html`
     <header class="${styles.toolbar}">
       <div class="${styles.leftCluster}">
-        ${this._search.render({
+        ${this._searchComp.render({
           onchange: this._handleSearch,
           value: this._search
         })}

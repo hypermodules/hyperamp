@@ -21,8 +21,8 @@ function TableRows (opts) {
   this._selectTrack = this._selectTrack.bind(this)
   this._playTrack = this._playTrack.bind(this)
   this._rowMap = this._rowMap.bind(this)
-  this._mutateCurrentIndex = this._mutateCurrentKey.bind(this)
-  this._mutateSelectedIndex = this._mutateSelectedKey.bind(this)
+  this._mutateCurrentIndex = this._mutateCurrentIndex.bind(this)
+  this._mutateSelectedIndex = this._mutateSelectedIndex.bind(this)
 
   Component.call(this)
 }
@@ -48,7 +48,7 @@ TableRows.prototype._mutateCurrentIndex = function (newIndex) {
   this._currentIndex = newIndex
 }
 
-TableRows.prototype._mutateSelectedKey = function (newIndex) {
+TableRows.prototype._mutateSelectedIndex = function (newIndex) {
   var oldIndex = this._selectedKey
 
   document.getElementById(`track-${oldIndex}]`).classList.toggle(styles.selected, false)
@@ -90,7 +90,7 @@ TableRows.prototype._render = function (state, emit) {
   // Selected index is the index of the highlighted track
   this._selectedIndex = state.player.selectedIndex
 
-  return this._playScope.map(this._rowMap)
+  return html`<tbody>${this._trackOrder.map(this._rowMap)}</tbody>`
 }
 
 TableRows.prototype._update = function (state, emit) {
@@ -108,3 +108,5 @@ TableRows.prototype._update = function (state, emit) {
   // Cache!
   return false
 }
+
+module.exports = TableRows

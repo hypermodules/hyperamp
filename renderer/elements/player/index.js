@@ -22,7 +22,7 @@ function PlayerControls (opts) {
 
   // State
   this._position = null
-  this._current = {}
+  this._currentIndex = null
   this._emit = null
   this._playing = false
   this._disabled = false
@@ -66,10 +66,10 @@ PlayerControls.prototype._handlePlayPause = function () {
 PlayerControls.prototype._render = function (state, emit) {
   assert.equal(typeof emit, 'function', 'PlaybackCluster: emit should be a function')
   this._emit = emit
-  this._current = state.player.current
+  this._currentIndex = state.player.currentIndex
   this._playing = state.player.playing
   this._position = state.player.currentTime
-  this._disabled = state.player.current.title === null
+  this._disabled = state.library.trackDict[this._currentIndex].title === null
 
   return html`
     <div class='${styles.controls}'>
