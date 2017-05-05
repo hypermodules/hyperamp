@@ -1,5 +1,5 @@
 var Nanobus = require('nanobus')
-var get = require('get')
+var get = require('lodash.get')
 var window = require('global/window')
 var setTimeout = window.setTimeout
 var clearTimeout = window.clearTimeout

@@ -4,7 +4,7 @@ var menu = require('./menu')
 var player = require('./player')
 var Config = require('electron-config')
 var xtend = require('xtend')
-var get = require('get')
+var get = require('lodash.get')
 var makeTrackDict = require('./library')
 
 var persist = new Config({ name: 'hyperamp-persist' })
@@ -15,7 +15,7 @@ var state = xtend({
   currentIndex: null, // Currently queued track index
   loading: false, // Mutex for performing a scan for new tracks
   search: '', // search string used to derive current trackOrder
-  volume: 50,
+  volume: 0.50,
   playing: false,
   muted: false
 }, persist.store)
