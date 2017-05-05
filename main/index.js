@@ -3,13 +3,15 @@ var audio = require('./audio')
 var menu = require('./menu')
 var player = require('./player')
 var Config = require('electron-config')
+var userConfig = require('./config')
 var xtend = require('xtend')
-var get = require('lodash.get')
+// var get = require('lodash.get')
 var makeTrackDict = require('./library')
 
 var persist = new Config({ name: 'hyperamp-persist' })
 
 var state = xtend({
+  paths: [], // USERCONFIG: Paths for seraching for songs
   trackDict: {}, // object of known tracks
   trackOrder: [], // array of track keys
   currentIndex: null, // Currently queued track index
@@ -18,7 +20,7 @@ var state = xtend({
   volume: 0.50,
   playing: false,
   muted: false
-}, persist.store)
+}, persist.store, userConfig.store)
 
 module.exports = state
 
@@ -46,10 +48,6 @@ app.on('ready', () => {
 
   function queue (ev, newIndex) {
     state.currentIndex = newIndex
-    var key = state.trackOrder[newIndex]
-    var filePath = get(state.trackDict[key], 'filepath')
-    if (audio.win && filePath) audio.win.send('queue', filePath)
-    if (player.win) player.win.send('queue', newIndex)
     broadcast('queue', newIndex)
   }
 
@@ -132,12 +130,13 @@ app.on('ready', () => {
     var newTrackOrder = state.trackOrder = Object.keys(newTrackDict)
                                             .filter(filterList(state.search))
                                             .sort(sortList)
-    broadcast('update-library', newTrackDict, newTrackOrder)
+    broadcast('track-dict', newTrackDict, newTrackOrder, state.paths)
   }
 
   ipcMain.on('update-library', function (ev, paths) {
     if (state.loading) state.loading.destroy()
-    state.loading = makeTrackDict(handleNewTracks)
+    state.paths = paths
+    state.loading = makeTrackDict(paths, handleNewTracks)
   })
 
   function search (ev, searchString) {
@@ -220,7 +219,6 @@ function beforeQuit (e) {
   persist.set({
     trackDict: state.trackDict,
     trackOrder: state.trackOrder,
-    currentKey: state.currentKey,
     currentIndex: state.currentIndex,
     search: state.search,
     volume: state.volume

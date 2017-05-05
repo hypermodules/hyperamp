@@ -11,14 +11,15 @@ module.exports = makeTrackDict
 
 function makeTrackDict (paths, cb) {
   var newTrackDict = {}
+  console.log('scanning ' + paths)
   var dest = concatTrackDict(newTrackDict)
   pump(walker(paths), FileFilter(), dest, handleEos)
   // Return dest so we can destroy it
   return dest
 
   function handleEos (err) {
-    if (err) return err
-    return newTrackDict
+    if (err) return cb(err)
+    cb(null, newTrackDict)
   }
 }
 var FileFilter = filter.objCtor(isValidFile)
@@ -30,8 +31,6 @@ function isValidFile (data, enc, cb) {
 }
 
 function concatTrackDict (obj) {
-  return writer.obj(writeTrackDict)
-
   function writeTrackDict (data, enc, cb) {
     parseMetadata(data, handleMeta)
 
@@ -41,6 +40,7 @@ function concatTrackDict (obj) {
       cb(null)
     }
   }
+  return writer.obj(writeTrackDict)
 }
 
 function parseMetadata (data, cb) {

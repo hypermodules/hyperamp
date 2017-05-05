@@ -2,6 +2,7 @@ var { ipcRenderer } = require('electron')
 var log = require('nanologger')('player')
 var AudioPlayer = require('./audio-player')
 var path = require('path')
+// We don't need to sync-state since we just sync load state
 var mainState = require('electron').remote.require('./index.js')
 var needle = 'file://' + path.resolve(__dirname, 'needle.mp3')
 var startupNode = document.querySelector('#needle')
@@ -23,8 +24,17 @@ player.on('timeupdate', function (time) {
   ipcRenderer.send('timeupdate', time)
 })
 
-ipcRenderer.on('queue', function (ev, filePath) {
-  player.queue(filePath)
+ipcRenderer.on('queue', function (ev, newIndex) {
+  player.queue(newIndex)
+})
+
+ipcRenderer.on('trac-dict', function (ev, newTrackDict, newTrackOrder) {
+  this.trackDict = newTrackDict
+  this.trackOrder = newTrackOrder
+})
+
+ipcRenderer.on('track-order', function (ev, newTrackOrder) {
+  this.trackOrder = newTrackOrder
 })
 
 ipcRenderer.on('play', function (ev, data) {
