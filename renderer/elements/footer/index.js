@@ -29,7 +29,7 @@ Footer.prototype = Object.create(Component.prototype)
 Footer.prototype._render = function (state, emit) {
   this._emit = emit
   this._currentIndex = state.player.currentIndex
-  var {title, artist, album} = state.library.trackDict[currentIndex]
+  var {title = '--', artist = '--', album = '--'} = state.library.trackDict[this._currentIndex] || {}
   this._pictureHash = state.player._pictureHash
   var backgroundImg = artworkCache[this._pictureHash]
 

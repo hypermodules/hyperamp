@@ -8,7 +8,7 @@ function playerStore (state, emitter) {
   if (!localState) {
     localState = state.player = {}
     localState.playing = false
-    localState.currentIndex = null
+    localState.currentIndex = 0
     localState.currentTime = 0.0
     localState.volume = 0.50
     localState.muted = false

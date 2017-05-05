@@ -69,14 +69,15 @@ PlayerControls.prototype._render = function (state, emit) {
   this._currentIndex = state.player.currentIndex
   this._playing = state.player.playing
   this._position = state.player.currentTime
-  this._disabled = state.library.trackDict[this._currentIndex].title === null
+  var track = state.library.trackDict[this._currentIndex]
+  this._disabled = track === undefined
 
   return html`
     <div class='${styles.controls}'>
       ${button({ className: styles.scrubberControl },
         this._positionSlider.render({
           onchange: this._handleSeek,
-          value: this._scalePosition(this._position, this._current.duration),
+          value: track ? this._scalePosition(this._position, track.duration) : 0,
           className: styles.scrubber,
           disabled: this._disabled
         })
@@ -101,9 +102,9 @@ PlayerControls.prototype._render = function (state, emit) {
 
 PlayerControls.prototype._update = function (state, emit) {
   this._emit = emit
-  if (this._current !== state.player.current) return true
+  if (this._currentIndex !== state.player.currentIndex) return true
   if (this._playing !== state.player.playing) return true
   if (this._position !== state.player.currentTime) return true
-  if (this._disabled !== (state.player.current.title === null)) return true
+  if (this._disabled !== (state.library.trackDict[this._currentIndex] === undefined)) return true
   return false
 }
