@@ -4,6 +4,7 @@ var menu = require('./menu')
 var player = require('./player')
 var Config = require('electron-config')
 var xtend = require('xtend')
+var get = require('get')
 var makeTrackDict = require('./library')
 
 var persist = new Config({ name: 'hyperamp-persist' })
@@ -45,6 +46,10 @@ app.on('ready', () => {
 
   function queue (ev, newIndex) {
     state.currentIndex = newIndex
+    var key = state.trackOrder[newIndex]
+    var filePath = get(state.trackDict[key], 'filepath')
+    if (audio.win && filePath) audio.win.send('queue', filePath)
+    if (player.win) player.win.send('queue', newIndex)
     broadcast('queue', newIndex)
   }
 
@@ -115,7 +120,7 @@ app.on('ready', () => {
   function seek (ev, newTime) {
     // player -> audio
     state.currentTime = newTime
-    if (player.win) audio.win.send('seek', newTime)
+    if (audio.win) audio.win.send('seek', newTime)
   }
 
   ipcMain.on('seek', seek)

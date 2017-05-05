@@ -23,8 +23,8 @@ player.on('timeupdate', function (time) {
   ipcRenderer.send('timeupdate', time)
 })
 
-ipcRenderer.on('queue', function (ev, meta) {
-  player.queue(meta)
+ipcRenderer.on('queue', function (ev, filePath) {
+  player.queue(filePath)
 })
 
 ipcRenderer.on('play', function (ev, data) {
@@ -56,7 +56,6 @@ ipcRenderer.on('seek', function (ev, newTime) {
 })
 
 function needleSound (node, file, state) {
-  // We dont really need this but its fun
   node.volume = state.volume
   node.muted = state.muted
   node.src = file

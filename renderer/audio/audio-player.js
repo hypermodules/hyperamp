@@ -1,4 +1,5 @@
 var Nanobus = require('nanobus')
+var get = require('get')
 var window = require('global/window')
 var setTimeout = window.setTimeout
 var clearTimeout = window.clearTimeout
@@ -12,8 +13,9 @@ function AudioPlayer (audioNode, state) {
   var self = this
 
   this.audio = audioNode
-  this.current = state.current
-  this.queue(state.current)
+  var key = state.trackOrder[state.currentIndex]
+  this.filePath = get(state.trackDict[key], 'filepath')
+  this.queue(this.filePath)
   this.audio.volume = state.volume
   this.audio.muted = state.muted
   this.seeking = false
@@ -42,10 +44,10 @@ AudioPlayer.prototype.seekDebounce = function () {
   }, 1000)
 }
 
-AudioPlayer.prototype.queue = function (data) {
-  this.emit('queued', data)
-  this.current = data
-  if (data && data.filepath) this.audio.src = data.filepath
+AudioPlayer.prototype.queue = function (filePath) {
+  this.emit('queued', filePath)
+  this.filePath = filePath
+  if (this.filePath) this.audio.src = filePath
 }
 
 AudioPlayer.prototype.play = function () {
