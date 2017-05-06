@@ -67,10 +67,14 @@ function playerStore (state, emitter) {
 
   function next () {
     ipcRenderer.send('next')
+    currentTime(0)
+    emitter.emit('render')
   }
 
   function prev () {
     ipcRenderer.send('prev')
+    currentTime(0)
+    emitter.emit('render')
   }
 
   function mute () {
