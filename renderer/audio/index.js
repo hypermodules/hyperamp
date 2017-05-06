@@ -28,13 +28,12 @@ ipcRenderer.on('queue', function (ev, newIndex) {
   player.queue(newIndex)
 })
 
-ipcRenderer.on('trac-dict', function (ev, newTrackDict, newTrackOrder) {
-  this.trackDict = newTrackDict
-  this.trackOrder = newTrackOrder
+ipcRenderer.on('track-dict', function (ev, newTrackDict, newTrackOrder) {
+  player.updateTrackDict(newTrackDict, newTrackOrder)
 })
 
 ipcRenderer.on('track-order', function (ev, newTrackOrder) {
-  this.trackOrder = newTrackOrder
+  player.updateTrackOrder(newTrackOrder)
 })
 
 ipcRenderer.on('play', function (ev, data) {

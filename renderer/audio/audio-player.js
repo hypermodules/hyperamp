@@ -84,3 +84,14 @@ AudioPlayer.prototype.seek = function (newTime) {
   this.emit('seek', newTime)
   this.audio.currentTime = newTime
 }
+
+AudioPlayer.prototype.updateTrackDict = function (trackDict, trackOrder) {
+  console.log(arguments)
+  this.trackDict = trackDict
+  this.trackOrder = trackOrder
+}
+
+AudioPlayer.prototype.updateTrackOrder = function (trackOrder) {
+  console.log(arguments)
+  this.trackOrder = trackOrder
+}

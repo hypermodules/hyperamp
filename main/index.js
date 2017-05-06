@@ -143,7 +143,7 @@ app.on('ready', () => {
 
   function search (ev, searchString) {
     state.search = searchString
-    var newTrackOrder = state.trackOrder = Object.keys(state.TrackDict)
+    var newTrackOrder = state.trackOrder = Object.keys(state.trackDict)
                                               .filter(filterList(state.search))
                                               .sort(sortList)
     broadcast('track-order', newTrackOrder)

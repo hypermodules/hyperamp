@@ -48,8 +48,13 @@ function parseMetadata (data, cb) {
   mm(readableStream, { duration: true }, (err, meta) => {
     readableStream.close()
     if (err) {
-      err.message += ` (file: ${filepath})`
-      return cb(err)
+      switch (err.message) {
+        case 'Could not find metadata header':
+          console.warn(err.message += ` (file: ${filepath})`)
+          break
+        default:
+          return cb(err)
+      }
     }
 
     var { title, artist, album, duration } = meta
