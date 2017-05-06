@@ -12,6 +12,7 @@
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
   "dependencies": {
+    "@bret/truthy": "^1.0.1",
     "cache-component": "^4.0.2",
     "choo": "^5.2.0",
     "choo-log": "^6.0.0",

@@ -7,11 +7,11 @@ var styles = require('../styles')
 
 module.exports = main
 
-// TODO instantiate these
 var header = new Header()
 var table = new Table()
 var footer = new Footer()
 
+// TODO set up view instance factory
 function main (state, emit) {
   return html`
     <main class="${styles.window}">

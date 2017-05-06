@@ -22,6 +22,12 @@
     "7zip-bin-mac" "^1.0.1"
     "7zip-bin-win" "^2.0.2"
 
+"@bret/truthy@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@bret/truthy/-/truthy-1.0.1.tgz#26ab73c3e327daa93c543bbb6517c2debb86d017"
+  dependencies:
+    existy "^1.0.0"
+
 "@tap-format/exit@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@tap-format/exit/-/exit-0.2.0.tgz#b58736bc55d30802c012c5adfca51b47040310cd"
@@ -1413,6 +1419,10 @@ execa@^0.5.0:
     p-finally "^1.0.0"
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
+
+existy@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/existy/-/existy-1.0.1.tgz#31ae2a103e658c001aed68f09cf3468dcc6d81e5"
 
 exit-hook@^1.0.0:
   version "1.1.1"

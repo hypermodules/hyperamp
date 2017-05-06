@@ -1,11 +1,11 @@
+var { app, dialog } = require('electron').remote
 var html = require('choo/html')
+var Component = require('cache-component')
 var Search = require('../search')
 var button = require('../button')
 var config = require('electron').remote.require('./config.js')
 var buttonStyles = require('../button/styles')
-var { app, dialog } = require('electron').remote
 var styles = require('./styles')
-var Component = require('cache-component')
 
 function Header (opts) {
   if (!(this instanceof Header)) return new Header()
