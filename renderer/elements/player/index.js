@@ -6,7 +6,7 @@ var buttonStyles = require('../button/styles')
 var Component = require('cache-component')
 var Range = require('../range')
 var assert = require('assert')
-var truthy = require('truthy')
+var truthy = require('@bret/truthy')
 
 module.exports = PlayerControls
 
@@ -73,7 +73,8 @@ PlayerControls.prototype._render = function (state, emit) {
   this._position = state.player.currentTime
   var key = state.library.trackOrder[this._currentIndex]
   var track = state.library.trackDict[key]
-  this._disabled = truthy(state.player.currentIndex)
+  this._disabled = !truthy(state.player.currentIndex)
+  console.log(this._disabled)
   if (track) this._duration = track.duration
 
   return html`
