@@ -50,15 +50,14 @@ TableRows.prototype._playTrack = function (ev) {
 TableRows.prototype._mutateCurrentIndex = function (newIndex) {
   var oldIndex = this._currentIndex
 
-  document.getElementById(`track-${oldIndex}]`).classList.toggle(styles.playing, false)
-  document.getElementById(`track-${newIndex}]`).classList.toggle(styles.playing, true)
+  if (oldIndex) document.getElementById(`track-${oldIndex}`).classList.toggle(styles.playing, false)
+  if (newIndex) document.getElementById(`track-${newIndex}`).classList.toggle(styles.playing, true)
 
   this._currentIndex = newIndex
 }
 
 TableRows.prototype._mutateSelectedIndex = function (newIndex) {
   var oldIndex = this._selectedKey
-  console.log(`track-${newIndex}`)
   if (oldIndex) document.getElementById(`track-${oldIndex}`).classList.toggle(styles.selected, false)
   if (newIndex) document.getElementById(`track-${newIndex}`).classList.toggle(styles.selected, true)
 
