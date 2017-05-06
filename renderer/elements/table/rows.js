@@ -30,7 +30,7 @@ TableRows.prototype = Object.create(Component.prototype)
 
 TableRows.prototype._selectTrack = function (ev) {
   var t = ev.target
-  while (t && !t.id) t = t.parentNode
+  while (t && !t.id) t = t.parentNode // Bubble up
   if (t && t.tagName === 'TR') {
     var index = Number(t.id.replace('track-', ''))
     this._emit('library:select', index)
@@ -39,7 +39,7 @@ TableRows.prototype._selectTrack = function (ev) {
 
 TableRows.prototype._playTrack = function (ev) {
   var t = ev.target
-  while (t && !t.id) t = t.parentNode
+  while (t && !t.id) t = t.parentNode // Bubble up
   if (t && t.tagName === 'TR') {
     var index = Number(t.id.replace('track-', ''))
     this._emit('player:queue', index)
@@ -49,17 +49,22 @@ TableRows.prototype._playTrack = function (ev) {
 
 TableRows.prototype._mutateCurrentIndex = function (newIndex) {
   var oldIndex = this._currentIndex
+  var oldEl = document.getElementById(`track-${oldIndex}`)
+  var newEl = document.getElementById(`track-${newIndex}`)
 
-  if (oldIndex) document.getElementById(`track-${oldIndex}`).classList.toggle(styles.playing, false)
-  if (newIndex) document.getElementById(`track-${newIndex}`).classList.toggle(styles.playing, true)
+  if (oldEl) oldEl.classList.toggle(styles.playing, false)
+  if (newEl) newEl.classList.toggle(styles.playing, true)
 
   this._currentIndex = newIndex
 }
 
 TableRows.prototype._mutateSelectedIndex = function (newIndex) {
   var oldIndex = this._selectedKey
-  if (oldIndex) document.getElementById(`track-${oldIndex}`).classList.toggle(styles.selected, false)
-  if (newIndex) document.getElementById(`track-${newIndex}`).classList.toggle(styles.selected, true)
+  var oldEl = document.getElementById(`track-${oldIndex}`)
+  var newEl = document.getElementById(`track-${newIndex}`)
+
+  if (oldEl) oldEl.classList.toggle(styles.selected, false)
+  if (newEl) newEl.classList.toggle(styles.selected, true)
 
   this._selectedKey = newIndex
 }

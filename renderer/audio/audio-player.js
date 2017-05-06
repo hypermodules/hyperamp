@@ -15,7 +15,7 @@ function AudioPlayer (audioNode, state) {
   this.trackDict = state.trackDict
   this.trackOrder = state.trackOrder
   this.currentIndex = state.currentIndex
-  this.queue(this.currentIndex)
+  this.queue(state.currentIndex)
   this.audio.volume = state.volume
   this.audio.muted = state.muted
   this.seeking = false
@@ -28,6 +28,8 @@ function AudioPlayer (audioNode, state) {
   this._timeListener = this.audio.addEventListener('timeupdate', function (ev) {
     if (!self.seeking) self.emit('timeupdate', self.audio.currentTime)
   })
+
+  console.log(this)
 }
 
 AudioPlayer.prototype = Object.create(Nanobus.prototype)
@@ -47,9 +49,9 @@ AudioPlayer.prototype.seekDebounce = function () {
 AudioPlayer.prototype.queue = function (newIndex) {
   this.currentIndex = newIndex
   var key = this.trackOrder[this.currentIndex]
-  this.emit('queued', key)
   var track = this.trackDict[key]
-  if (track && track.filePath) this.audio.src = track.filePath
+  this.emit('queued', track)
+  if (track && track.filepath) this.audio.src = track.filepath
 }
 
 AudioPlayer.prototype.play = function () {
