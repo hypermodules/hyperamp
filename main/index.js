@@ -131,12 +131,14 @@ app.on('ready', () => {
                                             .filter(filterList(state.search))
                                             .sort(sortList)
     broadcast('track-dict', newTrackDict, newTrackOrder, state.paths)
+    console.log('done scanning. found ' + Object.keys(newTrackDict).length + ' tracks')
   }
 
   ipcMain.on('update-library', function (ev, paths) {
     if (state.loading) state.loading.destroy()
     state.paths = paths
     state.loading = makeTrackDict(paths, handleNewTracks)
+    console.log('scanning ' + paths)
   })
 
   function search (ev, searchString) {

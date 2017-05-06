@@ -29,14 +29,22 @@ function TableRows (opts) {
 TableRows.prototype = Object.create(Component.prototype)
 
 TableRows.prototype._selectTrack = function (ev) {
-  var index = ev.target.dataset.index
-  this._emit('player:select', index)
+  var t = ev.target
+  while (t && !t.id) t = t.parentNode
+  if (t && t.tagName === 'TR') {
+    var index = Number(t.id.replace('track-', ''))
+    this._emit('library:select', index)
+  }
 }
 
 TableRows.prototype._playTrack = function (ev) {
-  var index = ev.target.dataset.index
-  this._emit('player:queue', index)
-  this._emit('player:play')
+  var t = ev.target
+  while (t && !t.id) t = t.parentNode
+  if (t && t.tagName === 'TR') {
+    var index = Number(t.id.replace('track-', ''))
+    this._emit('player:queue', index)
+    this._emit('player:play')
+  }
 }
 
 TableRows.prototype._mutateCurrentIndex = function (newIndex) {
@@ -50,9 +58,9 @@ TableRows.prototype._mutateCurrentIndex = function (newIndex) {
 
 TableRows.prototype._mutateSelectedIndex = function (newIndex) {
   var oldIndex = this._selectedKey
-
-  document.getElementById(`track-${oldIndex}]`).classList.toggle(styles.selected, false)
-  document.getElementById(`track-${newIndex}]`).classList.toggle(styles.selected, true)
+  console.log(`track-${newIndex}`)
+  if (oldIndex) document.getElementById(`track-${oldIndex}`).classList.toggle(styles.selected, false)
+  if (newIndex) document.getElementById(`track-${newIndex}`).classList.toggle(styles.selected, true)
 
   this._selectedKey = newIndex
 }
@@ -68,8 +76,6 @@ TableRows.prototype._rowMap = function (key, idx) {
   return html`
     <tr id="track-${idx}"
         data-key=${key}
-        onclick=${this._selectTrack}
-        ondblclick=${this._playTrack}
         className="${classNames(classes)}">
       <td>${meta.title}</td>
       <td class="${styles.time}">${meta.duration ? fd(meta.duration * 1000) : ''}</td>
@@ -88,9 +94,9 @@ TableRows.prototype._render = function (state, emit) {
   // Current index is the index of a queued track
   this._currentIndex = state.player.currentIndex
   // Selected index is the index of the highlighted track
-  this._selectedIndex = state.player.selectedIndex
+  this._selectedIndex = state.library.selectedIndex
 
-  return html`<tbody>${this._trackOrder.map(this._rowMap)}</tbody>`
+  return html`<tbody id='track-table'>${this._trackOrder.map(this._rowMap)}</tbody>`
 }
 
 TableRows.prototype._update = function (state, emit) {
@@ -102,11 +108,34 @@ TableRows.prototype._update = function (state, emit) {
   if (this._currentIndex !== state.player.currentIndex) {
     this._mutateCurrentIndex(state.player.currentIndex)
   }
-  if (this._selectedIndex !== state.player.selectedIndex) {
-    this._mutateSelectedIndex(state.player.selectedIndex)
+  if (this._selectedIndex !== state.library.selectedIndex) {
+    this._mutateSelectedIndex(state.library.selectedIndex)
   }
   // Cache!
   return false
+}
+
+TableRows.prototype._load = function () {
+  this._element.addEventListener('click', this._selectTrack, {
+    capture: false,
+    passive: true
+  })
+  this._element.addEventListener('dblclick', this._playTrack, {
+    capture: false,
+    passive: true
+  })
+  console.log(this._element)
+}
+
+TableRows.prototype._unload = function () {
+  this._element.removeEventListener('click', this._selectTrack, {
+    capture: false,
+    passive: true
+  })
+  this._element.removeEventListener('dblclick', this._playTrack, {
+    capture: false,
+    passive: true
+  })
 }
 
 module.exports = TableRows

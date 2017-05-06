@@ -11,7 +11,6 @@ module.exports = makeTrackDict
 
 function makeTrackDict (paths, cb) {
   var newTrackDict = {}
-  console.log('scanning ' + paths)
   var dest = concatTrackDict(newTrackDict)
   pump(walker(paths), FileFilter(), dest, handleEos)
   // Return dest so we can destroy it
