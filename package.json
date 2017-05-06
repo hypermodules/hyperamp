@@ -12,7 +12,8 @@
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
   "dependencies": {
-    "cache-component": "^4.0.1",
+    "@bret/truthy": "^1.0.1",
+    "cache-component": "^4.0.2",
     "choo": "^5.2.0",
     "choo-log": "^6.0.0",
     "classnames": "^2.2.5",
@@ -23,6 +24,7 @@
     "electron-default-menu": "^1.0.0",
     "electron-window-state": "^4.0.2",
     "entypo": "^2.0.0",
+    "flush-write-stream": "^1.0.2",
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
     "global": "^4.3.2",
@@ -35,7 +37,9 @@
     "nanocomponent": "^4.0.0",
     "nanologger": "^1.0.2",
     "nanotick": "^1.1.6",
+    "pump": "^1.0.2",
     "run-parallel": "^1.1.6",
+    "through2-filter": "^2.0.0",
     "xtend": "^4.0.1"
   },
   "devDependencies": {

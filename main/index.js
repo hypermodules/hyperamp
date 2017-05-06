@@ -3,17 +3,24 @@ var audio = require('./audio')
 var menu = require('./menu')
 var player = require('./player')
 var Config = require('electron-config')
+var userConfig = require('./config')
 var xtend = require('xtend')
+// var get = require('lodash.get')
+var makeTrackDict = require('./library')
 
 var persist = new Config({ name: 'hyperamp-persist' })
 
 var state = xtend({
-  playlist: [],
-  current: {},
-  volume: 50,
+  paths: [], // USERCONFIG: Paths for seraching for songs
+  trackDict: {}, // object of known tracks
+  trackOrder: [], // array of track keys
+  currentIndex: null, // Currently queued track index
+  loading: false, // Mutex for performing a scan for new tracks
+  search: '', // search string used to derive current trackOrder
+  volume: 0.50,
   playing: false,
   muted: false
-}, persist.store)
+}, persist.store, userConfig.store)
 
 module.exports = state
 
@@ -22,6 +29,7 @@ app.on('ready', () => {
   audio.init()
   player.init()
 
+  // Emit things to all windows
   var windows = [player, audio]
   function broadcast (/* args */) {
     var args = [].slice.call(arguments, 0)
@@ -38,16 +46,9 @@ app.on('ready', () => {
 
   ipcMain.on('volume', volume)
 
-  function playlist (ev, playlist) {
-    // player -> main
-    state.playlist = playlist
-  }
-
-  ipcMain.on('playlist', playlist)
-
-  function queue (ev, meta) {
-    state.current = meta
-    broadcast('queue', meta)
+  function queue (ev, newIndex) {
+    state.currentIndex = newIndex
+    broadcast('queue', newIndex)
   }
 
   ipcMain.on('queue', queue)
@@ -71,23 +72,23 @@ app.on('ready', () => {
   }
 
   function prev () {
-    if (state.playlist.length > 0) {
-      var prevIndex = state.current.index > 0 ? state.current.index - 1 : state.playlist.length - 1
-      state.current = state.playlist[prevIndex]
-      broadcast('queue', state.current)
+    if (state.trackOrder.length > 0) {
+      var newIndex = state.currentIndex > 0 ? state.currentIndex - 1 : state.trackOrder.length - 1
+      state.currentIndex = newIndex
+      broadcast('queue', newIndex)
       if (state.playing) { broadcast('play') }
-    }
+    } else { console.warn('Can go back, empty trackOrder array') }
   }
 
   ipcMain.on('prev', prev)
 
   function next () {
-    if (state.playlist.length > 0) {
-      var nextIndex = state.current.index < state.playlist.length - 1 ? state.current.index + 1 : 0
-      state.current = state.playlist[nextIndex]
-      broadcast('queue', state.current)
+    if (state.trackOrder.length > 0) {
+      var newIndex = state.currentIndex < state.trackOrder.length - 1 ? state.currentIndex + 1 : 0
+      state.currentIndex = newIndex
+      broadcast('queue', newIndex)
       if (state.playing) { broadcast('play') }
-    }
+    } else { console.warn('Can go forward, empty trackOrder array') }
   }
 
   ipcMain.on('next', next)
@@ -117,20 +118,84 @@ app.on('ready', () => {
   function seek (ev, newTime) {
     // player -> audio
     state.currentTime = newTime
-    if (player.win) audio.win.send('seek', newTime)
+    if (audio.win) audio.win.send('seek', newTime)
   }
 
   ipcMain.on('seek', seek)
 
-  ipcMain.on('sync-state', function (ev) {
-    ev.sender.send('sync-state', state)
+  function handleNewTracks (err, newTrackDict) {
+    state.loading = false
+    if (err) return console.warn(err)
+    state.trackDict = newTrackDict
+    var newTrackOrder = state.trackOrder = Object.keys(newTrackDict)
+                                            .filter(filterList(state.search))
+                                            .sort(sortList)
+    broadcast('track-dict', newTrackDict, newTrackOrder, state.paths)
+    console.log('done scanning. found ' + Object.keys(newTrackDict).length + ' tracks')
+  }
+
+  ipcMain.on('update-library', function (ev, paths) {
+    if (state.loading) state.loading.destroy()
+    state.paths = paths
+    state.loading = makeTrackDict(paths, handleNewTracks)
+    console.log('scanning ' + paths)
   })
+
+  function search (ev, searchString) {
+    state.search = searchString
+    var newTrackOrder = state.trackOrder = Object.keys(state.trackDict)
+                                              .filter(filterList(state.search))
+                                              .sort(sortList)
+    broadcast('track-order', newTrackOrder)
+  }
+
+  ipcMain.on('search', search)
+
+  // Sync All State to anyone who asks for it
+
+  function syncState (ev) {
+    ev.sender.send('sync-state', state)
+  }
+
+  ipcMain.on('sync-state', syncState)
+
+  // System Shortcuts
 
   globalShortcut.register('MediaNextTrack', next)
   globalShortcut.register('MediaPreviousTrack', prev)
-  // globalShortcut.register('MediaStop', )
   globalShortcut.register('MediaPlayPause', playPause)
+  // globalShortcut.register('MediaStop', stop)
 })
+
+function sortList (keyA, keyB) {
+  var aObj = state.trackDict[keyA]
+  var bObj = state.trackDict[keyB]
+    // sort by artist
+  if (aObj.artist < bObj.artist) return -1
+  if (aObj.artist > bObj.artist) return 1
+
+    // then by album
+  if (aObj.album < bObj.album) return -1
+  if (aObj.album > bObj.album) return 1
+
+    // then by title
+  if (aObj.title < bObj.title) return -1
+  if (aObj.title > bObj.title) return 1
+  return 0
+}
+
+function filterList (search) {
+  return function (key) {
+    var meta = state.trackDict[key]
+    var yep = Object.keys(meta)
+      .map(i => (meta[i] + '').toLowerCase())
+      .filter(s => s.includes(search.toLowerCase()))
+      .length > 0
+
+    if (yep) return meta
+    return false
+  }
+}
 
 function allWindowsClosed () {
   if (process.platform !== 'darwin') app.quit()
@@ -154,8 +219,10 @@ function beforeQuit (e) {
     app.quit()
   }, 5000) // quit after 5 secs, at most
   persist.set({
-    playlist: state.playlist,
-    current: state.current,
+    trackDict: state.trackDict,
+    trackOrder: state.trackOrder,
+    currentIndex: state.currentIndex,
+    search: state.search,
     volume: state.volume
   })
   app.quit()

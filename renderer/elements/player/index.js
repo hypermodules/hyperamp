@@ -6,6 +6,7 @@ var buttonStyles = require('../button/styles')
 var Component = require('cache-component')
 var Range = require('../range')
 var assert = require('assert')
+var truthy = require('@bret/truthy')
 
 module.exports = PlayerControls
 
@@ -21,11 +22,12 @@ function PlayerControls (opts) {
   }, opts)
 
   // State
-  this._position = null
-  this._current = {}
+  this._position = 0
+  this._currentIndex = null
   this._emit = null
   this._playing = false
   this._disabled = false
+  this._duration = 1
 
   // Bound Methods
   this._scalePosition = this._scalePosition.bind(this)
@@ -47,7 +49,7 @@ PlayerControls.prototype._scalePosition = function (position, duration) {
 }
 
 PlayerControls.prototype._handleSeek = function (val) {
-  this._emit('player:seek', (val / this._opts.max) * this._current.duration)
+  this._emit('player:seek', (val / this._opts.max) * this._duration)
 }
 
 PlayerControls.prototype._handlePrev = function () {
@@ -66,17 +68,21 @@ PlayerControls.prototype._handlePlayPause = function () {
 PlayerControls.prototype._render = function (state, emit) {
   assert.equal(typeof emit, 'function', 'PlaybackCluster: emit should be a function')
   this._emit = emit
-  this._current = state.player.current
+  this._currentIndex = state.player.currentIndex
   this._playing = state.player.playing
   this._position = state.player.currentTime
-  this._disabled = state.player.current.title === null
+  var key = state.library.trackOrder[this._currentIndex]
+  var track = state.library.trackDict[key]
+  this._disabled = !truthy(state.player.currentIndex)
+  console.log(this._disabled)
+  if (track) this._duration = track.duration
 
   return html`
     <div class='${styles.controls}'>
       ${button({ className: styles.scrubberControl },
         this._positionSlider.render({
           onchange: this._handleSeek,
-          value: this._scalePosition(this._position, this._current.duration),
+          value: track ? this._scalePosition(this._position, track.duration) : 0,
           className: styles.scrubber,
           disabled: this._disabled
         })
@@ -101,9 +107,9 @@ PlayerControls.prototype._render = function (state, emit) {
 
 PlayerControls.prototype._update = function (state, emit) {
   this._emit = emit
-  if (this._current !== state.player.current) return true
+  if (this._currentIndex !== state.player.currentIndex) return true
   if (this._playing !== state.player.playing) return true
   if (this._position !== state.player.currentTime) return true
-  if (this._disabled !== (state.player.current.title === null)) return true
+  if (this._disabled !== truthy(state.player.currentIndex)) return true
   return false
 }

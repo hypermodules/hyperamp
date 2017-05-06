@@ -1,5 +1,4 @@
 var { ipcRenderer } = require('electron')
-var artwork = require('../lib/artwork')
 
 module.exports = playerStore
 
@@ -9,12 +8,11 @@ function playerStore (state, emitter) {
   if (!localState) {
     localState = state.player = {}
     localState.playing = false
-    localState.current = {}
-    localState.selected = {}
+    localState.currentIndex = 0
+    localState.currentTime = 0.0
     localState.volume = 0.50
     localState.muted = false
-    localState.currentTime = 0.1
-    localState.picture = null
+    localState.pictureHash = null
   }
 
   function muted (bool) {
@@ -35,18 +33,8 @@ function playerStore (state, emitter) {
     localState.volume = lev
   }
 
-  function current (meta) {
-    localState.current = meta
-    emitter.emit('render')
-  }
-
-  function picture (hash) {
-    localState.picture = hash
-    emitter.emit('render')
-  }
-
-  function select (meta) {
-    localState.selected = meta
+  function current (newIndex) {
+    localState.currentIndex = newIndex
     emitter.emit('render')
   }
 
@@ -57,20 +45,14 @@ function playerStore (state, emitter) {
   emitter.on('player:next', next)
   emitter.on('player:mute', mute)
   emitter.on('player:unmute', unmute)
-  emitter.on('player:updatePlaylist', updatePlaylist)
   emitter.on('player:seek', seek)
   emitter.on('player:changeVolume', changeVolume)
   emitter.on('player:sync-state', syncState)
   emitter.on('player:time-update', currentTime)
-  emitter.on('player:select', select)
 
-  function queue (meta) {
-    ipcRenderer.send('queue', meta)
-    current(meta)
-    artwork(meta.filepath, (err, hash) => {
-      if (err) return emitter.emit('error', err)
-      picture(hash)
-    })
+  function queue (newIndex) {
+    ipcRenderer.send('queue', newIndex)
+    current(newIndex)
   }
 
   function play () {
@@ -85,10 +67,14 @@ function playerStore (state, emitter) {
 
   function next () {
     ipcRenderer.send('next')
+    currentTime(0)
+    emitter.emit('render')
   }
 
   function prev () {
     ipcRenderer.send('prev')
+    currentTime(0)
+    emitter.emit('render')
   }
 
   function mute () {
@@ -99,10 +85,6 @@ function playerStore (state, emitter) {
   function unmute () {
     ipcRenderer.send('unmute')
     muted(false)
-  }
-
-  function updatePlaylist (playlist) {
-    ipcRenderer.send('playlist', playlist)
   }
 
   function seek (time) {
@@ -117,7 +99,7 @@ function playerStore (state, emitter) {
 
   function syncState (mainState) {
     localState.playing = mainState.playing
-    localState.current = mainState.current
+    localState.currentIndex = mainState.currentIndex
     localState.volume = mainState.volume
     localState.muted = mainState.muted
     emitter.emit('render')
@@ -125,12 +107,12 @@ function playerStore (state, emitter) {
 
   ipcRenderer.on('play', () => playing(true))
   ipcRenderer.on('pause', () => playing(false))
-  ipcRenderer.on('queue', (ev, meta) => current(meta))
+  ipcRenderer.on('queue', (ev, newIndex) => current(newIndex))
   ipcRenderer.on('mute', () => muted(true))
   ipcRenderer.on('unmute', () => muted(false))
   ipcRenderer.on('volume', (ev, lev) => volume(lev))
   ipcRenderer.on('timeupdate', (ev, time) => {
-    emitter.emit('player:time-update', time)
+    currentTime(time)
     emitter.emit('render')
   })
   ipcRenderer.on('sync-state', (ev, mainState) => emitter.emit('player:sync-state', mainState))
