@@ -50,7 +50,8 @@ module.exports = css`
 
   .tableBody {
     flex: 1 0;
-    overflow: overlay;
+    will-change: transform;
+    overflow: auto;
   }
 
   /* use colgroup to sanely apply width properties  */

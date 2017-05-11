@@ -88,8 +88,10 @@ function playerStore (state, emitter) {
   }
 
   function seek (time) {
-    ipcRenderer.send('seek', time)
-    currentTime(time)
+    window.requestAnimationFrame(() => {
+      ipcRenderer.send('seek', time)
+      currentTime(time)
+    })
   }
 
   function changeVolume (lev) {
@@ -112,8 +114,10 @@ function playerStore (state, emitter) {
   ipcRenderer.on('unmute', () => muted(false))
   ipcRenderer.on('volume', (ev, lev) => volume(lev))
   ipcRenderer.on('timeupdate', (ev, time) => {
-    currentTime(time)
-    emitter.emit('render')
+    window.requestAnimationFrame(() => {
+      currentTime(time)
+      emitter.emit('render')
+    })
   })
   ipcRenderer.on('sync-state', (ev, mainState) => emitter.emit('player:sync-state', mainState))
 }
