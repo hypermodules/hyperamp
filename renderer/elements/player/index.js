@@ -74,7 +74,6 @@ PlayerControls.prototype._render = function (state, emit) {
   var key = state.library.trackOrder[this._currentIndex]
   var track = state.library.trackDict[key]
   this._disabled = !truthy(state.player.currentIndex)
-  console.log(this._disabled)
   if (track) this._duration = track.duration
 
   return html`

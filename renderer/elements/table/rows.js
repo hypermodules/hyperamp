@@ -100,7 +100,11 @@ TableRows.prototype._render = function (state, emit) {
   // Selected index is the index of the highlighted track
   this._selectedIndex = state.library.selectedIndex
 
-  return html`<tbody id='track-table'>${this._trackOrder.map(this._rowMap)}</tbody>`
+  return html`<tbody id='track-table'
+                     ondblclick=${this._playTrack}
+                     onclick=${this._selectTrack}>
+                ${this._trackOrder.map(this._rowMap)}
+              </tbody>`
 }
 
 TableRows.prototype._update = function (state, emit) {
@@ -117,29 +121,6 @@ TableRows.prototype._update = function (state, emit) {
   }
   // Cache!
   return false
-}
-
-TableRows.prototype._load = function () {
-  this._element.addEventListener('click', this._selectTrack, {
-    capture: false,
-    passive: true
-  })
-  this._element.addEventListener('dblclick', this._playTrack, {
-    capture: false,
-    passive: true
-  })
-  console.log(this._element)
-}
-
-TableRows.prototype._unload = function () {
-  this._element.removeEventListener('click', this._selectTrack, {
-    capture: false,
-    passive: true
-  })
-  this._element.removeEventListener('dblclick', this._playTrack, {
-    capture: false,
-    passive: true
-  })
 }
 
 module.exports = TableRows
