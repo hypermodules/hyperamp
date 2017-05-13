@@ -46,3 +46,5 @@ renderer/dist/*
 !.keep
 
 dist
+
+.vscode

@@ -128,8 +128,8 @@ app.on('ready', () => {
     if (err) return console.warn(err)
     state.trackDict = newTrackDict
     var newTrackOrder = state.trackOrder = Object.keys(newTrackDict)
-                                            .filter(filterList(state.search))
-                                            .sort(sortList)
+      .filter(filterList(state.search))
+      .sort(sortList)
     broadcast('track-dict', newTrackDict, newTrackOrder, state.paths)
     console.log('done scanning. found ' + Object.keys(newTrackDict).length + ' tracks')
   }
@@ -144,8 +144,8 @@ app.on('ready', () => {
   function search (ev, searchString) {
     state.search = searchString
     var newTrackOrder = state.trackOrder = Object.keys(state.trackDict)
-                                              .filter(filterList(state.search))
-                                              .sort(sortList)
+      .filter(filterList(state.search))
+      .sort(sortList)
     broadcast('track-order', newTrackOrder)
   }
 
@@ -164,21 +164,21 @@ app.on('ready', () => {
   globalShortcut.register('MediaNextTrack', next)
   globalShortcut.register('MediaPreviousTrack', prev)
   globalShortcut.register('MediaPlayPause', playPause)
-  // globalShortcut.register('MediaStop', stop)
+// globalShortcut.register('MediaStop', stop)
 })
 
 function sortList (keyA, keyB) {
   var aObj = state.trackDict[keyA]
   var bObj = state.trackDict[keyB]
-    // sort by artist
+  // sort by artist
   if (aObj.artist < bObj.artist) return -1
   if (aObj.artist > bObj.artist) return 1
 
-    // then by album
+  // then by album
   if (aObj.album < bObj.album) return -1
   if (aObj.album > bObj.album) return 1
 
-    // then by title
+  // then by title
   if (aObj.title < bObj.title) return -1
   if (aObj.title > bObj.title) return 1
   return 0
@@ -188,9 +188,9 @@ function filterList (search) {
   return function (key) {
     var meta = state.trackDict[key]
     var yep = Object.keys(meta)
-      .map(i => (meta[i] + '').toLowerCase())
-      .filter(s => s.includes(search.toLowerCase()))
-      .length > 0
+        .map(i => (meta[i] + '').toLowerCase())
+        .filter(s => s.includes(search.toLowerCase()))
+        .length > 0
 
     if (yep) return meta
     return false

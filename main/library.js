@@ -65,6 +65,6 @@ function parseMetadata (data, cb) {
       title = path.basename(basename, ext)
     }
 
-    cb(null, { title, artist, album, duration, filepath })
+    cb(null, {title, artist, album, duration, filepath})
   })
 }
