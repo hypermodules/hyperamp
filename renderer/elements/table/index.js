@@ -32,7 +32,7 @@ Table.prototype._render = function (state, emit) {
         </table>
       </div>
       <div class=${styles.tableBody}>
-        <table class="${styles.mediaList} ${styles.tableBody}">
+        <table class="${styles.mediaList}">
           ${this._tableRows.render(state, emit)}
         </table>
       </div>
