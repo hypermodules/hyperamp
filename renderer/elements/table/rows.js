@@ -2,7 +2,6 @@ var html = require('choo/html')
 var fd = require('format-duration')
 var classNames = require('classnames')
 var Component = require('cache-component')
-var HyperList = require('hyperlist')
 var document = require('global/document')
 var styles = require('./styles')
 
@@ -17,7 +16,6 @@ function TableRows (opts) {
   this._trackDict = {}
   this._currentIndex = null
   this._selectedIndex = null
-  this._hyperListContainer = null
 
   // Bound methods
   this._selectTrack = this._selectTrack.bind(this)
@@ -71,9 +69,8 @@ TableRows.prototype._mutateSelectedIndex = function (newIndex) {
   this._selectedKey = newIndex
 }
 
-TableRows.prototype._rowMap = function (idx) {
+TableRows.prototype._rowMap = function (key, idx) {
   // Look up track info
-  var key = this._trackOrder[idx]
   var meta = this._trackDict[key]
   // Generate state based styles
   var classes = {}
@@ -102,20 +99,12 @@ TableRows.prototype._render = function (state, emit) {
   this._currentIndex = state.player.currentIndex
   // Selected index is the index of the highlighted track
   this._selectedIndex = state.library.selectedIndex
-  // ${this._trackOrder.map(this._rowMap)}
-  var self = this
-  var container = html`
-              <tbody
-                ondblclick=${this._playTrack}
-                onclick=${this._selectTrack}></tbody>`
-  HyperList.create(container, {
-    height: 300,
-    itemHeight: 20,
-    total: self._trackOrder.length,
-    generate: self._rowMap
-  })
 
-  return container
+  return html`<tbody id='track-table'
+                     ondblclick=${this._playTrack}
+                     onclick=${this._selectTrack}>
+                ${this._trackOrder.map(this._rowMap)}
+              </tbody>`
 }
 
 TableRows.prototype._update = function (state, emit) {
