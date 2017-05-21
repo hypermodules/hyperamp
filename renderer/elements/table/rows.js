@@ -3,6 +3,7 @@ var fd = require('format-duration')
 var classNames = require('classnames')
 var Component = require('cache-component')
 var document = require('global/document')
+var nanomorph = require('nanomorph')
 var styles = require('./styles')
 
 function TableRows (opts) {
@@ -23,6 +24,7 @@ function TableRows (opts) {
   this._rowMap = this._rowMap.bind(this)
   this._mutateCurrentIndex = this._mutateCurrentIndex.bind(this)
   this._mutateSelectedIndex = this._mutateSelectedIndex.bind(this)
+  this._handleOnScroll = this._handleOnScroll.bind(this)
 
   Component.call(this)
 }
@@ -78,7 +80,8 @@ TableRows.prototype._rowMap = function (key, idx) {
   classes[styles.selected] = this._selectedIndex === idx
 
   return html`
-    <tr id="track-${idx}"
+    <tr style=""
+        id="track-${idx}"
         data-key=${key}
         className="${classNames(classes)}">
       <td>${meta.title}</td>
@@ -87,6 +90,13 @@ TableRows.prototype._rowMap = function (key, idx) {
       <td>${meta.album}</td>
     </tr>
   `
+}
+
+TableRows.prototype._handleOnScroll = function (ev) {
+  var startSlice = Math.floor(this._element.scrollTop / 24)
+  var endSlice = Math.floor(this._element.clientHeight / 24) + startSlice
+  console.log(startSlice, endSlice)
+  // console.log(this._element.clientHeight / 24)
 }
 
 TableRows.prototype._render = function (state, emit) {
@@ -100,11 +110,25 @@ TableRows.prototype._render = function (state, emit) {
   // Selected index is the index of the highlighted track
   this._selectedIndex = state.library.selectedIndex
 
-  return html`<tbody id='track-table'
-                     ondblclick=${this._playTrack}
-                     onclick=${this._selectTrack}>
-                ${this._trackOrder.map(this._rowMap)}
-              </tbody>`
+  var initialSlice = 100
+
+  if (this._element) {
+    initialSlice = Math.floor(this._element.clientHeight / 24)
+  }
+
+  console.log(initialSlice)
+
+  return html`
+    <div class=${styles.tableBody} onscroll=${this._handleOnScroll}>
+      <div style="height: ${state.library.trackOrder.length * 24}px">
+        <table class="${styles.mediaList}">
+          <tbody ondblclick=${this._playTrack}
+                 onclick=${this._selectTrack}>
+            ${this._trackOrder.slice(0, initialSlice).map(this._rowMap)}
+          </tbody>
+        </table>
+      </div>
+    </div>`
 }
 
 TableRows.prototype._update = function (state, emit) {

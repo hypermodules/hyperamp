@@ -78,6 +78,10 @@
     figures "^1.4.0"
     rx "^4.0.7"
 
+"@types/node@^7.0.18":
+  version "7.0.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.21.tgz#22a890f19b26cff9b6699b493dea1bcee4410da1"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -119,9 +123,9 @@ ajv@^4.7.0, ajv@^4.9.1:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
 
-ajv@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.1.1.tgz#6d9495b78eec4f2930536b2778ea40aa8645647a"
+ajv@^5.1.2:
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.1.3.tgz#423d1c302c61e617081b30ca05f595ec51408e33"
   dependencies:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
@@ -295,8 +299,8 @@ bcrypt-pbkdf@^1.0.0:
     tweetnacl "^0.14.3"
 
 bel@^4.5.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/bel/-/bel-4.6.1.tgz#fd3a445914e90ff32b08e92192f557f15845cd34"
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/bel/-/bel-4.6.0.tgz#3ade16e236ab2204d8d1c66eac4bd573793ac999"
   dependencies:
     global "^4.3.0"
     hyperx "^2.3.0"
@@ -365,13 +369,12 @@ builtins@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/builtins/-/builtins-1.0.3.tgz#cb94faeb61c8696451db36534e1422f94f0aee88"
 
-cache-component@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/cache-component/-/cache-component-4.0.2.tgz#155fea42852c34433888b4caea9266350222d506"
+cache-component@^5.0.0-1:
+  version "5.0.0-1"
+  resolved "https://registry.yarnpkg.com/cache-component/-/cache-component-5.0.0-1.tgz#3041dcbd8da9a7eccc45fb232de9c8c33ef3716e"
   dependencies:
     global "^4.3.1"
-    nanomorph "^4.0.4"
-    on-load "^3.2.0"
+    nanomorph "^4.0.5"
 
 caller-path@^0.1.0:
   version "0.1.0"
@@ -426,9 +429,9 @@ choo-log@^6.0.0:
   dependencies:
     nanologger "^1.0.1"
 
-choo@^5.2.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/choo/-/choo-5.4.0.tgz#4951b3ff98467ba3dee1f8756ea8677e647f793b"
+choo@^5.6.1:
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/choo/-/choo-5.6.1.tgz#d74a1ee784b4872b4c88fc65134133c9a3e52d45"
   dependencies:
     bel "^4.5.1"
     document-ready "^2.0.1"
@@ -682,11 +685,11 @@ debug@2.2.0:
   dependencies:
     ms "0.7.1"
 
-debug@2.6.6, debug@^2.1.1, debug@^2.1.3, debug@^2.2.0, debug@^2.5.1, debug@^2.6.1, debug@^2.6.3, debug@^2.6.6:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.6.tgz#a9fa6fbe9ca43cf1e79f73b75c0189cbb7d6db5a"
+debug@2.6.8, debug@^2.1.1, debug@^2.1.3, debug@^2.2.0, debug@^2.5.1, debug@^2.6.1, debug@^2.6.3, debug@^2.6.6:
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
   dependencies:
-    ms "0.7.3"
+    ms "2.0.0"
 
 decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
@@ -832,22 +835,22 @@ electron-builder-core@17.2.0:
   version "17.2.0"
   resolved "https://registry.yarnpkg.com/electron-builder-core/-/electron-builder-core-17.2.0.tgz#e235d11aae64bffbad36b601ac58173f9377f619"
 
-electron-builder-http@17.4.0, electron-builder-http@~17.4.0:
-  version "17.4.0"
-  resolved "https://registry.yarnpkg.com/electron-builder-http/-/electron-builder-http-17.4.0.tgz#031164561f47731987f2828b09fb8b145b1d64f2"
+electron-builder-http@17.9.0, electron-builder-http@~17.9.0:
+  version "17.9.0"
+  resolved "https://registry.yarnpkg.com/electron-builder-http/-/electron-builder-http-17.9.0.tgz#e760947b86c5dea1fb9a0ceff845cc21e7f881cc"
   dependencies:
-    debug "2.6.6"
+    debug "2.6.8"
     fs-extra-p "^4.3.0"
 
-electron-builder-util@17.4.0, electron-builder-util@~17.4.0:
-  version "17.4.0"
-  resolved "https://registry.yarnpkg.com/electron-builder-util/-/electron-builder-util-17.4.0.tgz#0fbbe24b385ba2f3e82aa3ff15db7828338de58f"
+electron-builder-util@17.9.0, electron-builder-util@~17.9.0:
+  version "17.9.0"
+  resolved "https://registry.yarnpkg.com/electron-builder-util/-/electron-builder-util-17.9.0.tgz#fee1e406bba100afdd0611661e39f1abde2b53f7"
   dependencies:
     "7zip-bin" "^2.0.4"
     bluebird-lst "^1.0.2"
     chalk "^1.1.3"
-    debug "2.6.6"
-    electron-builder-http "~17.4.0"
+    debug "2.6.8"
+    electron-builder-http "~17.9.0"
     fs-extra-p "^4.3.0"
     ini "^1.3.4"
     is-ci "^1.0.10"
@@ -856,23 +859,24 @@ electron-builder-util@17.4.0, electron-builder-util@~17.4.0:
     stat-mode "^0.2.2"
     tunnel-agent "^0.6.0"
 
-electron-builder@^17.0.1:
-  version "17.8.0"
-  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-17.8.0.tgz#a6ee1bbd0ab9be1aa9afa156ba8835f131e5b51d"
+electron-builder@^17.9.0:
+  version "17.9.0"
+  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-17.9.0.tgz#c138ed26c0307a656d0576d367ec99cb992e09f3"
   dependencies:
     "7zip-bin" "^2.0.4"
-    ajv "^5.1.1"
+    ajv "^5.1.2"
     ajv-keywords "^2.0.0"
     bluebird-lst "^1.0.2"
     chalk "^1.1.3"
     chromium-pickle-js "^0.2.0"
     cuint "^0.2.2"
+    debug "2.6.8"
     electron-builder-core "17.2.0"
-    electron-builder-http "17.4.0"
-    electron-builder-util "17.4.0"
+    electron-builder-http "17.9.0"
+    electron-builder-util "17.9.0"
     electron-download-tf "4.3.1"
     electron-osx-sign "0.4.4"
-    electron-publish "17.6.0"
+    electron-publish "17.9.0"
     fs-extra-p "^4.3.0"
     hosted-git-info "^2.4.2"
     is-ci "^1.0.10"
@@ -916,7 +920,7 @@ electron-debug@^1.0.1:
     electron-is-dev "^0.1.0"
     electron-localshortcut "^0.6.0"
 
-electron-default-menu@^1.0.0:
+electron-default-menu@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/electron-default-menu/-/electron-default-menu-1.0.1.tgz#3173c5018eb507404fec63bdf3b78c38eedba808"
 
@@ -989,18 +993,18 @@ electron-osx-sign@0.4.4:
     plist "^2.0.1"
     tempfile "^1.1.1"
 
-electron-publish@17.6.0:
-  version "17.6.0"
-  resolved "https://registry.yarnpkg.com/electron-publish/-/electron-publish-17.6.0.tgz#079115ce1a8e34e5b93d834b2fcc64c151ca35f2"
+electron-publish@17.9.0:
+  version "17.9.0"
+  resolved "https://registry.yarnpkg.com/electron-publish/-/electron-publish-17.9.0.tgz#5826ce22a06ff95e9d1cd6f4ee367703810a24bb"
   dependencies:
     bluebird-lst "^1.0.2"
     chalk "^1.1.3"
-    electron-builder-http "~17.4.0"
-    electron-builder-util "~17.4.0"
+    electron-builder-http "~17.9.0"
+    electron-builder-util "~17.9.0"
     fs-extra-p "^4.3.0"
     mime "^1.3.6"
 
-electron-rebuild@^1.4.0:
+electron-rebuild@^1.5.11:
   version "1.5.11"
   resolved "https://registry.yarnpkg.com/electron-rebuild/-/electron-rebuild-1.5.11.tgz#6ea660deb546a516e7efaa81cd5985d5664f245c"
   dependencies:
@@ -1022,10 +1026,11 @@ electron-window-state@^4.0.2:
     jsonfile "^2.2.3"
     mkdirp "^0.5.1"
 
-electron@1.6.8:
-  version "1.6.8"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-1.6.8.tgz#41cbbe7272ccd93339c040f856c0d6372a4ddb07"
+electron@^1.6.8:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-1.7.1.tgz#a93b8abd1fd6df794839d8602903aacbce74d388"
   dependencies:
+    "@types/node" "^7.0.18"
     electron-download "^3.0.1"
     extract-zip "^1.0.3"
 
@@ -1067,8 +1072,8 @@ es-to-primitive@^1.1.1:
     is-symbol "^1.0.1"
 
 es5-ext@^0.10.14, es5-ext@^0.10.9, es5-ext@~0.10.14:
-  version "0.10.18"
-  resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.18.tgz#dc239d3dce4c22b9c939aa180878837a3c0b5c92"
+  version "0.10.20"
+  resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.20.tgz#72a9b4fd5832797ba1bb65dceb2e25c04241c492"
   dependencies:
     es6-iterator "2"
     es6-symbol "~3.1"
@@ -1589,13 +1594,13 @@ getpass@^0.1.1:
     assert-plus "^1.0.0"
 
 glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@~7.1.1:
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.1.tgz#805211df04faaf1c63a3600306cdf5ade50b2ec8"
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
   dependencies:
     fs.realpath "^1.0.0"
     inflight "^1.0.4"
     inherits "2"
-    minimatch "^3.0.2"
+    minimatch "^3.0.4"
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
@@ -1728,8 +1733,8 @@ hyperx@^2.3.0:
     hyperscript-attribute-to-property "^1.0.0"
 
 ignore@^3.0.11, ignore@^3.0.9, ignore@^3.2.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.0.tgz#3812d22cbe9125f2c2b4915755a1b8abd745a001"
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.3.tgz#432352e57accd87ab3110e82d3fea0e47812156d"
 
 imurmurhash@^0.1.4:
   version "0.1.4"
@@ -2249,9 +2254,9 @@ ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
 
-ms@0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.3.tgz#708155a5e44e33f5fd0fc53e81d0d40a91be1fff"
+ms@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
 music-metadata@^0.6.1:
   version "0.6.3"
@@ -2290,10 +2295,16 @@ mz@^2.6.0:
     thenify-all "^1.0.0"
 
 nanobus@^3.1.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/nanobus/-/nanobus-3.2.1.tgz#3aaf07222449ae8b5bbcf1601e2ec66c9a3378ea"
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/nanobus/-/nanobus-3.3.0.tgz#bce5d5d435a5362c7dad7f9e90cd21959589be86"
   dependencies:
     nanotiming "^1.0.1"
+
+nanobus@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/nanobus/-/nanobus-4.0.0.tgz#474de512e0812ecc76269539a02661c9d034694a"
+  dependencies:
+    nanotiming "^5.0.0"
 
 nanocomponent@^4.0.0:
   version "4.0.2"
@@ -2313,7 +2324,7 @@ nanologger@^1.0.1, nanologger@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/nanologger/-/nanologger-1.0.3.tgz#673f29456ae16abe839abc0feeb64a6a135c557e"
 
-nanomorph@^4.0.0, nanomorph@^4.0.4:
+nanomorph@^4.0.0, nanomorph@^4.0.5:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/nanomorph/-/nanomorph-4.0.5.tgz#7e27cc5e28a05df0c278f53ba430f253f3ac3fac"
 
@@ -2340,6 +2351,10 @@ nanotick@^1.1.6:
 nanotiming@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/nanotiming/-/nanotiming-1.0.1.tgz#13e7a2e2767967974fedfff071edd39327f44ec3"
+
+nanotiming@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/nanotiming/-/nanotiming-5.0.0.tgz#2d480e882b1c79339f7473640610bcca67e3c7bc"
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -3185,9 +3200,9 @@ spdx-license-ids@^1.0.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-1.2.2.tgz#c9df7a3424594ade6bd11900d596696dc06bac57"
 
-spectron@^3.6.2:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/spectron/-/spectron-3.7.0.tgz#6862443dbb59c2193534fd3402004c6c37820348"
+spectron@^3.6.4:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/spectron/-/spectron-3.7.1.tgz#818f68584732187d757da1d7a352adfc89ba136b"
   dependencies:
     dev-null "^0.1.1"
     electron-chromedriver "~1.7.0"
@@ -3309,10 +3324,10 @@ string_decoder@~0.10.x:
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
 
 string_decoder@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.0.tgz#f06f41157b664d86069f84bdbdc9b0d8ab281667"
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.1.tgz#62e200f039955a6810d8df0a33ffc0f013662d98"
   dependencies:
-    buffer-shims "~1.0.0"
+    safe-buffer "^5.0.1"
 
 stringstream@~0.0.4:
   version "0.0.5"
@@ -3449,8 +3464,8 @@ thenify-all@^1.0.0, thenify-all@^1.6.0:
     thenify ">= 3.1.0 < 4"
 
 "thenify@>= 3.1.0 < 4":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/thenify/-/thenify-3.2.1.tgz#251fd1c80aff6e5cf57cb179ab1fcb724269bd11"
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/thenify/-/thenify-3.3.0.tgz#e69e38a1babe969b0108207978b9f62b88604839"
   dependencies:
     any-promise "^1.0.0"
 
