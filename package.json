@@ -46,7 +46,7 @@
     "@tap-format/spec": "^0.2.0",
     "dependency-check": "^2.8.0",
     "electron": "^1.6.8",
-    "electron-builder": "^17.9.0",
+    "electron-builder": "^18.0.1",
     "electron-rebuild": "^1.5.11",
     "npm-run-all": "^4.0.1",
     "snazzy": "^7.0.0",

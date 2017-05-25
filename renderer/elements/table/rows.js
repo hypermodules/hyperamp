@@ -3,7 +3,6 @@ var fd = require('format-duration')
 var classNames = require('classnames')
 var Component = require('cache-component')
 var document = require('global/document')
-var nanomorph = require('nanomorph')
 var styles = require('./styles')
 
 function TableRows (opts) {
@@ -17,6 +16,10 @@ function TableRows (opts) {
   this._trackDict = {}
   this._currentIndex = null
   this._selectedIndex = null
+  this._sliceLength = 500
+  this._sliceStartIndex = 0
+  this._rowHeight = 24
+  this._scrollWindowHeight = 1024
 
   // Bound methods
   this._selectTrack = this._selectTrack.bind(this)
@@ -110,21 +113,22 @@ TableRows.prototype._render = function (state, emit) {
   // Selected index is the index of the highlighted track
   this._selectedIndex = state.library.selectedIndex
 
-  var initialSlice = 100
+  var scrollTop = 0
 
   if (this._element) {
-    initialSlice = Math.floor(this._element.clientHeight / 24)
+    // table mounted, re-slice
+    scrollTop = this._element.scrollTop
   }
 
-  console.log(initialSlice)
-
   return html`
-    <div class=${styles.tableBody} onscroll=${this._handleOnScroll}>
-      <div style="height: ${state.library.trackOrder.length * 24}px">
+    <div class=${styles.tableScrollWindow}
+         onscroll=${this._handleOnScroll}>
+      <div class='${styles.tableContainer}'
+           style="height: ${state.library.trackOrder.length * 24}px; top: ${scrollTop}px;">
         <table class="${styles.mediaList}">
           <tbody ondblclick=${this._playTrack}
                  onclick=${this._selectTrack}>
-            ${this._trackOrder.slice(0, initialSlice).map(this._rowMap)}
+            ${this._trackOrder.slice(0, this._sliceLength).map(this._rowMap)}
           </tbody>
         </table>
       </div>
