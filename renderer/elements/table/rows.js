@@ -4,6 +4,7 @@ var classNames = require('classnames')
 var Component = require('cache-component')
 var document = require('global/document')
 var styles = require('./styles')
+var nanomorph = require('nanomorph')
 
 function TableRows (opts) {
   if (!(this instanceof TableRows)) return new TableRows()
@@ -17,7 +18,7 @@ function TableRows (opts) {
   this._currentIndex = null
   this._selectedIndex = null
   this._sliceLength = 500
-  this._sliceStartIndex = 0
+  this._sliceStartIndex = 30
   this._rowHeight = 24
   this._scrollWindowHeight = 1024
 
@@ -25,6 +26,7 @@ function TableRows (opts) {
   this._selectTrack = this._selectTrack.bind(this)
   this._playTrack = this._playTrack.bind(this)
   this._rowMap = this._rowMap.bind(this)
+  this._renderSlice = this._renderSlice.bind(this)
   this._mutateCurrentIndex = this._mutateCurrentIndex.bind(this)
   this._mutateSelectedIndex = this._mutateSelectedIndex.bind(this)
   this._handleOnScroll = this._handleOnScroll.bind(this)
@@ -95,11 +97,31 @@ TableRows.prototype._rowMap = function (key, idx) {
   `
 }
 
+TableRows.prototype._renderSlice = function () {
+  var sliceOffset = this._sliceStartIndex * this._rowHeight
+
+  return html`
+    <div class=${styles.tableScrollWindow}
+         onscroll=${this._handleOnScroll}>
+      <div class='${styles.tableContainer}'
+           style="height: ${this._trackOrder.length * this._rowHeight}px;
+                  top: ${sliceOffset}px;">
+        <table class="${styles.mediaList}">
+          <tbody ondblclick=${this._playTrack}
+                 onclick=${this._selectTrack}>
+            ${this._trackOrder.slice(this._sliceStartIndex, this._sliceLength).map(this._rowMap)}
+          </tbody>
+        </table>
+      </div>
+    </div>`
+}
+
 TableRows.prototype._handleOnScroll = function (ev) {
-  var startSlice = Math.floor(this._element.scrollTop / 24)
-  var endSlice = Math.floor(this._element.clientHeight / 24) + startSlice
+  var scrollTop = this._element.scrollTop
+  var clientHeight = this._element.clientHeight
+  var startSlice = Math.floor(scrollTop / this._rowHeight)
+  var endSlice = Math.floor(clientHeight / this._rowHeight) + startSlice
   console.log(startSlice, endSlice)
-  // console.log(this._element.clientHeight / 24)
 }
 
 TableRows.prototype._render = function (state, emit) {
@@ -113,26 +135,7 @@ TableRows.prototype._render = function (state, emit) {
   // Selected index is the index of the highlighted track
   this._selectedIndex = state.library.selectedIndex
 
-  var scrollTop = 0
-
-  if (this._element) {
-    // table mounted, re-slice
-    scrollTop = this._element.scrollTop
-  }
-
-  return html`
-    <div class=${styles.tableScrollWindow}
-         onscroll=${this._handleOnScroll}>
-      <div class='${styles.tableContainer}'
-           style="height: ${state.library.trackOrder.length * 24}px; top: ${scrollTop}px;">
-        <table class="${styles.mediaList}">
-          <tbody ondblclick=${this._playTrack}
-                 onclick=${this._selectTrack}>
-            ${this._trackOrder.slice(0, this._sliceLength).map(this._rowMap)}
-          </tbody>
-        </table>
-      </div>
-    </div>`
+  return this._renderSlice()
 }
 
 TableRows.prototype._update = function (state, emit) {
