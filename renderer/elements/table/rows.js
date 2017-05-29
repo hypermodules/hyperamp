@@ -4,7 +4,8 @@ var classNames = require('classnames')
 var Component = require('cache-component')
 var document = require('global/document')
 var styles = require('./styles')
-var nanomorph = require('nanomorph')
+var debounce = require('lodash.debounce')
+var nanoraf = require('nanoraf')
 
 function TableRows (opts) {
   if (!(this instanceof TableRows)) return new TableRows()
@@ -18,7 +19,7 @@ function TableRows (opts) {
   this._currentIndex = null
   this._selectedIndex = null
   this._sliceLength = 500
-  this._sliceStartIndex = 30
+  this._sliceStartIndex = 0
   this._rowHeight = 24
   this._scrollWindowHeight = 1024
 
@@ -86,7 +87,7 @@ TableRows.prototype._rowMap = function (key, idx) {
 
   return html`
     <tr style=""
-        id="track-${idx}"
+        id="track-${idx + this._sliceStartIndex}"
         data-key=${key}
         className="${classNames(classes)}">
       <td>${meta.title}</td>
@@ -99,17 +100,17 @@ TableRows.prototype._rowMap = function (key, idx) {
 
 TableRows.prototype._renderSlice = function () {
   var sliceOffset = this._sliceStartIndex * this._rowHeight
-
+  var sliceEnd = this._sliceStartIndex + this._sliceLength < this._trackOrder.length ? this._sliceStartIndex + this._sliceLength : this._trackOrder.length - 1
+  console.log(this._sliceStartIndex, sliceEnd)
   return html`
     <div class=${styles.tableScrollWindow}
          onscroll=${this._handleOnScroll}>
       <div class='${styles.tableContainer}'
-           style="height: ${this._trackOrder.length * this._rowHeight}px;
-                  top: ${sliceOffset}px;">
+           style="height: ${this._trackOrder.length * this._rowHeight}px; top: ${sliceOffset}px;">
         <table class="${styles.mediaList}">
           <tbody ondblclick=${this._playTrack}
                  onclick=${this._selectTrack}>
-            ${this._trackOrder.slice(this._sliceStartIndex, this._sliceLength).map(this._rowMap)}
+            ${this._trackOrder.slice(this._sliceStartIndex, sliceEnd).map(this._rowMap)}
           </tbody>
         </table>
       </div>
@@ -121,26 +122,43 @@ TableRows.prototype._handleOnScroll = function (ev) {
   var clientHeight = this._element.clientHeight
   var startSlice = Math.floor(scrollTop / this._rowHeight)
   var endSlice = Math.floor(clientHeight / this._rowHeight) + startSlice
-  console.log(startSlice, endSlice)
+  var lastRenderedIndex = this._sliceStartIndex + this._sliceLength
+  var bottomOffset = lastRenderedIndex - endSlice
+  var topOffset = startSlice - this._sliceStartIndex
+
+  if (bottomOffset < 100) {
+    this._sliceStartIndex = startSlice - 50
+  }
+
+  if (topOffset < 100) {
+    var backSlice = endSlice + 50 - this._sliceLength
+    this._sliceStartIndex = backSlice > 0 ? backSlice : 0
+  }
+
+  if (topOffset < 100 || bottomOffset < 100) {
+    this.render(null, null, true)
+  }
 }
 
 TableRows.prototype._render = function (state, emit) {
-  this._emit = emit
-  // Save references to state track order and dicts
-  this._trackOrder = state.library.trackOrder
-  this._trackDict = state.library.trackDict
-  // Save state
-  // Current index is the index of a queued track
-  this._currentIndex = state.player.currentIndex
-  // Selected index is the index of the highlighted track
-  this._selectedIndex = state.library.selectedIndex
-
+  if (emit) this._emit = emit
+  if (state) {
+    // Save references to state track order and dicts
+    this._trackOrder = state.library.trackOrder
+    this._trackDict = state.library.trackDict
+    // Save state
+    // Current index is the index of a queued track
+    this._currentIndex = state.player.currentIndex
+    // Selected index is the index of the highlighted track
+    this._selectedIndex = state.library.selectedIndex
+  }
   return this._renderSlice()
 }
 
-TableRows.prototype._update = function (state, emit) {
+TableRows.prototype._update = function (state, emit, scroll) {
   // Re-render
   // Note, these are only shallow compares.  You must slice or reobject your state
+  if (scroll) return true
   if (this._trackOrder !== state.library.trackOrder) return true
   if (this._trackDict !== state.library.trackDict) return true
   // Mutate
