@@ -101,7 +101,7 @@ TableRows.prototype._rowMap = function (key, idx) {
 TableRows.prototype._renderSlice = function () {
   var sliceOffset = this._sliceStartIndex * this._rowHeight
   var sliceEnd = this._sliceStartIndex + this._sliceLength < this._trackOrder.length ? this._sliceStartIndex + this._sliceLength : this._trackOrder.length - 1
-  console.log(this._sliceStartIndex, sliceEnd)
+
   return html`
     <div class=${styles.tableScrollWindow}
          onscroll=${this._handleOnScroll}>
@@ -126,21 +126,22 @@ TableRows.prototype._handleOnScroll = function (ev) {
   var bottomOffset = lastRenderedIndex - endSlice
   var topOffset = startSlice - this._sliceStartIndex
 
-  if (bottomOffset < 100) {
-    this._sliceStartIndex = startSlice - 50
+  if (bottomOffset < 5) {
+    var frontSlice = startSlice - 20
+    var maxStart = (this._trackOrder.length - this._sliceLength)
+    this._sliceStartIndex = frontSlice > maxStart ? maxStart : frontSlice
+    return this.render(null, null, true)
   }
 
-  if (topOffset < 100) {
-    var backSlice = endSlice + 50 - this._sliceLength
+  if (topOffset < 5) {
+    var backSlice = endSlice + 20 - this._sliceLength
     this._sliceStartIndex = backSlice > 0 ? backSlice : 0
-  }
-
-  if (topOffset < 100 || bottomOffset < 100) {
-    this.render(null, null, true)
+    return this.render(null, null, true)
   }
 }
 
 TableRows.prototype._render = function (state, emit) {
+  console.log('RENDER')
   if (emit) this._emit = emit
   if (state) {
     // Save references to state track order and dicts
