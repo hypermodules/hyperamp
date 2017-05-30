@@ -2345,7 +2345,7 @@ nanomount@^1.0.0:
   dependencies:
     nanomorph "^4.0.0"
 
-nanoraf@^3.0.0:
+nanoraf@^3.0.0, nanoraf@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/nanoraf/-/nanoraf-3.0.1.tgz#ab9fb9c257b9adcc71d82982cb58d8fa3503764a"
 

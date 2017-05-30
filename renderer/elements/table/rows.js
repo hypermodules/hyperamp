@@ -4,8 +4,6 @@ var classNames = require('classnames')
 var Component = require('cache-component')
 var document = require('global/document')
 var styles = require('./styles')
-var debounce = require('lodash.debounce')
-var nanoraf = require('nanoraf')
 
 function TableRows (opts) {
   if (!(this instanceof TableRows)) return new TableRows()
@@ -106,8 +104,8 @@ TableRows.prototype._renderSlice = function () {
     <div class=${styles.tableScrollWindow}
          onscroll=${this._handleOnScroll}>
       <div class='${styles.tableContainer}'
-           style="height: ${this._trackOrder.length * this._rowHeight}px; top: ${sliceOffset}px;">
-        <table class="${styles.mediaList}">
+           style="height: ${this._trackOrder.length * this._rowHeight}px;">
+        <table style="top: ${sliceOffset}px;" class="${styles.mediaList} ${styles.tableRel}">
           <tbody ondblclick=${this._playTrack}
                  onclick=${this._selectTrack}>
             ${this._trackOrder.slice(this._sliceStartIndex, sliceEnd).map(this._rowMap)}

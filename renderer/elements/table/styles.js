@@ -50,12 +50,14 @@ module.exports = css`
 
   .tableScrollWindow {
     flex: 1 0;
-    will-change: transform;
     overflow: auto;
-    position: relative;
   }
 
   .tableContainer {
+    position: relative;
+  }
+
+  .tableRel {
     position: absolute;
   }
 
