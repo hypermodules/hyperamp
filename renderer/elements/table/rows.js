@@ -4,6 +4,7 @@ var classNames = require('classnames')
 var Component = require('cache-component')
 var document = require('global/document')
 var styles = require('./styles')
+var debounce = require('lodash.debounce')
 
 function TableRows (opts) {
   if (!(this instanceof TableRows)) return new TableRows()
@@ -20,6 +21,36 @@ function TableRows (opts) {
   this._sliceStartIndex = 0
   this._rowHeight = 24
   this._scrollWindowHeight = 1024
+
+  var self = this
+
+  Object.defineProperty(this, '_topVisibleRowIndex', {
+    get: function () {
+      if (!self._element) throw new Error('Element not mounted')
+      return Math.floor(self._element.scrollTop / self._rowHeight)
+    }
+  })
+
+  Object.defineProperty(this, '_bottomVisibleRowIndex', {
+    get: function () {
+      if (!self._element) throw new Error('Element not mounted')
+      var {clientHeight} = self._element
+      return Math.floor(clientHeight / self._rowHeight) + self._topVisibleRowIndex
+    }
+  })
+
+  Object.defineProperty(this, '_topOffset', {
+    get: function () {
+      return self._topVisibleRowIndex - self._sliceStartIndex
+    }
+  })
+
+  Object.defineProperty(this, '_bottomOffset', {
+    get: function () {
+      var lastRenderedIndex = self._sliceStartIndex + self._sliceLength
+      return lastRenderedIndex - self._bottomVisibleRowIndex
+    }
+  })
 
   // Bound methods
   this._selectTrack = this._selectTrack.bind(this)
@@ -116,30 +147,24 @@ TableRows.prototype._renderSlice = function () {
 }
 
 TableRows.prototype._handleOnScroll = function (ev) {
-  var scrollTop = this._element.scrollTop
-  var clientHeight = this._element.clientHeight
-  var startSlice = Math.floor(scrollTop / this._rowHeight)
-  var endSlice = Math.floor(clientHeight / this._rowHeight) + startSlice
-  var lastRenderedIndex = this._sliceStartIndex + this._sliceLength
-  var bottomOffset = lastRenderedIndex - endSlice
-  var topOffset = startSlice - this._sliceStartIndex
-
-  if (bottomOffset < 5) {
-    var frontSlice = startSlice - 20
-    var maxStart = (this._trackOrder.length - this._sliceLength)
+  var maxStart = (this._trackOrder.length - this._sliceLength)
+  var closeToBottom = this._bottomOffset < 20 && this._sliceStartIndex !== maxStart
+  var closeToTop = this._topOffset < 20 && this._sliceStartIndex !== 0
+  if (closeToBottom) {
+    var frontSlice = this._topVisibleRowIndex - 20
     this._sliceStartIndex = frontSlice > maxStart ? maxStart : frontSlice
-    return this.render(null, null, true)
   }
 
-  if (topOffset < 5) {
-    var backSlice = endSlice + 20 - this._sliceLength
+  if (closeToTop) {
+    var backSlice = this._bottomVisibleRowIndex + 20 - this._sliceLength
     this._sliceStartIndex = backSlice > 0 ? backSlice : 0
-    return this.render(null, null, true)
   }
+
+  if (closeToTop || closeToBottom) return this.render(null, null, true)
 }
 
 TableRows.prototype._render = function (state, emit) {
-  console.log('RENDER')
+  console.log('RENDER!')
   if (emit) this._emit = emit
   if (state) {
     // Save references to state track order and dicts

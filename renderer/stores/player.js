@@ -114,10 +114,8 @@ function playerStore (state, emitter) {
   ipcRenderer.on('unmute', () => muted(false))
   ipcRenderer.on('volume', (ev, lev) => volume(lev))
   ipcRenderer.on('timeupdate', (ev, time) => {
-    window.requestAnimationFrame(() => {
-      currentTime(time)
-      emitter.emit('render')
-    })
+    currentTime(time)
+    emitter.emit('render')
   })
   ipcRenderer.on('sync-state', (ev, mainState) => emitter.emit('player:sync-state', mainState))
 }
