@@ -88,8 +88,10 @@ function playerStore (state, emitter) {
   }
 
   function seek (time) {
-    ipcRenderer.send('seek', time)
-    currentTime(time)
+    window.requestAnimationFrame(() => {
+      ipcRenderer.send('seek', time)
+      currentTime(time)
+    })
   }
 
   function changeVolume (lev) {

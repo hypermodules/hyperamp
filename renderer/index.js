@@ -4,7 +4,7 @@ var log = require('choo-log')
 var app = window.hyperamp = choo()
 
 var entypoSprite = require('entypo').getNode()
-document.body.insertBefore(entypoSprite, document.body.firstChild)
+document.body.insertAdjacentElement('afterbegin', entypoSprite)
 
 app.use(log())
 

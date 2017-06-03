@@ -48,9 +48,17 @@ module.exports = css`
     flex: 0 0;
   }
 
-  .tableBody {
+  .tableScrollWindow {
     flex: 1 0;
-    overflow: overlay;
+    overflow: auto;
+  }
+
+  .tableContainer {
+    position: relative;
+  }
+
+  .tableRel {
+    position: absolute;
   }
 
   /* use colgroup to sanely apply width properties  */

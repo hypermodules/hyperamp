@@ -31,11 +31,7 @@ Table.prototype._render = function (state, emit) {
           </thead>
         </table>
       </div>
-      <div class=${styles.tableBody}>
-        <table class="${styles.mediaList} ${styles.tableBody}">
-          ${this._tableRows.render(state, emit)}
-        </table>
-      </div>
+      ${this._tableRows.render(state, emit)}
     </section>
   `
 }

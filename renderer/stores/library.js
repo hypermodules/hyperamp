@@ -34,8 +34,9 @@ function libraryStore (state, emitter) {
   }
 
   function updateLibrary (paths) {
-    console.log(paths)
-    ipcRenderer.send('update-library', paths)
+    window.requestAnimationFrame(() => {
+      ipcRenderer.send('update-library', paths)
+    })
   }
 
   function search (string) {
@@ -49,22 +50,28 @@ function libraryStore (state, emitter) {
   }
 
   function syncState (ev, mainState) {
-    localState.paths = mainState.paths
-    localState.search = mainState.search
-    localState.trackDict = mainState.trackDict
-    localState.trackOrder = mainState.trackOrder
-    emitter.emit('render')
+    window.requestAnimationFrame(() => {
+      localState.paths = mainState.paths
+      localState.search = mainState.search
+      localState.trackDict = mainState.trackDict
+      localState.trackOrder = mainState.trackOrder
+      emitter.emit('render')
+    })
   }
 
   ipcRenderer.on('sync-state', syncState)
   ipcRenderer.on('track-dict', (ev, newTrackDict, newTrackOrder, newPaths) => {
-    emitter.emit('library:track-dict', newTrackDict)
-    emitter.emit('library:track-order', newTrackOrder)
-    emitter.emit('library:paths', newPaths)
-    emitter.emit('render')
+    window.requestAnimationFrame(() => {
+      emitter.emit('library:track-dict', newTrackDict)
+      emitter.emit('library:track-order', newTrackOrder)
+      emitter.emit('library:paths', newPaths)
+      emitter.emit('render')
+    })
   })
   ipcRenderer.on('track-order', (ev, newTrackOrder) => {
-    emitter.emit('library:track-order', newTrackOrder)
-    emitter.emit('render')
+    window.requestAnimationFrame(() => {
+      emitter.emit('library:track-order', newTrackOrder)
+      emitter.emit('render')
+    })
   })
 }
