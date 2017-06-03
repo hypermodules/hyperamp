@@ -2,25 +2,25 @@
 # yarn lockfile v1
 
 
-"7zip-bin-linux@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/7zip-bin-linux/-/7zip-bin-linux-1.0.3.tgz#66724d7bb7526381574393888f62566ed537151c"
+"7zip-bin-linux@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/7zip-bin-linux/-/7zip-bin-linux-1.1.0.tgz#2ca309fd6a2102e18bd81e3a5d91b39db9adab71"
 
 "7zip-bin-mac@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/7zip-bin-mac/-/7zip-bin-mac-1.0.1.tgz#3e68778bbf0926adc68159427074505d47555c02"
 
-"7zip-bin-win@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/7zip-bin-win/-/7zip-bin-win-2.0.2.tgz#4c36399413922f111b8e80df3065a4069cfc0a64"
+"7zip-bin-win@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/7zip-bin-win/-/7zip-bin-win-2.1.0.tgz#ce632da797ec282c5d2a8d07b60e8df7ca7f164d"
 
-"7zip-bin@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/7zip-bin/-/7zip-bin-2.0.4.tgz#0cd28ac3301b1302fbd99922bacb8bad98103e12"
+"7zip-bin@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/7zip-bin/-/7zip-bin-2.1.0.tgz#d728d3f950895cfcfee1a166fe93afc07dfe35a9"
   optionalDependencies:
-    "7zip-bin-linux" "^1.0.3"
+    "7zip-bin-linux" "^1.1.0"
     "7zip-bin-mac" "^1.0.1"
-    "7zip-bin-win" "^2.0.2"
+    "7zip-bin-win" "^2.1.0"
 
 "@bret/truthy@^1.0.1":
   version "1.0.1"
@@ -112,9 +112,9 @@ ajv-keywords@^1.0.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
 
-ajv-keywords@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-2.0.0.tgz#a37d02f845b6f52569804164270b24cb6c6cee61"
+ajv-keywords@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-2.1.0.tgz#a296e17f7bfae7c1ce4f7e0de53d29cb32162df0"
 
 ajv@^4.7.0, ajv@^4.9.1:
   version "4.11.8"
@@ -123,9 +123,9 @@ ajv@^4.7.0, ajv@^4.9.1:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
 
-ajv@^5.1.3:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.1.3.tgz#423d1c302c61e617081b30ca05f595ec51408e33"
+ajv@^5.1.5:
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.1.5.tgz#8734931b601f00d4feef7c65738d77d1b65d1f68"
   dependencies:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
@@ -429,9 +429,9 @@ choo-log@^6.0.0:
   dependencies:
     nanologger "^1.0.1"
 
-choo@^5.6.1:
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/choo/-/choo-5.6.1.tgz#d74a1ee784b4872b4c88fc65134133c9a3e52d45"
+choo@^5.6.2:
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/choo/-/choo-5.6.2.tgz#5969fa0a2c8dd0d7b4bf6df7bd447d1e59862fe0"
   dependencies:
     bel "^4.5.1"
     document-ready "^2.0.1"
@@ -835,22 +835,22 @@ electron-builder-core@17.2.0:
   version "17.2.0"
   resolved "https://registry.yarnpkg.com/electron-builder-core/-/electron-builder-core-17.2.0.tgz#e235d11aae64bffbad36b601ac58173f9377f619"
 
-electron-builder-http@18.0.1, electron-builder-http@~18.0.1:
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/electron-builder-http/-/electron-builder-http-18.0.1.tgz#9d10ead501656087222b4de28b2b90df9f978313"
+electron-builder-http@18.3.0, electron-builder-http@~18.3.0:
+  version "18.3.0"
+  resolved "https://registry.yarnpkg.com/electron-builder-http/-/electron-builder-http-18.3.0.tgz#01cf7445996b09475515b55006b6b80d75a0360e"
   dependencies:
     debug "2.6.8"
     fs-extra-p "^4.3.0"
 
-electron-builder-util@18.0.1, electron-builder-util@~18.0.1:
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/electron-builder-util/-/electron-builder-util-18.0.1.tgz#891ddd09ae0fcb7bf9f4abde6e3fa7045fbdb231"
+electron-builder-util@18.3.5, electron-builder-util@~18.3.5:
+  version "18.3.5"
+  resolved "https://registry.yarnpkg.com/electron-builder-util/-/electron-builder-util-18.3.5.tgz#f0ae9c5c960efbc36da0210c37f999c2aa14cba4"
   dependencies:
-    "7zip-bin" "^2.0.4"
+    "7zip-bin" "^2.1.0"
     bluebird-lst "^1.0.2"
     chalk "^1.1.3"
     debug "2.6.8"
-    electron-builder-http "~18.0.1"
+    electron-builder-http "~18.3.0"
     fs-extra-p "^4.3.0"
     ini "^1.3.4"
     is-ci "^1.0.10"
@@ -859,24 +859,24 @@ electron-builder-util@18.0.1, electron-builder-util@~18.0.1:
     stat-mode "^0.2.2"
     tunnel-agent "^0.6.0"
 
-electron-builder@^18.0.1:
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-18.0.1.tgz#13517273e287e458c95d853622003874ddb90f89"
+electron-builder@^18.3.5:
+  version "18.3.5"
+  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-18.3.5.tgz#9781dbdca932d80754e23773213b9c939fe79d6f"
   dependencies:
-    "7zip-bin" "^2.0.4"
-    ajv "^5.1.3"
-    ajv-keywords "^2.0.0"
+    "7zip-bin" "^2.1.0"
+    ajv "^5.1.5"
+    ajv-keywords "^2.1.0"
     bluebird-lst "^1.0.2"
     chalk "^1.1.3"
     chromium-pickle-js "^0.2.0"
     cuint "^0.2.2"
     debug "2.6.8"
     electron-builder-core "17.2.0"
-    electron-builder-http "18.0.1"
-    electron-builder-util "18.0.1"
+    electron-builder-http "18.3.0"
+    electron-builder-util "18.3.5"
     electron-download-tf "4.3.1"
     electron-osx-sign "0.4.5"
-    electron-publish "18.0.1"
+    electron-publish "18.3.5"
     fs-extra-p "^4.3.0"
     hosted-git-info "^2.4.2"
     is-ci "^1.0.10"
@@ -994,14 +994,14 @@ electron-osx-sign@0.4.5:
     plist "^2.0.1"
     tempfile "^1.1.1"
 
-electron-publish@18.0.1:
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/electron-publish/-/electron-publish-18.0.1.tgz#04e8bd1db2c431f9de47c277c845234e3d7e0df8"
+electron-publish@18.3.5:
+  version "18.3.5"
+  resolved "https://registry.yarnpkg.com/electron-publish/-/electron-publish-18.3.5.tgz#2689b387e63d57816e545327adf319a7560e4be9"
   dependencies:
     bluebird-lst "^1.0.2"
     chalk "^1.1.3"
-    electron-builder-http "~18.0.1"
-    electron-builder-util "~18.0.1"
+    electron-builder-http "~18.3.0"
+    electron-builder-util "~18.3.5"
     fs-extra-p "^4.3.0"
     mime "^1.3.6"
 
@@ -1027,9 +1027,9 @@ electron-window-state@^4.0.2:
     jsonfile "^2.2.3"
     mkdirp "^0.5.1"
 
-electron@^1.6.8:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-1.7.1.tgz#a93b8abd1fd6df794839d8602903aacbce74d388"
+electron@1.6.10:
+  version "1.6.10"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-1.6.10.tgz#4f0b9cd596e35700b57128f988cc1d2ce67e5671"
   dependencies:
     "@types/node" "^7.0.18"
     electron-download "^3.0.1"
@@ -2311,15 +2311,16 @@ nanobus@^3.1.0:
   dependencies:
     nanotiming "^1.0.1"
 
-nanobus@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/nanobus/-/nanobus-4.0.0.tgz#474de512e0812ecc76269539a02661c9d034694a"
+nanobus@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/nanobus/-/nanobus-4.1.0.tgz#75981821429a3497b78020a58cc2fd9bc04bb08a"
   dependencies:
     nanotiming "^5.0.0"
+    remove-array-items "^1.0.0"
 
-nanocomponent@^4.0.0:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/nanocomponent/-/nanocomponent-4.0.3.tgz#ba1cc9e9236d859d919118eab6c61173a84eb26e"
+nanocomponent@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/nanocomponent/-/nanocomponent-5.0.1.tgz#965ae40cfbd74cdd76b2fee3ea9e6e588014603b"
   dependencies:
     on-load "^3.2.0"
 
@@ -2345,7 +2346,7 @@ nanomount@^1.0.0:
   dependencies:
     nanomorph "^4.0.0"
 
-nanoraf@^3.0.0, nanoraf@^3.0.1:
+nanoraf@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/nanoraf/-/nanoraf-3.0.1.tgz#ab9fb9c257b9adcc71d82982cb58d8fa3503764a"
 
@@ -2937,6 +2938,10 @@ registry-url@^3.0.3:
   resolved "https://registry.yarnpkg.com/registry-url/-/registry-url-3.1.0.tgz#3d4ef870f73dde1d77f0cf9a381432444e174942"
   dependencies:
     rc "^1.0.1"
+
+remove-array-items@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/remove-array-items/-/remove-array-items-1.0.0.tgz#07bf42cb332f4cf6e85ead83b5e4e896d2326b21"
 
 remove-trailing-separator@^1.0.1:
   version "1.0.1"

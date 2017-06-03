@@ -4,7 +4,7 @@ var classNames = require('classnames')
 var Component = require('cache-component')
 var document = require('global/document')
 var styles = require('./styles')
-var debounce = require('lodash.debounce')
+// var debounce = require('lodash.debounce')
 
 function TableRows (opts) {
   if (!(this instanceof TableRows)) return new TableRows()
@@ -164,7 +164,6 @@ TableRows.prototype._handleOnScroll = function (ev) {
 }
 
 TableRows.prototype._render = function (state, emit) {
-  console.log('RENDER!')
   if (emit) this._emit = emit
   if (state) {
     // Save references to state track order and dicts
