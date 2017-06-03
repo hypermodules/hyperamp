@@ -44,11 +44,6 @@ module.exports = css`
     width: 100%;
   }
 
-  .meta { margin: 1rem 0 }
-
-  .title, .artist { margin: 0 }
-  .title { font-weight: 600 }
-
   @media (max-width: 460px) {
     .footer {
       min-width: initial;
