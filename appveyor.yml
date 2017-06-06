@@ -19,7 +19,3 @@ test_script:
 on_success:
   - npm run dist
 
-environment:
-  GH_TOKEN:
-    secure: mtm1UAUZ0tByhVTYD+cTXy530JM6N9D6bE6aXR37EUMW7JzF91LMuqXBjSEzUf7z
-
