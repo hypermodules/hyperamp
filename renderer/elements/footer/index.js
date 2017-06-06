@@ -6,6 +6,7 @@ var artworkCache = require('../../lib/artwork-cache')
 var Component = require('cache-component')
 var Volume = require('../volume')
 var PlayerControls = require('../player')
+var Meta = require('../meta')
 
 function Footer (opts) {
   if (!(this instanceof Footer)) return new Footer()
@@ -20,6 +21,7 @@ function Footer (opts) {
   // owned children
   this._playerControls = new PlayerControls()
   this._volume = new Volume()
+  this._meta = new Meta()
 
   Component.call(this)
 }
@@ -42,13 +44,7 @@ Footer.prototype._render = function (state, emit) {
               style="background-image: ${backgroundImg ? 'url(' + backgroundImg + ')' : ''}">
             </div>
           </div>
-          <div class="${styles.meta}">
-            <p class="${styles.title}">${title || 'No Track Selected'}</p>
-            <p class="${styles.artist}">
-              ${Array.isArray(artist) ? artist.join(', ') : artist || 'No Artist'}
-              ${album != null && album !== '' ? ` - ${album}` : null}
-            </p>
-          </div>
+          ${this._meta.render(title, artist, album)}
           ${this._playerControls.render(state, emit)}
         </div>
         ${this._volume.render(state, emit)}

@@ -13,6 +13,7 @@ module.exports = css`
     min-width: 250px;
     max-width: 250px;
     justify-content: space-between;
+     will-change: transform;
   }
 
   .albumCover {

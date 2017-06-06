@@ -51,6 +51,7 @@ module.exports = css`
   .tableScrollWindow {
     flex: 1 0;
     overflow: auto;
+    will-change: transform;
   }
 
   .tableContainer {

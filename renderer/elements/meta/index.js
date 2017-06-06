@@ -7,15 +7,17 @@ class Meta extends Component {
     if (!opts) opts = {}
     super(opts)
     this._opts = Object.assign({}, opts)
+
+    this._title = null
+    this._artist = null
+    this._album = null
   }
 
-  _render () {
-    var key = state.library.trackOrder[this._currentIndex]
-    var {
-      title = '--',
-      artist = '--',
-      album = '--'
-    } = state.library.trackDict[key] || {}
+  _render (title, artist, album) {
+    this._title = title || '--'
+    this._artist = artist || '--'
+    this._album = album || '--'
+
     return html`
       <div class="${styles.meta}">
         <p class="${styles.title}">${title || 'No Track Selected'}</p>
@@ -25,10 +27,6 @@ class Meta extends Component {
         </p>
       </div>
     `
-  }
-
-  _update () {
-
   }
 }
 
