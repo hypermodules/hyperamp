@@ -35,4 +35,4 @@ install:
 script:
   - npm test
 after_success:
-  - npm dist
+  - npm run dist
