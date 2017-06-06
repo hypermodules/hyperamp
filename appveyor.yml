@@ -5,20 +5,19 @@ platform:
 
 cache:
   - '%USERPROFILE%\.electron'
-  - "%LOCALAPPDATA%\\Yarn"
+  - '%USERPROFILE%\.npm'
 
 install:
-  - ps: Install-Product node 7 x64
-  - yarn
+  - ps: Install-Product node 8 x64
+  - npm i
 
 test_script:
   - node --version
   - npm --version
-  - yarn --version
-  - yarn run test
+  - npm test
 
 on_success:
-  - yarn run dist
+  - npm run dist
 
 environment:
   GH_TOKEN:

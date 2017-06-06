@@ -2,7 +2,7 @@ sudo: false
 dist: trusty
 language: node_js
 node_js:
-  - 7
+  - node
 os:
   - osx
   - linux
@@ -10,7 +10,6 @@ matrix:
   allow_failures:
     - os: osx
 cache:
-  yarn: true
   directories:
     - ~/.npm
     - ~/.electron
@@ -31,10 +30,9 @@ before_install:
   - export PATH=$HOME/.yarn/bin:$PATH
   - node --version
   - npm --version
-  - yarn --version
 install:
-  - yarn
+  - npm i
 script:
-  - yarn run test
+  - npm test
 after_success:
-  - yarn run dist
+  - npm dist
