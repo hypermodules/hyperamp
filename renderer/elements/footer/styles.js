@@ -13,6 +13,7 @@ module.exports = css`
     min-width: 250px;
     max-width: 250px;
     justify-content: space-between;
+     will-change: transform;
   }
 
   .albumCover {
@@ -43,11 +44,6 @@ module.exports = css`
     padding: .5em;
     width: 100%;
   }
-
-  .meta { margin: 1rem 0 }
-
-  .title, .artist { margin: 0 }
-  .title { font-weight: 600 }
 
   @media (max-width: 460px) {
     .footer {

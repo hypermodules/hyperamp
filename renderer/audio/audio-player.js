@@ -20,7 +20,6 @@ function AudioPlayer (audioNode, state) {
   this.audio.muted = state.muted
   this.seeking = false
   this.seekDebounceTimer = null
-  this.lastTimeUpdate = 0
 
   this._endedListener = this.audio.addEventListener('ended', function () {
     if (!self.seekig) self.emit('ended')
