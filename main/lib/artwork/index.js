@@ -29,11 +29,11 @@ class ArtworkCache {
       if (err) return cb(err)
       if (buff === null) return self._db.put(filePath, false, cb)
       var digest = crypto.createHash(self._algo).update(buff).digest('hex')
-      self._blobs.exists(digest, function (err, stat) {
+      self._blobs.resolve(digest, function (err, blobPath) {
         if (err) return cb(err)
-        if (stat) {
+        if (blobPath) {
           self._db.put(filePath, digest, function (err) {
-            return cb(err, err ? null : stat.path)
+            return cb(err, err ? null : blobPath)
           })
         } else {
           var writeStream = self._blobs.createWriteStream()
@@ -59,9 +59,9 @@ class ArtworkCache {
       // image was determined to be missing
       if (key === false) return cb(null, null)
       // we have a key, lets get the file path
-      self._blobs.exists(key, function (err, stat) {
+      self._blobs.resolve(key, function (err, blobPath) {
         if (err) return cb(err)
-        if (stat) return cb(null, stat.path)
+        if (blobPath) return cb(null, blobPath)
         // We have a key, but the blob is missing. regenerate
         return self.extractArt(filePath, cb)
       })

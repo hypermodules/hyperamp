@@ -17,7 +17,7 @@
     "choo": "^5.6.2",
     "choo-log": "^6.0.0",
     "classnames": "^2.2.5",
-    "content-addressable-blob-store": "git://github.com/bcomnes/content-addressable-blob-store.git#include-stats",
+    "content-addressable-blob-store": "git://github.com/bcomnes/content-addressable-blob-store.git#ha",
     "csjs-inject": "^1.0.1",
     "electron-context-menu": "^0.9.0",
     "electron-debug": "^1.0.1",
