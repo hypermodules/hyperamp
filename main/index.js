@@ -4,6 +4,7 @@ var menu = require('./menu')
 var player = require('./player')
 var Config = require('electron-store')
 var userConfig = require('./config')
+var artwork = require('./artwork')
 var xtend = require('xtend')
 // var get = require('lodash.get')
 var makeTrackDict = require('./library')
@@ -19,7 +20,8 @@ var state = xtend({
   search: '', // search string used to derive current trackOrder
   volume: 0.50,
   playing: false,
-  muted: false
+  muted: false,
+  artwork: null
 }, persist.store, userConfig.store)
 
 module.exports = state
@@ -28,6 +30,7 @@ app.on('ready', () => {
   menu.init()
   audio.init()
   player.init()
+  artwork.init()
 
   // Emit things to all windows
   var windows = [player, audio]
@@ -49,6 +52,16 @@ app.on('ready', () => {
   function queue (ev, newIndex) {
     state.currentIndex = newIndex
     broadcast('queue', newIndex)
+    var key = state.trackOrder[newIndex]
+    artwork.cache.getPath(key, handleArtworkPath)
+  }
+
+  function handleArtworkPath (err, blobPath) {
+    if (err) return console.error(err)
+    if (state.artwork !== blobPath) {
+      state.artwork = blobPath
+      broadcast('artwork', blobPath)
+    }
   }
 
   ipcMain.on('queue', queue)
@@ -75,7 +88,7 @@ app.on('ready', () => {
     if (state.trackOrder.length > 0) {
       var newIndex = state.currentIndex > 0 ? state.currentIndex - 1 : state.trackOrder.length - 1
       state.currentIndex = newIndex
-      broadcast('queue', newIndex)
+      queue(null, newIndex)
       if (state.playing) { broadcast('play') }
     } else { console.warn('Can go back, empty trackOrder array') }
   }
@@ -86,7 +99,7 @@ app.on('ready', () => {
     if (state.trackOrder.length > 0) {
       var newIndex = state.currentIndex < state.trackOrder.length - 1 ? state.currentIndex + 1 : 0
       state.currentIndex = newIndex
-      broadcast('queue', newIndex)
+      queue(null, newIndex)
       if (state.playing) { broadcast('play') }
     } else { console.warn('Can go forward, empty trackOrder array') }
   }
