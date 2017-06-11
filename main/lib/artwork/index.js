@@ -6,10 +6,10 @@ var pump = require('pump')
 var crypto = require('crypto')
 var { artwork, fromBuffer } = require('./util')
 
-var configPath = (electron.app || electron.remote.app).getPath('userData')
-var artworkCachePath = path.join(configPath, 'artwork-cache')
-
-mkdirp.sync(artworkCachePath)
+// var configPath = (electron.app || electron.remote.app).getPath('userData')
+// var artworkCachePath = path.join(configPath, 'artwork-cache')
+//
+// mkdirp.sync(artworkCachePath)
 var blobs = require('content-addressable-blob-store')
 
 class ArtworkCache {
