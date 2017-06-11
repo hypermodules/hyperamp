@@ -60,7 +60,7 @@ app.on('ready', () => {
     if (err) return console.error(err)
     if (state.artwork !== blobPath) {
       state.artwork = blobPath
-      broadcast('artwork', blobPath)
+      if (player.win) player.win.send('artwork', blobPath)
     }
   }
 
