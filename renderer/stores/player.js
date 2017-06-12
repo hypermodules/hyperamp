@@ -12,7 +12,7 @@ function playerStore (state, emitter) {
     localState.currentTime = 0.0
     localState.volume = 0.50
     localState.muted = false
-    localState.pictureHash = null
+    localState.artwork = null
   }
 
   function muted (bool) {
@@ -31,6 +31,10 @@ function playerStore (state, emitter) {
 
   function volume (lev) {
     localState.volume = lev
+  }
+
+  function artwork (blobPath) {
+    localState.artwork = blobPath
   }
 
   function current (newIndex) {
@@ -99,11 +103,18 @@ function playerStore (state, emitter) {
     volume(lev)
   }
 
+  function updateArtwork (blobPath) {
+    console.log(blobPath)
+    artwork(blobPath)
+    emitter.emit('render')
+  }
+
   function syncState (mainState) {
     localState.playing = mainState.playing
     localState.currentIndex = mainState.currentIndex
     localState.volume = mainState.volume
     localState.muted = mainState.muted
+    localState.artwork = mainState.artwork
     emitter.emit('render')
   }
 
@@ -113,6 +124,7 @@ function playerStore (state, emitter) {
   ipcRenderer.on('mute', () => muted(true))
   ipcRenderer.on('unmute', () => muted(false))
   ipcRenderer.on('volume', (ev, lev) => volume(lev))
+  ipcRenderer.on('artwork', (ev, blobPath) => updateArtwork(blobPath))
   ipcRenderer.on('timeupdate', (ev, time) => {
     currentTime(time)
     emitter.emit('render')
