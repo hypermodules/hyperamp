@@ -26,8 +26,6 @@ before_install:
   - export JOBS=max
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH=$HOME/.yarn/bin:$PATH
   - node --version
   - npm --version
 install:
