@@ -7,6 +7,7 @@ var Component = require('cache-component')
 var Volume = require('../volume')
 var PlayerControls = require('../player')
 var Meta = require('../meta')
+var Artwork = require('../artwork')
 
 function Footer (opts) {
   if (!(this instanceof Footer)) return new Footer()
@@ -22,6 +23,7 @@ function Footer (opts) {
   this._playerControls = new PlayerControls()
   this._volume = new Volume()
   this._meta = new Meta()
+  this._artwork = new Artwork()
 
   Component.call(this)
 }
@@ -33,17 +35,12 @@ Footer.prototype._render = function (state, emit) {
   this._currentIndex = state.player.currentIndex
   var key = state.library.trackOrder[this._currentIndex]
   var {title = '--', artist = '--', album = '--'} = state.library.trackDict[key] || {}
-  this._pictureHash = state.player.pictureHash
-  var backgroundImg = artworkCache[this._pictureHash]
+  var artworkPath = state.player.artwork
 
   return html`
       <div class="${styles.footer}">
         <div class="${styles.track}">
-          <div class="${styles.albumCover}">
-            <div class="${styles.albumArt}"
-              style="background-image: ${backgroundImg ? 'url(' + backgroundImg + ')' : ''}">
-            </div>
-          </div>
+          ${this._artwork.render(artworkPath)}
           ${this._meta.render(title, artist, album)}
           ${this._playerControls.render(state, emit)}
         </div>
@@ -54,10 +51,12 @@ Footer.prototype._render = function (state, emit) {
 
 Footer.prototype._update = function (state, emit) {
   this._emit = emit
+  var artworkPath = state.player.artwork
   if (this._currentIndex !== state.player.currentIndex) return true
   // if (this._pictureHash !== state.player.pictureHash) return true
-  if (this._volume._update(state, emit)) return true
-  if (this._playerControls._update(state, emit)) return true
+  this._volume.render(state, emit)
+  this._playerControls.render(state, emit)
+  this._artwork.render(artworkPath)
   return false
 }
 

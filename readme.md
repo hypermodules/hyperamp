@@ -10,9 +10,10 @@ Mac/Linux      | Windows      | Version
 
 This project adheres to the [Contract of the Module United Nations](http://module.party).
 
-```
+```sh
 npm install
 npm test
+npm run rebuild # temporary
 npm start
 ```
 

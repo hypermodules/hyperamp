@@ -25,6 +25,7 @@
     "electron-store": "^1.1.0",
     "electron-window-state": "^4.0.2",
     "entypo": "^2.0.0",
+    "file-url": "^2.0.2",
     "flush-write-stream": "^1.0.2",
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
@@ -84,7 +85,6 @@
     "test-skip:tape": "xvfb-maybe tape test/* | tap-format-spec",
     "test:artwork-module": "tape main/lib/**/test.js | tap-format-spec",
     "rebuild": "electron-rebuild",
-    "prepare": "npm run rebuild",
     "build": "build --dir",
     "dist": "build"
   },
