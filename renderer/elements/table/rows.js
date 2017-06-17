@@ -111,8 +111,8 @@ TableRows.prototype._rowMap = function (key, idx) {
   var meta = this._trackDict[key]
   // Generate state based styles
   var classes = {}
-  classes[styles.playing] = this._currentIndex === idx
-  classes[styles.selected] = this._selectedIndex === idx
+  classes[styles.playing] = this._currentIndex === idx + this._sliceStartIndex
+  classes[styles.selected] = this._selectedIndex === idx + this._sliceStartIndex
 
   return html`
     <tr style=""
