@@ -1,4 +1,5 @@
 var { app, ipcMain, globalShortcut } = require('electron')
+var get = require('lodash.get')
 var audio = require('./audio')
 var menu = require('./menu')
 var player = require('./player')
@@ -53,11 +54,26 @@ app.on('ready', () => {
     state.currentIndex = newIndex
     broadcast('queue', newIndex)
     var key = state.trackOrder[newIndex]
-    artwork.cache.getPath(key, handleArtworkPath)
+    updateArtwork(key)
   }
 
-  function handleArtworkPath (err, blobPath) {
-    if (err) return console.error(err)
+  function updateArtwork (key) {
+    // Store this kind of crap in main library db
+    var blobPath = get(state, `trackDict[${key}].artwork`)
+    if (blobPath) {
+      return handleArtworkPath(blobPath)
+    } else {
+      artwork.cache.getPath(key, handleGetPath)
+    }
+
+    function handleGetPath (err, blobPath) {
+      if (err) return console.error(err)
+      state.trackDict[key].artwork = blobPath
+      handleArtworkPath(blobPath)
+    }
+  }
+
+  function handleArtworkPath (blobPath) {
     if (state.artwork !== blobPath) {
       state.artwork = blobPath
       if (player.win) player.win.send('artwork', blobPath)
