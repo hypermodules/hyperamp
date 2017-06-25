@@ -31,6 +31,7 @@ function isValidFile (data, enc, cb) {
 
 function concatTrackDict (obj) {
   function writeTrackDict (data, enc, cb) {
+    console.log(`Scanning ${data.filepath}`)
     parseMetadata(data, handleMeta)
 
     function handleMeta (err, meta) {
@@ -46,14 +47,19 @@ function parseMetadata (data, cb) {
   var { filepath } = data
   var readableStream = fs.createReadStream(filepath)
   mm(readableStream, { duration: true }, (err, meta) => {
-    readableStream.close()
+    readableStream.destroy()
     if (err) {
       switch (err.message) {
         case 'Could not find metadata header':
           console.warn(err.message += ` (file: ${filepath})`)
           break
+        case 'expected frame header but was not found':
+          console.warn(err.message += ` (file: ${filepath})`)
+          break
         default:
-          return cb(err)
+          // Ignore errors
+          console.warn(err.message += ` (file: ${filepath})`)
+          return cb(null)
       }
     }
 

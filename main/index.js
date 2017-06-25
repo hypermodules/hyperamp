@@ -106,7 +106,7 @@ app.on('ready', () => {
       state.currentIndex = newIndex
       queue(null, newIndex)
       if (state.playing) { broadcast('play') }
-    } else { console.warn('Can go back, empty trackOrder array') }
+    } else { console.warn('Can\'t go back, empty trackOrder array') }
   }
 
   ipcMain.on('prev', prev)
@@ -117,7 +117,7 @@ app.on('ready', () => {
       state.currentIndex = newIndex
       queue(null, newIndex)
       if (state.playing) { broadcast('play') }
-    } else { console.warn('Can go forward, empty trackOrder array') }
+    } else { console.warn('Can\'t go forward, empty trackOrder array') }
   }
 
   ipcMain.on('next', next)
