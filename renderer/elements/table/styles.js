@@ -32,6 +32,9 @@ module.exports = css`
     border-right: var(--border);
     border-bottom: var(--border);
   }
+  .mediaList td {
+    border-right: var(--border);
+  }
   .mediaList th:last-child {
     border-right: none;
   }
@@ -50,7 +53,8 @@ module.exports = css`
 
   .tableScrollWindow {
     flex: 1 0;
-    overflow: auto;
+    overflow-y: overlay;
+    overflow-x: hidden;
     will-change: transform;
   }
 
@@ -70,8 +74,22 @@ module.exports = css`
     width: 6em;
   }
 
+  .mediaList .track {
+    text-align: right;
+    width: 7em;
+  }
+
+  .mediaList .disk {
+    text-align: right;
+    width: 5em;
+  }
+
+  .mediaList .year {
+    width: 5em;
+  }
+
   .mediaList  .track {
-    width: 6em;
+    width: 7em;
   }
 
   .playing {

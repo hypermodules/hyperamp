@@ -62,8 +62,19 @@ function parseMetadata (data, cb) {
           return cb(null)
       }
     }
-
-    var { title, artist, album, duration } = meta
+    // delete meta.picture
+    // console.dir(meta, {colors: true, depth: 5})
+    var {
+      albumartist,
+      title,
+      artist,
+      album,
+      year,
+      track,
+      disk,
+      genre,
+      duration
+    } = meta
 
     if (!title) {
       var { basename } = data
@@ -71,6 +82,17 @@ function parseMetadata (data, cb) {
       title = path.basename(basename, ext)
     }
 
-    cb(null, {title, artist, album, duration, filepath})
+    cb(null, {
+      albumartist,
+      title,
+      artist,
+      album,
+      duration,
+      filepath,
+      year,
+      track,
+      disk,
+      genre
+    })
   })
 }
