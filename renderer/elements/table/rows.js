@@ -3,6 +3,7 @@ var fd = require('format-duration')
 var classNames = require('classnames')
 var Component = require('cache-component')
 var document = require('global/document')
+var {formatCount} = require('./lib')
 var styles = require('./styles')
 // var debounce = require('lodash.debounce')
 
@@ -121,8 +122,11 @@ TableRows.prototype._rowMap = function (key, idx) {
         className="${classNames(classes)}">
       <td>${meta.title}</td>
       <td class="${styles.time}">${meta.duration ? fd(meta.duration * 1000) : ''}</td>
+      <td class="${styles.disk}">${meta.disk ? formatCount(meta.disk) : ''}</td>
+      <td class="${styles.track}">${meta.track ? formatCount(meta.track) : ''}</td>
       <td>${meta.artist}</td>
       <td>${meta.album}</td>
+      <td class="${styles.year}">${meta.year}</td>
     </tr>
   `
 }

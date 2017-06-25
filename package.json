@@ -82,7 +82,8 @@
     "test:deps": "dependency-check ./package.json --entry renderer/index.js --no-dev --ignore-module electron",
     "test:lint": "standard | snazzy",
     "test-skip:tape": "xvfb-maybe tape test/* | tap-format-spec",
-    "test:artwork-module": "tape main/lib/**/test.js | tap-format-spec",
+    "test:main": "tape main/lib/**/test.js | tap-format-spec",
+    "test:renderer": "tape renderer/**/test.js | tap-format-spec",
     "rebuild": "electron-rebuild",
     "build": "build --dir",
     "dist": "build"

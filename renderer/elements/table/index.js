@@ -25,8 +25,11 @@ Table.prototype._render = function (state, emit) {
             <tr>
               <th>Title</th>
               <th class="${styles.time}">Time</th>
+              <th class="${styles.disk}">Disk</th>
+              <th class="${styles.track}">Track</th>
               <th>Artist</th>
               <th>Album</th>
+              <th class="${styles.year}">Year</th>
             </tr>
           </thead>
         </table>
