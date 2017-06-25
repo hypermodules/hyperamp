@@ -200,12 +200,12 @@ function sortList (keyA, keyB) {
   var aObj = state.trackDict[keyA]
   var bObj = state.trackDict[keyB]
   // sort by albumartist
-  if (aObj.albumartist[0] < bObj.albumartist[0]) return -1
-  if (aObj.albumartist[0] > bObj.albumartist[0]) return 1
+  // if (aObj.albumartist[0] < bObj.albumartist[0]) return -1
+  // if (aObj.albumartist[0] > bObj.albumartist[0]) return 1
 
   // sort by artist
-  if (aObj.artist[0] < bObj.artist[0]) return -1
-  if (aObj.artist[0] > bObj.artist[0]) return 1
+  // if (aObj.artist[0] < bObj.artist[0]) return -1
+  // if (aObj.artist[0] > bObj.artist[0]) return 1
 
   // then by album
   if (aObj.album < bObj.album) return -1
