@@ -87,7 +87,8 @@
     "test:renderer": "tape renderer/**/test.js | tap-format-spec",
     "rebuild": "electron-rebuild",
     "build": "build --dir",
-    "dist": "build"
+    "dist": "build",
+    "clear": "electron scripts/clear.js"
   },
   "build": {
     "appId": "com.hypermodules.hyperamp",
