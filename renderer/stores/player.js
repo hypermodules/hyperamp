@@ -28,7 +28,6 @@ function playerStore (state, emitter) {
 
   function shuffling (bool) {
     localState.shuffling = bool
-    emitter.emit('render')
   }
 
   function currentTime (time, shouldRender) {
@@ -102,11 +101,13 @@ function playerStore (state, emitter) {
   function shuffle () {
     ipcRenderer.send('shuffle')
     shuffling(true)
+    emitter.emit('render')
   }
 
   function unshuffle () {
-    shuffling(false)
     ipcRenderer.send('unshuffle')
+    shuffling(false)
+    emitter.emit('render')
   }
 
   function seek (time) {

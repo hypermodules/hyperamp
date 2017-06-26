@@ -7,6 +7,7 @@ var Config = require('electron-store')
 var userConfig = require('./config')
 var artwork = require('./artwork')
 var xtend = require('xtend')
+var shuffleArray = require('fy-shuffle')
 // var get = require('lodash.get')
 var makeTrackDict = require('./library')
 
@@ -16,14 +17,13 @@ var state = xtend({
   paths: [], // USERCONFIG: Paths for seraching for songs
   trackDict: {}, // object of known tracks
   trackOrder: [], // array of track keys
-  trackShuffle: [], // array of track keys, shuffled
   currentIndex: null, // Currently queued track index
   loading: false, // Mutex for performing a scan for new tracks
   search: '', // search string used to derive current trackOrder
   volume: 0.50,
   playing: false,
   muted: false,
-  shuffling: true,
+  shuffling: false,
   artwork: null
 }, persist.store, userConfig.store)
 
@@ -148,7 +148,10 @@ app.on('ready', () => {
 
   function shuffle (ev) {
     state.shuffling = true
+    var newTrackOrder = shuffleArray(state.trackOrder)
+    state.trackOrder = newTrackOrder
     if (player.win) player.win.send('shuffle')
+    broadcast('track-order', newTrackOrder)
   }
 
   ipcMain.on('unshuffle', unshuffle)
@@ -156,6 +159,9 @@ app.on('ready', () => {
   function unshuffle (ev) {
     state.shuffling = false
     if (player.win) player.win.send('unshuffle')
+    var newTrackOrder = state.trackOrder.sort(sortList)
+    state.trackOrder = newTrackOrder
+    broadcast('track-order', newTrackOrder)
   }
 
   ipcMain.on('timeupdate', timeupdate)
@@ -188,9 +194,14 @@ app.on('ready', () => {
 
   function search (ev, searchString) {
     state.search = searchString
-    var newTrackOrder = state.trackOrder = Object.keys(state.trackDict)
-      .filter(filterList(state.search))
-      .sort(sortList)
+    var newTrackOrder = Object.keys(state.trackDict)
+        .filter(filterList(state.search))
+    if (!state.shuffling) {
+      newTrackOrder = newTrackOrder.sort(sortList)
+    } else {
+      newTrackOrder = shuffleArray(newTrackOrder)
+    }
+    state.trackOrder = newTrackOrder
     broadcast('track-order', newTrackOrder)
   }
 
@@ -284,9 +295,14 @@ function beforeQuit (e) {
     trackOrder: state.trackOrder,
     currentIndex: state.currentIndex,
     search: state.search,
-    volume: state.volume
+    volume: state.volume,
+    shuffling: state.shuffling
   })
   app.quit()
 }
 
 app.on('before-quit', beforeQuit)
+
+process.on('uncaughtException', (err) => {
+  console.log(err)
+})
