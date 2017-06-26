@@ -35,6 +35,7 @@ function PlayerControls (opts) {
   this._handlePrev = this._handlePrev.bind(this)
   this._handleNext = this._handleNext.bind(this)
   this._handlePlayPause = this._handlePlayPause.bind(this)
+  this._shuffleToggle = this._shuffleToggle.bind(this)
 
   // Owned Children
   this._positionSlider = new Range(this._opts)
@@ -65,11 +66,17 @@ PlayerControls.prototype._handlePlayPause = function () {
   else this._emit('player:play')
 }
 
+PlayerControls.prototype._shuffleToggle = function () {
+  if (this._shuffling) this._emit('player:unshuffle')
+  else this._emit('player:shuffle')
+}
+
 PlayerControls.prototype._render = function (state, emit) {
   assert.equal(typeof emit, 'function', 'PlaybackCluster: emit should be a function')
   this._emit = emit
   this._currentIndex = state.player.currentIndex
   this._playing = state.player.playing
+  this._shuffling = state.player.shuffling
   this._position = state.player.currentTime
   var key = state.library.trackOrder[this._currentIndex]
   var track = state.library.trackDict[key]
@@ -100,6 +107,13 @@ PlayerControls.prototype._render = function (state, emit) {
           iconName: 'entypo-controller-fast-forward'
         })}
       </div>
+      <div class="${buttonStyles.btnGroup} ${styles.smallButtons}">
+        ${button({
+          onclick: this._shuffleToggle,
+          iconName: 'entypo-shuffle',
+          className: state.player.shuffling ? null : styles.disabled
+        })}
+      </div>
     </div>
 `
 }
@@ -110,5 +124,6 @@ PlayerControls.prototype._update = function (state, emit) {
   if (this._playing !== state.player.playing) return true
   if (this._position !== state.player.currentTime) return true
   if (this._disabled !== truthy(state.player.currentIndex)) return true
+  if (this._shuffling !== state.player.shuffling) return true
   return false
 }
