@@ -123,7 +123,6 @@ function playerStore (state, emitter) {
   }
 
   function updateArtwork (blobPath) {
-    console.log(blobPath)
     artwork(blobPath)
     emitter.emit('render')
   }
