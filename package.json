@@ -30,6 +30,7 @@
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
     "from2": "^2.3.0",
+    "fy-shuffle": "^1.0.0",
     "global": "^4.3.2",
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",

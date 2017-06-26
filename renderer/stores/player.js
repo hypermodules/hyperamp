@@ -13,6 +13,7 @@ function playerStore (state, emitter) {
     localState.volume = 0.50
     localState.muted = false
     localState.artwork = null
+    localState.shuffling = false
   }
 
   function muted (bool) {
@@ -22,6 +23,11 @@ function playerStore (state, emitter) {
 
   function playing (bool) {
     localState.playing = bool
+    emitter.emit('render')
+  }
+
+  function shuffling (bool) {
+    localState.shuffling = bool
     emitter.emit('render')
   }
 
@@ -49,6 +55,8 @@ function playerStore (state, emitter) {
   emitter.on('player:next', next)
   emitter.on('player:mute', mute)
   emitter.on('player:unmute', unmute)
+  emitter.on('player:shuffle', shuffle)
+  emitter.on('player:unshuffle', unshuffle)
   emitter.on('player:seek', seek)
   emitter.on('player:changeVolume', changeVolume)
   emitter.on('player:sync-state', syncState)
@@ -91,6 +99,16 @@ function playerStore (state, emitter) {
     muted(false)
   }
 
+  function shuffle () {
+    ipcRenderer.send('shuffle')
+    shuffling(true)
+  }
+
+  function unshuffle () {
+    shuffling(false)
+    ipcRenderer.send('unshuffle')
+  }
+
   function seek (time) {
     window.requestAnimationFrame(() => {
       ipcRenderer.send('seek', time)
@@ -114,6 +132,7 @@ function playerStore (state, emitter) {
     localState.currentIndex = mainState.currentIndex
     localState.volume = mainState.volume
     localState.muted = mainState.muted
+    localState.shuffling = mainState.shuffling
     localState.artwork = mainState.artwork
     emitter.emit('render')
   }
@@ -123,6 +142,8 @@ function playerStore (state, emitter) {
   ipcRenderer.on('queue', (ev, newIndex) => current(newIndex))
   ipcRenderer.on('mute', () => muted(true))
   ipcRenderer.on('unmute', () => muted(false))
+  ipcRenderer.on('shuffle', () => shuffling(true))
+  ipcRenderer.on('unshuffle', () => shuffling(false))
   ipcRenderer.on('volume', (ev, lev) => volume(lev))
   ipcRenderer.on('artwork', (ev, blobPath) => updateArtwork(blobPath))
   ipcRenderer.on('timeupdate', (ev, time) => {

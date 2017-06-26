@@ -16,12 +16,14 @@ var state = xtend({
   paths: [], // USERCONFIG: Paths for seraching for songs
   trackDict: {}, // object of known tracks
   trackOrder: [], // array of track keys
+  trackShuffle: [], // array of track keys, shuffled
   currentIndex: null, // Currently queued track index
   loading: false, // Mutex for performing a scan for new tracks
   search: '', // search string used to derive current trackOrder
   volume: 0.50,
   playing: false,
   muted: false,
+  shuffling: true,
   artwork: null
 }, persist.store, userConfig.store)
 
@@ -140,6 +142,20 @@ app.on('ready', () => {
     // audio -> player
     state.currentTime = currentTime
     if (player.win) player.win.send('timeupdate', currentTime)
+  }
+
+  ipcMain.on('shuffle', shuffle)
+
+  function shuffle (ev) {
+    state.shuffling = true
+    if (player.win) player.win.send('shuffle')
+  }
+
+  ipcMain.on('unshuffle', unshuffle)
+
+  function unshuffle (ev) {
+    state.shuffling = false
+    if (player.win) player.win.send('unshuffle')
   }
 
   ipcMain.on('timeupdate', timeupdate)

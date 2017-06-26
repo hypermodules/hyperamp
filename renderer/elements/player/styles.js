@@ -17,4 +17,14 @@ module.exports = css`
     width: 100%;
   }
   .trackControls { flex: 1 }
+
+  .smallButtons {
+    font-size: 0.5em;
+  }
+
+  .disabled svg {
+    fill: rgb(144, 144, 144);
+  }
 `
+
+// TODO clean up these styles for shuffle byttons
