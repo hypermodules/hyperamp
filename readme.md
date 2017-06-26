@@ -13,7 +13,6 @@ This project adheres to the [Contract of the Module United Nations](http://modul
 ```sh
 npm install
 npm test
-npm run rebuild # temporary
 npm start
 ```
 
