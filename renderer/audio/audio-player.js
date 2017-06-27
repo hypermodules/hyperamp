@@ -2,6 +2,7 @@ var Nanobus = require('nanobus')
 var window = require('global/window')
 var setTimeout = window.setTimeout
 var clearTimeout = window.clearTimeout
+var fileUrlFromPath = require('file-url')
 
 module.exports = AudioPlayer
 
@@ -51,7 +52,7 @@ AudioPlayer.prototype.queue = function (newIndex) {
   var key = this.trackOrder[this.currentIndex]
   var track = this.trackDict[key]
   this.emit('queued', track)
-  if (track && track.filepath) this.audio.src = track.filepath
+  if (track && track.filepath) this.audio.src = fileUrlFromPath(track.filepath)
 }
 
 AudioPlayer.prototype.play = function () {
