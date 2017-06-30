@@ -15,7 +15,7 @@ function Footer (opts) {
 
   // state
   this._emit = null
-  this._currentIndex = null
+  this._key = null
   this._pictureHash = null
 
   // owned children
@@ -31,9 +31,9 @@ Footer.prototype = Object.create(Component.prototype)
 
 Footer.prototype._render = function (state, emit) {
   this._emit = emit
-  this._currentIndex = state.player.currentIndex
-  var key = state.library.trackOrder[this._currentIndex]
-  var {title = '--', artist = '--', album = '--'} = state.library.trackDict[key] || {}
+  var {currentIndex} = state.player
+  this._key = state.library.trackOrder[currentIndex]
+  var {title = '--', artist = '--', album = '--'} = state.library.trackDict[this._key] || {}
   var artworkPath = state.player.artwork
 
   return html`
@@ -51,7 +51,9 @@ Footer.prototype._render = function (state, emit) {
 Footer.prototype._update = function (state, emit) {
   this._emit = emit
   var artworkPath = state.player.artwork
-  if (this._currentIndex !== state.player.currentIndex) return true
+  var {currentIndex} = state.player
+  var key = state.library.trackOrder[currentIndex]
+  if (this._key !== key) return true
   // if (this._pictureHash !== state.player.pictureHash) return true
   this._volume.render(state, emit)
   this._playerControls.render(state, emit)
