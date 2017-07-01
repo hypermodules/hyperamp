@@ -3,12 +3,13 @@ var window = require('global/window')
 var setTimeout = window.setTimeout
 var clearTimeout = window.clearTimeout
 var fileUrlFromPath = require('file-url')
+var path = require('path')
 
 module.exports = AudioPlayer
 
 function AudioPlayer (audioNode, state) {
   if (!(this instanceof AudioPlayer)) return new AudioPlayer(audioNode, state)
-  Nanobus.call(this)
+  Nanobus.call(this, 'hyperaudio')
 
   var self = this
 
@@ -23,7 +24,7 @@ function AudioPlayer (audioNode, state) {
   this.seekDebounceTimer = null
 
   this._endedListener = this.audio.addEventListener('ended', function () {
-    if (!self.seekig) self.emit('ended')
+    if (!self.seeking) self.emit('ended')
   })
 
   this._timeListener = this.audio.addEventListener('timeupdate', function (ev) {
@@ -58,6 +59,7 @@ AudioPlayer.prototype.queue = function (newIndex) {
 AudioPlayer.prototype.play = function () {
   this.emit('playing')
   this.audio.play()
+  if (this.audio.currentTime === 0) this.notify()
 }
 
 AudioPlayer.prototype.pause = function () {
@@ -95,4 +97,18 @@ AudioPlayer.prototype.updateTrackDict = function (trackDict, trackOrder) {
 AudioPlayer.prototype.updateTrackOrder = function (trackOrder) {
   console.log(arguments)
   this.trackOrder = trackOrder
+}
+
+AudioPlayer.prototype.notify = function () {
+  var key = this.trackOrder[this.currentIndex]
+  var track = this.trackDict[key]
+
+  new Notification(track.title, {
+    // TODO: placeholder. ideally this is album art
+    icon: path.resolve(__dirname, '../../splash-mini.png'),
+    title: track.title,
+    body: track.artist[0],
+    tag: 'nowPlaying',
+    silent: true
+  })
 }
