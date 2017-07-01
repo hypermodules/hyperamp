@@ -102,13 +102,15 @@ AudioPlayer.prototype.updateTrackOrder = function (trackOrder) {
 AudioPlayer.prototype.notify = function () {
   var key = this.trackOrder[this.currentIndex]
   var track = this.trackDict[key]
+  var artwork = track.artwork ? track.artwork : path.resolve(__dirname, '../../splash-mini.png')
 
-  new Notification(track.title, {
+  new window.Notification(track.title, { // eslint-disable-line no-new
     // TODO: placeholder. ideally this is album art
-    icon: path.resolve(__dirname, '../../splash-mini.png'),
+    icon: artwork,
     title: track.title,
     body: track.artist[0],
     tag: 'nowPlaying',
-    silent: true
+    silent: true,
+    requireInteraction: false
   })
 }
