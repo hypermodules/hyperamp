@@ -6,7 +6,7 @@ var Component = require('cache-component')
 var Range = require('../range')
 
 function VolumeCluster (opts) {
-  if (!(this instanceof VolumeCluster)) return new VolumeCluster()
+  if (!(this instanceof VolumeCluster)) return new VolumeCluster(opts)
   if (!opts) opts = {}
   this._opts = Object.assign({
     min: 0,

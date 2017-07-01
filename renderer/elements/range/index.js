@@ -4,7 +4,7 @@ var assert = require('assert')
 var styles = require('./styles')
 
 function Range (opts) {
-  if (!(this instanceof Range)) return new Range()
+  if (!(this instanceof Range)) return new Range(opts)
   if (!opts) opts = {}
   this._opts = Object.assign({
     min: 0,

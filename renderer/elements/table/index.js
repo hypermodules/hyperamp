@@ -4,7 +4,7 @@ var styles = require('./styles')
 var TableRows = require('./rows')
 
 function Table (opts) {
-  if (!(this instanceof Table)) return new Table()
+  if (!(this instanceof Table)) return new Table(opts)
   if (!opts) opts = {}
   this._opts = Object.assign({}, opts)
 
