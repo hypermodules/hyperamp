@@ -3,7 +3,7 @@ var Component = require('cache-component')
 var styles = require('./styles')
 var fileUrlFromPath = require('file-url')
 var path = require('path')
-var defaultBG = path.resolve(__dirname, '../../../splash.png')
+var defaultBG = path.resolve(__dirname, '../../../splash.jpg')
 
 class Artwork extends Component {
   constructor (opts) {
