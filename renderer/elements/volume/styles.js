@@ -1,7 +1,7 @@
 var css = require('csjs-inject')
 
 module.exports = css`
-  .volumeCluster {}
+  .volumeCluster { margin-bottom: .5em }
 
   .volumeButton { padding: 0 }
 
