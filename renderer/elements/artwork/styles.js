@@ -24,4 +24,8 @@ module.exports = css`
     background-size: cover;
     background-position: center;
   }
+
+  @media (max-width: 460px) {
+    .albumCover { border-radius: 0 }
+  }
 `

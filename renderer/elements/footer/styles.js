@@ -8,7 +8,6 @@ module.exports = css`
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding: 0 0 1em;
     text-align: center;
     min-width: 250px;
     max-width: 250px;
@@ -23,9 +22,12 @@ module.exports = css`
 
   @media (max-width: 460px) {
     .footer {
+      border-left: none;
       min-width: initial;
       max-width: initial;
       width: 100%;
     }
+
+    .track { padding: 0 }
   }
 `

@@ -1,14 +1,8 @@
 var css = require('csjs-inject')
 
 module.exports = css`
-  .controls {
-    font-size: 2em;
-    margin: 1rem 0;
-  }
-  .scrubberControl {
-    margin: 1rem 0;
-    width: 100%
-  }
+  .controls { font-size: 2em }
+  .scrubberControl { width: 100% }
   .scrubber {
     cursor: default;
     position: relative;
