@@ -8,7 +8,7 @@ var buttonStyles = require('../button/styles')
 var styles = require('./styles')
 
 function Header (opts) {
-  if (!(this instanceof Header)) return new Header()
+  if (!(this instanceof Header)) return new Header(opts)
   this._emit = null
   this._search = ''
   this._dialogOpen = false

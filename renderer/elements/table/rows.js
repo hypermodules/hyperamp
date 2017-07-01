@@ -8,7 +8,7 @@ var styles = require('./styles')
 // var debounce = require('lodash.debounce')
 
 function TableRows (opts) {
-  if (!(this instanceof TableRows)) return new TableRows()
+  if (!(this instanceof TableRows)) return new TableRows(opts)
   if (!opts) opts = {}
   this._opts = Object.assign({}, opts)
 

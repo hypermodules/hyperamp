@@ -7,7 +7,7 @@ var fileUrlFromPath = require('file-url')
 module.exports = AudioPlayer
 
 function AudioPlayer (audioNode, state) {
-  if (!(this instanceof AudioPlayer)) return new AudioPlayer()
+  if (!(this instanceof AudioPlayer)) return new AudioPlayer(audioNode, state)
   Nanobus.call(this)
 
   var self = this

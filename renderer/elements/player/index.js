@@ -11,7 +11,7 @@ var truthy = require('@bret/truthy')
 module.exports = PlayerControls
 
 function PlayerControls (opts) {
-  if (!(this instanceof PlayerControls)) return new PlayerControls()
+  if (!(this instanceof PlayerControls)) return new PlayerControls(opts)
   if (!opts) opts = {}
   this._opts = Object.assign({
     min: 0,

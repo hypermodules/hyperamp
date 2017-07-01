@@ -5,7 +5,7 @@ var assert = require('assert')
 var Component = require('cache-component')
 
 function Search (opts) {
-  if (!(this instanceof Search)) return new Search()
+  if (!(this instanceof Search)) return new Search(opts)
   if (!opts) opts = {}
   this._opts = Object.assign({
     id: ''

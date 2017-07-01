@@ -9,7 +9,7 @@ var Meta = require('../meta')
 var Artwork = require('../artwork')
 
 function Footer (opts) {
-  if (!(this instanceof Footer)) return new Footer()
+  if (!(this instanceof Footer)) return new Footer(opts)
   if (!opts) opts = {}
   this._opts = Object.assign({}, opts)
 
