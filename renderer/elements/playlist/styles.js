@@ -15,6 +15,7 @@ module.exports = css`
     border: 0;
     border-collapse: separate;
     text-align: left;
+    contain: layout;
   }
 
   .mediaList td {
@@ -56,6 +57,7 @@ module.exports = css`
     overflow-y: overlay;
     overflow-x: hidden;
     will-change: transform;
+    contain: content;
   }
 
   .tableContainer {
