@@ -1,20 +1,19 @@
 var { app, ipcMain, globalShortcut } = require('electron')
-var get = require('lodash.get')
-var audio = require('./audio')
-var menu = require('./menu')
-var player = require('./player')
 var Config = require('electron-store')
-var userConfig = require('./config')
-var artwork = require('./artwork')
+var get = require('lodash.get')
 var xtend = require('xtend')
 var shuffleArray = require('fy-shuffle')
-// var get = require('lodash.get')
-var makeTrackDict = require('./library')
+var userConfig = require('./config')
+var menu = require('./menu')
+var artwork = require('./artwork')
+var makeTrackDict = require('./track-dict')
+var audio = require('./windows/audio')
+var player = require('./windows/player')
 
 var persist = new Config({ name: 'hyperamp-persist' })
 
 var state = xtend({
-  paths: [], // USERCONFIG: Paths for seraching for songs
+  paths: [], // USERCONFIG: Paths for searching for songs
   trackDict: {}, // object of known tracks
   trackOrder: [], // array of track keys
   currentIndex: null, // Currently queued track index
@@ -29,7 +28,7 @@ var state = xtend({
 
 module.exports = state
 
-app.on('ready', () => {
+app.on('ready', function appReady () {
   menu.init()
   audio.init()
   player.init()
@@ -269,19 +268,15 @@ function filterList (search) {
   }
 }
 
-function allWindowsClosed () {
+app.on('window-all-closed', function allWindowsClosed () {
   if (process.platform !== 'darwin') app.quit()
-}
+})
 
-app.on('window-all-closed', allWindowsClosed)
-
-function activate () {
+app.on('activate', function activate () {
   if (player.win === null) player.init()
-}
+})
 
-app.on('activate', activate)
-
-function beforeQuit (e) {
+app.on('before-quit', function beforeQuit (e) {
   if (app.isQuitting) return
 
   app.isQuitting = true
@@ -299,9 +294,7 @@ function beforeQuit (e) {
     shuffling: state.shuffling
   })
   app.quit()
-}
-
-app.on('before-quit', beforeQuit)
+})
 
 process.on('uncaughtException', (err) => {
   console.log(err)

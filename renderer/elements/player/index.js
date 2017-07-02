@@ -1,129 +1,65 @@
-
 var html = require('choo/html')
+// var fd = require('format-duration')
 var styles = require('./styles')
-var button = require('../button')
-var buttonStyles = require('../button/styles')
 var Component = require('cache-component')
-var Range = require('../range')
-var assert = require('assert')
-var truthy = require('@bret/truthy')
+var Volume = require('./volume')
+var PlayerControls = require('./controls')
+var Meta = require('./meta')
+var Artwork = require('./artwork')
 
-module.exports = PlayerControls
-
-function PlayerControls (opts) {
-  if (!(this instanceof PlayerControls)) return new PlayerControls(opts)
+function Player (opts) {
+  if (!(this instanceof Player)) return new Player(opts)
   if (!opts) opts = {}
-  this._opts = Object.assign({
-    min: 0,
-    max: 100,
-    step: 0.1,
-    default: 0,
-    id: 'position'
-  }, opts)
+  this._opts = Object.assign({}, opts)
 
-  // State
-  this._position = 0
-  this._currentIndex = null
+  // state
   this._emit = null
-  this._playing = false
-  this._disabled = false
-  this._duration = 1
+  this._key = null
+  this._pictureHash = null
 
-  // Bound Methods
-  this._scalePosition = this._scalePosition.bind(this)
-  this._handleSeek = this._handleSeek.bind(this)
-  this._handlePrev = this._handlePrev.bind(this)
-  this._handleNext = this._handleNext.bind(this)
-  this._handlePlayPause = this._handlePlayPause.bind(this)
-  this._shuffleToggle = this._shuffleToggle.bind(this)
-
-  // Owned Children
-  this._positionSlider = new Range(this._opts)
+  // owned children
+  this._playerControls = new PlayerControls()
+  this._volume = new Volume()
+  this._meta = new Meta()
+  this._artwork = new Artwork()
 
   Component.call(this)
 }
 
-PlayerControls.prototype = Object.create(Component.prototype)
+Player.prototype = Object.create(Component.prototype)
 
-PlayerControls.prototype._scalePosition = function (position, duration) {
-  return (position / duration) * this._opts.max || 0
-}
-
-PlayerControls.prototype._handleSeek = function (val) {
-  this._emit('player:seek', (val / this._opts.max) * this._duration)
-}
-
-PlayerControls.prototype._handlePrev = function () {
-  this._emit('player:prev')
-}
-
-PlayerControls.prototype._handleNext = function () {
-  this._emit('player:next')
-}
-
-PlayerControls.prototype._handlePlayPause = function () {
-  if (this._playing) this._emit('player:pause')
-  else this._emit('player:play')
-}
-
-PlayerControls.prototype._shuffleToggle = function () {
-  if (this._shuffling) this._emit('player:unshuffle')
-  else this._emit('player:shuffle')
-}
-
-PlayerControls.prototype._render = function (state, emit) {
-  assert.equal(typeof emit, 'function', 'PlaybackCluster: emit should be a function')
+Player.prototype._render = function (state, emit) {
   this._emit = emit
-  this._currentIndex = state.player.currentIndex
-  this._playing = state.player.playing
-  this._shuffling = state.player.shuffling
-  this._position = state.player.currentTime
-  var key = state.library.trackOrder[this._currentIndex]
-  var track = state.library.trackDict[key]
-  this._disabled = !truthy(state.player.currentIndex)
-  if (track) this._duration = track.duration
+  var {currentIndex} = state.player
+  this._key = state.library.trackOrder[currentIndex]
+  var {title = '--', artist = '--', album = '--'} = state.library.trackDict[this._key] || {}
+  var artworkPath = state.player.artwork
 
   return html`
-    <div class='${styles.controls}'>
-      ${button({ className: styles.scrubberControl },
-        this._positionSlider.render({
-          onchange: this._handleSeek,
-          value: track ? this._scalePosition(this._position, track.duration) : 0,
-          className: styles.scrubber,
-          disabled: this._disabled
-        })
-      )}
-      <div class="${buttonStyles.btnGroup} ${styles.trackControls}">
-        ${button({
-          onclick: this._handlePrev,
-          iconName: 'entypo-controller-fast-backward'
-        })}
-        ${button({
-          onclick: this._handlePlayPause,
-          iconName: `entypo-controller-${this._playing ? 'paus' : 'play'}`
-        })}
-        ${button({
-          onclick: this._handleNext,
-          iconName: 'entypo-controller-fast-forward'
-        })}
+      <div class="${styles.player}">
+        <div class="${styles.track}">
+          ${this._artwork.render(artworkPath)}
+          ${this._meta.render(title, artist, album)}
+          ${this._playerControls.render(state, emit)}
+        </div>
+        ${this._volume.render(state, emit)}
       </div>
-      <div class="${buttonStyles.btnGroup} ${styles.smallButtons}">
-        ${button({
-          onclick: this._shuffleToggle,
-          iconName: 'entypo-shuffle',
-          className: state.player.shuffling ? null : styles.disabled
-        })}
-      </div>
-    </div>
-`
+    `
 }
 
-PlayerControls.prototype._update = function (state, emit) {
+Player.prototype._update = function (state, emit) {
   this._emit = emit
-  if (this._currentIndex !== state.player.currentIndex) return true
-  if (this._playing !== state.player.playing) return true
-  if (this._position !== state.player.currentTime) return true
-  if (this._disabled !== truthy(state.player.currentIndex)) return true
-  if (this._shuffling !== state.player.shuffling) return true
+  var artworkPath = state.player.artwork
+  var {currentIndex} = state.player
+  var key = state.library.trackOrder[currentIndex]
+  if (this._key !== key) return true
+  // if (this._pictureHash !== state.player.pictureHash) return true
+  this._volume.render(state, emit)
+  this._playerControls.render(state, emit)
+  this._artwork.render(artworkPath)
   return false
 }
+
+// <div>${fd(state.player.currentTime * 1000)} -${fd((state.player.current.duration - state.player.currentTime) * 1000)}</div>
+
+module.exports = Player

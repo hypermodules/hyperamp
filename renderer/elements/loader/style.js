@@ -1,6 +1,6 @@
 var css = require('csjs-inject')
 
-var style = css`
+module.exports = css`
   .loading {
     height: 100%;
     width: 100%;
@@ -70,5 +70,3 @@ var style = css`
     }
   }
 `
-
-module.exports.style = style

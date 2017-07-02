@@ -1,6 +1,6 @@
 var { app, BrowserWindow } = require('electron')
 var path = require('path')
-var AUDIO_WINDOW = 'file://' + path.resolve(__dirname, '..', 'renderer', 'audio.html')
+var AUDIO_WINDOW = 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'audio.html')
 var audio = module.exports = {
   init,
   show,
