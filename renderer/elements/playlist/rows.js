@@ -18,7 +18,7 @@ function TableRows (opts) {
   this._trackDict = {}
   this._currentIndex = null
   this._selectedIndex = null
-  this._sliceLength = 500
+  this._sliceLength = 200
   this._sliceStartIndex = 0
   this._rowHeight = 24
   this._scrollWindowHeight = 1024
@@ -150,17 +150,19 @@ TableRows.prototype._renderSlice = function () {
     </div>`
 }
 
+var offsetBuffer = 50
+
 TableRows.prototype._handleOnScroll = function (ev) {
   var maxStart = (this._trackOrder.length - this._sliceLength)
-  var closeToBottom = this._bottomOffset < 20 && this._sliceStartIndex !== maxStart
-  var closeToTop = this._topOffset < 20 && this._sliceStartIndex !== 0
+  var closeToBottom = this._bottomOffset < offsetBuffer && this._sliceStartIndex !== maxStart
+  var closeToTop = this._topOffset < offsetBuffer && this._sliceStartIndex !== 0
   if (closeToBottom) {
-    var frontSlice = this._topVisibleRowIndex - 20
+    var frontSlice = this._topVisibleRowIndex - offsetBuffer
     this._sliceStartIndex = frontSlice > maxStart ? maxStart : frontSlice
   }
 
   if (closeToTop) {
-    var backSlice = this._bottomVisibleRowIndex + 20 - this._sliceLength
+    var backSlice = this._bottomVisibleRowIndex + offsetBuffer - this._sliceLength
     this._sliceStartIndex = backSlice > 0 ? backSlice : 0
   }
 
