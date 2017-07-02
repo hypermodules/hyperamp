@@ -1,9 +1,10 @@
-var { app, dialog } = require('electron').remote
+var remote = require('electron').remote
+var { app, dialog } = remote
 var html = require('choo/html')
 var Component = require('cache-component')
-var Search = require('../search')
+var Search = require('./search')
 var button = require('../button')
-var config = require('electron').remote.require('./config.js')
+var config = remote.require('./config.js')
 var buttonStyles = require('../button/styles')
 var styles = require('./styles')
 

@@ -3,8 +3,8 @@ var Component = require('cache-component')
 var styles = require('./styles')
 var TableRows = require('./rows')
 
-function Table (opts) {
-  if (!(this instanceof Table)) return new Table(opts)
+function Playlist (opts) {
+  if (!(this instanceof Playlist)) return new Playlist(opts)
   if (!opts) opts = {}
   this._opts = Object.assign({}, opts)
 
@@ -14,9 +14,9 @@ function Table (opts) {
   Component.call(this)
 }
 
-Table.prototype = Object.create(Component.prototype)
+Playlist.prototype = Object.create(Component.prototype)
 
-Table.prototype._render = function (state, emit) {
+Playlist.prototype._render = function (state, emit) {
   return html`
     <section class="${styles.pane}">
       <div class=${styles.tableHeader}>
@@ -39,9 +39,9 @@ Table.prototype._render = function (state, emit) {
   `
 }
 
-Table.prototype._update = function (state, emit) {
+Playlist.prototype._update = function (state, emit) {
   if (this._tableRows._update(state, emit)) return true
   return false
 }
 
-module.exports = Table
+module.exports = Playlist

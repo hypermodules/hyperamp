@@ -17,4 +17,13 @@ module.exports = css`
   }
   .leftCluster { flex: 1 }
   .rightCluster { margin-left: auto }
+
+  .searchInput {
+    width: 100%;
+    padding: 1px 5px;
+    vertical-align: middle;
+    min-height: auto;
+    margin-right: 1em;
+    height: 24px;
+  }
 `

@@ -1,4 +1,4 @@
-![Hyper Amp](./splash.jpg)
+![Hyper Amp](static/splash.jpg)
 
 Experimental audio player built with web technologies ([choo](https://github.com/yoshuawuyts/choo) + [electron](https://github.com/electron/electron)).
 
@@ -22,8 +22,8 @@ Currently under active development. macOS build coming soon!
 
 <div align="center">
 
-<img src="screenshot.png" />
-<img src="screenshot-2.png" />
+![](static/screenshot.png)
+![](static/screenshot-2.png)
 
 </div>
 

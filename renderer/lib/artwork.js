@@ -1,8 +1,9 @@
 var get = require('lodash.get')
 var nativeImage = require('electron').nativeImage
 var metadata = require('./metadata')
-var artworkCache = require('./artwork-cache')
 var crypto = require('crypto')
+
+var artworkCache = {}
 
 function artwork (path, cb) {
   metadata(path, lookupArtwork)

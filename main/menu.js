@@ -1,6 +1,6 @@
 var { app, shell, Menu } = require('electron')
 var defaultMenu = require('electron-default-menu')
-var audio = require('./audio')
+var audio = require('./windows/audio')
 var pkg = require('../package.json')
 
 module.exports = {
