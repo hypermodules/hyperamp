@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "@bret/truthy": "^1.0.1",
-    "cache-component": "^4.0.2",
+    "cache-component": "^5.1.0",
     "choo": "^6.0.0-1",
     "choo-log": "^6.0.0",
     "classnames": "^2.2.5",
