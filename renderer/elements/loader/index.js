@@ -1,13 +1,13 @@
+var html = require('choo/html')
 var css = require('csjs-inject')
 
-module.exports = css`
+var styles = css`
   .loading {
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 100pt;
   }
 
   .loader,
@@ -70,3 +70,11 @@ module.exports = css`
     }
   }
 `
+
+module.exports = function loader () {
+  return html`
+    <div class="${styles.loading}">
+      <div class="${styles.loader}"></div>
+    </div>
+  `
+}
