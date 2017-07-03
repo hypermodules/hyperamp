@@ -175,6 +175,7 @@ app.on('ready', function appReady () {
 
   function handleNewTracks (err, newTrackDict) {
     state.loading = false
+    broadcast('loading', false)
     if (err) return console.warn(err)
     state.trackDict = newTrackDict
     var newTrackOrder = state.trackOrder = Object.keys(newTrackDict)
@@ -189,6 +190,7 @@ app.on('ready', function appReady () {
     state.paths = paths
     state.loading = makeTrackDict(paths, handleNewTracks)
     console.log('scanning ' + paths)
+    broadcast('loading', true)
   })
 
   function search (ev, searchString) {

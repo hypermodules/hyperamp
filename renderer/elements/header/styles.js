@@ -26,4 +26,17 @@ module.exports = css`
     margin-right: 1em;
     height: 24px;
   }
+
+  @keyframes ckw {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+  }
+
+  .spin {
+    animation: ckw 4s infinite linear;
+  }
 `
