@@ -57,6 +57,7 @@ Header.prototype._handleNav = function () {
 Header.prototype._render = function (state, emit) {
   this._emit = emit
   this._search = state.library.search
+  this._loading = state.library.loading
   return html`
     <header class="${styles.toolbar}">
       <div class="${styles.leftCluster}">
@@ -72,6 +73,7 @@ Header.prototype._render = function (state, emit) {
             iconName: 'entypo-plus'
           })}
           ${button({
+            className: this._loading ? styles.spin : null,
             onclick: this._handleNav,
             iconName: 'entypo-cog'
           })}
@@ -83,6 +85,7 @@ Header.prototype._render = function (state, emit) {
 
 Header.prototype._update = function (state, emit) {
   if (this._search !== state.library.search) return true
+  if (this._loading !== state.library.loading) return true
   return false
 }
 

@@ -12,6 +12,7 @@ function libraryStore (state, emitter) {
     localState.trackOrder = []
     localState.search = ''
     localState.selectedIndex = null
+    localState.loading = false
   }
 
   emitter.on('library:search', search)
@@ -31,6 +32,11 @@ function libraryStore (state, emitter) {
 
   function updatePaths (newPaths) {
     localState.paths = newPaths
+  }
+
+  function loading (bool) {
+    localState.loading = bool
+    emitter.emit('render')
   }
 
   function updateLibrary (paths) {
@@ -55,10 +61,12 @@ function libraryStore (state, emitter) {
       localState.search = mainState.search
       localState.trackDict = mainState.trackDict
       localState.trackOrder = mainState.trackOrder
+      localState.loading = mainState.loading
       emitter.emit('render')
     })
   }
 
+  ipcRenderer.on('loading', (ev, isLoading) => loading(isLoading))
   ipcRenderer.on('sync-state', syncState)
   ipcRenderer.on('track-dict', (ev, newTrackDict, newTrackOrder, newPaths) => {
     window.requestAnimationFrame(() => {
