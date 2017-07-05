@@ -73,8 +73,8 @@ var styles = css`
 
 module.exports = function loader () {
   return html`
-    <div class="${styles.loading}">
+    <section class="${styles.loading}">
       <div class="${styles.loader}"></div>
-    </div>
+    </section>
   `
 }
