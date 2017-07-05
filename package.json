@@ -15,6 +15,7 @@
     "@bret/truthy": "^1.0.1",
     "cache-component": "^5.1.0",
     "choo": "^6.0.0-1",
+    "choo-expose": "^1.2.0",
     "choo-log": "^6.0.0",
     "classnames": "^2.2.5",
     "content-addressable-blob-store": "^4.5.1",
