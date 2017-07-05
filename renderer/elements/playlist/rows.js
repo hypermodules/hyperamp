@@ -201,4 +201,8 @@ TableRows.prototype._update = function (state, emit, scroll) {
   return false
 }
 
+TableRows.prototype._didMount = function (el) {
+  el.scrollTop = this._sliceStartIndex * this._rowHeight
+}
+
 module.exports = TableRows
