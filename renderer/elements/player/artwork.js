@@ -15,7 +15,7 @@ class Artwork extends Component {
   }
 
   _render (artworkPath) {
-    var fileUrl = artworkPath ? fileUrlFromPath(artworkPath) : defaultBG
+    var fileUrl = artworkPath ? fileUrlFromPath(artworkPath) : fileUrlFromPath(defaultBG)
     return html`
       <div class="${styles.albumCover}">
         <div class="${styles.albumArt}" style="background-image: ${fileUrl ? 'url(' + fileUrl + ')' : ''}"></div>
