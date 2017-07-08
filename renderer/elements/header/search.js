@@ -20,7 +20,7 @@ function Search (opts) {
 Search.prototype = Object.create(Component.prototype)
 
 Search.prototype._handleInput = function (ev) {
-  if (this._onchange) this._onchange(this._element.value)
+  if (this._onchange) this._onchange(this.element.value)
 }
 
 Search.prototype._render = function ({ onchange, value, className }) {
@@ -48,12 +48,12 @@ Search.prototype._update = function ({value, onchange, className}) {
   }
   if (this.className !== className) {
     this.className = className
-    this._element.class = className
+    this.element.class = className
   }
   if (this._value !== value) {
     // Mutate value changes
     this._value = value
-    this._element.value = this._value
+    this.element.value = this._value
   }
   return false
 }

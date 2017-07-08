@@ -27,15 +27,15 @@ function TableRows (opts) {
 
   Object.defineProperty(this, '_topVisibleRowIndex', {
     get: function () {
-      if (!self._element) throw new Error('Element not mounted')
-      return Math.floor(self._element.scrollTop / self._rowHeight)
+      if (!self.element) throw new Error('Element not mounted')
+      return Math.floor(self.element.scrollTop / self._rowHeight)
     }
   })
 
   Object.defineProperty(this, '_bottomVisibleRowIndex', {
     get: function () {
-      if (!self._element) throw new Error('Element not mounted')
-      var {clientHeight} = self._element
+      if (!self.element) throw new Error('Element not mounted')
+      var {clientHeight} = self.element
       return Math.floor(clientHeight / self._rowHeight) + self._topVisibleRowIndex
     }
   })
