@@ -22,6 +22,7 @@ function TableRows (opts) {
   this._sliceStartIndex = 0
   this._rowHeight = 24
   this._scrollWindowHeight = 1024
+  this._ticking = false // https://developer.mozilla.org/en-US/docs/Web/Events/scroll#Example
 
   var self = this
 
@@ -153,6 +154,7 @@ TableRows.prototype._renderSlice = function () {
 var offsetBuffer = 50
 
 TableRows.prototype._handleOnScroll = function (ev) {
+  var self = this
   var maxStart = (this._trackOrder.length - this._sliceLength)
   var closeToBottom = this._bottomOffset < offsetBuffer && this._sliceStartIndex !== maxStart
   var closeToTop = this._topOffset < offsetBuffer && this._sliceStartIndex !== 0
@@ -166,7 +168,15 @@ TableRows.prototype._handleOnScroll = function (ev) {
     this._sliceStartIndex = backSlice > 0 ? backSlice : 0
   }
 
-  if (closeToTop || closeToBottom) return this.render(null, null, true)
+  if (closeToTop || closeToBottom) {
+    if (!this._ticking) {
+      window.requestAnimationFrame(function () {
+        self.render(null, null, true)
+        self._ticking = false
+      })
+      this._ticking = true
+    }
+  }
 }
 
 TableRows.prototype._render = function (state, emit) {
@@ -201,8 +211,11 @@ TableRows.prototype._update = function (state, emit, scroll) {
   return false
 }
 
-TableRows.prototype._didMount = function (el) {
-  el.scrollTop = this._sliceStartIndex * this._rowHeight
+TableRows.prototype._willRender = function (el) {
+  var self = this
+  window.requestAnimationFrame(function () {
+    el.scrollTop = self._sliceStartIndex * self._rowHeight
+  })
 }
 
 module.exports = TableRows
