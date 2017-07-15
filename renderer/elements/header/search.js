@@ -2,7 +2,7 @@ var html = require('choo/html')
 var formStyles = require('../form/styles')
 var styles = require('./styles')
 var assert = require('assert')
-var Component = require('cache-component')
+var Component = require('nanocomponent')
 
 function Search (opts) {
   if (!(this instanceof Search)) return new Search(opts)

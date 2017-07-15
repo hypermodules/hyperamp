@@ -1,7 +1,7 @@
 var remote = require('electron').remote
 var { app, dialog } = remote
 var html = require('choo/html')
-var Component = require('cache-component')
+var Component = require('nanocomponent')
 var Search = require('./search')
 var button = require('../button')
 var config = remote.require('./config.js')

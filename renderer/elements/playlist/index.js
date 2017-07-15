@@ -1,5 +1,5 @@
 var html = require('choo/html')
-var Component = require('cache-component')
+var Component = require('nanocomponent')
 var styles = require('./styles')
 var TableRows = require('./rows')
 var loader = require('../loader')

@@ -1,7 +1,7 @@
 var html = require('choo/html')
 // var fd = require('format-duration')
 var styles = require('./styles')
-var Component = require('cache-component')
+var Component = require('nanocomponent')
 var Volume = require('./volume')
 var PlayerControls = require('./controls')
 var Meta = require('./meta')

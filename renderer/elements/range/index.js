@@ -1,4 +1,4 @@
-var Component = require('cache-component')
+var Component = require('nanocomponent')
 var html = require('choo/html')
 var assert = require('assert')
 var styles = require('./styles')
