@@ -1,5 +1,6 @@
 var html = require('choo/html')
 var Component = require('nanocomponent')
+var compare = require('nanocomponent/compare')
 var styles = require('./styles')
 
 class Meta extends Component {
@@ -27,6 +28,10 @@ class Meta extends Component {
         </p>
       </div>
     `
+  }
+
+  _update () {
+    return compare(arguments, this._args)
   }
 }
 

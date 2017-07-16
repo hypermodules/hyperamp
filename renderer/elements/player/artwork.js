@@ -4,6 +4,7 @@ var styles = require('./styles')
 var fileUrlFromPath = require('file-url')
 var path = require('path')
 var defaultBG = path.resolve(__dirname, '../../../static/splash.jpg')
+var compare = require('nanocomponent/compare')
 
 class Artwork extends Component {
   constructor (opts) {
@@ -21,6 +22,10 @@ class Artwork extends Component {
         <div class="${styles.albumArt}" style="background-image: ${fileUrl ? 'url(' + fileUrl + ')' : ''}"></div>
       </div>
     `
+  }
+
+  _update () {
+    return compare(arguments, this._args)
   }
 }
 
