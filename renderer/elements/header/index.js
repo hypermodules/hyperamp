@@ -33,7 +33,7 @@ Header.prototype._handleAddButton = function () {
   if (!this._dialogOpen) {
     this._dialogOpen = true
     var paths = config.get('paths')
-    var defaultPath = paths[paths.length - 1] || app.getPath('music')
+    var defaultPath = paths ? paths[paths.length - 1] : app.getPath('music')
     dialog.showOpenDialog({
       defaultPath: defaultPath,
       properties: ['openFile', 'openDirectory', 'multiSelections']
