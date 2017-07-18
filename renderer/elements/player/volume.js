@@ -2,7 +2,7 @@ var html = require('choo/html')
 var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
-var Component = require('cache-component')
+var Component = require('nanocomponent')
 var Range = require('../range')
 
 function VolumeCluster (opts) {

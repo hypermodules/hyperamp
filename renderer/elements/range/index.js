@@ -1,4 +1,4 @@
-var Component = require('cache-component')
+var Component = require('nanocomponent')
 var html = require('choo/html')
 var assert = require('assert')
 var styles = require('./styles')
@@ -24,7 +24,7 @@ function Range (opts) {
 Range.prototype = Object.create(Component.prototype)
 
 Range.prototype._handleInput = function (e) {
-  if (this._onchange) this._onchange(this._element.value)
+  if (this._onchange) this._onchange(this.element.value)
 }
 
 Range.prototype._render = function ({value, onchange, className, disabled}) {
@@ -57,12 +57,12 @@ Range.prototype._update = function ({value, onchange, className}) {
   }
   if (this._className !== className) {
     this._className = className
-    this._element.class = className
+    this.element.class = className
   }
   if (this._value !== value) {
     // Mutate value changes
     this._value = value
-    this._element.value = this._value
+    this.element.value = this._value
   }
   return false
 }
