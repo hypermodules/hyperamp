@@ -179,7 +179,7 @@ TableRows.prototype._handleOnScroll = function (ev) {
   }
 }
 
-TableRows.prototype._render = function (state, emit) {
+TableRows.prototype.createElement = function (state, emit) {
   if (emit) this._emit = emit
   if (state) {
     // Save references to state track order and dicts
@@ -194,7 +194,7 @@ TableRows.prototype._render = function (state, emit) {
   return this._renderSlice()
 }
 
-TableRows.prototype._update = function (state, emit, scroll) {
+TableRows.prototype.update = function (state, emit, scroll) {
   // Re-render
   // Note, these are only shallow compares.  You must slice or reobject your state
   if (scroll) return true
@@ -211,7 +211,7 @@ TableRows.prototype._update = function (state, emit, scroll) {
   return false
 }
 
-TableRows.prototype._willRender = function (el) {
+TableRows.prototype.willRender = function (el) {
   var self = this
   window.requestAnimationFrame(function () {
     el.scrollTop = self._sliceStartIndex * self._rowHeight

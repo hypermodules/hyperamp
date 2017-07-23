@@ -15,7 +15,7 @@ class Artwork extends Component {
     this._artwork = null
   }
 
-  _render (artworkPath) {
+  createElement (artworkPath) {
     var fileUrl = fileUrlFromPath(artworkPath || defaultBG)
     return html`
       <div class="${styles.albumCover}">
@@ -24,8 +24,8 @@ class Artwork extends Component {
     `
   }
 
-  _update () {
-    return compare(arguments, this._args)
+  update () {
+    return compare(arguments, this.lastArgs)
   }
 }
 

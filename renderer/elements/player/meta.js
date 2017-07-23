@@ -14,7 +14,7 @@ class Meta extends Component {
     this._album = null
   }
 
-  _render (title, artist, album) {
+  createElement (title, artist, album) {
     this._title = title || '--'
     this._artist = artist || '--'
     this._album = album || '--'
@@ -30,8 +30,8 @@ class Meta extends Component {
     `
   }
 
-  _update () {
-    return compare(arguments, this._args)
+  update () {
+    return compare(arguments, this.lastArgs)
   }
 }
 

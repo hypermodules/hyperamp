@@ -23,7 +23,7 @@ Search.prototype._handleInput = function (ev) {
   if (this._onchange) this._onchange(this.element.value)
 }
 
-Search.prototype._render = function ({ onchange, value, className }) {
+Search.prototype.createElement = function ({ onchange, value, className }) {
   assert.equal(typeof onchange, 'function', 'Search: onchange should be a function')
 
   this._onchange = onchange
@@ -40,7 +40,7 @@ Search.prototype._render = function ({ onchange, value, className }) {
 }
 
 // Lets mutate!
-Search.prototype._update = function ({value, onchange, className}) {
+Search.prototype.update = function ({value, onchange, className}) {
   assert.equal(typeof onchange, 'function', 'Range: onchange should be a function')
 
   if (this.onchange !== onchange) {

@@ -42,7 +42,7 @@ VolumeCluster.prototype._toggleMute = function () {
   else this._emit('player:mute')
 }
 
-VolumeCluster.prototype._render = function (state, emit) {
+VolumeCluster.prototype.createElement = function (state, emit) {
   var { muted, volume } = state.player
   this._muted = muted
   this._volume = volume
@@ -66,7 +66,7 @@ VolumeCluster.prototype._render = function (state, emit) {
   `
 }
 
-VolumeCluster.prototype._update = function (state) {
+VolumeCluster.prototype.update = function (state) {
   var { muted, volume } = state.player
   if (this._muted !== muted || this._volume !== volume) {
     return true
