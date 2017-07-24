@@ -12,11 +12,12 @@ class Artwork extends Component {
     super()
     this._opts = Object.assign({}, opts)
 
-    this._artwork = null
+    this.arguments = []
   }
 
   createElement (artworkPath) {
     var fileUrl = fileUrlFromPath(artworkPath || defaultBG)
+    this.arguments = arguments
     return html`
       <div class="${styles.albumCover}">
         <div class="${styles.albumArt}" style="background-image: ${fileUrl ? 'url(' + fileUrl + ')' : ''}"></div>
@@ -25,7 +26,7 @@ class Artwork extends Component {
   }
 
   update () {
-    return compare(arguments, this.lastArgs)
+    return compare(arguments, this.arguments)
   }
 }
 

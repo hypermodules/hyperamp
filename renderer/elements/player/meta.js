@@ -9,15 +9,11 @@ class Meta extends Component {
     super(opts)
     this._opts = Object.assign({}, opts)
 
-    this._title = null
-    this._artist = null
-    this._album = null
+    this.arguments = []
   }
 
   createElement (title, artist, album) {
-    this._title = title || '--'
-    this._artist = artist || '--'
-    this._album = album || '--'
+    this.arguments = arguments
 
     return html`
       <div class="${styles.meta}">
@@ -31,7 +27,7 @@ class Meta extends Component {
   }
 
   update () {
-    return compare(arguments, this.lastArgs)
+    return compare(arguments, this.arguments)
   }
 }
 
