@@ -211,7 +211,7 @@ TableRows.prototype.update = function (state, emit, scroll) {
   return false
 }
 
-TableRows.prototype.willRender = function (el) {
+TableRows.prototype.beforerender = function (el) {
   var self = this
   window.requestAnimationFrame(function () {
     el.scrollTop = self._sliceStartIndex * self._rowHeight
