@@ -28,7 +28,7 @@ function Player (opts) {
 
 Player.prototype = Object.create(Component.prototype)
 
-Player.prototype._render = function (state, emit) {
+Player.prototype.createElement = function (state, emit) {
   this._emit = emit
   var {currentIndex} = state.player
   this._key = state.library.trackOrder[currentIndex]
@@ -47,7 +47,7 @@ Player.prototype._render = function (state, emit) {
     `
 }
 
-Player.prototype._update = function (state, emit) {
+Player.prototype.update = function (state, emit) {
   this._emit = emit
   var artworkPath = state.player.artwork
   var {currentIndex} = state.player

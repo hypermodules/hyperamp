@@ -54,7 +54,7 @@ Header.prototype._handleNav = function () {
   this._emit('pushState', '#preferences')
 }
 
-Header.prototype._render = function (state, emit) {
+Header.prototype.createElement = function (state, emit) {
   this._emit = emit
   this._search = state.library.search
   this._loading = state.library.loading
@@ -83,7 +83,7 @@ Header.prototype._render = function (state, emit) {
   `
 }
 
-Header.prototype._update = function (state, emit) {
+Header.prototype.update = function (state, emit) {
   if (this._search !== state.library.search) return true
   if (this._loading !== state.library.loading) return true
   return false

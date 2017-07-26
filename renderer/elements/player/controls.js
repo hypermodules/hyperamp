@@ -71,7 +71,7 @@ PlayerControls.prototype._shuffleToggle = function () {
   else this._emit('player:shuffle')
 }
 
-PlayerControls.prototype._render = function (state, emit) {
+PlayerControls.prototype.createElement = function (state, emit) {
   assert.equal(typeof emit, 'function', 'PlaybackCluster: emit should be a function')
   this._emit = emit
   this._currentIndex = state.player.currentIndex
@@ -118,7 +118,7 @@ PlayerControls.prototype._render = function (state, emit) {
 `
 }
 
-PlayerControls.prototype._update = function (state, emit) {
+PlayerControls.prototype.update = function (state, emit) {
   this._emit = emit
   if (this._currentIndex !== state.player.currentIndex) return true
   if (this._playing !== state.player.playing) return true

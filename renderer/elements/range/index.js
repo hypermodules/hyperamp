@@ -27,7 +27,7 @@ Range.prototype._handleInput = function (e) {
   if (this._onchange) this._onchange(this.element.value)
 }
 
-Range.prototype._render = function ({value, onchange, className, disabled}) {
+Range.prototype.createElement = function ({value, onchange, className, disabled}) {
   assert.equal(typeof onchange, 'function', 'Range: onchange should be a function')
 
   this._onchange = onchange
@@ -49,7 +49,7 @@ Range.prototype._render = function ({value, onchange, className, disabled}) {
 }
 
 // Lets mutate!
-Range.prototype._update = function ({value, onchange, className}) {
+Range.prototype.update = function ({value, onchange, className}) {
   assert.equal(typeof onchange, 'function', 'Range: onchange should be a function')
 
   if (this._onchange !== onchange) {

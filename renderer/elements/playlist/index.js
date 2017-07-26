@@ -17,7 +17,7 @@ function Playlist (opts) {
 
 Playlist.prototype = Object.create(Component.prototype)
 
-Playlist.prototype._render = function (state, emit) {
+Playlist.prototype.createElement = function (state, emit) {
   this._loading = state.library.loading
 
   if (this._loading) return loader()
@@ -44,9 +44,9 @@ Playlist.prototype._render = function (state, emit) {
   `
 }
 
-Playlist.prototype._update = function (state, emit) {
+Playlist.prototype.update = function (state, emit) {
   if (this._loading !== state.library.loading) return true
-  if (this._tableRows._update(state, emit)) return true
+  if (this._tableRows.update(state, emit)) return true
   return false
 }
 
