@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "@bret/truthy": "^1.0.1",
-    "choo": "^6.0.0-3",
+    "choo": "^6.0.0",
     "choo-expose": "^1.2.0",
     "choo-log": "^7.1.0",
     "classnames": "^2.2.5",
@@ -50,7 +50,7 @@
     "music-metadata": "^0.6.1",
     "musicmetadata": "^2.0.4",
     "nanobus": "^4.1.0",
-    "nanocomponent": "^6.0.0-1",
+    "nanocomponent": "^6.0.0",
     "nanologger": "^1.0.2",
     "nanotick": "^1.1.6",
     "pump": "^1.0.2",
