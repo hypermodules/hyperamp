@@ -2,28 +2,34 @@ var { ipcRenderer } = require('electron')
 
 module.exports = playerStore
 
+function getInitialState () {
+  return {
+    playing: false,
+    currentIndex: 0,
+    currentTime: 0.0,
+    volume: 0.50,
+    muted: false,
+    artwork: null,
+    shuffling: false
+  }
+}
+
 function playerStore (state, emitter) {
   var localState = state.player
+  if (!localState) localState = state.player = getInitialState()
 
-  if (!localState) {
-    localState = state.player = {}
-    localState.playing = false
-    localState.currentIndex = 0
-    localState.currentTime = 0.0
-    localState.volume = 0.50
-    localState.muted = false
-    localState.artwork = null
-    localState.shuffling = false
+  function render () {
+    emitter.emit('render')
   }
 
   function muted (bool) {
     localState.muted = bool
-    emitter.emit('render')
+    render()
   }
 
   function playing (bool) {
     localState.playing = bool
-    emitter.emit('render')
+    render()
   }
 
   function shuffling (bool) {
@@ -44,7 +50,7 @@ function playerStore (state, emitter) {
 
   function current (newIndex) {
     localState.currentIndex = newIndex
-    emitter.emit('render')
+    render()
   }
 
   emitter.on('player:queue', queue)
@@ -79,13 +85,13 @@ function playerStore (state, emitter) {
   function next () {
     ipcRenderer.send('next')
     currentTime(0)
-    emitter.emit('render')
+    render()
   }
 
   function prev () {
     ipcRenderer.send('prev')
     currentTime(0)
-    emitter.emit('render')
+    render()
   }
 
   function mute () {
@@ -101,13 +107,13 @@ function playerStore (state, emitter) {
   function shuffle () {
     ipcRenderer.send('shuffle')
     shuffling(true)
-    emitter.emit('render')
+    render()
   }
 
   function unshuffle () {
     ipcRenderer.send('unshuffle')
     shuffling(false)
-    emitter.emit('render')
+    render()
   }
 
   function seek (time) {
@@ -124,7 +130,7 @@ function playerStore (state, emitter) {
 
   function updateArtwork (blobPath) {
     artwork(blobPath)
-    emitter.emit('render')
+    render()
   }
 
   function syncState (mainState) {
@@ -134,7 +140,7 @@ function playerStore (state, emitter) {
     localState.muted = mainState.muted
     localState.shuffling = mainState.shuffling
     localState.artwork = mainState.artwork
-    emitter.emit('render')
+    render()
   }
 
   ipcRenderer.on('play', () => playing(true))
@@ -148,7 +154,7 @@ function playerStore (state, emitter) {
   ipcRenderer.on('artwork', (ev, blobPath) => updateArtwork(blobPath))
   ipcRenderer.on('timeupdate', (ev, time) => {
     currentTime(time)
-    emitter.emit('render')
+    render()
   })
   ipcRenderer.on('sync-state', (ev, mainState) => emitter.emit('player:sync-state', mainState))
 }
