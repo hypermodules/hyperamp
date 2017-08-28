@@ -22,16 +22,21 @@ function AudioPlayer (audioNode, state) {
   this.audio.muted = state.muted
   this.seeking = false
   this.seekDebounceTimer = null
+  this.timeupdate = null
 
   this._endedListener = this.audio.addEventListener('ended', function () {
     if (!self.seeking) self.emit('ended')
   })
 
   this._timeListener = this.audio.addEventListener('timeupdate', function (ev) {
-    if (!self.seeking) self.emit('timeupdate', self.audio.currentTime)
+    if (self.seeking) return
+    var timeupdate = Math.floor(self.audio.currentTime)
+    if (self.timeupdate === timeupdate) return
+    self.timeupdate = timeupdate
+    self.emit('timeupdate', self.timeupdate)
   })
 
-  console.log(this)
+  this.emit('initialized', this)
 }
 
 AudioPlayer.prototype = Object.create(Nanobus.prototype)
@@ -41,7 +46,7 @@ AudioPlayer.prototype.seekDebounce = function () {
   if (this.seekDebounceTimer) clearTimeout(this.seekDebounceTimer)
   var self = this
   this.seekDebounceTimer = setTimeout(function () {
-    console.log('debounce cleared')
+    self.emit('debounce cleared')
     self.seeking = false
     self.seekDebounceTimer = null
     // TODO: check if we are at the end and we lost the endedEvent
@@ -89,13 +94,13 @@ AudioPlayer.prototype.seek = function (newTime) {
 }
 
 AudioPlayer.prototype.updateTrackDict = function (trackDict, trackOrder) {
-  console.log(arguments)
+  this.emit('updateTrackDict', arguments)
   this.trackDict = trackDict
   this.trackOrder = trackOrder
 }
 
 AudioPlayer.prototype.updateTrackOrder = function (trackOrder) {
-  console.log(arguments)
+  this.emit('updateTrackOrder', arguments)
   this.trackOrder = trackOrder
 }
 

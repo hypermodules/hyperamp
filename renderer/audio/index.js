@@ -13,6 +13,7 @@ var audioNode = document.querySelector('#audio')
 var player = window.player = new AudioPlayer(audioNode, mainState)
 
 player.on('*', function (event, data) {
+  if (data === undefined) return log.info(event)
   log.info(event, data)
 })
 
