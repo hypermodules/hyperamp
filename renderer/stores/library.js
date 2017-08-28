@@ -2,18 +2,20 @@ var ipcRenderer = require('electron').ipcRenderer
 
 module.exports = libraryStore
 
+function getInitialState () {
+  return {
+    paths: [],
+    trackDict: {},
+    trackOrder: [],
+    search: '',
+    selectedIndex: null,
+    loading: false
+  }
+}
+
 function libraryStore (state, emitter) {
   var localState = state.library
-
-  if (!localState) {
-    localState = state.library = {}
-    localState.paths = []
-    localState.trackDict = {}
-    localState.trackOrder = []
-    localState.search = ''
-    localState.selectedIndex = null
-    localState.loading = false
-  }
+  if (!localState) localState = state.library = getInitialState()
 
   emitter.on('library:search', search)
   emitter.on('library:update-library', updateLibrary)

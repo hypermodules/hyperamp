@@ -8,7 +8,7 @@ function configStore (state, emitter) {
 
   if (!localState) {
     localState = state.config = {}
-    localState = config.store
+    localState = config.store // wtf
   }
 
   emitter.on('config:set', set)
