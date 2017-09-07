@@ -28,12 +28,12 @@ Playlist.prototype.createElement = function (state, emit) {
         <table class="${styles.mediaList}">
           <thead>
             <tr>
-              <th>Title</th>
+              <th class="${styles.title}">Title</th>
               <th class="${styles.time}">Time</th>
-              <th class="${styles.disk}">Disk</th>
+              <th class="${styles.artist}">Artist</th>
+              <th class="${styles.album}">Album</th>
               <th class="${styles.track}">Track</th>
-              <th>Artist</th>
-              <th>Album</th>
+              <th class="${styles.disk}">Disk</th>
               <th class="${styles.year}">Year</th>
             </tr>
           </thead>

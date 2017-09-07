@@ -117,16 +117,15 @@ TableRows.prototype._rowMap = function (key, idx) {
   classes[styles.selected] = this._selectedIndex === idx + this._sliceStartIndex
 
   return html`
-    <tr style=""
-        id="track-${idx + this._sliceStartIndex}"
+    <tr id="track-${idx + this._sliceStartIndex}"
         data-key=${key}
-        className="${classNames(classes)}">
-      <td>${meta.title}</td>
+        class="${classNames(classes)}">
+      <td class="${styles.title}">${meta.title}</td>
       <td class="${styles.time}">${meta.duration ? fd(meta.duration * 1000) : ''}</td>
-      <td class="${styles.disk}">${meta.disk ? formatCount(meta.disk) : ''}</td>
+      <td class="${styles.artist}">${meta.artist}</td>
+      <td class="${styles.album}">${meta.album}</td>
       <td class="${styles.track}">${meta.track ? formatCount(meta.track) : ''}</td>
-      <td>${meta.artist}</td>
-      <td>${meta.album}</td>
+      <td class="${styles.disk}">${meta.disk ? formatCount(meta.disk) : ''}</td>
       <td class="${styles.year}">${meta.year}</td>
     </tr>
   `
