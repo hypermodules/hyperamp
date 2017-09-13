@@ -56,7 +56,7 @@ module.exports = css`
   .tableScrollWindow {
     flex: 1 0;
     overflow-y: overlay;
-    overflow-x: hidden;
+    overflow-x: overlay;
     will-change: transform;
     contain: content;
   }
@@ -105,5 +105,11 @@ module.exports = css`
 
   .playing {
     color: var(--link);
+  }
+
+  .stickyHead th {
+    position: sticky;
+    top: 0px;
+    background-color: rgba(243,243,243,1);
   }
 `

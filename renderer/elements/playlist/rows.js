@@ -141,6 +141,17 @@ TableRows.prototype._renderSlice = function () {
       <div class='${styles.tableContainer}'
            style="height: ${this._trackOrder.length * this._rowHeight}px;">
         <table style="top: ${sliceOffset}px;" class="${styles.mediaList} ${styles.tableRel}">
+          <thead class=${styles.stickyHead}>
+            <tr>
+              <th class="${styles.title}">Title</th>
+              <th class="${styles.time}">Time</th>
+              <th class="${styles.artist}">Artist</th>
+              <th class="${styles.album}">Album</th>
+              <th class="${styles.track}">Track</th>
+              <th class="${styles.disk}">Disk</th>
+              <th class="${styles.year}">Year</th>
+            </tr>
+          </thead>
           <tbody ondblclick=${this._playTrack}
                  onclick=${this._selectTrack}>
             ${this._trackOrder.slice(this._sliceStartIndex, sliceEnd).map(this._rowMap)}
