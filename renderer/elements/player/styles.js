@@ -3,38 +3,48 @@ var css = require('csjs-inject')
 module.exports = css`
   .player {
     -webkit-app-region: drag;
-    border-left: var(--border);
-    display: flex;
-    flex-direction: column;
+    border-top: var(--border);
     align-items: center;
-    position: relative;
     text-align: center;
-    min-width: 250px;
-    max-width: 250px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 77px;
     justify-content: space-between;
     will-change: transform;
     contain: layout;
+    display: flex;
+    padding: 0 20px 0 90px;
+    background: #fff;
   }
 
-  .track {
-    padding: .5em;
+  .controls {
+    font-size: 1.5em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .disabled svg { fill: rgb(144, 144, 144) }
+
+  .progress {
+    display: flex;
     width: 100%;
+    padding: 0 20px;
   }
-
-  @media (max-width: 460px) {
-    .player {
-      border-left: none;
-      min-width: initial;
-      max-width: initial;
-      width: 100%;
-    }
-
-    .track { padding: 0 }
+  .time {
+    font-size: 11px;
+    display: inline-flex;
+    align-items: center;
+    min-width: 3em;
   }
-
-  /* controls */
-  .controls { font-size: 2em }
-  .scrubberControl { width: 100% }
+  .time:first-child { justify-content: flex-end }
+  .time:last-child { justify-content: flex-start }
+  .range { width: 100% }
   .scrubber {
     cursor: default;
     position: relative;
@@ -42,58 +52,26 @@ module.exports = css`
     -webkit-app-region: no-drag;
     width: 100%;
   }
-  .trackControls { flex: 1 }
 
-  .smallButtons { font-size: 0.5em }
-
-  .disabled svg { fill: rgb(144, 144, 144) }
-
-  /* meta */
-  .meta { margin: 1rem 0 0 }
+  .meta {
+    font-size: 12px;
+    position: absolute;
+    width: 100%;
+    top: -16px;
+    text-align: left;
+    padding-left: 10px;
+  }
   .title, .artist { margin: 0 }
   .title { font-weight: 600 }
 
-  /* artwork */
-  .albumCover {
-    position: relative;
-    width: 100%; /* desired width */
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .albumCover:before {
-    content: '';
-    display: block;
-    padding-top: 100%; /* initial ratio of 1:1*/
-  }
-
-  .albumArt {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-
-    background: #eee;
-    background-size: cover;
-    background-position: center;
-  }
-
-  @media (max-width: 460px) {
-    .albumCover { border-radius: 0 }
-  }
-
-  /* volume */
-  .volumeCluster { margin-bottom: .5em }
-
-  .volumeButton { padding: 0 }
-
+  .volumeGroup button { padding-right: 0 }
   .volumeSlider {
     position: relative;
     cursor: default;
     display: inline-block;
     vertical-align: middle;
     -webkit-app-region: no-drag;
-    width: 100px;
+    width: 69px;
     margin: 0 5px;
   }
 `

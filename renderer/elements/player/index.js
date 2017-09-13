@@ -1,65 +1,63 @@
 var html = require('choo/html')
-// var fd = require('format-duration')
 var styles = require('./styles')
 var Component = require('nanocomponent')
-var Volume = require('./volume')
-var PlayerControls = require('./controls')
-var Meta = require('./meta')
 var Artwork = require('./artwork')
+var Controls = require('./controls')
+var Progress = require('./progress')
+var Meta = require('./meta')
+var Volume = require('./volume')
 
-function Player (opts) {
-  if (!(this instanceof Player)) return new Player(opts)
-  if (!opts) opts = {}
-  this._opts = Object.assign({}, opts)
+class Player extends Component {
+  constructor (opts) {
+    if (!opts) opts = {}
+    super(opts)
+    this._opts = Object.assign({}, opts)
 
-  // state
-  this._emit = null
-  this._key = null
-  this._pictureHash = null
+    // state
+    this._emit = null
+    this._key = null
+    this._pictureHash = null
 
-  // owned children
-  this._playerControls = new PlayerControls()
-  this._volume = new Volume()
-  this._meta = new Meta()
-  this._artwork = new Artwork()
+    // owned children
+    this._artwork = new Artwork()
+    this._controls = new Controls()
+    this._progress = new Progress()
+    this._meta = new Meta()
+    this._volume = new Volume()
+  }
 
-  Component.call(this)
-}
+  createElement (state, emit) {
+    var { trackOrder } = state.library
+    var { artwork, currentIndex } = state.player
 
-Player.prototype = Object.create(Component.prototype)
+    this._emit = emit
+    this._key = trackOrder[currentIndex]
 
-Player.prototype.createElement = function (state, emit) {
-  this._emit = emit
-  var {currentIndex} = state.player
-  this._key = state.library.trackOrder[currentIndex]
-  var {title = '--', artist = '--', album = '--'} = state.library.trackDict[this._key] || {}
-  var artworkPath = state.player.artwork
-
-  return html`
+    return html`
       <div class="${styles.player}">
-        <div class="${styles.track}">
-          ${this._artwork.render(artworkPath)}
-          ${this._meta.render(title, artist, album)}
-          ${this._playerControls.render(state, emit)}
-        </div>
+        ${this._artwork.render(artwork)}
+        ${this._controls.render(state, emit)}
+        ${this._progress.render(state, emit)}
         ${this._volume.render(state, emit)}
       </div>
     `
-}
+  }
 
-Player.prototype.update = function (state, emit) {
-  this._emit = emit
-  var artworkPath = state.player.artwork
-  var {currentIndex} = state.player
-  var key = state.library.trackOrder[currentIndex]
-  if (this._key !== key) return true
-  // if (this._pictureHash !== state.player.pictureHash) return true
-  this._volume.render(state, emit)
-  this._playerControls.render(state, emit)
-  this._artwork.render(artworkPath)
-  return false
-}
+  update (state, emit) {
+    this._emit = emit
 
-// <div>${fd(state.player.currentTime * 1000)} -${fd((state.player.current.duration - state.player.currentTime) * 1000)}</div>
+    var { artwork, currentIndex } = state.player
+    var { trackOrder } = state.library
+
+    if (this._key !== trackOrder[currentIndex]) return true
+
+    this._artwork.render(artwork)
+    this._controls.render(state, emit)
+    this._progress.render(state, emit)
+    this._volume.render(state, emit)
+
+    return false
+  }
+}
 
 module.exports = Player

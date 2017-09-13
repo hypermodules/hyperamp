@@ -1,26 +1,59 @@
 var html = require('choo/html')
 var Component = require('nanocomponent')
-var styles = require('./styles')
 var fileUrlFromPath = require('file-url')
 var path = require('path')
 var defaultBG = path.resolve(__dirname, '../../../static/splash.jpg')
 var compare = require('nanocomponent/compare')
+var css = require('csjs-inject')
+
+var styles = css`
+  .albumCover {
+    position: absolute;
+    width: 77px;
+    height: 77px;
+    left: 0px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .albumCover:before {
+    content: '';
+    display: block;
+    padding-top: 100%; /* initial ratio of 1:1*/
+  }
+
+  .albumArt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background: #eee;
+    background-size: cover;
+    background-position: center;
+  }
+`
 
 class Artwork extends Component {
   constructor (opts) {
     if (!opts) opts = {}
-    super()
+    super(opts)
     this._opts = Object.assign({}, opts)
 
     this.arguments = []
   }
 
   createElement (artworkPath) {
-    var fileUrl = fileUrlFromPath(artworkPath || defaultBG)
     this.arguments = arguments
+
+    var fileUrl = fileUrlFromPath(artworkPath || defaultBG)
+    var style = fileUrl
+      ? `background-image: url(${fileUrl})`
+      : ''
+
     return html`
       <div class="${styles.albumCover}">
-        <div class="${styles.albumArt}" style="background-image: ${fileUrl ? 'url(' + fileUrl + ')' : ''}"></div>
+        <div class="${styles.albumArt}" style=${style}></div>
       </div>
     `
   }

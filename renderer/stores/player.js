@@ -120,6 +120,7 @@ function playerStore (state, emitter) {
     window.requestAnimationFrame(() => {
       ipcRenderer.send('seek', time)
       currentTime(time)
+      render()
     })
   }
 
