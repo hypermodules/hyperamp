@@ -117,16 +117,15 @@ TableRows.prototype._rowMap = function (key, idx) {
   classes[styles.selected] = this._selectedIndex === idx + this._sliceStartIndex
 
   return html`
-    <tr style=""
-        id="track-${idx + this._sliceStartIndex}"
+    <tr id="track-${idx + this._sliceStartIndex}"
         data-key=${key}
-        className="${classNames(classes)}">
-      <td>${meta.title}</td>
+        class="${classNames(classes)}">
+      <td class="${styles.title}">${meta.title}</td>
       <td class="${styles.time}">${meta.duration ? fd(meta.duration * 1000) : ''}</td>
-      <td class="${styles.disk}">${meta.disk ? formatCount(meta.disk) : ''}</td>
+      <td class="${styles.artist}">${meta.artist}</td>
+      <td class="${styles.album}">${meta.album}</td>
       <td class="${styles.track}">${meta.track ? formatCount(meta.track) : ''}</td>
-      <td>${meta.artist}</td>
-      <td>${meta.album}</td>
+      <td class="${styles.disk}">${meta.disk ? formatCount(meta.disk) : ''}</td>
       <td class="${styles.year}">${meta.year}</td>
     </tr>
   `
@@ -142,6 +141,17 @@ TableRows.prototype._renderSlice = function () {
       <div class='${styles.tableContainer}'
            style="height: ${this._trackOrder.length * this._rowHeight}px;">
         <table style="top: ${sliceOffset}px;" class="${styles.mediaList} ${styles.tableRel}">
+          <thead class=${styles.stickyHead}>
+            <tr>
+              <th class="${styles.title}">Title</th>
+              <th class="${styles.time}">Time</th>
+              <th class="${styles.artist}">Artist</th>
+              <th class="${styles.album}">Album</th>
+              <th class="${styles.track}">Track</th>
+              <th class="${styles.disk}">Disk</th>
+              <th class="${styles.year}">Year</th>
+            </tr>
+          </thead>
           <tbody ondblclick=${this._playTrack}
                  onclick=${this._selectTrack}>
             ${this._trackOrder.slice(this._sliceStartIndex, sliceEnd).map(this._rowMap)}

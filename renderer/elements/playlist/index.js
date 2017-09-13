@@ -24,21 +24,6 @@ Playlist.prototype.createElement = function (state, emit) {
 
   return html`
     <section class="${styles.pane}">
-      <div class=${styles.tableHeader}>
-        <table class="${styles.mediaList}">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th class="${styles.time}">Time</th>
-              <th class="${styles.disk}">Disk</th>
-              <th class="${styles.track}">Track</th>
-              <th>Artist</th>
-              <th>Album</th>
-              <th class="${styles.year}">Year</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
       ${this._tableRows.render(state, emit)}
     </section>
   `

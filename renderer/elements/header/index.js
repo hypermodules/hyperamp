@@ -69,13 +69,9 @@ Header.prototype.createElement = function (state, emit) {
       <div class="${styles.rightCluster}">
         <div class="${buttonStyles.btnGroup}">
           ${button({
+            className: this._loading ? styles.spin : null,
             onclick: this._handleAddButton,
             iconName: 'entypo-plus'
-          })}
-          ${button({
-            className: this._loading ? styles.spin : null,
-            onclick: this._handleNav,
-            iconName: 'entypo-cog'
           })}
         </div>
       </div>

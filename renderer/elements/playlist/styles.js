@@ -11,6 +11,7 @@ module.exports = css`
   .mediaList {
     table-layout: fixed;
     width: 100%;
+    min-width: 1000px;
     border-spacing: 0;
     border: 0;
     border-collapse: separate;
@@ -55,7 +56,7 @@ module.exports = css`
   .tableScrollWindow {
     flex: 1 0;
     overflow-y: overlay;
-    overflow-x: hidden;
+    overflow-x: overlay;
     will-change: transform;
     contain: content;
   }
@@ -71,30 +72,44 @@ module.exports = css`
   /* use colgroup to sanely apply width properties  */
   /* https://docs.webplatform.org/wiki/html/elements/colgroup */
 
-  .mediaList  .time {
+  .mediaList .title {
+    width: 12em;
+  }
+
+  .mediaList .time {
     text-align: right;
-    width: 6em;
+    width: 4em;
+  }
+
+  .mediaList .artist {
+    width: 10em;
+  }
+
+  .mediaList .album {
+    width: 8em;
   }
 
   .mediaList .track {
     text-align: right;
-    width: 7em;
+    width: 4em;
   }
 
   .mediaList .disk {
     text-align: right;
-    width: 5em;
+    width: 4em;
   }
 
   .mediaList .year {
-    width: 5em;
-  }
-
-  .mediaList  .track {
-    width: 7em;
+    width: 4em;
   }
 
   .playing {
     color: var(--link);
+  }
+
+  .stickyHead th {
+    position: sticky;
+    top: 0px;
+    background-color: rgba(243,243,243,1);
   }
 `
