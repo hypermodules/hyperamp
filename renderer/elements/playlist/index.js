@@ -1,38 +1,40 @@
 var html = require('choo/html')
 var Component = require('nanocomponent')
+var Header = require('../../elements/header')
 var styles = require('./styles')
-var TableRows = require('./rows')
+var TrackView = require('./track-view')
 var loader = require('../loader')
 
-function Playlist (opts) {
-  if (!(this instanceof Playlist)) return new Playlist(opts)
-  if (!opts) opts = {}
-  this._opts = Object.assign({}, opts)
+var header = new Header()
 
-  // Owned Children
-  this._tableRows = new TableRows()
+class Playlist extends Component {
+  constructor (opts) {
+    if (!opts) opts = {}
+    super(opts)
+    this._opts = Object.assign({}, opts)
 
-  Component.call(this)
-}
+    // Owned Children
+    this._trackView = new TrackView()
+  }
 
-Playlist.prototype = Object.create(Component.prototype)
+  createElement (state, emit) {
+    this._loading = state.library.loading
 
-Playlist.prototype.createElement = function (state, emit) {
-  this._loading = state.library.loading
+    if (this._loading) return loader()
 
-  if (this._loading) return loader()
+    return html`
+      <div class="${styles.playlist}">
+        ${header.render(state, emit)}
+        ${this._trackView.render(state, emit)}
+      </div>
+    `
+  }
 
-  return html`
-    <section class="${styles.pane}">
-      ${this._tableRows.render(state, emit)}
-    </section>
-  `
-}
-
-Playlist.prototype.update = function (state, emit) {
-  if (this._loading !== state.library.loading) return true
-  if (this._tableRows.update(state, emit)) return true
-  return false
+  update (state, emit) {
+    if (this._loading !== state.library.loading) return true
+    if (this._trackView.update(state, emit)) return true
+    return false
+  }
 }
 
 module.exports = Playlist

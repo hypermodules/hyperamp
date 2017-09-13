@@ -12,16 +12,16 @@ class Meta extends Component {
     this.arguments = []
   }
 
-  createElement (title, artist, album) {
+  createElement (metadata) {
     this.arguments = arguments
+
+    var { title = '--', artist = '--', album = '--' } = metadata
 
     return html`
       <div class="${styles.meta}">
-        <p class="${styles.title}">${title || 'No Track Selected'}</p>
-        <p class="${styles.artist}">
-          ${Array.isArray(artist) ? artist.join(', ') : artist || 'No Artist'}
-          ${album != null && album !== '' ? ` - ${album}` : null}
-        </p>
+        ${title || 'No Track Selected'} -
+        ${Array.isArray(artist) ? artist.join(', ') : artist || 'No Artist'}
+        ${album != null && album !== '' ? ` - ${album}` : null}
       </div>
     `
   }

@@ -2,7 +2,7 @@ var css = require('csjs-inject')
 
 module.exports = css`
   .btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     padding: 3px 8px;
     margin-bottom: 0;
@@ -46,14 +46,9 @@ module.exports = css`
   }
 
   .btnGroup {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: center;
-  }
-
-  .btnGroup {
-    display: flex;
-    flex-direction: row;
   }
 
   .btnGroup .btn:not(:last-child) {
