@@ -130,7 +130,7 @@ class TrackView extends Component {
     var tableContainerHeight = `height: ${this._trackOrder.length * this._rowHeight}px;`
     var sliceEnd = this._sliceStartIndex + this._sliceLength < this._trackOrder.length
       ? this._sliceStartIndex + this._sliceLength
-      : this._trackOrder.length - 1
+      : this._trackOrder.length
     var tracks = this._trackOrder.slice(this._sliceStartIndex, sliceEnd).map(this._rowMap)
 
     return html`
