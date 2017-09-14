@@ -20,12 +20,12 @@ class Playlist extends Component {
   createElement (state, emit) {
     this._loading = state.library.loading
 
-    if (this._loading) return loader()
-
     return html`
       <div class="${styles.playlist}">
         ${header.render(state, emit)}
-        ${this._trackView.render(state, emit)}
+        ${this._loading
+          ? loader()
+          : this._trackView.render(state, emit)}
       </div>
     `
   }

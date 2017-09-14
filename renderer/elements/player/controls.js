@@ -1,9 +1,20 @@
 var Component = require('nanocomponent')
 var html = require('choo/html')
-var Meta = require('./meta')
-var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
+var css = require('csjs-inject')
+
+var styles = css`
+  .controls {
+    font-size: 1.5em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+  }
+`
 
 class PlayerControls extends Component {
   constructor (opts) {
@@ -19,9 +30,6 @@ class PlayerControls extends Component {
     this._handleNext = this._handleNext.bind(this)
     this._handlePlayPause = this._handlePlayPause.bind(this)
     this._shuffleToggle = this._shuffleToggle.bind(this)
-
-    // Owned Children
-    this._meta = new Meta()
   }
 
   _handlePrev () { this._emit('player:prev') }
