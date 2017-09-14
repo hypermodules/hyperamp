@@ -50,6 +50,7 @@ module.exports = css`
   .mediaList th:last-child { border-right: none } */
 
   .stickyHead th {
+    -webkit-app-region: drag;
     position: sticky;
     top: 0px;
     background-color: var(--bg);
