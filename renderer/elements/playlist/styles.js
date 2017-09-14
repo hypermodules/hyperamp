@@ -63,7 +63,7 @@ module.exports = css`
   }
 
   .mediaList tr:nth-child(even) { background: var(--darken) }
-  .mediaList tbody tr.selected { border: var(--border) }
+  .mediaList tbody tr.selected { background: rgba(255,102,51,.1) }
 
   /* use colgroup to sanely apply width properties  */
   /* https://docs.webplatform.org/wiki/html/elements/colgroup */
