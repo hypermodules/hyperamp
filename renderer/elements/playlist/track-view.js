@@ -97,6 +97,8 @@ class TrackView extends Component {
     if (oldEl) oldEl.classList.toggle(styles.selected, false)
     if (newEl) newEl.classList.toggle(styles.selected, true)
 
+    document.querySelector(styles.selected.selector).scrollIntoViewIfNeeded(false)
+
     this._selectedIndex = newIndex
   }
 
@@ -134,7 +136,7 @@ class TrackView extends Component {
     return html`
       <div class=${styles.tableScrollWindow} onscroll=${this._handleOnScroll} onclick=${this._deselect}>
         <div class=${styles.tableContainer} style=${tableContainerHeight}>
-          <table style=${sliceOffset} class="${styles.mediaList} ${styles.tableRel}">
+          <table style=${sliceOffset} class=${styles.mediaList}>
             <thead class=${styles.stickyHead}>
               <tr>
                 <th class="${styles.title}">Title</th>
