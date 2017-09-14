@@ -13,7 +13,7 @@ var styles = css`
   .loader,
   .loader:before,
   .loader:after {
-    background: rgba(0,0,0,.1);
+    background: var(--dark);
     -webkit-animation: load1 1s infinite ease-in-out;
     animation: load1 1s infinite ease-in-out;
     width: 1em;
@@ -31,7 +31,7 @@ var styles = css`
     animation-delay: -0.32s;
   }
   .loader {
-    color: rgba(0,0,0,.1);
+    color: var(--dark);
     text-indent: -9999em;
     margin: 88px auto;
     position: relative;

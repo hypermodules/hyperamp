@@ -12,8 +12,11 @@ var styles = css`
     flex: 1 0 25%;
     display: flex;
     align-items: center;
-    padding-right: 20px;
+    padding-right: 2%;
     overflow: hidden;
+    border-right: var(--border);
+    margin-right: 2%;
+    height: 100%;
   }
 
   .meta {

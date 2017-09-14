@@ -7,8 +7,7 @@ var css = require('csjs-inject')
 
 var styles = css`
   .volumeGroup {
-    padding-right: 10px;
-    flex: 1 1 20%;
+    flex: 1 1 30%;
     max-width: 130px;
     min-width: 90px;
   }
