@@ -44,6 +44,10 @@ function libraryStore (state, emitter) {
       emitter.emit('player:play')
     }
   })
+  mousetrap.bind('esc', e => {
+    e.preventDefault()
+    emitter.emit('library:select')
+  })
 
   emitter.on('library:search', search)
   emitter.on('library:update-library', updateLibrary)
