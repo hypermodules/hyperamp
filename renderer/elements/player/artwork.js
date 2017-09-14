@@ -9,8 +9,8 @@ var css = require('csjs-inject')
 var styles = css`
   .albumCover {
     position: relative;
-    width: 56px;
-    height: 56px;
+    width: 76px;
+    height: 76px;
     overflow: hidden;
     float: left;
     flex-shrink: 0;

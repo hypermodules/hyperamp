@@ -21,7 +21,7 @@ var styles = css`
     will-change: transform;
     contain: layout;
     display: flex;
-    padding: 0 10px;
+    padding: 0 10px 0 0;
     background: #fff;
   }
 `
