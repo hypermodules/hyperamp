@@ -62,7 +62,7 @@ class PlayerControls extends Component {
         ${button({
           onclick: this._shuffleToggle,
           iconName: 'entypo-shuffle',
-          className: shuffling ? null : styles.disabled
+          className: shuffling ? buttonStyles.active : null
         })}
       </div>
   `

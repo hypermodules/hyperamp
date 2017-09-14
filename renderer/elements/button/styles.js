@@ -20,29 +20,16 @@ module.exports = css`
     background: transparent;
   }
 
-  .btn svg {
-    fill: var(--copy);
-  }
-
-  .btn:active {
-    color: var(--link);
-  }
-
-  .btn:active svg {
-    fill: var(--link);
-  }
+  .btn svg { fill: var(--copy) }
+  .btn.inverse svg { fill: #fff }
+  .btn:active, .btn.active { color: var(--link) }
+  .btn:active svg, .btn.active svg { fill: var(--link) }
+  .btn[disabled] svg { fill: var(--lighter) }
+  .btn[disabled] { background-color: var(--bg) }
 
   .btn:focus {
     outline: none;
     box-shadow: none;
-  }
-
-  .btn[disabled] svg {
-    fill: var(--lighter);
-  }
-
-  .btn[disabled] {
-    background-color: var(--bg);
   }
 
   .btnGroup {
@@ -51,13 +38,8 @@ module.exports = css`
     justify-content: center;
   }
 
-  .btnGroup .btn:not(:last-child) {
-    border-right: none;
-  }
-
-  .btnGroup .btn:not(:first-child):not(:last-child) {
-    border-radius: 0;
-  }
+  .btnGroup .btn:not(:last-child) { border-right: none }
+  .btnGroup .btn:not(:first-child):not(:last-child) { border-radius: 0 }
 
   .btnGroup .btn:first-child {
     border-top-right-radius: 0;
