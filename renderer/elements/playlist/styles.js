@@ -52,8 +52,7 @@ module.exports = css`
   .stickyHead th {
     position: sticky;
     top: 0px;
-    background-color: rgba(243,243,243,1);
-    background-color: #fff;
+    background-color: var(--bg);
     font-weight: 500;
     border-bottom: var(--border);
   }
@@ -63,8 +62,8 @@ module.exports = css`
     padding: 2px 15px;
   }
 
-  .mediaList tr:nth-child(even) { background: rgba(0,0,0,.02) }
-  .mediaList tbody tr.selected { background: rgba(255,102,51,.1) }
+  .mediaList tr:nth-child(even) { background: var(--darken) }
+  .mediaList tbody tr.selected { border: var(--border) }
 
   /* use colgroup to sanely apply width properties  */
   /* https://docs.webplatform.org/wiki/html/elements/colgroup */
