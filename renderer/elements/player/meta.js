@@ -12,7 +12,7 @@ var styles = css`
     flex: 1 0 25%;
     display: flex;
     align-items: center;
-    padding-right: 2%;
+    padding-right: 1%;
     overflow: hidden;
     border-right: var(--border);
     margin-right: 2%;
