@@ -41,7 +41,7 @@
   --lighter: rgba(255,255,255,.25);
   --light: rgba(255,255,255,.08);
   --lighten: rgba(255,255,255,.025);
-  --dark: rgba(0,0,0,.08);
+  --dark: rgba(0,0,0,.1);
   --darken: rgba(0,0,0,.025);
 
   /* borders */
