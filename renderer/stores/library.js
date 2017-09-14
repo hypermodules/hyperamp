@@ -31,10 +31,18 @@ function libraryStore (state, emitter) {
     var idx = localState.selectedIndex
     var newIdx = idx == null
       ? 0
-      : idx === localState.trackOrder.length
-        ? localState.trackOrder.length
+      : idx === localState.trackOrder.length - 1
+        ? localState.trackOrder.length - 1
         : idx + 1
     emitter.emit('library:select', newIdx)
+  })
+  mousetrap.bind('enter', e => {
+    e.preventDefault()
+    var idx = localState.selectedIndex
+    if (idx != null) {
+      emitter.emit('player:queue', idx)
+      emitter.emit('player:play')
+    }
   })
 
   emitter.on('library:search', search)
