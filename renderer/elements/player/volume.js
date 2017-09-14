@@ -1,9 +1,32 @@
 var html = require('choo/html')
-var styles = require('./styles')
 var button = require('../button')
 var buttonStyles = require('../button/styles')
 var Component = require('nanocomponent')
 var Range = require('../range')
+var css = require('csjs-inject')
+
+var styles = css`
+  .volumeGroup {
+    padding-right: 10px;
+    flex: 1 1 20%;
+    max-width: 130px;
+    min-width: 90px;
+  }
+  .volumeButton { padding-right: 0 }
+  .range {
+    width: 100%;
+    padding: 0 3px;
+  }
+  .volumeSlider {
+    position: relative;
+    cursor: default;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-app-region: no-drag;
+    margin: 0 5px;
+    width: 100%;
+  }
+`
 
 class Volume extends Component {
   constructor (opts) {
@@ -48,9 +71,10 @@ class Volume extends Component {
       <div class="${buttonStyles.btnGroup} ${styles.volumeGroup}">
         ${button({
           onclick: this._toggleMute,
-          iconName: muted ? 'entypo-sound-mute' : 'entypo-sound'
+          iconName: muted ? 'entypo-sound-mute' : 'entypo-sound',
+          className: styles.volumeButton
         })}
-        ${button({ className: styles.volumeButton },
+        ${button({ className: styles.range },
           this._volumeSlider.render({
             onchange: this._changeVolume,
             value: volume,

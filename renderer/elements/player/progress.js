@@ -1,10 +1,34 @@
 var Component = require('nanocomponent')
 var html = require('choo/html')
 var truthy = require('@bret/truthy')
-var styles = require('./styles')
 var button = require('../button')
 var Range = require('../range')
 var fd = require('format-duration')
+var css = require('csjs-inject')
+
+var styles = css`
+  .progress {
+    display: flex;
+    width: 100%;
+    padding: 0 2%;
+  }
+  .time {
+    font-size: 11px;
+    display: inline-flex;
+    align-items: center;
+    min-width: 3em;
+  }
+  .time:first-child { justify-content: flex-end }
+  .time:last-child { justify-content: flex-start }
+  .range { width: 100% }
+  .scrubber {
+    cursor: default;
+    position: relative;
+    vertical-align: middle;
+    -webkit-app-region: no-drag;
+    width: 100%;
+  }
+`
 
 class Progress extends Component {
   constructor (opts) {

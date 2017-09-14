@@ -8,11 +8,11 @@ var css = require('csjs-inject')
 
 var styles = css`
   .albumCover {
-    position: absolute;
-    width: 77px;
-    height: 77px;
-    left: 0px;
+    position: relative;
+    width: 56px;
+    height: 56px;
     overflow: hidden;
+    float: left;
     flex-shrink: 0;
   }
   .albumCover:before {
@@ -20,7 +20,6 @@ var styles = css`
     display: block;
     padding-top: 100%; /* initial ratio of 1:1*/
   }
-
   .albumArt {
     position: absolute;
     top: 0;
