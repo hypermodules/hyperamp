@@ -22,7 +22,7 @@ var styles = css`
     contain: layout;
     display: flex;
     padding: 0 10px 0 0;
-    background: #fff;
+    background: var(--bg);
   }
 `
 

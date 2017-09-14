@@ -31,7 +31,6 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 6px;
   cursor: default;
   background: var(--dark);
-  /*border: var(--border);*/
   border-radius: 3px;
 }
 

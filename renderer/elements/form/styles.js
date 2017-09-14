@@ -17,14 +17,14 @@ module.exports = css`
     font-size: var(--font-size-default);
     font-weight: var(--font-weight-default);
     line-height: var(--line-height-default);
-    background: #fafafa;
+    background: var(--darken);
     border: var(--border);
     border-radius: var(--default-border-radius);
     outline: none;
   }
 
   .formControl:focus {
-    border: 1px solid rgba(0,0,0,.25);
+    border: 1px solid var(--darker);
   }
 
   .formGroup {

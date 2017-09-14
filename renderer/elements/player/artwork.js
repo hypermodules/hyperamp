@@ -27,7 +27,7 @@ var styles = css`
     bottom: 0;
     right: 0;
 
-    background: #eee;
+    background: var(--bg);
     background-size: cover;
     background-position: center;
   }

@@ -21,7 +21,7 @@ module.exports = css`
   }
 
   .btn svg { fill: var(--copy) }
-  .btn.inverse svg { fill: #fff }
+  .btn.inverse svg { fill: var(--bg) }
   .btn:active, .btn.active { color: var(--link) }
   .btn:active svg, .btn.active svg { fill: var(--link) }
   .btn[disabled] svg { fill: var(--lighter) }
