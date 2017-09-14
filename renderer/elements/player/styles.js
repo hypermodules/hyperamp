@@ -15,7 +15,7 @@ module.exports = css`
     will-change: transform;
     contain: layout;
     display: flex;
-    padding: 0 20px 0 90px;
+    padding: 0 10px 0 90px;
     background: #fff;
   }
 
