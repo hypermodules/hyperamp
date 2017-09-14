@@ -1,4 +1,5 @@
 var { ipcRenderer } = require('electron')
+var mousetrap = require('mousetrap')
 
 module.exports = playerStore
 
@@ -52,6 +53,20 @@ function playerStore (state, emitter) {
     localState.currentIndex = newIndex
     render()
   }
+
+  mousetrap.bind('left', e => {
+    e.preventDefault()
+    emitter.emit('player:prev')
+  })
+  mousetrap.bind('right', e => {
+    e.preventDefault()
+    emitter.emit('player:next')
+  })
+  mousetrap.bind('space', e => {
+    e.preventDefault()
+    if (localState.playing) emitter.emit('player:pause')
+    else emitter.emit('player:play')
+  })
 
   emitter.on('player:queue', queue)
   emitter.on('player:play', play)

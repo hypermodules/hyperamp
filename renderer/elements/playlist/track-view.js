@@ -100,6 +100,7 @@ class TrackView extends Component {
     this._selectedIndex = newIndex
   }
 
+  // TODO: need to figure out how to call `element.scrollIntoView()` on this if it's selected
   _rowMap (key, idx) {
     // Look up track info
     var meta = this._trackDict[key]

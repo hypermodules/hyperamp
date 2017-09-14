@@ -1,4 +1,5 @@
 var ipcRenderer = require('electron').ipcRenderer
+var mousetrap = require('mousetrap')
 
 module.exports = libraryStore
 
@@ -16,6 +17,25 @@ function getInitialState () {
 function libraryStore (state, emitter) {
   var localState = state.library
   if (!localState) localState = state.library = getInitialState()
+
+  mousetrap.bind('up', e => {
+    e.preventDefault()
+    var idx = localState.selectedIndex
+    var newIdx = idx == null || idx === 0
+      ? 0
+      : idx - 1
+    emitter.emit('library:select', newIdx)
+  })
+  mousetrap.bind('down', e => {
+    e.preventDefault()
+    var idx = localState.selectedIndex
+    var newIdx = idx == null
+      ? 0
+      : idx === localState.trackOrder.length
+        ? localState.trackOrder.length
+        : idx + 1
+    emitter.emit('library:select', newIdx)
+  })
 
   emitter.on('library:search', search)
   emitter.on('library:update-library', updateLibrary)
