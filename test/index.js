@@ -4,7 +4,7 @@ var path = require('path')
 
 test('does the thing turn on?', t => {
   var app = new Application({
-    path: getElectronPath(),
+    path: require('electron'),
     args: [path.join(__dirname, '..', 'main', 'index.js')]
   })
 
@@ -32,9 +32,3 @@ test('does the thing turn on?', t => {
 test('pass', t => {
   t.end()
 })
-
-function getElectronPath () {
-  var electronPath = path.join(__dirname, '..', 'node_modules', '.bin', 'electron')
-  if (process.platform === 'win32') electronPath += '.cmd'
-  return electronPath
-}
