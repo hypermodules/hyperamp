@@ -97,7 +97,10 @@ class TrackView extends Component {
     if (oldEl) oldEl.classList.toggle(styles.selected, false)
     if (newEl) newEl.classList.toggle(styles.selected, true)
 
-    document.querySelector(styles.selected.selector).scrollIntoViewIfNeeded(false)
+    if (this._selectedIndex != null) {
+      let selected = document.querySelector(styles.selected.selector)
+      if (selected != null) selected.scrollIntoViewIfNeeded(false)
+    }
 
     this._selectedIndex = newIndex
   }
