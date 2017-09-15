@@ -232,8 +232,8 @@ function sortList (keyA, keyB) {
   // if (aObj.albumartist[0] > bObj.albumartist[0]) return 1
 
   // sort by artist
-  // if (aObj.artist[0] < bObj.artist[0]) return -1
-  // if (aObj.artist[0] > bObj.artist[0]) return 1
+  if (aObj.artist[0] < bObj.artist[0]) return -1
+  if (aObj.artist[0] > bObj.artist[0]) return 1
 
   // then by album
   if (aObj.album < bObj.album) return -1
@@ -260,13 +260,11 @@ function sortList (keyA, keyB) {
 function filterList (search) {
   return function (key) {
     var meta = state.trackDict[key]
-    var yep = Object.keys(meta)
-        .map(i => (meta[i] + '').toLowerCase())
-        .filter(s => s.includes(search.toLowerCase()))
-        .length > 0
+    var { title, album, artist } = meta
+    var artistStr = Array.isArray(artist) ? artist.join(', ') : artist
+    var trackStr = (title + album + artistStr).toLowerCase().replace(/\s+/g, '')
 
-    if (yep) return meta
-    return false
+    return trackStr.includes(search.toLowerCase().replace(/\s+/g, ''))
   }
 }
 
