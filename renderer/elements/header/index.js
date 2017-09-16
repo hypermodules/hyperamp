@@ -20,6 +20,7 @@ class Header extends Component {
     this._handleAddButton = this._handleAddButton.bind(this)
     this._handlePaths = this._handlePaths.bind(this)
     this._handleNav = this._handleNav.bind(this)
+    this._handleDrop = this._handleDrop.bind(this)
 
     this._searchComp = new Search()
   }
@@ -54,10 +55,22 @@ class Header extends Component {
     this._emit('pushState', '#preferences')
   }
 
+  _handleDrop (event) {
+    event.preventDefault()
+    const { files } = event.dataTransfer
+    var paths = Array(files.length).fill(0).map((_, i) => files.item(i).path)
+    this._handlePaths(paths)
+  }
+
   createElement (state, emit) {
     this._emit = emit
     this._search = state.library.search
     this._loading = state.library.loading
+
+    // `this._emit` is undefined if this is assigned in the constructor
+    document.body.ondrop = this._handleDrop
+    document.ondragover = event => event.preventDefault()
+
     return html`
       <header class="${styles.toolbar}">
         <div class="${styles.leftCluster}">
