@@ -14,106 +14,106 @@ class TrackView extends Component {
   constructor (opts) {
     if (!opts) opts = {}
     super(opts)
-    this._opts = Object.assign({}, opts)
+    this.opts = Object.assign({}, opts)
 
     // State
-    this._emit = null
-    this._trackOrder = []
-    this._trackDict = {}
-    this._currentIndex = null
-    this._selectedIndex = null
-    this._sliceLength = 200
-    this._sliceStartIndex = 0
-    this._rowHeight = 39
-    this._scrollWindowHeight = 1024
-    this._ticking = false // https://developer.mozilla.org/en-US/docs/Web/Events/scroll#Example
-    this._columns = {}
+    this.emit = null
+    this.trackOrder = []
+    this.trackDict = {}
+    this.currentIndex = null
+    this.selectedIndex = null
+    this.sliceLength = 200
+    this.sliceStartIndex = 0
+    this.rowHeight = 39
+    this.scrollWindowHeight = 1024
+    this.ticking = false // https://developer.mozilla.org/en-US/docs/Web/Events/scroll#Example
+    this.columns = {}
 
     // Bound methods
     // NOTE: not sure most of these are needed
-    this._selectTrack = this._selectTrack.bind(this)
-    this._deselect = this._deselect.bind(this)
-    this._playTrack = this._playTrack.bind(this)
-    this._rowMap = this._rowMap.bind(this)
-    this._renderSlice = this._renderSlice.bind(this)
-    this._mutateCurrentIndex = this._mutateCurrentIndex.bind(this)
-    this._mutateSelectedIndex = this._mutateSelectedIndex.bind(this)
-    this._handleOnScroll = this._handleOnScroll.bind(this)
-    this._metaMenu = this._metaMenu.bind(this)
+    this.selectTrack = this.selectTrack.bind(this)
+    this.deselect = this.deselect.bind(this)
+    this.playTrack = this.playTrack.bind(this)
+    this.rowMap = this.rowMap.bind(this)
+    this.renderSlice = this.renderSlice.bind(this)
+    this.mutateCurrentIndex = this.mutateCurrentIndex.bind(this)
+    this.mutateSelectedIndex = this.mutateSelectedIndex.bind(this)
+    this.handleOnScroll = this.handleOnScroll.bind(this)
+    this.metaMenu = this.metaMenu.bind(this)
   }
 
-  get _topVisibleRowIndex () {
+  get topVisibleRowIndex () {
     if (!this.element) throw new Error('Element not mounted')
-    return Math.floor(this.element.scrollTop / this._rowHeight)
+    return Math.floor(this.element.scrollTop / this.rowHeight)
   }
 
-  get _bottomVisibleRowIndex () {
+  get bottomVisibleRowIndex () {
     if (!this.element) throw new Error('Element not mounted')
     var {clientHeight} = this.element
-    return Math.floor(clientHeight / this._rowHeight) + this._topVisibleRowIndex
+    return Math.floor(clientHeight / this.rowHeight) + this.topVisibleRowIndex
   }
 
-  get _topOffset () {
-    return this._topVisibleRowIndex - this._sliceStartIndex
+  get topOffset () {
+    return this.topVisibleRowIndex - this.sliceStartIndex
   }
 
-  get _bottomOffset () {
-    var lastRenderedIndex = this._sliceStartIndex + this._sliceLength
-    return lastRenderedIndex - this._bottomVisibleRowIndex
+  get bottomOffset () {
+    var lastRenderedIndex = this.sliceStartIndex + this.sliceLength
+    return lastRenderedIndex - this.bottomVisibleRowIndex
   }
 
-  _selectTrack (ev) {
+  selectTrack (ev) {
     var t = ev.target
     while (t && !t.id) t = t.parentNode // Bubble up
     if (t && t.tagName === 'TR') {
       ev.stopPropagation()
       var index = Number(t.id.replace('track-', ''))
-      this._emit('library:select', index)
+      this.emit('library:select', index)
     }
   }
 
-  _playTrack (ev) {
+  playTrack (ev) {
     var t = ev.target
     while (t && !t.id) t = t.parentNode // Bubble up
     if (t && t.tagName === 'TR') {
       var index = Number(t.id.replace('track-', ''))
-      this._emit('player:queue', index)
-      this._emit('player:play')
+      this.emit('player:queue', index)
+      this.emit('player:play')
     }
   }
 
-  _mutateCurrentIndex (newIndex) {
-    var oldIndex = this._currentIndex
+  mutateCurrentIndex (newIndex) {
+    var oldIndex = this.currentIndex
     var oldEl = document.getElementById(`track-${oldIndex}`)
     var newEl = document.getElementById(`track-${newIndex}`)
 
     if (oldEl) oldEl.classList.toggle(styles.playing, false)
     if (newEl) newEl.classList.toggle(styles.playing, true)
 
-    this._currentIndex = newIndex
+    this.currentIndex = newIndex
   }
 
-  _mutateSelectedIndex (newIndex) {
-    var oldIndex = this._selectedIndex
+  mutateSelectedIndex (newIndex) {
+    var oldIndex = this.selectedIndex
     var oldEl = document.getElementById(`track-${oldIndex}`)
     var newEl = document.getElementById(`track-${newIndex}`)
 
     if (oldEl) oldEl.classList.toggle(styles.selected, false)
     if (newEl) newEl.classList.toggle(styles.selected, true)
 
-    if (this._selectedIndex != null) {
+    if (this.selectedIndex != null) {
       let selected = document.querySelector(styles.selected.selector)
       if (selected != null) selected.scrollIntoViewIfNeeded(false)
     }
 
-    this._selectedIndex = newIndex
+    this.selectedIndex = newIndex
   }
 
   // TODO: figure out Y offset for top element when scrolling up
-  _rowMap (key, idx) {
+  rowMap (key, idx) {
     // Look up track info
-    var track = this._trackDict[key]
-    var columns = Object.keys(this._columns).filter(col => this._columns[col])
+    var track = this.trackDict[key]
+    var columns = Object.keys(this.columns).filter(col => this.columns[col])
 
     // create meta display values
     var meta = Object.assign({}, track, {
@@ -124,12 +124,12 @@ class TrackView extends Component {
 
     // Generate state based styles
     var classes = cn({
-      [styles.playing]: this._currentIndex === idx + this._sliceStartIndex,
-      [styles.selected]: this._selectedIndex === idx + this._sliceStartIndex
+      [styles.playing]: this.currentIndex === idx + this.sliceStartIndex,
+      [styles.selected]: this.selectedIndex === idx + this.sliceStartIndex
     })
 
     return html`
-      <tr id="track-${idx + this._sliceStartIndex}" data-key=${key} class=${classes}>
+      <tr id="track-${idx + this.sliceStartIndex}" data-key=${key} class=${classes}>
         ${columns.map(col => html`
           <td class=${styles[col]}>${meta[col]}</td>
         `)}
@@ -137,7 +137,7 @@ class TrackView extends Component {
     `
   }
 
-  _metaMenu (event) {
+  metaMenu (event) {
     event.preventDefault()
 
     const menu = new Menu()
@@ -145,34 +145,34 @@ class TrackView extends Component {
     Array.from(COLUMNS).map(col => ({
       label: capitalize(col),
       type: 'checkbox',
-      checked: this._columns[col],
-      click: () => this._emit('library:columns', col)
+      checked: this.columns[col],
+      click: () => this.emit('library:columns', col)
     })).forEach(item => menu.append(new MenuItem(item)))
 
     menu.popup(getCurrentWindow())
   }
 
-  _renderSlice () {
-    var sliceOffset = `top: ${this._sliceStartIndex * this._rowHeight}px;`
-    var tableContainerHeight = `height: ${this._trackOrder.length * this._rowHeight}px;`
-    var sliceEnd = this._sliceStartIndex + this._sliceLength < this._trackOrder.length
-      ? this._sliceStartIndex + this._sliceLength
-      : this._trackOrder.length
-    var tracks = this._trackOrder.slice(this._sliceStartIndex, sliceEnd).map(this._rowMap)
-    var columns = Object.keys(this._columns).filter(col => this._columns[col])
+  renderSlice () {
+    var sliceOffset = `top: ${this.sliceStartIndex * this.rowHeight}px;`
+    var tableContainerHeight = `height: ${this.trackOrder.length * this.rowHeight}px;`
+    var sliceEnd = this.sliceStartIndex + this.sliceLength < this.trackOrder.length
+      ? this.sliceStartIndex + this.sliceLength
+      : this.trackOrder.length
+    var tracks = this.trackOrder.slice(this.sliceStartIndex, sliceEnd).map(this.rowMap)
+    var columns = Object.keys(this.columns).filter(col => this.columns[col])
 
     return html`
-      <div class=${styles.tableScrollWindow} onscroll=${this._handleOnScroll} onclick=${this._deselect}>
+      <div class=${styles.tableScrollWindow} onscroll=${this.handleOnScroll} onclick=${this.deselect}>
         <div class=${styles.tableContainer} style=${tableContainerHeight}>
           <table style=${sliceOffset} class=${styles.mediaList}>
-            <thead oncontextmenu=${this._metaMenu} class=${styles.stickyHead}>
+            <thead oncontextmenu=${this.metaMenu} class=${styles.stickyHead}>
               <tr>
                 ${columns.map(col => html`
                   <th class=${styles[col]}>${capitalize(col)}</th>
                 `)}
               </tr>
             </thead>
-            <tbody ondblclick=${this._playTrack} onclick=${this._selectTrack}>
+            <tbody ondblclick=${this.playTrack} onclick=${this.selectTrack}>
               ${tracks}
             </tbody>
           </table>
@@ -181,67 +181,67 @@ class TrackView extends Component {
     `
   }
 
-  _deselect () {
-    this._emit('library:select', null)
+  deselect () {
+    this.emit('library:select', null)
   }
 
-  _handleOnScroll (ev) {
+  handleOnScroll (ev) {
     var self = this
-    var maxStart = this._trackOrder.length - this._sliceLength
-    var closeToBottom = this._bottomOffset < OFFSET_BUFFER && this._sliceStartIndex !== maxStart
-    var closeToTop = this._topOffset < OFFSET_BUFFER && this._sliceStartIndex !== 0
+    var maxStart = this.trackOrder.length - this.sliceLength
+    var closeToBottom = this.bottomOffset < OFFSET_BUFFER && this.sliceStartIndex !== maxStart
+    var closeToTop = this.topOffset < OFFSET_BUFFER && this.sliceStartIndex !== 0
 
     if (closeToBottom) {
-      var frontSlice = this._topVisibleRowIndex - OFFSET_BUFFER
-      this._sliceStartIndex = frontSlice > maxStart ? maxStart : frontSlice
+      var frontSlice = this.topVisibleRowIndex - OFFSET_BUFFER
+      this.sliceStartIndex = frontSlice > maxStart ? maxStart : frontSlice
     }
 
     if (closeToTop) {
-      var backSlice = this._bottomVisibleRowIndex + OFFSET_BUFFER - this._sliceLength
-      this._sliceStartIndex = backSlice > 0 ? backSlice : 0
+      var backSlice = this.bottomVisibleRowIndex + OFFSET_BUFFER - this.sliceLength
+      this.sliceStartIndex = backSlice > 0 ? backSlice : 0
     }
 
-    if (!this._ticking && (closeToTop || closeToBottom)) {
+    if (!this.ticking && (closeToTop || closeToBottom)) {
       window.requestAnimationFrame(function () {
         self.render(null, null, true)
-        self._ticking = false
+        self.ticking = false
       })
-      this._ticking = true
+      this.ticking = true
     }
   }
 
   createElement (state, emit) {
-    if (emit) this._emit = emit
+    if (emit) this.emit = emit
     if (state) {
       // Save references to state track order and dicts
-      this._trackOrder = state.library.trackOrder
-      this._trackDict = state.library.trackDict
+      this.trackOrder = state.library.trackOrder
+      this.trackDict = state.library.trackDict
       // Save state
       // Current index is the index of a queued track
-      this._currentIndex = state.player.currentIndex
+      this.currentIndex = state.player.currentIndex
       // Selected index is the index of the highlighted track
-      this._selectedIndex = state.library.selectedIndex
+      this.selectedIndex = state.library.selectedIndex
       // set of currently displayed columns
-      this._columns = Object.assign({}, state.library.columns) // must be cloned for comparison
+      this.columns = Object.assign({}, state.library.columns) // must be cloned for comparison
     }
 
-    return this._renderSlice()
+    return this.renderSlice()
   }
 
   update (state, emit, scroll) {
     // Re-render
     // Note, these are only shallow compares.  You must slice or reobject your state
     if (scroll) return true
-    if (this._trackOrder !== state.library.trackOrder) return true
-    if (this._trackDict !== state.library.trackDict) return true
+    if (this.trackOrder !== state.library.trackOrder) return true
+    if (this.trackDict !== state.library.trackDict) return true
     // Mutate
-    if (this._currentIndex !== state.player.currentIndex) {
-      this._mutateCurrentIndex(state.player.currentIndex)
+    if (this.currentIndex !== state.player.currentIndex) {
+      this.mutateCurrentIndex(state.player.currentIndex)
     }
-    if (this._selectedIndex !== state.library.selectedIndex) {
-      this._mutateSelectedIndex(state.library.selectedIndex)
+    if (this.selectedIndex !== state.library.selectedIndex) {
+      this.mutateSelectedIndex(state.library.selectedIndex)
     }
-    if (shouldColumnsUpdate(this._columns, state.library.columns)) return true
+    if (shouldColumnsUpdate(this.columns, state.library.columns)) return true
     // Cache!
     return false
   }
@@ -249,7 +249,7 @@ class TrackView extends Component {
   beforerender (el) {
     var self = this
     window.requestAnimationFrame(function () {
-      el.scrollTop = self._sliceStartIndex * self._rowHeight
+      el.scrollTop = self.sliceStartIndex * self.rowHeight
     })
   }
 }
