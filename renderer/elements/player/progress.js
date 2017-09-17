@@ -11,12 +11,15 @@ var styles = css`
     display: flex;
     width: 100%;
     padding: 0 2%;
+    justify-content: center;
   }
   .time {
     font-size: 11px;
     display: inline-flex;
     align-items: center;
     min-width: 3em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
   }
   .time:first-child { justify-content: flex-end }
   .time:last-child { justify-content: flex-start }
@@ -27,6 +30,17 @@ var styles = css`
     vertical-align: middle;
     -webkit-app-region: no-drag;
     width: 100%;
+  }
+  @media (max-width: 640px) {
+    .range {
+      width: 0;
+      padding: 0 .5em 0 0;
+      pointer-events: none;
+    }
+    .range::after {
+      content: '/';
+      margin-left: -.25em;
+    }
   }
 `
 

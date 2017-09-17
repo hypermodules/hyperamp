@@ -21,7 +21,7 @@ var styles = css`
     will-change: transform;
     contain: layout;
     display: flex;
-    padding: 0 10px 0 0;
+    padding: 0 2% 0 0;
     background: var(--bg);
   }
 `

@@ -8,8 +8,8 @@ var css = require('csjs-inject')
 var styles = css`
   .volumeGroup {
     flex: 1 1 30%;
-    max-width: 130px;
-    min-width: 90px;
+    max-width: 110px;
+    min-width: 80px;
   }
   .volumeButton { padding-right: 0 }
   .range {

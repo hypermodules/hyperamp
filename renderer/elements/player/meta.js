@@ -7,12 +7,12 @@ var css = require('csjs-inject')
 var styles = css`
   .nowPlaying {
     position: relative;
-    min-width: 100px;
-    max-width: 360px;
-    flex: 1 0 25%;
+    min-width: 220px;
+    max-width: 300px;
+    flex: 1 0 30%;
     display: flex;
     align-items: center;
-    padding-right: 1%;
+    padding-right: 2%;
     overflow: hidden;
     border-right: var(--border);
     margin-right: 2%;
