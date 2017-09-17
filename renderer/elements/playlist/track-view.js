@@ -4,7 +4,9 @@ var cn = require('classnames')
 var Component = require('nanocomponent')
 var document = require('global/document')
 var { formatCount } = require('./lib')
+var { COLUMNS } = require('../../lib/constants')
 var styles = require('./styles')
+const { Menu, MenuItem, getCurrentWindow } = require('electron').remote
 
 var OFFSET_BUFFER = 50
 
@@ -25,6 +27,7 @@ class TrackView extends Component {
     this._rowHeight = 39
     this._scrollWindowHeight = 1024
     this._ticking = false // https://developer.mozilla.org/en-US/docs/Web/Events/scroll#Example
+    this._columns = {}
 
     // Bound methods
     // NOTE: not sure most of these are needed
@@ -36,6 +39,7 @@ class TrackView extends Component {
     this._mutateCurrentIndex = this._mutateCurrentIndex.bind(this)
     this._mutateSelectedIndex = this._mutateSelectedIndex.bind(this)
     this._handleOnScroll = this._handleOnScroll.bind(this)
+    this._metaMenu = this._metaMenu.bind(this)
   }
 
   get _topVisibleRowIndex () {
@@ -105,10 +109,19 @@ class TrackView extends Component {
     this._selectedIndex = newIndex
   }
 
-  // TODO: need to figure out how to call `element.scrollIntoView()` on this if it's selected
+  // TODO: figure out Y offset for top element when scrolling up
   _rowMap (key, idx) {
     // Look up track info
-    var meta = this._trackDict[key]
+    var track = this._trackDict[key]
+    var columns = Object.keys(this._columns).filter(col => this._columns[col])
+
+    // create meta display values
+    var meta = Object.assign({}, track, {
+      duration: track.duration ? fd(track.duration * 1000) : '',
+      track: track.track ? formatCount(track.track) : '',
+      disk: track.disk ? formatCount(track.disk) : ''
+    })
+
     // Generate state based styles
     var classes = cn({
       [styles.playing]: this._currentIndex === idx + this._sliceStartIndex,
@@ -117,15 +130,26 @@ class TrackView extends Component {
 
     return html`
       <tr id="track-${idx + this._sliceStartIndex}" data-key=${key} class=${classes}>
-        <td class="${styles.title}">${meta.title}</td>
-        <td class="${styles.time}">${meta.duration ? fd(meta.duration * 1000) : ''}</td>
-        <td class="${styles.artist}">${meta.artist}</td>
-        <td class="${styles.album}">${meta.album}</td>
-        <td class="${styles.track}">${meta.track ? formatCount(meta.track) : ''}</td>
-        <td class="${styles.disk}">${meta.disk ? formatCount(meta.disk) : ''}</td>
-        <td class="${styles.year}">${meta.year}</td>
+        ${columns.map(col => html`
+          <th class=${styles[col]}>${meta[col]}</th>
+        `)}
       </tr>
     `
+  }
+
+  _metaMenu (event) {
+    event.preventDefault()
+
+    const menu = new Menu()
+
+    Array.from(COLUMNS).map(col => ({
+      label: capitalize(col),
+      type: 'checkbox',
+      checked: this._columns[col],
+      click: () => this._emit('library:columns', col)
+    })).forEach(item => menu.append(new MenuItem(item)))
+
+    menu.popup(getCurrentWindow())
   }
 
   _renderSlice () {
@@ -135,20 +159,17 @@ class TrackView extends Component {
       ? this._sliceStartIndex + this._sliceLength
       : this._trackOrder.length
     var tracks = this._trackOrder.slice(this._sliceStartIndex, sliceEnd).map(this._rowMap)
+    var columns = Object.keys(this._columns).filter(col => this._columns[col])
 
     return html`
       <div class=${styles.tableScrollWindow} onscroll=${this._handleOnScroll} onclick=${this._deselect}>
         <div class=${styles.tableContainer} style=${tableContainerHeight}>
           <table style=${sliceOffset} class=${styles.mediaList}>
-            <thead class=${styles.stickyHead}>
+            <thead oncontextmenu=${this._metaMenu} class=${styles.stickyHead}>
               <tr>
-                <th class="${styles.title}">Title</th>
-                <th class="${styles.time}">Time</th>
-                <th class="${styles.artist}">Artist</th>
-                <th class="${styles.album}">Album</th>
-                <th class="${styles.track}">Track</th>
-                <th class="${styles.disk}">Disk</th>
-                <th class="${styles.year}">Year</th>
+                ${columns.map(col => html`
+                  <th class=${styles[col]}>${capitalize(col)}</th>
+                `)}
               </tr>
             </thead>
             <tbody ondblclick=${this._playTrack} onclick=${this._selectTrack}>
@@ -169,6 +190,7 @@ class TrackView extends Component {
     var maxStart = this._trackOrder.length - this._sliceLength
     var closeToBottom = this._bottomOffset < OFFSET_BUFFER && this._sliceStartIndex !== maxStart
     var closeToTop = this._topOffset < OFFSET_BUFFER && this._sliceStartIndex !== 0
+
     if (closeToBottom) {
       var frontSlice = this._topVisibleRowIndex - OFFSET_BUFFER
       this._sliceStartIndex = frontSlice > maxStart ? maxStart : frontSlice
@@ -179,14 +201,12 @@ class TrackView extends Component {
       this._sliceStartIndex = backSlice > 0 ? backSlice : 0
     }
 
-    if (closeToTop || closeToBottom) {
-      if (!this._ticking) {
-        window.requestAnimationFrame(function () {
-          self.render(null, null, true)
-          self._ticking = false
-        })
-        this._ticking = true
-      }
+    if (!this._ticking && (closeToTop || closeToBottom)) {
+      window.requestAnimationFrame(function () {
+        self.render(null, null, true)
+        self._ticking = false
+      })
+      this._ticking = true
     }
   }
 
@@ -201,7 +221,10 @@ class TrackView extends Component {
       this._currentIndex = state.player.currentIndex
       // Selected index is the index of the highlighted track
       this._selectedIndex = state.library.selectedIndex
+      // set of currently displayed columns
+      this._columns = Object.assign({}, state.library.columns) // must be cloned for comparison
     }
+
     return this._renderSlice()
   }
 
@@ -218,6 +241,7 @@ class TrackView extends Component {
     if (this._selectedIndex !== state.library.selectedIndex) {
       this._mutateSelectedIndex(state.library.selectedIndex)
     }
+    if (shouldColumnsUpdate(this._columns, state.library.columns)) return true
     // Cache!
     return false
   }
@@ -228,6 +252,14 @@ class TrackView extends Component {
       el.scrollTop = self._sliceStartIndex * self._rowHeight
     })
   }
+}
+
+function shouldColumnsUpdate (cols, newCols) {
+  return Object.keys(cols).filter(k => cols[k] !== newCols[k]).length !== 0
+}
+
+function capitalize (string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 module.exports = TrackView

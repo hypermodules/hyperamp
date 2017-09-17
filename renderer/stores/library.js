@@ -1,5 +1,6 @@
 var ipcRenderer = require('electron').ipcRenderer
 var mousetrap = require('mousetrap')
+var { COLUMNS } = require('../lib/constants')
 
 module.exports = libraryStore
 
@@ -10,7 +11,11 @@ function getInitialState () {
     trackOrder: [],
     search: '',
     selectedIndex: null,
-    loading: false
+    loading: false,
+    columns: Array.from(COLUMNS).reduce((obj, col) => {
+      obj[col] = true
+      return obj
+    }, {})
   }
 }
 
@@ -55,6 +60,12 @@ function libraryStore (state, emitter) {
   emitter.on('library:track-order', updateTrackOrder)
   emitter.on('library:paths', updatePaths)
   emitter.on('library:select', select)
+  emitter.on('library:columns', updateColumns)
+
+  function updateColumns (col) {
+    localState.columns[col] = !localState.columns[col]
+    emitter.emit('render')
+  }
 
   function updateTrackDict (newTrackDict) {
     localState.trackDict = newTrackDict
