@@ -1,4 +1,4 @@
-var remote = require('electron').remote
+var { remote } = require('electron')
 var { app, dialog } = remote
 var html = require('choo/html')
 var Component = require('nanocomponent')
