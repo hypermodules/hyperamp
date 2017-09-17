@@ -131,7 +131,7 @@ class TrackView extends Component {
     return html`
       <tr id="track-${idx + this._sliceStartIndex}" data-key=${key} class=${classes}>
         ${columns.map(col => html`
-          <th class=${styles[col]}>${meta[col]}</th>
+          <td class=${styles[col]}>${meta[col]}</td>
         `)}
       </tr>
     `
