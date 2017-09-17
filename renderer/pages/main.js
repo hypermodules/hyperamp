@@ -1,6 +1,7 @@
 var html = require('choo/html')
 var Playlist = require('../elements/playlist')
 var Player = require('../elements/player')
+var sidebar = require('../elements/sidebar')
 var css = require('csjs-inject')
 
 var styles = css`
@@ -18,7 +19,8 @@ var player = new Player()
 
 function main (state, emit) {
   return html`
-    <main class="${styles.window}">
+    <main class=${styles.window}>
+      ${sidebar()}
       ${playlist.render(state, emit)}
       ${player.render(state, emit)}
     </main>

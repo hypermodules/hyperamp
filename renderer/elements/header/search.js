@@ -1,8 +1,20 @@
 var html = require('choo/html')
 var formStyles = require('../form/styles')
-var styles = require('./styles')
 var assert = require('assert')
 var Component = require('nanocomponent')
+var css = require('csjs-inject')
+
+var styles = css`
+  .searchInput {
+    width: 100%;
+    padding: 2px 5px;
+    vertical-align: middle;
+    min-height: auto;
+    /* height: 24px; */
+    border-radius: 3px;
+    font-size: 14px;
+  }
+`
 
 class Search extends Component {
   constructor (opts) {
@@ -30,7 +42,7 @@ class Search extends Component {
     return html`
       <input type='search'
         class='${this._className ? this._className : ''}'
-        placeholder='Search'
+        placeholder='search yo files'
         value='${this._value}'
         oninput=${this._handleInput}>
     `

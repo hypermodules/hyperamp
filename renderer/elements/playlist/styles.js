@@ -3,7 +3,7 @@ var css = require('csjs-inject')
 module.exports = css`
   .playlist {
     position: absolute;
-    left: 0;
+    left: 300px;
     top: 0;
     right: 0;
     bottom: 77px;
@@ -59,12 +59,12 @@ module.exports = css`
   }
 
   .mediaList td, th {
-    height: 3em;
+    height: 40px;
     padding: 2px 15px;
   }
 
   .mediaList tr:nth-child(even) { background: var(--darken) }
-  .mediaList tbody tr.selected { background: rgba(255,102,51,.1) }
+  .mediaList tbody tr.selected { background: var(--highlight) }
 
   /* use colgroup to sanely apply width properties  */
   /* https://docs.webplatform.org/wiki/html/elements/colgroup */

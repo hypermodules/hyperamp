@@ -24,7 +24,7 @@ class TrackView extends Component {
     this._selectedIndex = null
     this._sliceLength = 200
     this._sliceStartIndex = 0
-    this._rowHeight = 39
+    this._rowHeight = 40
     this._scrollWindowHeight = 1024
     this._ticking = false // https://developer.mozilla.org/en-US/docs/Web/Events/scroll#Example
     this._columns = {}

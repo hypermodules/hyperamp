@@ -6,7 +6,32 @@ var Search = require('./search')
 var button = require('../button')
 var config = remote.require('./config.js')
 var buttonStyles = require('../button/styles')
-var styles = require('./styles')
+var css = require('csjs-inject')
+
+var styles = css`
+  .toolbar {
+    -webkit-app-region: drag;
+    height: 40px;
+    padding: 0 .5em 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .leftCluster, .rightCluster {
+    display: flex;
+    align-items: center;
+  }
+  .leftCluster { flex: 1 }
+  .rightCluster { margin-left: auto }
+
+  @keyframes ckw {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
+  }
+
+  .spin { animation: ckw 4s infinite linear }
+`
 
 class Header extends Component {
   constructor (opts) {
@@ -78,15 +103,6 @@ class Header extends Component {
             onchange: this._handleSearch,
             value: this._search
           })}
-        </div>
-        <div class="${styles.rightCluster}">
-          <div class="${buttonStyles.btnGroup}">
-            ${button({
-              className: this._loading ? styles.spin : null,
-              onclick: this._handleAddButton,
-              iconName: 'entypo-plus'
-            })}
-          </div>
         </div>
       </header>
     `

@@ -5,7 +5,33 @@ var Player = require('../elements/player')
 var player = new Player()
 var formStyles = require('../elements/form/styles')
 var { app, dialog } = require('electron').remote
-var styles = require('./styles')
+var css = require('csjs-inject')
+
+var styles = css`
+  .window {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .pane {
+    padding: 1rem;
+  }
+
+  .grow {
+    flex: 1 0;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 460px) {
+    .grow { display: none }
+  }
+`
 
 var header = new Header()
 
