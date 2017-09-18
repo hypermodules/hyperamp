@@ -117,7 +117,7 @@ class TrackView extends Component {
 
     // create meta display values
     var meta = Object.assign({}, track, {
-      duration: track.duration ? fd(track.duration * 1000) : '',
+      time: track.duration ? fd(track.duration * 1000) : '',
       track: track.track ? formatCount(track.track) : '',
       disk: track.disk ? formatCount(track.disk) : ''
     })
