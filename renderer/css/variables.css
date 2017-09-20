@@ -7,18 +7,7 @@
   /* type */
 
   /* use system fonts */
-  --font-family-default: -apple-system, BlinkMacSystemFont, /* MacOS and iOS */
-               'avenir next', avenir, /* MacOS and iOS */
-               'Segoe UI', /* Windows */
-               'lucida grande', /* Older MacOS */
-               'helvetica neue', helvetica, /* Older MacOS */
-               'Fira Sans', /* Firefox OS */
-               roboto, noto, /* Google stuff */
-               'Droid Sans', /* Old Google stuff */
-               cantarell, oxygen, ubuntu, /* Linux stuff */
-               'franklin gothic medium', 'century gothic', /* Windows stuff */
-               'Liberation Sans', /* Linux */
-               sans-serif; /* Everything else */
+  --font-family-default: system-ui, 'Segoe UI', roboto, oxygen, 'Helvetica Neue', sans-serif;
 
   --font-size-default: 13px;
   --font-weight-default: 300;
