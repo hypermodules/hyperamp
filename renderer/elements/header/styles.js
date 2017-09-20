@@ -4,7 +4,7 @@ module.exports = css`
   .toolbar {
     -webkit-app-region: drag;
     height: 40px;
-    padding: 0 .5em 0 6.5em;
+    padding: 0 .5em;
     display: flex;
     align-items: center;
     justify-content: space-between;

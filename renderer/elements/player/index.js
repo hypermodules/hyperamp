@@ -16,7 +16,7 @@ var styles = css`
     left: 0;
     right: 0;
     bottom: 0;
-    height: 77px;
+    height: 65px;
     justify-content: space-between;
     will-change: transform;
     contain: layout;

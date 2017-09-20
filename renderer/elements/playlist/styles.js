@@ -6,7 +6,7 @@ module.exports = css`
     left: 0;
     top: 0;
     right: 0;
-    bottom: 77px;
+    bottom: 65px;
   }
 
   .tableScrollWindow {

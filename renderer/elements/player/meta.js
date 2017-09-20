@@ -22,7 +22,7 @@ var styles = css`
   .meta {
     font-size: 12px;
     text-align: left;
-    padding-left: 10px;
+    padding-left: 1.5em;
     overflow: hidden;
   }
   .title, .artist {
