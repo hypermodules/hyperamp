@@ -15,7 +15,7 @@ var styles = css`
 
   @keyframes ckw {
     0% { transform: rotate(0deg) }
-    100% { transform: rotate(360deg) }
+    100% { transform: rotate(-360deg) }
   }
 `
 
@@ -72,7 +72,7 @@ class Add extends Component {
         ${button({
           className: this._loading ? styles.spin : null,
           onclick: this._handleAddButton,
-          iconName: 'entypo-folder-music'
+          iconName: this._loading ? 'entypo-cycle' : 'entypo-folder-music'
         })}
       </div>
     `

@@ -6,7 +6,6 @@ var css = require('csjs-inject')
 
 var styles = css`
   .controls {
-    font-size: 1.25em;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -14,8 +13,11 @@ var styles = css`
     display: flex;
     flex-direction: row;
   }
-  .ctrlBtn { padding: 3px }
-  .playBtn { font-size: 1.5em }
+  .ctrlBtn {
+    padding: 3px;
+    font-size: 1.25rem;
+  }
+  .playBtn { font-size: 1.5rem }
 `
 
 class PlayerControls extends Component {
