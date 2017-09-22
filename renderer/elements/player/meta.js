@@ -12,17 +12,16 @@ var styles = css`
     flex: 1 0 30%;
     display: flex;
     align-items: center;
-    padding-right: 2%;
+    padding-right: 1%;
     overflow: hidden;
     border-right: var(--border);
-    margin-right: 2%;
     height: 100%;
   }
 
   .meta {
     font-size: 12px;
     text-align: left;
-    padding-left: 1.5em;
+    padding-left: .5em;
     overflow: hidden;
   }
   .title, .artist {

@@ -1,5 +1,6 @@
 var html = require('choo/html')
 var Component = require('nanocomponent')
+var Add = require('../add')
 var Controls = require('./controls')
 var Progress = require('./progress')
 var Volume = require('./volume')
@@ -9,20 +10,26 @@ var css = require('csjs-inject')
 var styles = css`
   .player {
     -webkit-app-region: drag;
-    border-top: var(--border);
     align-items: center;
     text-align: center;
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
-    height: 65px;
+    top: 0;
+    height: 39px;
     justify-content: space-between;
     will-change: transform;
     contain: layout;
     display: flex;
-    padding: 0 2% 0 0;
+    padding: 0;
     background: var(--bg);
+  }
+  .audioControls {
+    padding: 0 1% 0 6em;
+    display: flex;
+    justify-content: space-between;
+    contain: layout;
+    width: 100%;
   }
 `
 
@@ -38,6 +45,7 @@ class Player extends Component {
     this._pictureHash = null
 
     // owned children
+    this._add = new Add()
     this._controls = new Controls()
     this._progress = new Progress()
     this._volume = new Volume()
@@ -51,12 +59,16 @@ class Player extends Component {
     this._emit = emit
     this._key = trackOrder[currentIndex]
 
+    // ${this._meta.render(trackDict[this._key] || {}, artwork)}
+
     return html`
       <div class="${styles.player}">
-        ${this._meta.render(trackDict[this._key] || {}, artwork)}
-        ${this._controls.render(state, emit)}
-        ${this._progress.render(state, emit)}
-        ${this._volume.render(state, emit)}
+        <div class="${styles.audioControls}">
+          ${this._controls.render(state, emit)}
+          ${this._progress.render(state, emit)}
+          ${this._volume.render(state, emit)}
+          ${this._add.render(state, emit)}
+        </div>
       </div>
     `
   }
@@ -69,6 +81,7 @@ class Player extends Component {
 
     if (this._key !== trackOrder[currentIndex]) return true
 
+    this._add.render(state, emit)
     this._controls.render(state, emit)
     this._progress.render(state, emit)
     this._volume.render(state, emit)
