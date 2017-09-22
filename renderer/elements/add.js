@@ -9,7 +9,7 @@ var css = require('csjs-inject')
 
 var styles = css`
   .add {
-    font-size: 1.5em;
+    font-size: 1.25em;
   }
   .spin { animation: ckw 4s infinite linear }
 

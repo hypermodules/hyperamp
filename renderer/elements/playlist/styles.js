@@ -5,7 +5,7 @@ module.exports = css`
     position: absolute;
     left: 0;
     right: 0;
-    top: 39px;
+    top: 38px;
     bottom: 0;
   }
 
@@ -48,8 +48,8 @@ module.exports = css`
   }
 
   .mediaList td, th {
-    height: 3em;
-    padding: 2px 15px;
+    height: 38px;
+    padding: 0 15px;
   }
 
   .mediaList tr:nth-child(even) { background: var(--darken) }

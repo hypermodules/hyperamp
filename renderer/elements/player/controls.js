@@ -6,7 +6,7 @@ var css = require('csjs-inject')
 
 var styles = css`
   .controls {
-    font-size: 1.5em;
+    font-size: 1.25em;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -14,6 +14,8 @@ var styles = css`
     display: flex;
     flex-direction: row;
   }
+  .ctrlBtn { padding: 3px }
+  .playBtn { font-size: 1.5em }
 `
 
 class PlayerControls extends Component {
@@ -57,15 +59,18 @@ class PlayerControls extends Component {
       <div class=${styles.controls} ${buttonStyles.btnGroup}>
         ${button({
           onclick: this.handlePrev,
-          iconName: 'entypo-controller-fast-backward'
+          iconName: 'entypo-controller-fast-backward',
+          className: styles.ctrlBtn
         })}
         ${button({
           onclick: this.handlePlayPause,
-          iconName: `entypo-controller-${this.playing ? 'paus' : 'play'}`
+          iconName: `entypo-controller-${this.playing ? 'paus' : 'play'}`,
+          className: [styles.playBtn, styles.ctrlBtn].join(' ')
         })}
         ${button({
           onclick: this.handleNext,
-          iconName: 'entypo-controller-fast-forward'
+          iconName: 'entypo-controller-fast-forward',
+          className: styles.ctrlBtn
         })}
         ${button({
           onclick: this.shuffleToggle,
