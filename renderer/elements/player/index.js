@@ -1,5 +1,6 @@
 var html = require('choo/html')
 var Component = require('nanocomponent')
+var Add = require('../add')
 var Controls = require('./controls')
 var Progress = require('./progress')
 var Volume = require('./volume')
@@ -9,20 +10,26 @@ var css = require('csjs-inject')
 var styles = css`
   .player {
     -webkit-app-region: drag;
-    border-top: var(--border);
     align-items: center;
     text-align: center;
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
-    height: 65px;
+    top: 0;
+    height: 39px;
     justify-content: space-between;
     will-change: transform;
     contain: layout;
     display: flex;
-    padding: 0 2% 0 0;
+    padding: 0;
     background: var(--bg);
+  }
+  .audioControls {
+    padding: 0 1% 0 6em;
+    display: flex;
+    justify-content: space-between;
+    contain: layout;
+    width: 100%;
   }
 `
 
@@ -38,6 +45,7 @@ class Player extends Component {
     this.pictureHash = null
 
     // owned children
+    this.add = new Add()
     this.controls = new Controls()
     this.progress = new Progress()
     this.volume = new Volume()
@@ -50,12 +58,16 @@ class Player extends Component {
     this.emit = emit
     this.key = currentTrack.key
 
+    // ${this.meta.render(currentTrack)}
+
     return html`
       <div class="${styles.player}">
-        ${this.meta.render(currentTrack, emit)}
-        ${this.controls.render(state, emit)}
-        ${this.progress.render(state, emit)}
-        ${this.volume.render(state, emit)}
+        <div class="${styles.audioControls}">
+          ${this.controls.render(state, emit)}
+          ${this.progress.render(state, emit)}
+          ${this.volume.render(state, emit)}
+          ${this.add.render(state, emit)}
+        </div>
       </div>
     `
   }
@@ -67,10 +79,11 @@ class Player extends Component {
 
     if (this.key !== currentTrack.key) return true
 
+    this.add.render(state, emit)
     this.controls.render(state, emit)
     this.progress.render(state, emit)
     this.volume.render(state, emit)
-    this.meta.render(currentTrack, emit)
+    this.meta.render(currentTrack)
 
     return false
   }

@@ -1,8 +1,17 @@
 var html = require('choo/html')
 var formStyles = require('../form/styles')
-var styles = require('./styles')
 var assert = require('assert')
 var Component = require('nanocomponent')
+var css = require('csjs-inject')
+
+var styles = css`
+  .searchInput {
+    width: 100%;
+    padding: 3px 8px;
+    vertical-align: middle;
+    min-height: auto;
+  }
+`
 
 class Search extends Component {
   constructor (opts) {

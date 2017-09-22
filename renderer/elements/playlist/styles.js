@@ -4,20 +4,19 @@ module.exports = css`
   .playlist {
     position: absolute;
     left: 0;
-    top: 0;
     right: 0;
-    bottom: 65px;
+    top: 39px;
+    bottom: 0;
   }
 
   .tableScrollWindow {
-    position: absolute;
-    top: 40px;
-    right: 0;
-    left: 0;
-    bottom: 0;
     overflow: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 30px;
+    bottom: 0;
   }
-
   .tableContainer { position: relative }
 
   .mediaList {
@@ -38,16 +37,7 @@ module.exports = css`
     text-overflow: ellipsis;
   }
 
-  /* .mediaList tr:nth-child(even),
-  thead { background: var(--darken) } */
-
-  .mediaList th {
-    font-weight: var(--font-weight-default);
-    /* border-right: var(--border);
-    border-bottom: var(--border); */
-  }
-  /* .mediaList td { border-right: var(--border) }
-  .mediaList th:last-child { border-right: none } */
+  .mediaList th { font-weight: var(--font-weight-default) }
 
   .stickyHead th {
     position: sticky;

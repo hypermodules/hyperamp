@@ -19,8 +19,8 @@ var player = new Player()
 function main (state, emit) {
   return html`
     <main class="${styles.window}">
-      ${playlist.render(state, emit)}
       ${player.render(state, emit)}
+      ${playlist.render(state, emit)}
     </main>
   `
 }

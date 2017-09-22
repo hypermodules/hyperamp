@@ -5,25 +5,24 @@ var html = require('choo/html')
 var css = require('csjs-inject')
 
 var styles = css`
-  .nowPlaying {
+  .meta {
     position: relative;
     min-width: 220px;
     max-width: 300px;
     flex: 1 0 30%;
     display: flex;
     align-items: center;
-    padding-right: 2%;
+    padding-left: 1%;
     overflow: hidden;
-    border-right: var(--border);
-    margin-right: 2%;
     height: 100%;
   }
 
-  .meta {
-    font-size: 12px;
+  .trackInfo {
+    font-size: 11px;
     text-align: left;
-    padding-left: 1.5em;
+    padding-left: .5em;
     overflow: hidden;
+    line-height: 1.4;
   }
   .title, .artist {
     margin: 0;
@@ -58,10 +57,10 @@ class Meta extends Component {
     var { title, artist } = track
 
     return html`
-      <div class=${styles.nowPlaying}>
+      <div class=${styles.meta}>
         ${this.artwork.render(track.artwork)}
 
-        <div class=${styles.meta} onclick=${this.handleClick}>
+        <div class=${styles.trackInfo} onclick=${this.handleClick}>
           ${artist != null && artist !== '' && artist.length > 0
             ? html`<div class=${styles.artist}>${Array.isArray(artist) ? artist.join(', ') : artist}</div>`
             : ''}

@@ -32,7 +32,7 @@ var styles = css`
     -webkit-app-region: no-drag;
     width: 100%;
   }
-  @media (max-width: 640px) {
+  ${'' /* @media (max-width: 640px) {
     .range {
       width: 0;
       padding: 0 .5em 0 0;
@@ -42,7 +42,7 @@ var styles = css`
       content: '/';
       margin-left: -.25em;
     }
-  }
+  } */}
 `
 
 class Progress extends Component {
