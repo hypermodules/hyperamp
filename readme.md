@@ -40,4 +40,4 @@ Currently under active development. macOS build coming soon!
 [appveyor-img]: https://ci.appveyor.com/api/projects/status/34x775v3nly2ml2b?svg=true
 [appveyor-url]: https://ci.appveyor.com/project/bcomnes/hyperamp
 [irc-url]: https://www.irccloud.com/invite?channel=%23hypermodules&amp;hostname=irc.freenode.net&amp;port=6697&amp;ssl=1
-[irc-img]: https://img.shields.io/badge/IRC-%23hypermodules-1e72ff.svg
+[irc-img]: https://img.shields.io/badge/freenode-%23hypermodules-1e72ff.svg
