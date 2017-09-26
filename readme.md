@@ -2,9 +2,9 @@
 
 Experimental audio player built with web technologies ([choo](https://github.com/yoshuawuyts/choo) + [electron](https://github.com/electron/electron)).
 
-Mac/Linux      | Windows      | Version
--------------- | ------------ | ------------
-[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![stability][stability-img]][stability-url]
+Mac/Linux      | Windows      | Version     | IRC
+-------------- | ------------ | ------------| ---
+[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![stability][stability-img]][stability-url] | [![irc][irc-img]][irc-url]
 
 ## Install
 
@@ -39,3 +39,5 @@ Currently under active development. macOS build coming soon!
 [standard-url]: https://github.com/feross/standard
 [appveyor-img]: https://ci.appveyor.com/api/projects/status/34x775v3nly2ml2b?svg=true
 [appveyor-url]: https://ci.appveyor.com/project/bcomnes/hyperamp
+[irc-url]: https://www.irccloud.com/invite?channel=%23hypermodules&amp;hostname=irc.freenode.net&amp;port=6697&amp;ssl=1
+[irc-img]: https://img.shields.io/badge/IRC-%23hypermodules-1e72ff.svg
