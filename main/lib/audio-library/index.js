@@ -1,18 +1,28 @@
 var Nanobus = require('nanobus')
+var shuffleArray = require('fy-shuffle')
 
 class AudioLibrary extends Nanobus {
-  construtor (trackDict, state) {
+  constructor (state) {
     super('AudioLibrary')
     state = Object.assign({
+      trackDict: {},
+      shuffling: false,
       order: [],
-      shuffle: null,
+      shuffleOrder: [],
       index: 0,
+      shuffleIndex: 0,
       searchTerm: null
     }, state)
 
-    this.trackDict = trackDict || {} // All your tracks keyed by filename
-    this.order = state.order.length ? state.order : Object.keys(trackDict)
-    this.shuffle = state.shuffle
+    this.trackDict = state.trackDict // All your tracks keyed by filename
+    this.order = state.order.length
+      ? state.order
+      : this._search(state.search)
+    this.shuffling = state.shuffling
+    this.shuffleOrder = state.shuffling && state.shuffleOrder.length
+      ? state.shuffleOrder
+      : null
+    this.shuffleIndex = state.shuffleIndex
     this.index = state.index
     this.searchTerm = state.search
 
@@ -35,14 +45,6 @@ class AudioLibrary extends Nanobus {
   get visibleOrder () {
     if (this.isNewQuery) return this.newOrder
     else return this.order
-  }
-
-  get shuffling () {
-    return !!this.shuffle
-  }
-
-  set shuffling (bool) {
-    this.shuffling = bool
   }
 
   queue (index) {
@@ -68,16 +70,31 @@ class AudioLibrary extends Nanobus {
       this.index = index
     }
 
+    if (this.shuffling) this.shuffle() // re-shuffle
     this.emit('new-track', this.currentTrack)
+    return this.currentTrack
+  }
+
+  _nextShuffle () {
+    var newShuffleIndex = this.shuffleIndex < this.shuffleOrder.length - 1 ? this.shuffleIndex + 1 : 0
+    this.index = this.shuffleOrder[newShuffleIndex]
+    this.shuffleIndex = newShuffleIndex
+    return this.currentTrack
+  }
+
+  _next () {
+    var newIndex = this.index < this.order.length - 1 ? this.index + 1 : 0
+    this.index = newIndex
     return this.currentTrack
   }
 
   next () { // set and return the next track 🔁
     if (this.order.length > 0) {
-      var newIndex = this.index < this.order.length - 1 ? this.index + 1 : 0
-      this.index = newIndex
-      this.emit('new-track', this.currentTrack)
-      return this.currentTrack
+      var newTrack
+      if (this.shuffling) newTrack = this._nextShuffle()
+      else newTrack = this._next()
+      this.emit('new-track', newTrack)
+      return newTrack
     } else {
       var err = new Error('AudioLibrary: Can\'t go forward, empty order array')
       this.emit('error', err)
@@ -85,17 +102,43 @@ class AudioLibrary extends Nanobus {
     }
   }
 
+  _prevShuffle () {
+    var newShuffleIndex = this.shuffleIndex > 0 ? this.shuffleIndex - 1 : this.shuffleOrder.length - 1
+    this.index = this.shuffleOrder[newShuffleIndex]
+    this.shuffleIndex = newShuffleIndex
+    return this.currentTrack
+  }
+
+  _prev () {
+    var newIndex = this.index > 0 ? this.index - 1 : this.order.length - 1
+    this.index = newIndex
+    return this.currentTrack
+  }
+
   prev () { // set and return the prev track 🔁
     if (this.order.length > 0) {
-      var newIndex = this.index > 0 ? this.index - 1 : this.order.length - 1
-      this.index = newIndex
-      this.emit('new-track', this.currentTrack)
-      return this.currentTrack
+      var newTrack
+      if (this.shuffling) newTrack = this._prevShuffle()
+      else newTrack = this._prev()
+      this.emit('new-track', newTrack)
+      return newTrack
     } else {
       var err = this.emit('error', new Error('AudioLibrary: Can\'t go back, empty order array'))
       this.emit('error', err)
       throw err
     }
+  }
+
+  shuffle () {
+    this.shuffling = true
+    this.shuffleOrder = shuffleArray(Object.keys(this.order).map(Number))
+    this.shuffleIndex = this.shuffleOrder.indexOf(this.index)
+  }
+
+  unshuffle () {
+    this.shuffling = false
+    this.shuffleOrder = null
+    this.shuffleOrder = null
   }
 
   _filterList (term, key) {
@@ -141,24 +184,29 @@ class AudioLibrary extends Nanobus {
 
   _search (term) {
     return Object.keys(this.trackDict)
-                         .filter(this._filterList.bind(this, term))
-                         .sort(this._sortList)
+                 .filter(this._filterList.bind(this, term))
+                 .sort(this._sortList)
   }
 
   search (term) {
     this.isNewQuery = true
     this.newSearchTerm = term
     this.newOrder = this._search(term)
-    this.emit('search', this.newOrder)
+    this.emit('order', this.newOrder)
     return this.newOrder
   }
 
-  reacall () {
+  recall () {
     this.isNewQuery = false
-
     this.newOrder = null
     this.newSearchTerm = null
     this.newSort = null
+    this.emit('order', this.order)
+    return this.order
+  }
+
+  clear () {
+    return this.search('')
   }
 }
 
