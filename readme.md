@@ -2,7 +2,7 @@
 
 Experimental audio player built with web technologies ([choo](https://github.com/yoshuawuyts/choo) + [electron](https://github.com/electron/electron)).
 
-Mac/Linux      | Windows      | Version     | IRC
+macOS/Linux  | Windows      | Version     | IRC
 -------------- | ------------ | ------------| ---
 [![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![stability][stability-img]][stability-url] | [![irc][irc-img]][irc-url]
 
