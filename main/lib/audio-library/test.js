@@ -130,7 +130,7 @@ test('visibleOrder and search', {timeout: 500}, function (t) {
   t.end()
 })
 
-test('visibleOrder and search', function (t) {
+test('truffle shuffle', function (t) {
   var al = new AudioLibrary(libraryA)
 
   al.shuffle()

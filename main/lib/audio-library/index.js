@@ -196,7 +196,7 @@ class AudioLibrary extends Nanobus {
     return this.newOrder
   }
 
-  recall () {
+  recall () { // reset any outstanding queries and show current play order
     this.isNewQuery = false
     this.newOrder = null
     this.newSearchTerm = null
@@ -205,7 +205,7 @@ class AudioLibrary extends Nanobus {
     return this.order
   }
 
-  clear () {
+  clear () { // show everything with current sort
     return this.search('')
   }
 }
