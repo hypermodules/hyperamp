@@ -1,39 +1,31 @@
 var test = require('tape')
 var AudioLibrary = require('./index')
 var libraryA = require('./test-data/library-a.json')
-var libraryB = require('./test-data/library-a.json')
+// var libraryB = require('./test-data/library-a.json')
 
 test('instantiate, next, prev AudioLibrary', function (t) {
-  var libA = new AudioLibrary(libraryA)
-  var libB = new AudioLibrary(libraryB)
+  var al = new AudioLibrary(libraryA)
 
-  var lib = [libA, libB]
+  t.ok(al, 'AudioLibrary can instantiate with library object')
+  t.equal(al.index, libraryA.index, 'index is instantiated from state correctly')
 
-  lib.forEach(loadTest)
+  t.equal(al.currentKey, libraryA.order[libraryA.index], 'current index is set correctly')
 
-  function loadTest (al) {
-    t.ok(al, 'AudioLibrary can instantiate with library object')
-    t.equal(al.index, libraryA.index, 'index is instantiated from state correctly')
-    t.equal(al.shuffling, libraryA.shuffling, 'shuffling is instantiated from state correctly')
+  t.deepEqual(al.visibleOrder, libraryA.order, 'visible order returns the correct order')
 
-    t.equal(al.currentKey, libraryA.order[libraryA.index], 'current index is set correctly')
+  t.ok(al.next(), 'can advance to the next track')
+  t.ok(al.next(), 'can advance to the next track again')
+  t.ok(al.next(), 'can advance to the next track one more time')
 
-    t.deepEqual(al.visibleOrder, libraryA.order, 'visible order returns the correct order')
+  t.equal(al.index, libraryA.index + 3, 'index is advanced by 3')
+  t.deepEqual(al.currentTrack, libraryA.trackDict[libraryA.order[libraryA.index + 3]], 'we get the currentTrack')
 
-    t.ok(al.next(), 'can advance to the next track')
-    t.ok(al.next(), 'can advance to the next track again')
-    t.ok(al.next(), 'can advance to the next track one more time')
+  t.ok(al.prev(), 'can advance in reverse to the previous track')
+  t.ok(al.prev(), 'can advance in reverse to the previous track again')
+  t.ok(al.prev(), 'can advance in reverse to the previous track one more time')
 
-    t.equal(al.index, libraryA.index + 3, 'index is advanced by 3')
-    t.deepEqual(al.currentTrack, libraryA.trackDict[libraryA.order[libraryA.index + 3]], 'we get the currentTrack')
-
-    t.ok(al.prev(), 'can advance in reverse to the previous track')
-    t.ok(al.prev(), 'can advance in reverse to the previous track again')
-    t.ok(al.prev(), 'can advance in reverse to the previous track one more time')
-
-    t.equal(al.index, libraryA.index, 'index reduced by 3')
-    t.deepEqual(al.currentTrack, libraryA.trackDict[libraryA.order[libraryA.index]], 'we get the currentTrack')
-  }
+  t.equal(al.index, libraryA.index, 'index reduced by 3')
+  t.deepEqual(al.currentTrack, libraryA.trackDict[libraryA.order[libraryA.index]], 'we get the currentTrack')
 
   t.end()
 })
@@ -47,11 +39,7 @@ function getRandomInt (min, max) {
 test('instantiate and queue', {timeout: 500}, function (t) {
   var al = new AudioLibrary(libraryA)
 
-  t.plan(3)
-
-  al.on('new-track', function (newTrack) {
-    t.deepEqual(newTrack, libraryA.trackDict[libraryA.order[newIndex]], 'event emitter emits')
-  })
+  t.plan(2)
 
   var newIndex = getRandomInt(0, libraryA.length - 1)
 
@@ -62,35 +50,35 @@ test('instantiate and queue', {timeout: 500}, function (t) {
 
 test('visibleOrder and search', {timeout: 500}, function (t) {
   var al = new AudioLibrary(libraryA)
-  // We are in default loaded state
   t.deepEqual(al.visibleOrder, al.order, 'visible order is showing the intial order')
-  t.equal(al.newOrder, null, 'there is no new order')
-  t.equal(al.isNewQuery, false, 'we are not current showing a new query')
-  // Perform a search
+  t.equal(al.query, null, 'query is null')
+  t.equal(al.isNewQuery, false, 'not in a new query state')
+
   var expectedResults = [ '/Users/bret/Resilio Sync/Music/BLVCK CEILING/meridian/08 25 cobainen.mp3' ]
+  console.log('search for 25 cobainen')
   var results = al.search('25 cobainen')
-  // Results are generate and returned
+
   t.deepEqual(results, expectedResults, 'search returns a new order with results')
-  // They look right
-  t.deepEqual(al.newOrder, expectedResults, 'there is a new order')
-  // We are in new query state
+  t.deepEqual(al.query.order, expectedResults, 'there is a new order')
   t.equal(al.isNewQuery, true, 'we are in a new query state')
-  // we should be seeing the query results
-  t.deepEqual(al.visibleOrder, al.newOrder, 'visible order is showing the new order')
-  // we can still advance and get the next track of whatever is currently playing
+  t.deepEqual(al.visibleOrder, al.query.order, 'visible order is showing the new order')
+
+  console.log('next()')
   al.next()
   t.deepEqual(
     al.currentTrack,
     libraryA.trackDict[libraryA.order[libraryA.index + 1]],
     ' we can still advance and get the next track of whatever is currently playing'
   )
-  t.deepEqual(al.visibleOrder, al.newOrder, 'we are still seeing our new query')
+  t.deepEqual(al.visibleOrder, al.query.order, 'we are still seeing our new query')
 
-  al.recall() // test recall
+  console.log('recall()')
+  al.recall()
 
-  t.equal(al.newOrder, null, 'new order cleared')
+  t.equal(al.query, null, 'new order cleared')
   t.equal(al.isNewQuery, false, 'no longer in a new query')
 
+  console.log('search and queue')
   al.search('25 cobainen')
   al.queue(0)
 
@@ -101,9 +89,10 @@ test('visibleOrder and search', {timeout: 500}, function (t) {
   )
 
   t.deepEqual(al.visibleOrder, al.order, 'visible order is showing play order')
-  t.equal(al.newOrder, null, 'new order cleared')
+  t.equal(al.query, null, 'new order cleared')
   t.equal(al.isNewQuery, false, 'no longer in a new query')
 
+  console.log('next()')
   al.next()
 
   t.deepEqual(
@@ -112,10 +101,11 @@ test('visibleOrder and search', {timeout: 500}, function (t) {
     'only one result so 🔂'
   )
 
-  al.clear() // clear search
+  console.log('search(\'\') and queue()')
+  al.search('') // clear search
   al.queue(0) // play from the full library
 
-  t.equal(al.newOrder, null, 'new order cleared')
+  t.equal(al.query, null, 'new order cleared')
   t.equal(al.isNewQuery, false, 'no longer in a new query')
 
   t.equal(al.visibleOrder.length, libraryA.order.length, 'visible order returns the correct order')
@@ -126,24 +116,30 @@ test('visibleOrder and search', {timeout: 500}, function (t) {
 test('truffle shuffle', function (t) {
   var al = new AudioLibrary(libraryA)
 
+  console.log('shuffle()')
   al.shuffle()
   var initialShuffleIndex = al.shuffleIndex
+  console.log('next()')
+  console.log('next()')
   al.next()
   al.next()
 
   t.equal(al.shuffleIndex, initialShuffleIndex + 2, 'shuffle index advances')
   t.deepEqual(al.currentTrack, al.trackDict[al.order[al.shuffleOrder[al.shuffleIndex]]], 'adancing returns the correct next track')
 
+  console.log('prev()')
   al.prev()
 
   t.equal(al.shuffleIndex, initialShuffleIndex + 1, 'go back in shuffle order')
   t.deepEqual(al.currentTrack, al.trackDict[al.order[al.shuffleOrder[al.shuffleIndex]]], 'prev returns the previous track')
   var preUnshuffleIndex = al.index
+
+  console.log('unshuffle()')
   al.unshuffle()
   t.equal(al.index, preUnshuffleIndex, 'index stays the same')
   t.equal(al.shuffling, false, 'not shuffling any more')
   t.equal(al.shuffleOrder, null, 'clear shuffle order')
-
+  console.log('next()')
   al.next()
   t.equal(al.index, preUnshuffleIndex + 1, 'advances in the next direction')
   t.end()

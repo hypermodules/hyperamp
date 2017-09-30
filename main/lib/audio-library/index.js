@@ -1,37 +1,41 @@
 var Nanobus = require('nanobus')
 var shuffleArray = require('fy-shuffle')
+var filter = require('./filter')
+var sort = require('./sort')
 
 class AudioLibrary extends Nanobus {
   constructor (state) {
     super('AudioLibrary')
+
     state = Object.assign({
       trackDict: {},
-      shuffling: false,
       order: [],
-      shuffleOrder: [],
+      shuffleOrder: null,
       index: 0,
       shuffleIndex: 0,
       searchTerm: null
     }, state)
 
-    this.trackDict = state.trackDict // All your tracks keyed by filename
+    this.trackDict = state.trackDict
     this.order = state.order.length
       ? state.order
       : this._search(state.search)
-    this.shuffling = state.shuffling
-    this.shuffleOrder = state.shuffling && state.shuffleOrder.length
+    this.shuffleOrder = Array.isArray(state.shuffleOrder)
       ? state.shuffleOrder
       : null
     this.shuffleIndex = state.shuffleIndex
     this.index = state.index
-    this.searchTerm = state.search
+    this.searchTerm = state.searchTerm
 
-    this.isNewQuery = false
+    this.query = null // Set to object so we can clear easily
+  }
 
-    this.newSearchTerm = null
-    this.newOrder = null
+  get isNewQuery () {
+    return !!this.query
+  }
 
-    this._sortList = this._sortList.bind(this)
+  get shuffling () {
+    return Array.isArray(this.shuffleOrder)
   }
 
   get currentKey () {
@@ -43,35 +47,21 @@ class AudioLibrary extends Nanobus {
   }
 
   get visibleOrder () {
-    if (this.isNewQuery) return this.newOrder
+    if (this.isNewQuery) return this.query.order
     else return this.order
   }
 
   queue (index) {
-    var err
+    this.index = index
+
     if (this.isNewQuery) {
-      if (index > this.newOrder.length - 1) {
-        err = new Error('AudioLibrary: index not in range of current view')
-        this.emit('error', err)
-        throw err
-      }
-
-      this.index = index
-      this.order = this.newOrder.slice()
-      this.searchTerm = this.newSearchTerm
-
+      this.order = this.query.order.slice()
+      this.searchTerm = this.query.searchTerm
       this.recall()
-    } else {
-      if (index > this.order.length - 1) {
-        err = new Error('AudioLibrary: index not in range of current view')
-        this.emit('error', err)
-        throw err
-      }
-      this.index = index
     }
 
-    if (this.shuffling) this.shuffle() // re-shuffle
-    this.emit('new-track', this.currentTrack)
+    if (this.shuffling) this.shuffle()
+
     return this.currentTrack
   }
 
@@ -89,125 +79,56 @@ class AudioLibrary extends Nanobus {
   }
 
   next () { // set and return the next track 🔁
-    if (this.order.length > 0) {
-      var newTrack
-      if (this.shuffling) newTrack = this._nextShuffle()
-      else newTrack = this._next()
-      this.emit('new-track', newTrack)
-      return newTrack
-    } else {
-      var err = new Error('AudioLibrary: Can\'t go forward, empty order array')
-      this.emit('error', err)
-      throw err // Maybe dont throw? Return? Noop?
-    }
+    return this.shuffling ? this._nextShuffle() : this._next()
   }
 
   _prevShuffle () {
-    var newShuffleIndex = this.shuffleIndex > 0 ? this.shuffleIndex - 1 : this.shuffleOrder.length - 1
-    this.index = this.shuffleOrder[newShuffleIndex]
-    this.shuffleIndex = newShuffleIndex
+    this.shuffleIndex = this.shuffleIndex > 0 ? this.shuffleIndex - 1 : this.shuffleOrder.length - 1
+    this.index = this.shuffleOrder[this.shuffleIndex]
     return this.currentTrack
   }
 
   _prev () {
-    var newIndex = this.index > 0 ? this.index - 1 : this.order.length - 1
-    this.index = newIndex
+    this.index = this.index > 0 ? this.index - 1 : this.order.length - 1
     return this.currentTrack
   }
 
   prev () { // set and return the prev track 🔁
-    if (this.order.length > 0) {
-      var newTrack
-      if (this.shuffling) newTrack = this._prevShuffle()
-      else newTrack = this._prev()
-      this.emit('new-track', newTrack)
-      return newTrack
-    } else {
-      var err = this.emit('error', new Error('AudioLibrary: Can\'t go back, empty order array'))
-      this.emit('error', err)
-      throw err
-    }
+    return this.shuffling ? this._prevShuffle() : this._prev()
   }
 
   shuffle () {
-    this.shuffling = true
     this.shuffleOrder = shuffleArray(Object.keys(this.order).map(Number))
     this.shuffleIndex = this.shuffleOrder.indexOf(this.index)
   }
 
   unshuffle () {
-    this.shuffling = false
     this.shuffleOrder = null
-    this.shuffleOrder = null
-  }
-
-  _filterList (term, key) {
-    var { title, album, artist } = this.trackDict[key]
-    var artistStr = Array.isArray(artist) ? artist.join(', ') : artist
-    var trackStr = (title + album + artistStr).toLowerCase().replace(/\s+/g, '')
-
-    return trackStr.includes(term.toLowerCase().replace(/\s+/g, ''))
-  }
-
-  _sortList (keyA, keyB) { // Bound
-    var aObj = this.trackDict[keyA]
-    var bObj = this.trackDict[keyB]
-      // sort by albumartist
-      // if (aObj.albumartist[0] < bObj.albumartist[0]) return -1
-      // if (aObj.albumartist[0] > bObj.albumartist[0]) return 1
-
-      // sort by artist
-    if (aObj.artist[0] < bObj.artist[0]) return -1
-    if (aObj.artist[0] > bObj.artist[0]) return 1
-
-      // then by album
-    if (aObj.album < bObj.album) return -1
-    if (aObj.album > bObj.album) return 1
-
-      // then by disc no
-    if (aObj.disk.no < bObj.disk.no) return -1
-    if (aObj.disk.no > bObj.disk.no) return 1
-
-      // then by disc no
-    if (aObj.track.no < bObj.track.no) return -1
-    if (aObj.track.no > bObj.track.no) return 1
-
-      // then by title
-    if (aObj.title < bObj.title) return -1
-    if (aObj.title > bObj.title) return 1
-
-      // then by filepath
-    if (aObj.filepath < bObj.filepath) return -1
-    if (aObj.filepath > bObj.filepath) return 1
-    return 0
+    this.shuffleIndex = 0
   }
 
   _search (term) {
-    return Object.keys(this.trackDict)
-                 .filter(this._filterList.bind(this, term))
-                 .sort(this._sortList)
+    return term
+      ? Object.entries(this.trackDict).filter(filter.bind(null, term)).sort(sort).map(keys)
+      : Object.entries(this.trackDict).sort(sort).map(keys)
   }
 
   search (term) {
-    this.isNewQuery = true
-    this.newSearchTerm = term
-    this.newOrder = this._search(term)
-    this.emit('order', this.newOrder)
-    return this.newOrder
+    this.query = {
+      searchTerm: term,
+      order: this._search(term)
+    }
+    return this.query.order
   }
 
   recall () { // reset any outstanding queries and show current play order
-    this.isNewQuery = false
-    this.newOrder = null
-    this.newSearchTerm = null
-    this.newSort = null
-    this.emit('order', this.order)
+    this.query = null
     return this.order
   }
+}
 
-  clear () { // show everything with current sort
-    return this.search('')
-  }
+function keys (entry) {
+  return entry[0]
 }
 
 module.exports = AudioLibrary
