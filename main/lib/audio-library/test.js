@@ -1,30 +1,39 @@
 var test = require('tape')
 var AudioLibrary = require('./index')
 var libraryA = require('./test-data/library-a.json')
+var libraryB = require('./test-data/library-a.json')
 
 test('instantiate, next, prev AudioLibrary', function (t) {
-  var al = new AudioLibrary(libraryA)
-  t.ok(al, 'AudioLibrary can instantiate with library object')
-  t.equal(al.index, libraryA.index, 'index is instantiated from state correctly')
-  t.equal(al.shuffling, libraryA.shuffling, 'shuffling is instantiated from state correctly')
+  var libA = new AudioLibrary(libraryA)
+  var libB = new AudioLibrary(libraryB)
 
-  t.equal(al.currentKey, libraryA.order[libraryA.index], 'current index is set correctly')
+  var lib = [libA, libB]
 
-  t.deepEqual(al.visibleOrder, libraryA.order, 'visible order returns the correct order')
+  lib.forEach(loadTest)
 
-  t.ok(al.next(), 'can advance to the next track')
-  t.ok(al.next(), 'can advance to the next track again')
-  t.ok(al.next(), 'can advance to the next track one more time')
+  function loadTest (al) {
+    t.ok(al, 'AudioLibrary can instantiate with library object')
+    t.equal(al.index, libraryA.index, 'index is instantiated from state correctly')
+    t.equal(al.shuffling, libraryA.shuffling, 'shuffling is instantiated from state correctly')
 
-  t.equal(al.index, libraryA.index + 3, 'index is advanced by 3')
-  t.deepEqual(al.currentTrack, libraryA.trackDict[libraryA.order[libraryA.index + 3]], 'we get the currentTrack')
+    t.equal(al.currentKey, libraryA.order[libraryA.index], 'current index is set correctly')
 
-  t.ok(al.prev(), 'can advance in reverse to the previous track')
-  t.ok(al.prev(), 'can advance in reverse to the previous track again')
-  t.ok(al.prev(), 'can advance in reverse to the previous track one more time')
+    t.deepEqual(al.visibleOrder, libraryA.order, 'visible order returns the correct order')
 
-  t.equal(al.index, libraryA.index, 'index reduced by 3')
-  t.deepEqual(al.currentTrack, libraryA.trackDict[libraryA.order[libraryA.index]], 'we get the currentTrack')
+    t.ok(al.next(), 'can advance to the next track')
+    t.ok(al.next(), 'can advance to the next track again')
+    t.ok(al.next(), 'can advance to the next track one more time')
+
+    t.equal(al.index, libraryA.index + 3, 'index is advanced by 3')
+    t.deepEqual(al.currentTrack, libraryA.trackDict[libraryA.order[libraryA.index + 3]], 'we get the currentTrack')
+
+    t.ok(al.prev(), 'can advance in reverse to the previous track')
+    t.ok(al.prev(), 'can advance in reverse to the previous track again')
+    t.ok(al.prev(), 'can advance in reverse to the previous track one more time')
+
+    t.equal(al.index, libraryA.index, 'index reduced by 3')
+    t.deepEqual(al.currentTrack, libraryA.trackDict[libraryA.order[libraryA.index]], 'we get the currentTrack')
+  }
 
   t.end()
 })
@@ -34,22 +43,6 @@ function getRandomInt (min, max) {
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min)) + min // The maximum is exclusive and the minimum is inclusive
 }
-
-test('instantiate and queue', {timeout: 500}, function (t) {
-  var al = new AudioLibrary(libraryA)
-
-  t.plan(3)
-
-  al.on('new-track', function (newTrack) {
-    t.deepEqual(newTrack, libraryA.trackDict[libraryA.order[newIndex]], 'event emitter emits')
-  })
-
-  var newIndex = getRandomInt(0, libraryA.length - 1)
-
-  al.queue(newIndex)
-  t.deepEqual(al.currentTrack, libraryA.trackDict[libraryA.order[newIndex]], 'can queue a track when not searching or sorting')
-  t.deepEqual(al.visibleOrder, al.order, 'visible order is showing the correct order')
-})
 
 test('instantiate and queue', {timeout: 500}, function (t) {
   var al = new AudioLibrary(libraryA)

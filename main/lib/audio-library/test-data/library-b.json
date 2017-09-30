@@ -1,0 +1,3384 @@
+{
+  "trackDict": {
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/06 Breakdown.mp3": {
+      "albumartist": [],
+      "title": "Breakdown",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "m-Seq (2.5) WEB",
+      "duration": 316,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/06 Breakdown.mp3",
+      "year": "2008",
+      "track": {
+        "no": 6,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/05 Oizo's (Doggy Bag Mix).mp3": {
+      "albumartist": [],
+      "title": "Oizo's (Doggy Bag Mix)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "m-Seq (2.5) WEB",
+      "duration": 229,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/05 Oizo's (Doggy Bag Mix).mp3",
+      "year": "2008",
+      "track": {
+        "no": 5,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/04 Tweeter Trouble.mp3": {
+      "albumartist": [],
+      "title": "Tweeter Trouble",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "m-Seq (2.5) WEB",
+      "duration": 340,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/04 Tweeter Trouble.mp3",
+      "year": "2008",
+      "track": {
+        "no": 4,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/03 Shortkut.mp3": {
+      "albumartist": [],
+      "title": "Shortkut",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "m-Seq (2.5) WEB",
+      "duration": 152,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/03 Shortkut.mp3",
+      "year": "2008",
+      "track": {
+        "no": 3,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/02 m-Seq.mp3": {
+      "albumartist": [],
+      "title": "m-Seq",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "m-Seq (2.5) WEB",
+      "duration": 327,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/02 m-Seq.mp3",
+      "year": "2008",
+      "track": {
+        "no": 2,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/01 Intro (Kirk's Back).mp3": {
+      "albumartist": [],
+      "title": "Intro (Kirk's Back)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "m-Seq (2.5) WEB",
+      "duration": 126,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/m-Seq (2.5) WEB/01 Intro (Kirk's Back).mp3",
+      "year": "2008",
+      "track": {
+        "no": 1,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/21 The End.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "The End",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 118,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/21 The End.mp3",
+      "year": "2014",
+      "track": {
+        "no": 21,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/20 Lars Von Sen (X-Mas Version).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Lars Von Sen (X-Mas Version)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 190,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/20 Lars Von Sen (X-Mas Version).mp3",
+      "year": "2014",
+      "track": {
+        "no": 20,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/19 De Luca.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "De Luca",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 173,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/19 De Luca.mp3",
+      "year": "2014",
+      "track": {
+        "no": 19,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/18 Peerhurts.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Peerhurts",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 211,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/18 Peerhurts.mp3",
+      "year": "2014",
+      "track": {
+        "no": 18,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/17 Polocaust feat. Gaspard Augé.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Polocaust feat. Gaspard Augé",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 81,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/17 Polocaust feat. Gaspard Augé.mp3",
+      "year": "2014",
+      "track": {
+        "no": 17,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/16 Stunt.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Stunt",
+      "artist": [
+        "Mr. Oizo feat. Sébastien Tellier"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 201,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/16 Stunt.mp3",
+      "year": "2014",
+      "track": {
+        "no": 16,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/15 France7.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "France7",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 221,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/15 France7.mp3",
+      "year": "2014",
+      "track": {
+        "no": 15,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/14 Druide.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Druide",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 188,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/14 Druide.mp3",
+      "year": "2014",
+      "track": {
+        "no": 14,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/13 Positif.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Positif",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 172,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/13 Positif.mp3",
+      "year": "2014",
+      "track": {
+        "no": 13,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/12 Camelfuck.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Camelfuck",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 167,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/12 Camelfuck.mp3",
+      "year": "2014",
+      "track": {
+        "no": 12,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/11 Bellyball Road.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Bellyball Road",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 68,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/11 Bellyball Road.mp3",
+      "year": "2014",
+      "track": {
+        "no": 11,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/10 Crows And Guts.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Crows And Guts",
+      "artist": [
+        "Mr. Oizo feat. Gaspard Augé"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 148,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/10 Crows And Guts.mp3",
+      "year": "2014",
+      "track": {
+        "no": 10,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/09 Solid.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Solid",
+      "artist": [
+        "Mr. Oizo feat. Marilyn Manson"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 212,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/09 Solid.mp3",
+      "year": "2014",
+      "track": {
+        "no": 9,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/08 Jo.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Jo",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 138,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/08 Jo.mp3",
+      "year": "2014",
+      "track": {
+        "no": 8,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/07 Z.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Z",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 253,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/07 Z.mp3",
+      "year": "2014",
+      "track": {
+        "no": 7,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/06 Textes.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Textes",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 172,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/06 Textes.mp3",
+      "year": "2014",
+      "track": {
+        "no": 6,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/05 Transexual.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Transexual",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 249,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/05 Transexual.mp3",
+      "year": "2014",
+      "track": {
+        "no": 5,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/04 Flip Bat.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Flip Bat",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 189,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/04 Flip Bat.mp3",
+      "year": "2014",
+      "track": {
+        "no": 4,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/03 Cut Dick.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Cut Dick",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 172,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/03 Cut Dick.mp3",
+      "year": "2014",
+      "track": {
+        "no": 3,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/02 WC.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "WC",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 152,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/02 WC.mp3",
+      "year": "2014",
+      "track": {
+        "no": 2,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/01 Opening Redits.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Opening Redits",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Wrong Cops Best Of",
+      "duration": 80,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Wrong Cops Best Of/01 Opening Redits.mp3",
+      "year": "2014",
+      "track": {
+        "no": 1,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Unknown Album/Pourriture (13_31 Super Industrial Go Go Gadget Remix).mp3": {
+      "albumartist": [],
+      "title": "Pourriture (13/31 Super Industrial Go Go Gadget Remix)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "",
+      "duration": 470,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Unknown Album/Pourriture (13_31 Super Industrial Go Go Gadget Remix).mp3",
+      "year": "",
+      "track": {
+        "no": 0,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Transsexual EP/05 Blind Concert.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Blind Concert",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Transsexual EP",
+      "duration": 238,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Transsexual EP/05 Blind Concert.mp3",
+      "year": "2007",
+      "track": {
+        "no": 5,
+        "of": 5
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Transsexual EP/04 Patrick 122.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Patrick 122",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Transsexual EP",
+      "duration": 299,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Transsexual EP/04 Patrick 122.mp3",
+      "year": "2007-01-01",
+      "track": {
+        "no": 4,
+        "of": 5
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Transsexual EP/03 Ovoma.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Ovoma",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Transsexual EP",
+      "duration": 138,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Transsexual EP/03 Ovoma.mp3",
+      "year": "2007-01-01",
+      "track": {
+        "no": 3,
+        "of": 5
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Transsexual EP/02 Transsexual.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Transsexual",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Transsexual EP",
+      "duration": 252,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Transsexual EP/02 Transsexual.mp3",
+      "year": "2007",
+      "track": {
+        "no": 2,
+        "of": 5
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Transsexual EP/01 Hello.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Hello",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Transsexual EP",
+      "duration": 50,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Transsexual EP/01 Hello.mp3",
+      "year": "2007",
+      "track": {
+        "no": 1,
+        "of": 5
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/10 The Church.mp3": {
+      "albumartist": [],
+      "title": "The Church",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "The Church",
+      "duration": 213,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/10 The Church.mp3",
+      "year": "2014",
+      "track": {
+        "no": 10,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/09 Memorex.mp3": {
+      "albumartist": [],
+      "title": "Memorex",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "The Church",
+      "duration": 68,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/09 Memorex.mp3",
+      "year": "2014",
+      "track": {
+        "no": 9,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/08 Torero.mp3": {
+      "albumartist": [],
+      "title": "Torero",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "The Church",
+      "duration": 238,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/08 Torero.mp3",
+      "year": "2014",
+      "track": {
+        "no": 8,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/07 iSoap.mp3": {
+      "albumartist": [],
+      "title": "iSoap",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "The Church",
+      "duration": 243,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/07 iSoap.mp3",
+      "year": "2014",
+      "track": {
+        "no": 7,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/06 Machyne.mp3": {
+      "albumartist": [],
+      "title": "Machyne",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "The Church",
+      "duration": 189,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/06 Machyne.mp3",
+      "year": "2014",
+      "track": {
+        "no": 6,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/05 Mass Doom.mp3": {
+      "albumartist": [],
+      "title": "Mass Doom",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "The Church",
+      "duration": 152,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/05 Mass Doom.mp3",
+      "year": "2014",
+      "track": {
+        "no": 5,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/04 Dry Run.mp3": {
+      "albumartist": [],
+      "title": "Dry Run",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "The Church",
+      "duration": 206,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/04 Dry Run.mp3",
+      "year": "2014",
+      "track": {
+        "no": 4,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/03 Destop.mp3": {
+      "albumartist": [],
+      "title": "Destop",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "The Church",
+      "duration": 130,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/03 Destop.mp3",
+      "year": "2014",
+      "track": {
+        "no": 3,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/02 Ham.mp3": {
+      "albumartist": [],
+      "title": "Ham",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "The Church",
+      "duration": 190,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/02 Ham.mp3",
+      "year": "2014",
+      "track": {
+        "no": 2,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/01 Bear Biscuit.mp3": {
+      "albumartist": [],
+      "title": "Bear Biscuit",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "The Church",
+      "duration": 162,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/The Church/01 Bear Biscuit.mp3",
+      "year": "2014",
+      "track": {
+        "no": 1,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/07 Pee Hurts.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Pee Hurts",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 3",
+      "duration": 215,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/07 Pee Hurts.mp3",
+      "year": "2012",
+      "track": {
+        "no": 7,
+        "of": 7
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/06 Calculatrix.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Calculatrix",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 3",
+      "duration": 84,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/06 Calculatrix.mp3",
+      "year": "2012",
+      "track": {
+        "no": 6,
+        "of": 7
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/05 Textes.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Textes",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 3",
+      "duration": 172,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/05 Textes.mp3",
+      "year": "2012",
+      "track": {
+        "no": 5,
+        "of": 7
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/04 WC.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "WC",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 3",
+      "duration": 152,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/04 WC.mp3",
+      "year": "2012",
+      "track": {
+        "no": 4,
+        "of": 7
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/03 Fingers.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Fingers",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 3",
+      "duration": 42,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/03 Fingers.mp3",
+      "year": "2012",
+      "track": {
+        "no": 3,
+        "of": 7
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/02 Toodoo (feat. Carmen Castro).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Toodoo (feat. Carmen Castro)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 3",
+      "duration": 171,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/02 Toodoo (feat. Carmen Castro).mp3",
+      "year": "2012",
+      "track": {
+        "no": 2,
+        "of": 7
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/01 Stade 3.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Stade 3",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 3",
+      "duration": 205,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 3/01 Stade 3.mp3",
+      "year": "2012",
+      "track": {
+        "no": 1,
+        "of": 7
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/13 Druide.mp3": {
+      "albumartist": [],
+      "title": "Druide",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 187,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/13 Druide.mp3",
+      "year": "2011",
+      "track": {
+        "no": 13,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/12 Stade 2.mp3": {
+      "albumartist": [],
+      "title": "Stade 2",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 184,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/12 Stade 2.mp3",
+      "year": "2011",
+      "track": {
+        "no": 12,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/11 Pompe.mp3": {
+      "albumartist": [],
+      "title": "Pompe",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 57,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/11 Pompe.mp3",
+      "year": "2011",
+      "track": {
+        "no": 11,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/10 Chiffon.mp3": {
+      "albumartist": [],
+      "title": "Chiffon",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 115,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/10 Chiffon.mp3",
+      "year": "2011",
+      "track": {
+        "no": 10,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/09 France7.mp3": {
+      "albumartist": [],
+      "title": "France7",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 219,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/09 France7.mp3",
+      "year": "2011",
+      "track": {
+        "no": 9,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/08 Oral Sax.mp3": {
+      "albumartist": [],
+      "title": "Oral Sax",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 125,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/08 Oral Sax.mp3",
+      "year": "2011",
+      "track": {
+        "no": 8,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/07 Cheeree.mp3": {
+      "albumartist": [],
+      "title": "Cheeree",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 190,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/07 Cheeree.mp3",
+      "year": "2011",
+      "track": {
+        "no": 7,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/06 Edn.mp3": {
+      "albumartist": [],
+      "title": "Edn",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 64,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/06 Edn.mp3",
+      "year": "2011",
+      "track": {
+        "no": 6,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/05 Ska.mp3": {
+      "albumartist": [],
+      "title": "Ska",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 183,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/05 Ska.mp3",
+      "year": "2011",
+      "track": {
+        "no": 5,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/04 Datsun.mp3": {
+      "albumartist": [],
+      "title": "Datsun",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 199,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/04 Datsun.mp3",
+      "year": "2011",
+      "track": {
+        "no": 4,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/03 Douche Beat.mp3": {
+      "albumartist": [],
+      "title": "Douche Beat",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 199,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/03 Douche Beat.mp3",
+      "year": "2011",
+      "track": {
+        "no": 3,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/02 Camelfuck.mp3": {
+      "albumartist": [],
+      "title": "Camelfuck",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 167,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/02 Camelfuck.mp3",
+      "year": "2011",
+      "track": {
+        "no": 2,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/01 Introeil.mp3": {
+      "albumartist": [],
+      "title": "Introeil",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Stade 2",
+      "duration": 56,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Stade 2/01 Introeil.mp3",
+      "year": "2011",
+      "track": {
+        "no": 1,
+        "of": 13
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/06 Z (Principle Of Geometry RMX).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Z (Principle Of Geometry RMX)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Pourriture",
+      "duration": 263,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/06 Z (Principle Of Geometry RMX).mp3",
+      "year": "2009",
+      "track": {
+        "no": 6,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Ed Banger"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/05 Lars Von Sen (X-Mas Version).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Lars Von Sen (X-Mas Version)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Pourriture",
+      "duration": 167,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/05 Lars Von Sen (X-Mas Version).mp3",
+      "year": "2009",
+      "track": {
+        "no": 5,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Ed Banger"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/04 Steroids (Mr. Oizo RMX).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Steroids (Mr. Oizo RMX)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Pourriture",
+      "duration": 215,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/04 Steroids (Mr. Oizo RMX).mp3",
+      "year": "2009",
+      "track": {
+        "no": 4,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Ed Banger"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/03 Von Sen Lars (Original Mix).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Von Sen Lars (Original Mix)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Pourriture",
+      "duration": 69,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/03 Von Sen Lars (Original Mix).mp3",
+      "year": "2009",
+      "track": {
+        "no": 3,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Ed Banger"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/02 Erreur Jean (Arveen & Misk RMX).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Erreur Jean (Arveen & Misk RMX)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Pourriture",
+      "duration": 266,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/02 Erreur Jean (Arveen & Misk RMX).mp3",
+      "year": "2009",
+      "track": {
+        "no": 2,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Ed Banger"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/01 Pourriture (Original Mix).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Pourriture (Original Mix)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Pourriture",
+      "duration": 180,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Pourriture/01 Pourriture (Original Mix).mp3",
+      "year": "2009",
+      "track": {
+        "no": 1,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Ed Banger"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo - End of the World (2016) - WEB V0/01 - End of the World (feat. Skrillex).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "End of the World (feat. Skrillex)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "End of the World",
+      "duration": 219,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo - End of the World (2016) - WEB V0/01 - End of the World (feat. Skrillex).mp3",
+      "year": "2016",
+      "track": {
+        "no": 1,
+        "of": 1
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/15. Useless.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Useless",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 67,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/15. Useless.mp3",
+      "year": "2016",
+      "track": {
+        "no": 15,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/14. Goulag Drums.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Goulag Drums",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 163,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/14. Goulag Drums.mp3",
+      "year": "2016",
+      "track": {
+        "no": 14,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/13. Low Ink.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Low Ink",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 123,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/13. Low Ink.mp3",
+      "year": "2016",
+      "track": {
+        "no": 13,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/12. Hand In The Fire (feat. Charli XCX).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Hand In The Fire (feat. Charli XCX)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 191,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/12. Hand In The Fire (feat. Charli XCX).mp3",
+      "year": "2016",
+      "track": {
+        "no": 12,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/11. Your Liver.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Your Liver",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 124,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/11. Your Liver.mp3",
+      "year": "2016",
+      "track": {
+        "no": 11,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/10. Chairs (feat. Mocky).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Chairs (feat. Mocky)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 152,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/10. Chairs (feat. Mocky).mp3",
+      "year": "2016",
+      "track": {
+        "no": 10,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/09. All Wet (feat. Siriusmo).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "All Wet (feat. Siriusmo)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 192,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/09. All Wet (feat. Siriusmo).mp3",
+      "year": "2016",
+      "track": {
+        "no": 9,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/08. The One You Buy.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "The One You Buy",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 73,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/08. The One You Buy.mp3",
+      "year": "2016",
+      "track": {
+        "no": 8,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/07. End Of The World (feat. Skrillex).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "End Of The World (feat. Skrillex)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 219,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/07. End Of The World (feat. Skrillex).mp3",
+      "year": "2016",
+      "track": {
+        "no": 7,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/06. No Tony (feat. Phra).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "No Tony (feat. Phra)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 88,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/06. No Tony (feat. Phra).mp3",
+      "year": "2016",
+      "track": {
+        "no": 6,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/05. Ruhe (feat. Boys Noize).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Ruhe (feat. Boys Noize)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 160,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/05. Ruhe (feat. Boys Noize).mp3",
+      "year": "2016",
+      "track": {
+        "no": 5,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/04. Oiseaux.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Oiseaux",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 76,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/04. Oiseaux.mp3",
+      "year": "2016",
+      "track": {
+        "no": 4,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/03. Freezing Out (feat. Peaches).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Freezing Out (feat. Peaches)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 164,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/03. Freezing Out (feat. Peaches).mp3",
+      "year": "2016",
+      "track": {
+        "no": 3,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/02. Sea Horses (feat. Tetanos).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Sea Horses (feat. Tetanos)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 157,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/02. Sea Horses (feat. Tetanos).mp3",
+      "year": "2016",
+      "track": {
+        "no": 2,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/01. Ok Then.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Ok Then",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "All Wet",
+      "duration": 122,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Mr. Oizo (2016) - All Wet [Web] [V0]/01. Ok Then.mp3",
+      "year": "2016",
+      "track": {
+        "no": 1,
+        "of": 15
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/17 Vagiclean.m4a": {
+      "albumartist": [],
+      "title": "Vagiclean",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 327.26204081632653,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/17 Vagiclean.m4a",
+      "year": "2005",
+      "track": {
+        "no": 17,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/16 Square surf.m4a": {
+      "albumartist": [],
+      "title": "Square surf",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 170.41124716553287,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/16 Square surf.m4a",
+      "year": "2005",
+      "track": {
+        "no": 16,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/15 1$44.m4a": {
+      "albumartist": [],
+      "title": "1$44",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 131.75002267573697,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/15 1$44.m4a",
+      "year": "2005",
+      "track": {
+        "no": 15,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/14 Half a scissor.m4a": {
+      "albumartist": [],
+      "title": "Half a scissor",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 183.80916099773242,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/14 Half a scissor.m4a",
+      "year": "2005",
+      "track": {
+        "no": 14,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/13 Moustache.m4a": {
+      "albumartist": [],
+      "title": "Moustache",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 15.069750566893424,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/13 Moustache.m4a",
+      "year": "2005",
+      "track": {
+        "no": 13,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/12 Stunt.m4a": {
+      "albumartist": [],
+      "title": "Stunt",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 198.4609523809524,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/12 Stunt.m4a",
+      "year": "2005",
+      "track": {
+        "no": 12,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/11 (ee).m4a": {
+      "albumartist": [],
+      "title": "(ee)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 59.3037641723356,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/11 (ee).m4a",
+      "year": "2005",
+      "track": {
+        "no": 11,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/10 Drop urge need elle.m4a": {
+      "albumartist": [],
+      "title": "Drop urge need elle",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 195.88353741496599,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/10 Drop urge need elle.m4a",
+      "year": "2005",
+      "track": {
+        "no": 10,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/09 Scum hotel.m4a": {
+      "albumartist": [],
+      "title": "Scum hotel",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 102.4928798185941,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/09 Scum hotel.m4a",
+      "year": "2005",
+      "track": {
+        "no": 9,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/08 Berleef.m4a": {
+      "albumartist": [],
+      "title": "Berleef",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 165.8136961451247,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/08 Berleef.m4a",
+      "year": "2005",
+      "track": {
+        "no": 8,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/07 Nurse Bob.m4a": {
+      "albumartist": [],
+      "title": "Nurse Bob",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 152.04426303854876,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/07 Nurse Bob.m4a",
+      "year": "2005",
+      "track": {
+        "no": 7,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/06 (e).m4a": {
+      "albumartist": [],
+      "title": "(e)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 66.85024943310657,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/06 (e).m4a",
+      "year": "2005",
+      "track": {
+        "no": 6,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/05 Straw anxious.m4a": {
+      "albumartist": [],
+      "title": "Straw anxious",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 113.40625850340136,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/05 Straw anxious.m4a",
+      "year": "2005",
+      "track": {
+        "no": 5,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/04 Vagiclean 2.m4a": {
+      "albumartist": [],
+      "title": "Vagiclean 2",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 69.82240362811791,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/04 Vagiclean 2.m4a",
+      "year": "2005",
+      "track": {
+        "no": 4,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/03 Latex.m4a": {
+      "albumartist": [],
+      "title": "Latex",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 185.64353741496598,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/03 Latex.m4a",
+      "year": "2005",
+      "track": {
+        "no": 3,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/02 The end.m4a": {
+      "albumartist": [],
+      "title": "The end",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 118.02702947845805,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/02 The end.m4a",
+      "year": "2005",
+      "track": {
+        "no": 2,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/01 (untitled).m4a": {
+      "albumartist": [],
+      "title": "(untitled)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Moustache (Half a Scissor)",
+      "duration": 41.703038548752836,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Moustache (Half a Scissor)/01 (untitled).m4a",
+      "year": "2005",
+      "track": {
+        "no": 1,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronica/Dance"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/06 Electro Shit Non Stop.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Electro Shit Non Stop",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Last Night A DJ Killled My Dog",
+      "duration": 671,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/06 Electro Shit Non Stop.mp3",
+      "year": "2000",
+      "track": {
+        "no": 6,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/05 Lnadjkmd rmx.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Lnadjkmd rmx",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Last Night A DJ Killled My Dog",
+      "duration": 468,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/05 Lnadjkmd rmx.mp3",
+      "year": "2000",
+      "track": {
+        "no": 5,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/04 Last Night Herbert Murdered My Poodle.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Last Night Herbert Murdered My Poodle",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Last Night A DJ Killled My Dog",
+      "duration": 320,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/04 Last Night Herbert Murdered My Poodle.mp3",
+      "year": "2000",
+      "track": {
+        "no": 4,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/03 Chien de fusil mix.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Chien de fusil mix",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Last Night A DJ Killled My Dog",
+      "duration": 408,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/03 Chien de fusil mix.mp3",
+      "year": "2000",
+      "track": {
+        "no": 3,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/02 Last Night Shalark Killed Oizo.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Last Night Shalark Killed Oizo",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Last Night A DJ Killled My Dog",
+      "duration": 346,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/02 Last Night Shalark Killed Oizo.mp3",
+      "year": "2000",
+      "track": {
+        "no": 2,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/01 Last Night A DJ Killed My Dog.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Last Night A DJ Killed My Dog",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Last Night A DJ Killled My Dog",
+      "duration": 271,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Last Night A DJ Killled My Dog/01 Last Night A DJ Killed My Dog.mp3",
+      "year": "2000",
+      "track": {
+        "no": 1,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/17 Blind Concerto.mp3": {
+      "albumartist": [],
+      "title": "Blind Concerto",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 201,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/17 Blind Concerto.mp3",
+      "year": "2008",
+      "track": {
+        "no": 17,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/16 Lars Von Sen.mp3": {
+      "albumartist": [],
+      "title": "Lars Von Sen",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 84,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/16 Lars Von Sen.mp3",
+      "year": "2008",
+      "track": {
+        "no": 16,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/15 W.mp3": {
+      "albumartist": [],
+      "title": "W",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 132,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/15 W.mp3",
+      "year": "2008",
+      "track": {
+        "no": 15,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/14 Pourriture 7.mp3": {
+      "albumartist": [],
+      "title": "Pourriture 7",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 205,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/14 Pourriture 7.mp3",
+      "year": "2008",
+      "track": {
+        "no": 14,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/13 Gay Dentists.mp3": {
+      "albumartist": [],
+      "title": "Gay Dentists",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 219,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/13 Gay Dentists.mp3",
+      "year": "2008",
+      "track": {
+        "no": 13,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/12 Steroïds (feat. Uffie).mp3": {
+      "albumartist": [],
+      "title": "Steroïds (feat. Uffie)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 159,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/12 Steroïds (feat. Uffie).mp3",
+      "year": "2008-01-01",
+      "track": {
+        "no": 12,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/11 Erreur Jean (feat. Errorsmith).mp3": {
+      "albumartist": [],
+      "title": "Erreur Jean (feat. Errorsmith)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 169,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/11 Erreur Jean (feat. Errorsmith).mp3",
+      "year": "2008",
+      "track": {
+        "no": 11,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/10 Lambs Anger.mp3": {
+      "albumartist": [],
+      "title": "Lambs Anger",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 74,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/10 Lambs Anger.mp3",
+      "year": "2008",
+      "track": {
+        "no": 10,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/09 Positif.mp3": {
+      "albumartist": [],
+      "title": "Positif",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 171,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/09 Positif.mp3",
+      "year": "2008-01-01",
+      "track": {
+        "no": 9,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/08 Jo.mp3": {
+      "albumartist": [],
+      "title": "Jo",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 137,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/08 Jo.mp3",
+      "year": "2008",
+      "track": {
+        "no": 8,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/07 Bruce Willis Is Dead.mp3": {
+      "albumartist": [],
+      "title": "Bruce Willis Is Dead",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 200,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/07 Bruce Willis Is Dead.mp3",
+      "year": "2008-01-01",
+      "track": {
+        "no": 7,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/06 Rank.mp3": {
+      "albumartist": [],
+      "title": "Rank",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 97,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/06 Rank.mp3",
+      "year": "2008",
+      "track": {
+        "no": 6,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/05 Two Takes It (feat. Carmen Castro).mp3": {
+      "albumartist": [],
+      "title": "Two Takes It (feat. Carmen Castro)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 142,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/05 Two Takes It (feat. Carmen Castro).mp3",
+      "year": "2008",
+      "track": {
+        "no": 5,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/04 Cut Dick.mp3": {
+      "albumartist": [],
+      "title": "Cut Dick",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 171,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/04 Cut Dick.mp3",
+      "year": "2008",
+      "track": {
+        "no": 4,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/03 Z.mp3": {
+      "albumartist": [],
+      "title": "Z",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 252,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/03 Z.mp3",
+      "year": "2008",
+      "track": {
+        "no": 3,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/02 Pourriture 2.mp3": {
+      "albumartist": [],
+      "title": "Pourriture 2",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 129,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/02 Pourriture 2.mp3",
+      "year": "2008-01-01",
+      "track": {
+        "no": 2,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/01 Hun.mp3": {
+      "albumartist": [],
+      "title": "Hun",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Lambs Anger",
+      "duration": 132,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Lambs Anger/01 Hun.mp3",
+      "year": "2008",
+      "track": {
+        "no": 1,
+        "of": 17
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electro"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/15 Flat Beat.mp3": {
+      "albumartist": [],
+      "title": "Flat Beat",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 317,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/15 Flat Beat.mp3",
+      "year": "2000-01-01",
+      "track": {
+        "no": 15,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/14 Analog Wormz Sequel.mp3": {
+      "albumartist": [],
+      "title": "Analog Wormz Sequel",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 519,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/14 Analog Wormz Sequel.mp3",
+      "year": "2000",
+      "track": {
+        "no": 14,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/13 Feadz On.mp3": {
+      "albumartist": [],
+      "title": "Feadz On",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 71,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/13 Feadz On.mp3",
+      "year": "2000",
+      "track": {
+        "no": 13,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/12 Flat 55.mp3": {
+      "albumartist": [],
+      "title": "Flat 55",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 143,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/12 Flat 55.mp3",
+      "year": "2000",
+      "track": {
+        "no": 12,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/11 Miaaaw.mp3": {
+      "albumartist": [],
+      "title": "Miaaaw",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 263,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/11 Miaaaw.mp3",
+      "year": "2000",
+      "track": {
+        "no": 11,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/10 Inside the Kidney Machine.mp3": {
+      "albumartist": [],
+      "title": "Inside the Kidney Machine",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 290,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/10 Inside the Kidney Machine.mp3",
+      "year": "2000",
+      "track": {
+        "no": 10,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/09 One Minute Shakin.mp3": {
+      "albumartist": [],
+      "title": "One Minute Shakin",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 74,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/09 One Minute Shakin.mp3",
+      "year": "2000",
+      "track": {
+        "no": 9,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/08 Analog Worms Attack.mp3": {
+      "albumartist": [],
+      "title": "Analog Worms Attack",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 293,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/08 Analog Worms Attack.mp3",
+      "year": "2000",
+      "track": {
+        "no": 8,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/07 Bobby Can't Dance.mp3": {
+      "albumartist": [],
+      "title": "Bobby Can't Dance",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 166,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/07 Bobby Can't Dance.mp3",
+      "year": "2000",
+      "track": {
+        "no": 7,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/06 The Salad.mp3": {
+      "albumartist": [],
+      "title": "The Salad",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 183,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/06 The Salad.mp3",
+      "year": "2000",
+      "track": {
+        "no": 6,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/05 Last Night a DJ Killed My Dog.mp3": {
+      "albumartist": [],
+      "title": "Last Night a DJ Killed My Dog",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 268,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/05 Last Night a DJ Killed My Dog.mp3",
+      "year": "2000",
+      "track": {
+        "no": 5,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/04 Smoking Tape.mp3": {
+      "albumartist": [],
+      "title": "Smoking Tape",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 91,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/04 Smoking Tape.mp3",
+      "year": "2000",
+      "track": {
+        "no": 4,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/03 No Day Massacre.mp3": {
+      "albumartist": [],
+      "title": "No Day Massacre",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 257,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/03 No Day Massacre.mp3",
+      "year": "2000",
+      "track": {
+        "no": 3,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/02 Monophonic Shit.mp3": {
+      "albumartist": [],
+      "title": "Monophonic Shit",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 236,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/02 Monophonic Shit.mp3",
+      "year": "2000",
+      "track": {
+        "no": 2,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/01 Bad Start.mp3": {
+      "albumartist": [],
+      "title": "Bad Start",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Analog Worms Attack",
+      "duration": 106,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Analog Worms Attack/01 Bad Start.mp3",
+      "year": "2000",
+      "track": {
+        "no": 1,
+        "of": 0
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Amicalement/04 Lovin'.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Lovin'",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Amicalement",
+      "duration": 155.428825,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Amicalement/04 Lovin'.mp3",
+      "year": "2013",
+      "track": {
+        "no": 4,
+        "of": 4
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Amicalement/03 Waltz-E-More.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Waltz-E-More",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Amicalement",
+      "duration": 81.136575,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Amicalement/03 Waltz-E-More.mp3",
+      "year": "2013",
+      "track": {
+        "no": 3,
+        "of": 4
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Amicalement/02 Solid (feat. Marilyn Manson).mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Solid (feat. Marilyn Manson)",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Amicalement",
+      "duration": 213.133325,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Amicalement/02 Solid (feat. Marilyn Manson).mp3",
+      "year": "2013",
+      "track": {
+        "no": 2,
+        "of": 4
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/Amicalement/01 Unicat.mp3": {
+      "albumartist": [
+        "Mr. Oizo"
+      ],
+      "title": "Unicat",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "Amicalement",
+      "duration": 126.3023,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/Amicalement/01 Unicat.mp3",
+      "year": "2013",
+      "track": {
+        "no": 1,
+        "of": 4
+      },
+      "disk": {
+        "no": 0,
+        "of": 0
+      },
+      "genre": []
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/06 Klum.mp3": {
+      "albumartist": [],
+      "title": "Klum",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "#1",
+      "duration": 303,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/06 Klum.mp3",
+      "year": "1997",
+      "track": {
+        "no": 6,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/05 Krumpf.mp3": {
+      "albumartist": [],
+      "title": "Krumpf",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "#1",
+      "duration": 329,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/05 Krumpf.mp3",
+      "year": "1997",
+      "track": {
+        "no": 5,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/04 Ke-ele.mp3": {
+      "albumartist": [],
+      "title": "Ke-ele",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "#1",
+      "duration": 297,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/04 Ke-ele.mp3",
+      "year": "1997",
+      "track": {
+        "no": 4,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/03 L'Homme de fer.mp3": {
+      "albumartist": [],
+      "title": "L'Homme de fer",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "#1",
+      "duration": 233,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/03 L'Homme de fer.mp3",
+      "year": "1997",
+      "track": {
+        "no": 3,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/02 Kirk.mp3": {
+      "albumartist": [],
+      "title": "Kirk",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "#1",
+      "duration": 386,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/02 Kirk.mp3",
+      "year": "1997",
+      "track": {
+        "no": 2,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    },
+    "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/01 Intro.mp3": {
+      "albumartist": [],
+      "title": "Intro",
+      "artist": [
+        "Mr. Oizo"
+      ],
+      "album": "#1",
+      "duration": 61,
+      "filepath": "/Users/bret/Resilio Sync/Music/Mr. Oizo/#1/01 Intro.mp3",
+      "year": "1997",
+      "track": {
+        "no": 1,
+        "of": 6
+      },
+      "disk": {
+        "no": 1,
+        "of": 1
+      },
+      "genre": [
+        "Electronic"
+      ]
+    }
+  }
+}
