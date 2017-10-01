@@ -225,10 +225,10 @@ test('no state zone!', function (t) {
   t.end()
 })
 
-test('no state zone!', function (t) {
+test('load more state', function (t) {
   var al = new AudioLibrary()
 
-  al.update(libraryA.trackDict)
+  al.load(libraryA.trackDict)
 
   t.deepEqual(al.trackDict, libraryA.trackDict)
 

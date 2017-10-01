@@ -126,7 +126,7 @@ class AudioLibrary extends Nanobus {
     return this.order
   }
 
-  update (newTrackDict) {
+  load (newTrackDict) {
     this.trackDict = newTrackDict
     this.search('')
     this.queue(-1)
