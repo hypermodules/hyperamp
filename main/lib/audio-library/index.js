@@ -125,6 +125,16 @@ class AudioLibrary extends Nanobus {
     this.query = null
     return this.order
   }
+
+  update (newTrackDict) {
+    this.trackDict = newTrackDict
+    this.search('')
+    this.queue(-1)
+    return {
+      trackDict: this.trackDict,
+      order: this.order
+    }
+  }
 }
 
 function keys (entry) {

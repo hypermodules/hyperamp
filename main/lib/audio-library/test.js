@@ -1,7 +1,7 @@
 var test = require('tape')
 var AudioLibrary = require('./index')
 var libraryA = require('./test-data/library-a.json')
-// var libraryB = require('./test-data/library-a.json')
+var libraryB = require('./test-data/library-b.json')
 
 test('instantiate, next, prev AudioLibrary', function (t) {
   var al = new AudioLibrary(libraryA)
@@ -142,5 +142,95 @@ test('truffle shuffle', function (t) {
   console.log('next()')
   al.next()
   t.equal(al.index, preUnshuffleIndex + 1, 'advances in the next direction')
+  t.end()
+})
+
+test('just a track dict', function (t) {
+  console.log('create a AL with just a trackDict')
+  var al = new AudioLibrary(libraryB)
+  t.equal(al.index, 0, 'index === 0')
+  t.deepEqual(al.visibleOrder, al.order, 'visible order returns the play order')
+  t.equal(al.shuffling, false, 'not shuffling')
+
+  console.log('go forward and back')
+  t.ok(al.prev())
+  t.ok(al.prev())
+  t.ok(al.next())
+  t.ok(al.next())
+  t.ok(al.next())
+
+  t.equal(al.index, 1, 'index === 1')
+
+  al.shuffle()
+  t.ok(al.next())
+
+  t.end()
+})
+
+test('no state zone!', function (t) {
+  console.log('create a AL with no state provided')
+  var al = new AudioLibrary()
+
+  t.deepEqual(al.trackDict, {}, 'trackDict === {}')
+  t.deepEqual(al.order, [], 'order === []')
+  t.equal(al.index, 0, 'index === 0')
+  t.equal(al.shuffleOrder, null, 'shuffleOrder === null')
+  t.equal(al.shuffleIndex, 0, 'shuffleIndex === 0')
+  t.equal(al.searchTerm, null, 'searchTerm === \'\'')
+  t.equal(al.query, null, 'query === null')
+
+  t.equal(al.isNewQuery, false, 'isNewQuery === false')
+  t.equal(al.shuffling, false, 'shuffling === false')
+  t.equal(al.currentKey, undefined, 'currentKey === undefined')
+  t.equal(al.currentTrack, undefined, 'currentTrack === undefined')
+  t.deepEqual(al.visibleOrder, al.order, 'visibleOrder -> order')
+
+  console.log('next')
+  al.next()
+  t.equal(al.currentTrack, undefined, 'currentTrack === undefined')
+  t.equal(al.index, 0, 'index === 0')
+  console.log('prev')
+  al.prev()
+  t.equal(al.currentTrack, undefined, 'currentTrack === undefined')
+  t.equal(al.index, -1, 'index === -1')
+  console.log('next')
+  al.next()
+  t.equal(al.currentTrack, undefined, 'currentTrack === undefined')
+  t.equal(al.index, 0, 'index === 0')
+  console.log('queue 100')
+  al.queue(100)
+
+  t.equal(al.isNewQuery, false, 'isNewQuery === false')
+  t.equal(al.shuffling, false, 'shuffling === false')
+  t.equal(al.currentKey, undefined, 'currentKey === undefined')
+  t.equal(al.currentTrack, undefined, 'currentTrack === undefined')
+  t.deepEqual(al.visibleOrder, al.order, 'visibleOrder -> order')
+
+  console.log('next')
+  al.next()
+  t.equal(al.currentTrack, undefined, 'currentTrack === undefined')
+  t.equal(al.index, 0, 'index === 0')
+
+  console.log('search derp and queue 50')
+  al.search('derp')
+  t.deepEqual(al.query, { searchTerm: 'derp', order: [] }, 'query === { searchTerm: \'derp\', order: [] }')
+  al.queue(50)
+
+  t.equal(al.isNewQuery, false, 'isNewQuery === false')
+  t.equal(al.shuffling, false, 'shuffling === false')
+  t.equal(al.currentKey, undefined, 'currentKey === undefined')
+  t.equal(al.currentTrack, undefined, 'currentTrack === undefined')
+  t.deepEqual(al.visibleOrder, al.order, 'visibleOrder -> order')
+
+  t.end()
+})
+
+test('no state zone!', function (t) {
+  var al = new AudioLibrary()
+
+  al.update(libraryA.trackDict)
+
+  t.deepEqual(al.trackDict, libraryA.trackDict)
+
   t.end()
 })
