@@ -30,6 +30,17 @@ class AudioLibrary extends Nanobus {
     this.query = null // Set to object so we can clear easily
   }
 
+  persist () {
+    return {
+      trackDict: this.trackDict,
+      order: this.order,
+      index: this.index,
+      shuffleOrder: this.shuffleOrder,
+      shuffleIndex: this.shuffleIndex,
+      searchTerm: this.searchTerm
+    }
+  }
+
   get isNewQuery () {
     return !!this.query
   }

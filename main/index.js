@@ -2,29 +2,27 @@ var { app, ipcMain, globalShortcut } = require('electron')
 var Config = require('electron-store')
 var get = require('lodash.get')
 var xtend = require('xtend')
-var shuffleArray = require('fy-shuffle')
 var userConfig = require('./config')
 var menu = require('./menu')
 var artwork = require('./artwork')
 var makeTrackDict = require('./track-dict')
 var audio = require('./windows/audio')
 var player = require('./windows/player')
+var AudioLibrary = require('./lib/audio-library')
 
 var persist = new Config({ name: 'hyperamp-persist' })
+var libraryPersist = new Config({ name: 'hyperamp-library' })
 
 var state = xtend({
   paths: [], // USERCONFIG: Paths for searching for songs
-  trackDict: {}, // object of known tracks
-  trackOrder: [], // array of track keys
-  currentIndex: null, // Currently queued track index
   loading: false, // Mutex for performing a scan for new tracks
-  search: '', // search string used to derive current trackOrder
   volume: 0.50,
   playing: false,
   muted: false,
-  shuffling: false,
   artwork: null
 }, persist.store, userConfig.store)
+
+var al = AudioLibrary(libraryPersist)
 
 module.exports = state
 
@@ -52,33 +50,19 @@ app.on('ready', function appReady () {
   ipcMain.on('volume', volume)
 
   function queue (ev, newIndex) {
-    state.currentIndex = newIndex
-    broadcast('queue', newIndex)
-    var key = state.trackOrder[newIndex]
-    updateArtwork(key)
+    var newTrack = al.queue(newIndex)
+    broadcast('queue', newTrack)
+    if (!get(al, `currentTrack.artwork`)) updateArtwork(al.currentKey)
   }
 
   function updateArtwork (key) {
-    // Store this kind of crap in main library db
-    var blobPath = get(state, `trackDict[${key}].artwork`)
-    if (blobPath) {
-      return handleArtworkPath(blobPath)
-    } else {
-      artwork.cache.getPath(key, handleGetPath)
-    }
-
-    function handleGetPath (err, blobPath) {
-      if (err) return console.error(err)
-      state.trackDict[key].artwork = blobPath
-      handleArtworkPath(blobPath)
-    }
+    artwork.cache.getPath(key, handleGetPath)
   }
 
-  function handleArtworkPath (blobPath) {
-    if (state.artwork !== blobPath) {
-      state.artwork = blobPath
-      if (player.win) player.win.send('artwork', blobPath)
-    }
+  function handleGetPath (err, blobPath) {
+    if (err) return console.error(err)
+    al.currentTrack.artwork = blobPath
+    if (player.win) player.win.send('queue', al.currentTrack)
   }
 
   ipcMain.on('queue', queue)
@@ -102,23 +86,15 @@ app.on('ready', function appReady () {
   }
 
   function prev () {
-    if (state.trackOrder.length > 0) {
-      var newIndex = state.currentIndex > 0 ? state.currentIndex - 1 : state.trackOrder.length - 1
-      state.currentIndex = newIndex
-      queue(null, newIndex)
-      if (state.playing) { broadcast('play') }
-    } else { console.warn('Can\'t go back, empty trackOrder array') }
+    broadcast('queue', al.prev())
+    if (state.playing) { broadcast('play') }
   }
 
   ipcMain.on('prev', prev)
 
   function next () {
-    if (state.trackOrder.length > 0) {
-      var newIndex = state.currentIndex < state.trackOrder.length - 1 ? state.currentIndex + 1 : 0
-      state.currentIndex = newIndex
-      queue(null, newIndex)
-      if (state.playing) { broadcast('play') }
-    } else { console.warn('Can\'t go forward, empty trackOrder array') }
+    broadcast('queue', al.next())
+    if (state.playing) { broadcast('play') }
   }
 
   ipcMain.on('next', next)
@@ -146,21 +122,15 @@ app.on('ready', function appReady () {
   ipcMain.on('shuffle', shuffle)
 
   function shuffle (ev) {
-    state.shuffling = true
-    var newTrackOrder = shuffleArray(state.trackOrder)
-    state.trackOrder = newTrackOrder
+    al.shuffle()
     if (player.win) player.win.send('shuffle')
-    broadcast('track-order', newTrackOrder)
   }
 
   ipcMain.on('unshuffle', unshuffle)
 
   function unshuffle (ev) {
-    state.shuffling = false
+    al.unshuffle()
     if (player.win) player.win.send('unshuffle')
-    var newTrackOrder = state.trackOrder.sort(sortList)
-    state.trackOrder = newTrackOrder
-    broadcast('track-order', newTrackOrder)
   }
 
   ipcMain.on('timeupdate', timeupdate)
@@ -177,12 +147,9 @@ app.on('ready', function appReady () {
     state.loading = false
     broadcast('loading', false)
     if (err) return console.warn(err)
-    state.trackDict = newTrackDict
-    var newTrackOrder = state.trackOrder = Object.keys(newTrackDict)
-      .filter(filterList(state.search))
-      .sort(sortList)
-    broadcast('track-dict', newTrackDict, newTrackOrder, state.paths)
-    console.log('done scanning. found ' + Object.keys(newTrackDict).length + ' tracks')
+    var newState = al.load(newTrackDict)
+    if (player.win) player.win.send('track-dict', newState.trackDict, newState.order, state.paths)
+    console.log('done scanning. found ' + Object.keys(newState.trackDict).length + ' tracks')
   }
 
   ipcMain.on('update-library', function (ev, paths) {
@@ -194,16 +161,7 @@ app.on('ready', function appReady () {
   })
 
   function search (ev, searchString) {
-    state.search = searchString
-    var newTrackOrder = Object.keys(state.trackDict)
-        .filter(filterList(state.search))
-    if (!state.shuffling) {
-      newTrackOrder = newTrackOrder.sort(sortList)
-    } else {
-      newTrackOrder = shuffleArray(newTrackOrder)
-    }
-    state.trackOrder = newTrackOrder
-    broadcast('track-order', newTrackOrder)
+    if (player.win) player.win.send('track-order', al.search(searchString))
   }
 
   ipcMain.on('search', search)
@@ -211,7 +169,7 @@ app.on('ready', function appReady () {
   // Sync All State to anyone who asks for it
 
   function syncState (ev) {
-    ev.sender.send('sync-state', state)
+    ev.sender.send('sync-state', Object.assign({}, state, al.persist()))
   }
 
   ipcMain.on('sync-state', syncState)
@@ -223,50 +181,6 @@ app.on('ready', function appReady () {
   globalShortcut.register('MediaPlayPause', playPause)
 // globalShortcut.register('MediaStop', stop)
 })
-
-function sortList (keyA, keyB) {
-  var aObj = state.trackDict[keyA]
-  var bObj = state.trackDict[keyB]
-  // sort by albumartist
-  // if (aObj.albumartist[0] < bObj.albumartist[0]) return -1
-  // if (aObj.albumartist[0] > bObj.albumartist[0]) return 1
-
-  // sort by artist
-  if (aObj.artist[0] < bObj.artist[0]) return -1
-  if (aObj.artist[0] > bObj.artist[0]) return 1
-
-  // then by album
-  if (aObj.album < bObj.album) return -1
-  if (aObj.album > bObj.album) return 1
-
-  // then by disc no
-  if (aObj.disk.no < bObj.disk.no) return -1
-  if (aObj.disk.no > bObj.disk.no) return 1
-
-  // then by disc no
-  if (aObj.track.no < bObj.track.no) return -1
-  if (aObj.track.no > bObj.track.no) return 1
-
-  // then by title
-  if (aObj.title < bObj.title) return -1
-  if (aObj.title > bObj.title) return 1
-
-  // then by filepath
-  if (aObj.filepath < bObj.filepath) return -1
-  if (aObj.filepath > bObj.filepath) return 1
-  return 0
-}
-
-function filterList (search) {
-  return function (key) {
-    var meta = state.trackDict[key]
-    var { title, album, artist } = meta
-    var artistStr = Array.isArray(artist) ? artist.join(', ') : artist
-    var trackStr = (title + album + artistStr).toLowerCase().replace(/\s+/g, '')
-
-    return trackStr.includes(search.toLowerCase().replace(/\s+/g, ''))
-  }
-}
 
 app.on('window-all-closed', function allWindowsClosed () {
   if (process.platform !== 'darwin') app.quit()
@@ -293,6 +207,9 @@ app.on('before-quit', function beforeQuit (e) {
     volume: state.volume,
     shuffling: state.shuffling
   })
+
+  libraryPersist.set(al.persist())
+
   app.quit()
 })
 
