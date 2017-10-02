@@ -176,7 +176,7 @@ test('no state zone!', function (t) {
   t.equal(al.index, 0, 'index === 0')
   t.equal(al.shuffleOrder, null, 'shuffleOrder === null')
   t.equal(al.shuffleIndex, 0, 'shuffleIndex === 0')
-  t.equal(al.searchTerm, null, 'searchTerm === \'\'')
+  t.equal(al.searchTerm, '', 'searchTerm === \'\'')
   t.equal(al.query, null, 'query === null')
 
   t.equal(al.isNewQuery, false, 'isNewQuery === false')
