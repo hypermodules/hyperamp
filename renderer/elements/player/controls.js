@@ -21,54 +21,54 @@ class PlayerControls extends Component {
     super(opts)
 
     // State
-    this._currentIndex = null
-    this._emit = null
-    this._playing = false
+    this.key = null
+    this.emit = null
+    this.playing = false
 
     // Bound Methods
-    this._handlePrev = this._handlePrev.bind(this)
-    this._handleNext = this._handleNext.bind(this)
-    this._handlePlayPause = this._handlePlayPause.bind(this)
-    this._shuffleToggle = this._shuffleToggle.bind(this)
+    this.handlePrev = this.handlePrev.bind(this)
+    this.handleNext = this.handleNext.bind(this)
+    this.handlePlayPause = this.handlePlayPause.bind(this)
+    this.shuffleToggle = this.shuffleToggle.bind(this)
   }
 
-  _handlePrev () { this._emit('player:prev') }
-  _handleNext () { this._emit('player:next') }
+  handlePrev () { this.emit('player:prev') }
+  handleNext () { this.emit('player:next') }
 
-  _handlePlayPause () {
-    if (this._playing) this._emit('player:pause')
-    else this._emit('player:play')
+  handlePlayPause () {
+    if (this.playing) this.emit('player:pause')
+    else this.emit('player:play')
   }
 
-  _shuffleToggle () {
-    if (this._shuffling) this._emit('player:unshuffle')
-    else this._emit('player:shuffle')
+  shuffleToggle () {
+    if (this.shuffling) this.emit('player:unshuffle')
+    else this.emit('player:shuffle')
   }
 
   createElement (state, emit) {
-    var { playing, shuffling, currentIndex } = state.player
+    var { playing, shuffling, currentTrack = {} } = state.player
 
-    this._emit = emit
-    this._currentIndex = currentIndex
-    this._playing = playing
-    this._shuffling = shuffling
+    this.emit = emit
+    this.key = currentTrack.key
+    this.playing = playing
+    this.shuffling = shuffling
 
     return html`
       <div class=${styles.controls} ${buttonStyles.btnGroup}>
         ${button({
-          onclick: this._handlePrev,
+          onclick: this.handlePrev,
           iconName: 'entypo-controller-fast-backward'
         })}
         ${button({
-          onclick: this._handlePlayPause,
-          iconName: `entypo-controller-${this._playing ? 'paus' : 'play'}`
+          onclick: this.handlePlayPause,
+          iconName: `entypo-controller-${this.playing ? 'paus' : 'play'}`
         })}
         ${button({
-          onclick: this._handleNext,
+          onclick: this.handleNext,
           iconName: 'entypo-controller-fast-forward'
         })}
         ${button({
-          onclick: this._shuffleToggle,
+          onclick: this.shuffleToggle,
           iconName: 'entypo-shuffle',
           className: shuffling ? buttonStyles.active : null
         })}
@@ -77,10 +77,11 @@ class PlayerControls extends Component {
   }
 
   update (state, emit) {
-    this._emit = emit
-    if (this._currentIndex !== state.player.currentIndex) return true
-    if (this._playing !== state.player.playing) return true
-    if (this._shuffling !== state.player.shuffling) return true
+    var { currentTrack = {}, playing, shuffling } = state.player
+    this.emit = emit
+    if (this.key !== currentTrack.key) return true
+    if (this.playing !== playing) return true
+    if (this.shuffling !== shuffling) return true
     return false
   }
 }

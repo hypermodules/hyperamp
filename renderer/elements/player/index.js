@@ -30,49 +30,47 @@ class Player extends Component {
   constructor (opts) {
     if (!opts) opts = {}
     super(opts)
-    this._opts = Object.assign({}, opts)
+    this.opts = Object.assign({}, opts)
 
     // state
-    this._emit = null
-    this._key = null
-    this._pictureHash = null
+    this.emit = null
+    this.key = null
+    this.pictureHash = null
 
     // owned children
-    this._controls = new Controls()
-    this._progress = new Progress()
-    this._volume = new Volume()
-    this._meta = new Meta()
+    this.controls = new Controls()
+    this.progress = new Progress()
+    this.volume = new Volume()
+    this.meta = new Meta()
   }
 
   createElement (state, emit) {
-    var { trackOrder, trackDict } = state.library
-    var { artwork, currentIndex } = state.player
+    var { currentTrack = {} } = state.player
 
-    this._emit = emit
-    this._key = trackOrder[currentIndex]
+    this.emit = emit
+    this.key = currentTrack.key
 
     return html`
       <div class="${styles.player}">
-        ${this._meta.render(trackDict[this._key] || {}, artwork)}
-        ${this._controls.render(state, emit)}
-        ${this._progress.render(state, emit)}
-        ${this._volume.render(state, emit)}
+        ${this.meta.render(currentTrack)}
+        ${this.controls.render(state, emit)}
+        ${this.progress.render(state, emit)}
+        ${this.volume.render(state, emit)}
       </div>
     `
   }
 
   update (state, emit) {
-    this._emit = emit
+    this.emit = emit
 
-    var { trackOrder, trackDict } = state.library
-    var { artwork, currentIndex } = state.player
+    var { currentTrack = {} } = state.player
 
-    if (this._key !== trackOrder[currentIndex]) return true
+    if (this.key !== currentTrack.key) return true
 
-    this._controls.render(state, emit)
-    this._progress.render(state, emit)
-    this._volume.render(state, emit)
-    this._meta.render(trackDict[this._key] || {}, artwork)
+    this.controls.render(state, emit)
+    this.progress.render(state, emit)
+    this.volume.render(state, emit)
+    this.meta.render(currentTrack)
 
     return false
   }

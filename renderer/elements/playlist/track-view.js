@@ -77,7 +77,7 @@ class TrackView extends Component {
     while (t && !t.id) t = t.parentNode // Bubble up
     if (t && t.tagName === 'TR') {
       var index = Number(t.id.replace('track-', ''))
-      this.emit('player:queue', index)
+      this.emit('library:queue', index)
       this.emit('player:play')
     }
   }
@@ -124,7 +124,7 @@ class TrackView extends Component {
 
     // Generate state based styles
     var classes = cn({
-      [styles.playing]: this.currentIndex === idx + this.sliceStartIndex,
+      [styles.playing]: this.currentIndex === idx + this.sliceStartIndex && !this.isNewQuery,
       [styles.selected]: this.selectedIndex === idx + this.sliceStartIndex
     })
 
@@ -218,7 +218,8 @@ class TrackView extends Component {
       this.trackDict = state.library.trackDict
       // Save state
       // Current index is the index of a queued track
-      this.currentIndex = state.player.currentIndex
+      this.currentIndex = state.library.currentIndex
+      this.isNewQuery = state.library.isNewQuery
       // Selected index is the index of the highlighted track
       this.selectedIndex = state.library.selectedIndex
       // set of currently displayed columns
@@ -234,9 +235,10 @@ class TrackView extends Component {
     if (scroll) return true
     if (this.trackOrder !== state.library.trackOrder) return true
     if (this.trackDict !== state.library.trackDict) return true
+    if (this.isNewQuery !== state.library.isNewQuery) return true
     // Mutate
-    if (this.currentIndex !== state.player.currentIndex) {
-      this.mutateCurrentIndex(state.player.currentIndex)
+    if (this.currentIndex !== state.library.currentIndex) {
+      this.mutateCurrentIndex(state.library.currentIndex)
     }
     if (this.selectedIndex !== state.library.selectedIndex) {
       this.mutateSelectedIndex(state.library.selectedIndex)

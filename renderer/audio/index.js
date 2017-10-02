@@ -6,8 +6,9 @@ var path = require('path')
 var mainState = require('electron').remote.require('./index.js')
 var needle = 'file://' + path.resolve(__dirname, 'needle.mp3')
 var startupNode = document.querySelector('#needle')
+var fileUrlFromPath = require('file-url')
 
-needleSound(startupNode, needle, mainState)
+needleSound(startupNode, needle, mainState.volume, mainState.muted)
 
 var audioNode = document.querySelector('#audio')
 var player = window.player = new AudioPlayer(audioNode, mainState)
@@ -25,16 +26,10 @@ player.on('timeupdate', function (time) {
   ipcRenderer.send('timeupdate', time)
 })
 
-ipcRenderer.on('queue', function (ev, newIndex) {
-  player.queue(newIndex)
-})
-
-ipcRenderer.on('track-dict', function (ev, newTrackDict, newTrackOrder) {
-  player.updateTrackDict(newTrackDict, newTrackOrder)
-})
-
-ipcRenderer.on('track-order', function (ev, newTrackOrder) {
-  player.updateTrackOrder(newTrackOrder)
+ipcRenderer.on('new-track', function (ev, track = {}) {
+  // Might need to switch on different path format processing
+  var src = fileUrlFromPath(track.filepath)
+  player.load(src)
 })
 
 ipcRenderer.on('play', function (ev, data) {
@@ -43,6 +38,7 @@ ipcRenderer.on('play', function (ev, data) {
 
 ipcRenderer.once('play', function (ev, data) {
   startupNode.remove()
+  startupNode = null
 })
 
 ipcRenderer.on('pause', function (ev, data) {
@@ -65,9 +61,9 @@ ipcRenderer.on('seek', function (ev, newTime) {
   player.seek(newTime)
 })
 
-function needleSound (node, file, state) {
-  node.volume = state.volume
-  node.muted = state.muted
+function needleSound (node, file, volume, muted) {
+  node.volume = volume
+  node.muted = muted
   node.src = file
   node.play()
 }
