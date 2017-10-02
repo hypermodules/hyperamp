@@ -42,17 +42,17 @@ class Meta extends Component {
     this.arguments = []
 
     // owned children
-    this._artwork = new Artwork()
+    this.artwork = new Artwork()
   }
 
-  createElement (track, artwork) {
+  createElement (track = {}) {
     this.arguments = arguments
 
     var { title, artist } = track
 
     return html`
       <div class=${styles.nowPlaying}>
-        ${this._artwork.render(artwork)}
+        ${this.artwork.render(track.artwork)}
 
         <div class=${styles.meta}>
           ${artist != null && artist !== '' && artist.length > 0

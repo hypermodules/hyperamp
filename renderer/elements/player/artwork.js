@@ -34,11 +34,8 @@ var styles = css`
 `
 
 class Artwork extends Component {
-  constructor (opts) {
-    if (!opts) opts = {}
-    super(opts)
-    this._opts = Object.assign({}, opts)
-
+  constructor () {
+    super()
     this.arguments = []
   }
 

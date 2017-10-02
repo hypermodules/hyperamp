@@ -26,10 +26,10 @@ player.on('timeupdate', function (time) {
   ipcRenderer.send('timeupdate', time)
 })
 
-ipcRenderer.on('queue', function (ev, track = {}) {
+ipcRenderer.on('new-track', function (ev, track = {}) {
   // Might need to switch on different path format processing
-  var src = this.audio.src = fileUrlFromPath(track.filepath)
-  player.queue(src)
+  var src = fileUrlFromPath(track.filepath)
+  player.load(src)
 })
 
 ipcRenderer.on('play', function (ev, data) {

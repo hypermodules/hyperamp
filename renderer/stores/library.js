@@ -5,12 +5,15 @@ var { COLUMNS } = require('../lib/constants')
 module.exports = libraryStore
 
 function getInitialState () {
+  var mainState = require('electron').remote.require('./index.js')
   return {
-    paths: [],
-    trackDict: {},
-    trackOrder: [],
-    search: '',
+    paths: mainState.paths,
+    trackDict: mainState.al.trackDict,
+    trackOrder: mainState.al.visibleOrder,
+    currentIndex: mainState.al.currentIndex,
+    search: mainState.al.searchTerm,
     selectedIndex: null,
+    isNewQuery: false,
     loading: false,
     columns: Array.from(COLUMNS).reduce((obj, col) => {
       obj[col] = true
@@ -45,7 +48,7 @@ function libraryStore (state, emitter) {
     e.preventDefault()
     var idx = localState.selectedIndex
     if (idx != null) {
-      emitter.emit('player:queue', idx)
+      emitter.emit('library:queue', idx)
       emitter.emit('player:play')
     }
   })
@@ -61,10 +64,21 @@ function libraryStore (state, emitter) {
   emitter.on('library:paths', updatePaths)
   emitter.on('library:select', select)
   emitter.on('library:columns', updateColumns)
+  emitter.on('library:current-index', updateIndex)
+  emitter.on('library:queue', queue)
+  emitter.on('library:new-query', updateQueryState)
+
+  function queue (newIndex) {
+    ipcRenderer.send('queue', newIndex)
+  }
 
   function updateColumns (col) {
     localState.columns[col] = !localState.columns[col]
     emitter.emit('render')
+  }
+
+  function updateQueryState (state) {
+    localState.isNewQuery = state
   }
 
   function updateTrackDict (newTrackDict) {
@@ -77,6 +91,10 @@ function libraryStore (state, emitter) {
 
   function updatePaths (newPaths) {
     localState.paths = newPaths
+  }
+
+  function updateIndex (newIndex) {
+    localState.currentIndex = newIndex
   }
 
   function loading (bool) {
@@ -100,19 +118,7 @@ function libraryStore (state, emitter) {
     emitter.emit('render')
   }
 
-  function syncState (ev, mainState) {
-    window.requestAnimationFrame(() => {
-      localState.paths = mainState.paths
-      localState.search = mainState.search
-      localState.trackDict = mainState.trackDict
-      localState.trackOrder = mainState.trackOrder
-      localState.loading = mainState.loading
-      emitter.emit('render')
-    })
-  }
-
   ipcRenderer.on('loading', (ev, isLoading) => loading(isLoading))
-  ipcRenderer.on('sync-state', syncState)
   ipcRenderer.on('track-dict', (ev, newTrackDict, newTrackOrder, newPaths) => {
     window.requestAnimationFrame(() => {
       emitter.emit('library:track-dict', newTrackDict)
@@ -126,5 +132,13 @@ function libraryStore (state, emitter) {
       emitter.emit('library:track-order', newTrackOrder)
       emitter.emit('render')
     })
+  })
+  ipcRenderer.on('new-index', (ev, newIndex) => {
+    emitter.emit('library:current-index', newIndex)
+    emitter.emit('render')
+  })
+  ipcRenderer.on('is-new-query', (ev, queryState) => {
+    emitter.emit('library:new-query', queryState)
+    emitter.emit('render')
   })
 }

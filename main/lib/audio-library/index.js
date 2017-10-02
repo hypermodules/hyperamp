@@ -13,7 +13,7 @@ class AudioLibrary extends Nanobus {
       shuffleOrder: null,
       index: 0,
       shuffleIndex: 0,
-      searchTerm: null
+      searchTerm: ''
     }, state)
 
     this.trackDict = state.trackDict

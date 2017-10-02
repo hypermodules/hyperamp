@@ -18,11 +18,10 @@ var state = xtend({
   loading: false, // Mutex for performing a scan for new tracks
   volume: 0.50,
   playing: false,
-  muted: false,
-  artwork: null
+  muted: false
 }, persist.store, userConfig.store)
 
-var al = new AudioLibrary(libraryPersist)
+var al = new AudioLibrary(libraryPersist.store)
 
 module.exports = state
 module.exports.al = al
@@ -52,18 +51,29 @@ app.on('ready', function appReady () {
 
   function queue (ev, newIndex) {
     var newTrack = al.queue(newIndex)
-    broadcast('queue', newTrack)
-    if (!get(al, `currentTrack.artwork`)) updateArtwork(al.currentKey)
+    console.log(newTrack)
+    broadcast('new-track', newTrack)
+    if (player.win) {
+      player.win.send('new-index', al.index)
+      player.win.send('is-new-query', al.isNewQuery)
+    }
+    if (state.playing) { broadcast('play') }
+    updateArtwork()
   }
 
-  function updateArtwork (key) {
-    artwork.cache.getPath(key, handleGetPath)
+  function updateArtwork () {
+    if (!get(al, `currentTrack.artwork`)) {
+      artwork.cache.getPath(al.currentKey, handleGetPath)
+    }
   }
 
   function handleGetPath (err, blobPath) {
     if (err) return console.error(err)
     al.currentTrack.artwork = blobPath
-    if (player.win) player.win.send('queue', al.currentTrack)
+    if (player.win) {
+      player.win.send('new-track', al.currentTrack)
+      player.win.send('new-index', al.index)
+    }
   }
 
   ipcMain.on('queue', queue)
@@ -87,15 +97,19 @@ app.on('ready', function appReady () {
   }
 
   function prev () {
-    broadcast('queue', al.prev())
+    broadcast('new-track', al.prev())
+    if (player.win) player.win.send('new-index', al.index)
     if (state.playing) { broadcast('play') }
+    updateArtwork()
   }
 
   ipcMain.on('prev', prev)
 
   function next () {
-    broadcast('queue', al.next())
+    broadcast('new-track', al.next())
+    if (player.win) player.win.send('new-index', al.index)
     if (state.playing) { broadcast('play') }
+    updateArtwork()
   }
 
   ipcMain.on('next', next)
@@ -162,18 +176,13 @@ app.on('ready', function appReady () {
   })
 
   function search (ev, searchString) {
-    if (player.win) player.win.send('track-order', al.search(searchString))
+    if (player.win) {
+      player.win.send('track-order', al.search(searchString))
+      player.win.send('is-new-query', al.isNewQuery)
+    }
   }
 
   ipcMain.on('search', search)
-
-  // Sync All State to anyone who asks for it
-
-  function syncState (ev) {
-    ev.sender.send('sync-state', Object.assign({}, state, al.persist()))
-  }
-
-  ipcMain.on('sync-state', syncState)
 
   // System Shortcuts
 
@@ -201,12 +210,7 @@ app.on('before-quit', function beforeQuit (e) {
     app.quit()
   }, 5000) // quit after 5 secs, at most
   persist.set({
-    trackDict: state.trackDict,
-    trackOrder: state.trackOrder,
-    currentIndex: state.currentIndex,
-    search: state.search,
-    volume: state.volume,
-    shuffling: state.shuffling
+    volume: state.volume
   })
 
   libraryPersist.set(al.persist())

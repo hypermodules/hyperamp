@@ -31,7 +31,7 @@ class Volume extends Component {
   constructor (opts) {
     if (!opts) opts = {}
     super(opts)
-    this._opts = Object.assign({
+    this.opts = Object.assign({
       min: 0,
       max: 1,
       default: 0.5,
@@ -39,43 +39,43 @@ class Volume extends Component {
     }, opts)
 
     // State
-    this._emit = null
-    this._volume = 0
-    this._muted = false
+    this.emit = null
+    this.volume = 0
+    this.muted = false
 
     // Bound Methods
-    this._changeVolume = this._changeVolume.bind(this)
-    this._toggleMute = this._toggleMute.bind(this)
+    this.changeVolume = this.changeVolume.bind(this)
+    this.toggleMute = this.toggleMute.bind(this)
 
     // Owned Children
-    this._volumeSlider = new Range(this._opts)
+    this.volumeSlider = new Range(this.opts)
   }
 
-  _changeVolume (volume) {
-    this._volume = volume
-    if (this._emit) this._emit('player:changeVolume', volume)
+  changeVolume (volume) {
+    this.volume = volume
+    if (this.emit) this.emit('player:changeVolume', volume)
   }
 
-  _toggleMute () {
-    if (this._muted) this._emit('player:unmute')
-    else this._emit('player:mute')
+  toggleMute () {
+    if (this.muted) this.emit('player:unmute')
+    else this.emit('player:mute')
   }
 
   createElement (state, emit) {
     var { muted, volume } = state.player
-    this._muted = muted
-    this._volume = volume
-    this._emit = emit
+    this.muted = muted
+    this.volume = volume
+    this.emit = emit
     return html`
       <div class="${buttonStyles.btnGroup} ${styles.volumeGroup}">
         ${button({
-          onclick: this._toggleMute,
+          onclick: this.toggleMute,
           iconName: muted ? 'entypo-sound-mute' : 'entypo-sound',
           className: styles.volumeButton
         })}
         ${button({ className: styles.range },
-          this._volumeSlider.render({
-            onchange: this._changeVolume,
+          this.volumeSlider.render({
+            onchange: this.changeVolume,
             value: volume,
             className: styles.volumeSlider
           })
@@ -86,7 +86,7 @@ class Volume extends Component {
 
   update (state) {
     var { muted, volume } = state.player
-    if (this._muted !== muted || this._volume !== volume) {
+    if (this.muted !== muted || this.volume !== volume) {
       return true
     }
     return false

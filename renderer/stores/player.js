@@ -4,14 +4,14 @@ var mousetrap = require('mousetrap')
 module.exports = playerStore
 
 function getInitialState () {
+  var mainState = require('electron').remote.require('./index.js')
   return {
-    playing: false,
-    currentIndex: 0,
+    playing: mainState.playing,
     currentTime: 0.0,
-    volume: 0.50,
-    muted: false,
-    artwork: null,
-    shuffling: false
+    currentTrack: mainState.al.currentTrack,
+    volume: mainState.volume,
+    muted: mainState.muted,
+    shuffling: mainState.al.shuffling
   }
 }
 
@@ -45,12 +45,8 @@ function playerStore (state, emitter) {
     localState.volume = lev
   }
 
-  function artwork (blobPath) {
-    localState.artwork = blobPath
-  }
-
-  function current (newIndex) {
-    localState.currentIndex = newIndex
+  function current (newTrack) {
+    localState.currentTrack = newTrack
     render()
   }
 
@@ -68,7 +64,6 @@ function playerStore (state, emitter) {
     else emitter.emit('player:play')
   })
 
-  emitter.on('player:queue', queue)
   emitter.on('player:play', play)
   emitter.on('player:pause', pause)
   emitter.on('player:prev', prev)
@@ -79,13 +74,7 @@ function playerStore (state, emitter) {
   emitter.on('player:unshuffle', unshuffle)
   emitter.on('player:seek', seek)
   emitter.on('player:changeVolume', changeVolume)
-  emitter.on('player:sync-state', syncState)
   emitter.on('player:time-update', currentTime)
-
-  function queue (newIndex) {
-    ipcRenderer.send('queue', newIndex)
-    current(newIndex)
-  }
 
   function play () {
     ipcRenderer.send('play')
@@ -144,33 +133,16 @@ function playerStore (state, emitter) {
     volume(lev)
   }
 
-  function updateArtwork (blobPath) {
-    artwork(blobPath)
-    render()
-  }
-
-  function syncState (mainState) {
-    localState.playing = mainState.playing
-    localState.currentIndex = mainState.currentIndex
-    localState.volume = mainState.volume
-    localState.muted = mainState.muted
-    localState.shuffling = mainState.shuffling
-    localState.artwork = mainState.artwork
-    render()
-  }
-
   ipcRenderer.on('play', () => playing(true))
   ipcRenderer.on('pause', () => playing(false))
-  ipcRenderer.on('queue', (ev, newIndex) => current(newIndex))
+  ipcRenderer.on('new-track', (ev, newTrack) => current(newTrack))
   ipcRenderer.on('mute', () => muted(true))
   ipcRenderer.on('unmute', () => muted(false))
   ipcRenderer.on('shuffle', () => shuffling(true))
   ipcRenderer.on('unshuffle', () => shuffling(false))
   ipcRenderer.on('volume', (ev, lev) => volume(lev))
-  ipcRenderer.on('artwork', (ev, blobPath) => updateArtwork(blobPath))
   ipcRenderer.on('timeupdate', (ev, time) => {
     currentTime(time)
     render()
   })
-  ipcRenderer.on('sync-state', (ev, mainState) => emitter.emit('player:sync-state', mainState))
 }

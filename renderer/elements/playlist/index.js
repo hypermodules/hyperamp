@@ -5,34 +5,33 @@ var styles = require('./styles')
 var TrackView = require('./track-view')
 var loader = require('../loader')
 
-var header = new Header()
-
 class Playlist extends Component {
   constructor (opts) {
     if (!opts) opts = {}
     super(opts)
-    this._opts = Object.assign({}, opts)
+    this.opts = Object.assign({}, opts)
 
     // Owned Children
-    this._trackView = new TrackView()
+    this.header = new Header()
+    this.trackView = new TrackView()
   }
 
   createElement (state, emit) {
-    this._loading = state.library.loading
+    this.loading = state.library.loading
 
     return html`
       <div class="${styles.playlist}">
-        ${header.render(state, emit)}
-        ${this._loading
+        ${this.header.render(state, emit)}
+        ${this.loading
           ? loader()
-          : this._trackView.render(state, emit)}
+          : this.trackView.render(state, emit)}
       </div>
     `
   }
 
   update (state, emit) {
-    if (this._loading !== state.library.loading) return true
-    if (this._trackView.update(state, emit)) return true
+    if (this.loading !== state.library.loading) return true
+    if (this.trackView.update(state, emit)) return true
     return false
   }
 }

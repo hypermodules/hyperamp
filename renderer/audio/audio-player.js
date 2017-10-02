@@ -1,5 +1,6 @@
 var Nanobus = require('nanobus')
 var window = require('global/window')
+var get = require('lodash.get')
 var setTimeout = window.setTimeout
 var clearTimeout = window.clearTimeout
 
@@ -10,7 +11,7 @@ class AudioPlayer extends Nanobus {
     this.audio = audioNode
     this.audio.volume = state.volume
     this.audio.muted = state.muted
-    this.audio.src = state.al.currentTrack.filepath
+    this.audio.src = get(state.al, 'currentTrack.filepath') || ''
     this.seeking = false
     this.seekDebounceTimer = null
     this.timeupdate = null
@@ -41,8 +42,8 @@ class AudioPlayer extends Nanobus {
   }
 
   load (src) {
-    this.audio.src = src
-    this.emit('queued', src)
+    this.emit('loading', src)
+    this.audio.src = src || ''
   }
 
   play () {
