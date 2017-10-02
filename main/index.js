@@ -22,9 +22,10 @@ var state = xtend({
   artwork: null
 }, persist.store, userConfig.store)
 
-var al = AudioLibrary(libraryPersist)
+var al = new AudioLibrary(libraryPersist)
 
 module.exports = state
+module.exports.al = al
 
 app.on('ready', function appReady () {
   menu.init()
