@@ -184,6 +184,10 @@ app.on('ready', function appReady () {
 
   ipcMain.on('search', search)
 
+  ipcMain.on('sync-state', () => {
+    if (player.win) player.win.send('track-dict', al.trackDict, al.order, state.paths)
+  })
+
   // System Shortcuts
 
   globalShortcut.register('MediaNextTrack', next)

@@ -8,8 +8,8 @@ function getInitialState () {
   var mainState = require('electron').remote.require('./index.js')
   return {
     paths: mainState.paths,
-    trackDict: mainState.al.trackDict,
-    trackOrder: mainState.al.visibleOrder,
+    trackDict: {},
+    trackOrder: [],
     currentIndex: mainState.al.currentIndex,
     search: mainState.al.searchTerm,
     selectedIndex: null,
