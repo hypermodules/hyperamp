@@ -77,6 +77,7 @@ app.on('ready', function appReady () {
   function handleArtworkPath (blobPath) {
     if (state.artwork !== blobPath) {
       state.artwork = blobPath
+      app.dock.setIcon(blobPath)
       if (player.win) player.win.send('artwork', blobPath)
     }
   }
