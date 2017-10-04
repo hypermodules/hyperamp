@@ -1,6 +1,9 @@
 var ipcRenderer = require('electron').ipcRenderer
 var mousetrap = require('mousetrap')
 var { COLUMNS } = require('../lib/constants')
+var trackView = require('../pages/main').playlist.trackView
+
+window.trackView = trackView
 
 module.exports = libraryStore
 
@@ -10,7 +13,7 @@ function getInitialState () {
     paths: mainState.paths,
     trackDict: {},
     trackOrder: [],
-    currentIndex: mainState.al.currentIndex,
+    currentIndex: mainState.al.index,
     search: mainState.al.searchTerm,
     selectedIndex: null,
     isNewQuery: false,
@@ -67,6 +70,12 @@ function libraryStore (state, emitter) {
   emitter.on('library:current-index', updateIndex)
   emitter.on('library:queue', queue)
   emitter.on('library:new-query', updateQueryState)
+  emitter.on('library:recall', recall)
+
+  function recall () {
+    if (!localState.isNewQuery) return trackView.scrollCurrent()
+    ipcRenderer.send('recall')
+  }
 
   function queue (newIndex) {
     ipcRenderer.send('queue', newIndex)
@@ -140,5 +149,12 @@ function libraryStore (state, emitter) {
   ipcRenderer.on('is-new-query', (ev, queryState) => {
     emitter.emit('library:new-query', queryState)
     emitter.emit('render')
+  })
+  ipcRenderer.on('recall', (ev, order, searchTerm) => {
+    localState.trackOrder = order
+    localState.search = searchTerm
+    localState.isNewQuery = false
+    emitter.emit('render')
+    trackView.scrollCurrent()
   })
 }

@@ -52,7 +52,7 @@ class Player extends Component {
 
     return html`
       <div class="${styles.player}">
-        ${this.meta.render(currentTrack)}
+        ${this.meta.render(currentTrack, emit)}
         ${this.controls.render(state, emit)}
         ${this.progress.render(state, emit)}
         ${this.volume.render(state, emit)}
@@ -70,7 +70,7 @@ class Player extends Component {
     this.controls.render(state, emit)
     this.progress.render(state, emit)
     this.volume.render(state, emit)
-    this.meta.render(currentTrack)
+    this.meta.render(currentTrack, emit)
 
     return false
   }

@@ -184,6 +184,12 @@ app.on('ready', function appReady () {
 
   ipcMain.on('search', search)
 
+  function recall () {
+    if (player.win) player.win.send('recall', al.recall(), al.searchTerm)
+  }
+
+  ipcMain.on('recall', recall)
+
   ipcMain.on('sync-state', () => {
     if (player.win) player.win.send('track-dict', al.trackDict, al.order, state.paths)
   })

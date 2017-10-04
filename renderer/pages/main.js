@@ -26,3 +26,4 @@ function main (state, emit) {
 }
 
 module.exports = main
+module.exports.playlist = playlist

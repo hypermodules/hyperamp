@@ -43,10 +43,17 @@ class Meta extends Component {
 
     // owned children
     this.artwork = new Artwork()
+
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  createElement (track = {}) {
+  handleClick () {
+    this.emit('library:recall')
+  }
+
+  createElement (track = {}, emit) {
     this.arguments = arguments
+    this.emit = emit
 
     var { title, artist } = track
 
@@ -54,7 +61,7 @@ class Meta extends Component {
       <div class=${styles.nowPlaying}>
         ${this.artwork.render(track.artwork)}
 
-        <div class=${styles.meta}>
+        <div class=${styles.meta} onclick=${this.handleClick}>
           ${artist != null && artist !== '' && artist.length > 0
             ? html`<div class=${styles.artist}>${Array.isArray(artist) ? artist.join(', ') : artist}</div>`
             : ''}
@@ -66,7 +73,8 @@ class Meta extends Component {
     `
   }
 
-  update () {
+  update (_, emit) {
+    this.emit = emit
     return compare(arguments, this.arguments)
   }
 }

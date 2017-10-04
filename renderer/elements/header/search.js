@@ -39,7 +39,6 @@ class Search extends Component {
   // Lets mutate!
   update ({value, onchange, className}) {
     assert.equal(typeof onchange, 'function', 'Range: onchange should be a function')
-
     if (this.onchange !== onchange) {
       this.onchange = onchange
     }
@@ -47,8 +46,9 @@ class Search extends Component {
       this.className = className
       this.element.class = className
     }
-    if (this.value !== value) {
+    if (this.element.value !== value) {
       // Mutate value changes
+
       this.value = value
       this.element.value = this.value
     }

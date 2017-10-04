@@ -40,17 +40,21 @@ class TrackView extends Component {
     this.mutateSelectedIndex = this.mutateSelectedIndex.bind(this)
     this.handleOnScroll = this.handleOnScroll.bind(this)
     this.metaMenu = this.metaMenu.bind(this)
+    this.scrollTo = this.scrollTo.bind(this)
+    this.scrollCurrent = this.scrollCurrent.bind(this)
   }
 
   get topVisibleRowIndex () {
-    if (!this.element) throw new Error('Element not mounted')
     return Math.floor(this.element.scrollTop / this.rowHeight)
   }
 
   get bottomVisibleRowIndex () {
-    if (!this.element) throw new Error('Element not mounted')
     var {clientHeight} = this.element
     return Math.floor(clientHeight / this.rowHeight) + this.topVisibleRowIndex
+  }
+
+  get midIndexOffset () {
+    return Math.floor((this.bottomVisibleRowIndex - this.topVisibleRowIndex - 1) / 2)
   }
 
   get topOffset () {
@@ -60,6 +64,23 @@ class TrackView extends Component {
   get bottomOffset () {
     var lastRenderedIndex = this.sliceStartIndex + this.sliceLength
     return lastRenderedIndex - this.bottomVisibleRowIndex
+  }
+
+  get maxScrollTop () {
+    return this.element.scrollHeight - this.element.clientHeight
+  }
+
+  scrollTo (index) {
+    window.requestAnimationFrame(() => {
+      var middleScrollTop = ((index - this.midIndexOffset) * this.rowHeight)
+      if (middleScrollTop < 0) middleScrollTop = 0
+      if (middleScrollTop > this.maxScrollTop) middleScrollTop = this.maxScrollTop
+      this.element.scrollTop = middleScrollTop
+    })
+  }
+
+  scrollCurrent () {
+    this.scrollTo(this.currentIndex)
   }
 
   selectTrack (ev) {
@@ -187,7 +208,8 @@ class TrackView extends Component {
 
   handleOnScroll (ev) {
     var self = this
-    var maxStart = this.trackOrder.length - this.sliceLength
+
+    var maxStart = this.trackOrder.length - this.sliceLength > 0 ? this.trackOrder.length - this.sliceLength : 0
     var closeToBottom = this.bottomOffset < OFFSET_BUFFER && this.sliceStartIndex !== maxStart
     var closeToTop = this.topOffset < OFFSET_BUFFER && this.sliceStartIndex !== 0
 
@@ -236,6 +258,7 @@ class TrackView extends Component {
     if (this.trackOrder !== state.library.trackOrder) return true
     if (this.trackDict !== state.library.trackDict) return true
     if (this.isNewQuery !== state.library.isNewQuery) return true
+    if (shouldColumnsUpdate(this.columns, state.library.columns)) return true
     // Mutate
     if (this.currentIndex !== state.library.currentIndex) {
       this.mutateCurrentIndex(state.library.currentIndex)
@@ -243,7 +266,6 @@ class TrackView extends Component {
     if (this.selectedIndex !== state.library.selectedIndex) {
       this.mutateSelectedIndex(state.library.selectedIndex)
     }
-    if (shouldColumnsUpdate(this.columns, state.library.columns)) return true
     // Cache!
     return false
   }
