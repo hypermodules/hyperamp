@@ -1,5 +1,6 @@
 var { ipcRenderer } = require('electron')
 var mousetrap = require('mousetrap')
+var trackView = require('../pages/main').playlist.trackView
 
 module.exports = playerStore
 
@@ -48,6 +49,11 @@ function playerStore (state, emitter) {
   function current (newTrack) {
     localState.currentTrack = newTrack
     render()
+    if (!state.library.isNewQuery) {
+      window.requestAnimationFrame(() => {
+        trackView.scrollCurrent()
+      })
+    }
   }
 
   mousetrap.bind('left', e => {

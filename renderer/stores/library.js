@@ -36,6 +36,7 @@ function libraryStore (state, emitter) {
       ? 0
       : idx - 1
     emitter.emit('library:select', newIdx)
+    trackView.scrollTo(newIdx)
   })
   mousetrap.bind('down', e => {
     e.preventDefault()
@@ -46,6 +47,7 @@ function libraryStore (state, emitter) {
         ? localState.trackOrder.length - 1
         : idx + 1
     emitter.emit('library:select', newIdx)
+    trackView.scrollTo(newIdx)
   })
   mousetrap.bind('enter', e => {
     e.preventDefault()
@@ -120,6 +122,7 @@ function libraryStore (state, emitter) {
   function search (string) {
     ipcRenderer.send('search', string)
     localState.search = string
+    trackView.scrollTo(0)
   }
 
   function select (selectedIndex) {

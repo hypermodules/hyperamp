@@ -75,7 +75,9 @@ class TrackView extends Component {
       var middleScrollTop = ((index - this.midIndexOffset) * this.rowHeight)
       if (middleScrollTop < 0) middleScrollTop = 0
       if (middleScrollTop > this.maxScrollTop) middleScrollTop = this.maxScrollTop
-      this.element.scrollTop = middleScrollTop
+      if (index < this.topVisibleRowIndex + 1 || index > this.bottomVisibleRowIndex - 1) {
+        this.element.scrollTop = middleScrollTop
+      }
     })
   }
 
