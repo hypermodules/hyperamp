@@ -83,7 +83,7 @@
     "music",
     "player"
   ],
-  "license": "ISC",
+  "license": "GPL-3.0",
   "main": "main/index.js",
   "productName": "Hyperamp",
   "repository": {
