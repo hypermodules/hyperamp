@@ -31,7 +31,7 @@ Currently under active development. macOS build coming soon!
 
 ## License
 
-[ISC](license.md)
+[GPLv3](license.md)
 
 [stability-img]: https://img.shields.io/badge/stability-experimental-orange.svg
 [stability-url]: https://nodejs.org/api/documentation.html#documentation_stability_index
