@@ -31,6 +31,7 @@ Currently under active development. macOS build coming soon!
 
 ## License
 
+© HYPERMODULES LLC 
 [GPLv3](license.md)
 
 [stability-img]: https://img.shields.io/badge/stability-experimental-orange.svg
