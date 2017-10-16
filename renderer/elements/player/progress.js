@@ -24,7 +24,10 @@ var styles = css`
   }
   .time:first-child { justify-content: flex-end }
   .time:last-child { justify-content: flex-start }
-  .range { width: 100% }
+  .range {
+    min-height: initial;
+    width: 100%;
+  }
   .scrubber {
     cursor: default;
     position: relative;
