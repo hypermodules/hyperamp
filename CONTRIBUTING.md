@@ -1,4 +1,4 @@
-# &lt;project name&gt; is an [OPEN Open Source Project](http://openopensource.org/)
+# Hyperamp is an [OPEN Open Source Project](http://openopensource.org/)
 
 -----------------------------------------
 
