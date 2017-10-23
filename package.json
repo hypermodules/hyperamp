@@ -35,7 +35,7 @@
     "electron-default-menu": "^1.0.1",
     "electron-store": "^1.1.0",
     "electron-window-state": "^4.0.2",
-    "entypo": "^2.0.0",
+    "entypo": "^2.1.0",
     "file-url": "^2.0.2",
     "flush-write-stream": "^1.0.2",
     "folder-walker": "^3.0.0",
@@ -61,27 +61,36 @@
   },
   "devDependencies": {
     "@tap-format/spec": "^0.2.0",
+    "browserify": "^14.5.0",
+    "budo": "^10.0.4",
     "buffer-equal": "^1.0.0",
+    "bundle-collapser": "^1.3.0",
+    "common-shakeify": "^0.4.4",
     "concat-stream": "^1.6.0",
     "dependency-check": "^2.8.0",
     "electron": "1.7.8",
     "electron-builder": "^19.33.0",
-    "electron-rebuild": "^1.5.11",
+    "electron-renderify": "0.0.2",
+    "envify": "^4.1.0",
     "is-buffer": "^1.1.5",
-    "npm-run-all": "^4.0.1",
+    "npm-run-all": "^4.1.1",
     "snazzy": "^7.0.0",
     "spectron": "^3.7.1",
     "standard": "^10.0.1",
     "tape": "^4.6.3",
     "temporary-directory": "^1.0.2",
-    "xvfb-maybe": "^0.2.1"
+    "unassertify": "^2.0.5",
+    "xvfb-maybe": "^0.2.1",
+    "yo-yoify": "^4.0.0"
   },
   "homepage": "https://github.com/hypermodules/hyperamp",
   "keywords": [
     "amp",
     "hyper",
     "music",
-    "player"
+    "player",
+    "hyperamp",
+    "library"
   ],
   "license": "GPL-3.0",
   "main": "main/index.js",
@@ -91,17 +100,30 @@
     "url": "git+https://github.com/hypermodules/hyperamp.git"
   },
   "scripts": {
-    "build": "build --dir",
-    "clear": "electron scripts/clear.js",
-    "dist": "build",
-    "prod": "ELECTRON_IS_DEV=0 npm start",
-    "rebuild": "electron-rebuild",
-    "start": "electron main",
+    "start": "run-s watch",
+    "build": "run-s clean build:*",
+    "build:js": "browserify --debug renderer/index.js -o renderer/dist/bundle.js",
+    "build:electron": "build --dir",
+    "prod": "run-s clean prod:*",
+    "prod:js": "browserify -g unassertify -p common-shakeify -p bundle-collapser/plugin --debug renderer/index.js -o renderer/dist/bundle.js",
+    "prod:electron": "build",
+    "watch": "run-s clean && run-p watch:*",
+    "watch:js": "budo renderer/index.js:bundle.js -- --no-bundle-external",
+    "watch:electron": "electron main",
     "test": "run-s test:*",
     "test-skip:tape": "xvfb-maybe tape test/* | tap-format-spec",
     "test:deps": "dependency-check ./package.json --entry renderer/index.js --no-dev --ignore-module electron",
     "test:lint": "standard | snazzy",
     "test:main": "tape main/lib/**/test.js | tap-format-spec",
-    "test:renderer": "tape renderer/**/test.js | tap-format-spec"
+    "test:renderer": "tape renderer/**/test.js | tap-format-spec",
+    "clean": "rimraf dist renderer/dist && mkdirp dist renderer/dist",
+    "clear": "electron scripts/clear.js"
+  },
+  "browserify": {
+    "transform": [
+      "envify",
+      "yo-yoify",
+      "electron-renderify"
+    ]
   }
 }
