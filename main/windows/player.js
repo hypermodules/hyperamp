@@ -1,7 +1,10 @@
 var { BrowserWindow } = require('electron')
 var windowStateKeeper = require('electron-window-state')
 var path = require('path')
-var PLAYER_WINDOW = 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'index.html')
+var isDev = require('electron-is-dev')
+var PLAYER_WINDOW = isDev
+  ? 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'index-dev.html')
+  : 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'index.html')
 
 var player = module.exports = {
   init,
