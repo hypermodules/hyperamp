@@ -3,6 +3,13 @@
   "description": "Indescribable music player",
   "version": "0.0.1",
   "author": "Hypermodules (https://github.com/hypermodules)",
+  "browserify": {
+    "transform": [
+      "envify",
+      "yo-yoify",
+      "electron-renderify"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/hypermodules/hyperamp/issues"
   },
@@ -22,10 +29,6 @@
     "Bret Comnes <bcomnes@gmail.com> (http://bret.io)",
     "Nate Goldman <ungoldman@gmail.com> (http://ungoldman.com)"
   ],
-  "engines" : {
-    "npm": ">=5.0.0",
-    "yarn": ">=1.0.0"
-  },
   "dependencies": {
     "@bret/truthy": "^1.0.1",
     "choo": "^6.0.0",
@@ -88,14 +91,18 @@
     "xvfb-maybe": "^0.2.1",
     "yo-yoify": "^4.0.0"
   },
+  "engines": {
+    "npm": ">=5.0.0",
+    "yarn": ">=1.0.0"
+  },
   "homepage": "https://github.com/hypermodules/hyperamp",
   "keywords": [
     "amp",
     "hyper",
-    "music",
-    "player",
     "hyperamp",
-    "library"
+    "library",
+    "music",
+    "player"
   ],
   "license": "GPL-3.0",
   "main": "main/index.js",
@@ -105,30 +112,23 @@
     "url": "git+https://github.com/hypermodules/hyperamp.git"
   },
   "scripts": {
-    "start": "run-s watch",
     "build": "run-s clean build:*",
-    "build:js": "browserify --debug renderer/index.js -o renderer/dist/bundle.js",
     "build:electron": "build --dir",
+    "build:js": "browserify --debug renderer/index.js -o renderer/dist/bundle.js",
+    "clean": "rimraf dist renderer/dist && mkdirp dist renderer/dist",
+    "clear": "electron scripts/clear.js",
     "prod": "run-s clean prod:*",
-    "prod:js": "browserify -g unassertify -p common-shakeify -p bundle-collapser/plugin --debug renderer/index.js -o renderer/dist/bundle.js",
     "prod:electron": "build",
-    "watch": "run-s clean && run-p watch:*",
-    "watch:js": "budo renderer/index.js:bundle.js -- --no-bundle-external",
-    "watch:electron": "electron main",
+    "prod:js": "browserify -g unassertify -p common-shakeify -p bundle-collapser/plugin --debug renderer/index.js -o renderer/dist/bundle.js",
+    "start": "run-s watch",
     "test": "run-s test:*",
     "test-skip:tape": "xvfb-maybe tape test/* | tap-format-spec",
     "test:deps": "dependency-check ./package.json --entry renderer/index.js --no-dev --ignore-module electron",
     "test:lint": "standard | snazzy",
     "test:main": "tape main/lib/**/test.js | tap-format-spec",
     "test:renderer": "tape renderer/**/test.js | tap-format-spec",
-    "clean": "rimraf dist renderer/dist && mkdirp dist renderer/dist",
-    "clear": "electron scripts/clear.js"
-  },
-  "browserify": {
-    "transform": [
-      "envify",
-      "yo-yoify",
-      "electron-renderify"
-    ]
+    "watch": "run-s clean && run-p watch:*",
+    "watch:electron": "electron main",
+    "watch:js": "budo renderer/index.js:bundle.js -- --no-bundle-external"
   }
 }
