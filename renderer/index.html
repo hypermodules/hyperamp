@@ -6,6 +6,15 @@
 </head>
 <body>
   <main id="app"></main>
-  <script src="./dist/bundle.js"></script>
+  <script>
+    var isDev = require('electron-is-dev')
+    if (isDev) {
+      var bundle = document.createElement('script')
+      bundle.src = 'http://localhost:9966/bundle.js'
+      document.body.appendChild(bundle)
+    } else {
+      require('./dist/bundle.js')
+    }
+  </script>
 </body>
 </html>
