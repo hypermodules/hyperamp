@@ -9,6 +9,12 @@ var makeTrackDict = require('./track-dict')
 var audio = require('./windows/audio')
 var player = require('./windows/player')
 var AudioLibrary = require('./lib/audio-library')
+var ipcLogger = require('electron-ipc-log')
+
+ipcLogger(event => {
+  var { channel, data } = event
+  console.log('✨  ipc', channel, ...data)
+})
 
 var persist = new Config({ name: 'hyperamp-persist' })
 var libraryPersist = new Config({ name: 'hyperamp-library' })

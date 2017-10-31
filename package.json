@@ -40,6 +40,7 @@
     "electron-context-menu": "^0.9.0",
     "electron-debug": "^1.4.0",
     "electron-default-menu": "^1.0.1",
+    "electron-ipc-log": "^3.0.0",
     "electron-is-dev": "^0.3.0",
     "electron-store": "^1.1.0",
     "electron-window-state": "^4.0.2",
