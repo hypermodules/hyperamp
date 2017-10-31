@@ -26,8 +26,18 @@ This repository uses [`standard`][standard-url] to maintain code style and consi
 
 [standard-image]: https://cdn.rawgit.com/feross/standard/master/badge.svg
 [standard-url]: https://github.com/feross/standard
-[semistandard-image]: https://cdn.rawgit.com/flet/semistandard/master/badge.svg
-[semistandard-url]: https://github.com/Flet/semistandard
+
+## Developing
+
+Before getting started, make sure to run `npm install`.
+
+### Scripts
+
+- `start` - start the app in development mode
+- `prod` - start the app in production mode
+- `test` - run all tests
+- `build` - create a test build of the app for debugging purposes
+- `pkg` - package the production version of the app for release
 
 ## Project Governance
 
