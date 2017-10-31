@@ -1,5 +1,6 @@
 var { ipcRenderer } = require('electron')
 var log = require('nanologger')('player')
+var ipcLog = require('nanologger')('ipc')
 var AudioPlayer = require('./audio-player')
 var path = require('path')
 // We don't need to sync-state since we just sync load state
@@ -7,6 +8,14 @@ var mainState = require('electron').remote.require('./index.js')
 var needle = 'file://' + path.resolve(__dirname, 'needle.mp3')
 var startupNode = document.querySelector('#needle')
 var fileUrlFromPath = require('file-url')
+var ipcLogger = require('electron-ipc-log')
+
+ipcLogger(event => {
+  var { channel, data, sent, sync } = event
+  var args = [sent ? '⬆️' : '⬇️', channel, ...data]
+  if (sync) args.unshift('sync')
+  ipcLog.info.apply(ipcLog, args)
+})
 
 needleSound(startupNode, needle, mainState.volume, mainState.muted)
 
