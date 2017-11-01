@@ -1,7 +1,7 @@
 {
   "name": "hyperamp",
   "description": "Indescribable music player",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "author": "Hypermodules (https://github.com/hypermodules)",
   "browserify": {
     "transform": [
@@ -18,8 +18,11 @@
     "mac": {
       "category": "public.app-category.music",
       "target": [
-        "dmg"
+        "default"
       ]
+    },
+    "linux": {
+      "category": "Audio"
     },
     "nsis": {
       "perMachine": true
@@ -43,6 +46,7 @@
     "electron-ipc-log": "^3.0.0",
     "electron-is-dev": "^0.3.0",
     "electron-store": "^1.1.0",
+    "electron-updater": "^2.15.0",
     "electron-window-state": "^4.0.2",
     "entypo": "^2.1.0",
     "file-url": "^2.0.2",

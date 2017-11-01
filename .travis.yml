@@ -14,6 +14,7 @@ cache:
     - ~/.npm
     - ~/.electron
     - ~/.nvm
+    - ~/.cache/electron-builder
 addons:
   apt:
     packages:
@@ -33,4 +34,4 @@ install:
 script:
   - npm test
 after_success:
-  - npm run dist
+  - npm run pkg
