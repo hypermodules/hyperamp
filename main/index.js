@@ -12,6 +12,7 @@ var player = require('./windows/player')
 var AudioLibrary = require('./lib/audio-library')
 var ipcLogger = require('electron-ipc-log')
 var globalShortcuts = new GlobalShortcuts()
+var autoUpdater = require('electron-updater').autoUpdater
 
 ipcLogger(event => {
   var { channel, data } = event
@@ -206,6 +207,10 @@ app.on('ready', function appReady () {
   ipcMain.on('sync-state', () => {
     if (player.win) player.win.send('track-dict', al.trackDict, al.order, state.paths)
   })
+
+  setTimeout(() => {
+    autoUpdater.checkForUpdatesAndNotify()
+  }, 500)
 })
 
 app.on('window-all-closed', function allWindowsClosed () {
