@@ -1,15 +1,17 @@
-var { app, ipcMain, globalShortcut } = require('electron')
+var { app, ipcMain } = require('electron')
 var Config = require('electron-store')
 var get = require('lodash.get')
 var xtend = require('xtend')
 var userConfig = require('./config')
 var menu = require('./menu')
 var artwork = require('./artwork')
+var GlobalShortcuts = require('./globalShortcuts')
 var makeTrackDict = require('./track-dict')
 var audio = require('./windows/audio')
 var player = require('./windows/player')
 var AudioLibrary = require('./lib/audio-library')
 var ipcLogger = require('electron-ipc-log')
+var globalShortcuts = new GlobalShortcuts()
 
 ipcLogger(event => {
   var { channel, data } = event
@@ -37,6 +39,11 @@ app.on('ready', function appReady () {
   audio.init()
   player.init()
   artwork.init()
+  globalShortcuts.init({
+    MediaNextTrack: next,
+    MediaPreviousTrack: prev,
+    MediaPlayPause: playPause
+  })
 
   // Emit things to all windows
   var windows = [player, audio]
@@ -199,13 +206,6 @@ app.on('ready', function appReady () {
   ipcMain.on('sync-state', () => {
     if (player.win) player.win.send('track-dict', al.trackDict, al.order, state.paths)
   })
-
-  // System Shortcuts
-
-  globalShortcut.register('MediaNextTrack', next)
-  globalShortcut.register('MediaPreviousTrack', prev)
-  globalShortcut.register('MediaPlayPause', playPause)
-// globalShortcut.register('MediaStop', stop)
 })
 
 app.on('window-all-closed', function allWindowsClosed () {
@@ -213,7 +213,14 @@ app.on('window-all-closed', function allWindowsClosed () {
 })
 
 app.on('activate', function activate () {
-  if (player.win === null) player.init()
+  if (player.win === null) {
+    player.init()
+  }
+  globalShortcuts.reregister()
+})
+
+app.on('will-quit', function (e) {
+  globalShortcuts.unregisterAll()
 })
 
 app.on('before-quit', function beforeQuit (e) {
@@ -230,7 +237,6 @@ app.on('before-quit', function beforeQuit (e) {
   })
 
   libraryPersist.set(al.persist())
-
   app.quit()
 })
 
