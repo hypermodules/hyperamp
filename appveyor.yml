@@ -16,6 +16,6 @@ test_script:
   - npm --version
   - npm test
 
-build_script:
-  - npm run dist
+on_success:
+  - npm run pkg
 
