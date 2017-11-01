@@ -21,6 +21,9 @@
         "dmg"
       ]
     },
+    "linux": {
+      "category": "Audio"
+    },
     "nsis": {
       "perMachine": true
     }
