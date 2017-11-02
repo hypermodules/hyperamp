@@ -204,8 +204,12 @@ app.on('ready', function appReady () {
 
   ipcMain.on('recall', recall)
 
-  ipcMain.on('sync-state', () => {
-    if (player.win) player.win.send('track-dict', al.trackDict, al.order, state.paths)
+  ipcMain.on('sync-state', (ev) => {
+    ev.sender.send('sync-state', {
+      trackDict: al.trackDict,
+      order: al.order,
+      paths: state.paths
+    })
   })
 
   setTimeout(() => {
