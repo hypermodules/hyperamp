@@ -14,7 +14,7 @@ ipcLogger(event => {
   var { channel, data, sent, sync } = event
   var args = [sent ? '⬆️' : '⬇️', channel, ...data]
   if (sync) args.unshift('sync')
-  ipcLog.info.apply(ipcLog, args)
+  ipcLog.info(...args)
 })
 
 needleSound(startupNode, needle, mainState.volume, mainState.muted)
