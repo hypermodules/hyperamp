@@ -1,7 +1,6 @@
-var fs = require('fs')
 var path = require('path')
 var walker = require('folder-walker')
-var mm = require('musicmetadata')
+var mm = require('music-metadata')
 var writer = require('flush-write-stream')
 var filter = require('through2-filter')
 var pump = require('pump')
@@ -18,6 +17,7 @@ function makeTrackDict (paths, cb) {
 
   function handleEos (err) {
     if (err) return cb(err)
+    console.log('')
     cb(null, newTrackDict)
   }
 }
@@ -35,7 +35,7 @@ function concatTrackDict (obj) {
     parseMetadata(data, handleMeta)
 
     function handleMeta (err, meta) {
-      if (err) return cb(err)
+      if (err) throw err
       obj[meta.filepath] = meta
       cb(null)
     }
@@ -45,25 +45,11 @@ function concatTrackDict (obj) {
 
 function parseMetadata (data, cb) {
   var { filepath } = data
-  var readableStream = fs.createReadStream(filepath)
-  mm(readableStream, { duration: true }, (err, meta) => {
-    readableStream.destroy()
-    if (err) {
-      switch (err.message) {
-        case 'Could not find metadata header':
-          console.warn(err.message += ` (file: ${filepath})`)
-          break
-        case 'expected frame header but was not found':
-          console.warn(err.message += ` (file: ${filepath})`)
-          break
-        default:
-          // Ignore errors
-          console.warn(err.message += ` (file: ${filepath})`)
-          return cb(null)
-      }
-    }
-    // delete meta.picture
-    // console.dir(meta, {colors: true, depth: 5})
+  mm.parseFile(filepath, {
+    duration: true,
+    native: false,
+    skipCovers: true
+  }).then(meta => {
     var {
       albumartist,
       title,
@@ -72,17 +58,17 @@ function parseMetadata (data, cb) {
       year,
       track,
       disk,
-      genre,
-      duration
-    } = meta
+      genre
+    } = meta.common
 
+    var { duration } = meta.format
     if (!title) {
       var { basename } = data
       var ext = path.extname(basename)
       title = path.basename(basename, ext)
     }
 
-    cb(null, {
+    return Promise.resolve({
       albumartist,
       title,
       artist,
@@ -94,5 +80,14 @@ function parseMetadata (data, cb) {
       disk,
       genre
     })
+  }).catch(err => {
+    // Ignore errors
+    console.log(err.message += ` (file: ${filepath})`)
+    var { basename } = data
+    var ext = path.extname(basename)
+    var title = path.basename(basename, ext)
+    return Promise.resolve({ title, filepath })
+  }).then(meta => {
+    cb(null, meta)
   })
 }
