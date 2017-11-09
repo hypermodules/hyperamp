@@ -4,8 +4,8 @@ function sort ([keyA, aObj], [keyB, bObj]) {
       // if (aObj.albumartist[0] > bObj.albumartist[0]) return 1
 
       // sort by artist
-  if (aObj.artist[0] < bObj.artist[0]) return -1
-  if (aObj.artist[0] > bObj.artist[0]) return 1
+  if (aObj.artist < bObj.artist) return -1
+  if (aObj.artist > bObj.artist) return 1
 
       // then by album
   if (aObj.album < bObj.album) return -1

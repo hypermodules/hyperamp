@@ -1,5 +1,5 @@
 var test = require('tape')
-var {artwork, fromBuffer} = require('./util')
+var {artwork} = require('./util')
 var path = require('path')
 var concatStream = require('concat-stream')
 var isBuffer = require('is-buffer')
@@ -8,6 +8,7 @@ var bufferEqual = require('buffer-equal')
 var tmp = require('temporary-directory')
 var ArtworkCache = require('./index.js')
 var testData = require('./test-data')
+var BufferList = require('bl')
 
 test('get artwork from file', function (t) {
   artwork(testData.mp3WithArtwork, function (err, imageBuf) {
@@ -22,7 +23,8 @@ test('can stream buffers', function (t) {
 
   function bufferTests (err, imageBuf) {
     t.error(err, 'got artwork buffer')
-    var imageBufferStream = fromBuffer(imageBuf)
+    var imageBufferStream = new BufferList()
+    imageBufferStream.append(imageBuf)
     var concat = concatStream(gotPic)
     var streamedBuff
 

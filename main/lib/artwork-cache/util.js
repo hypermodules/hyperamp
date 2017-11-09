@@ -1,35 +1,19 @@
-var from = require('from2')
-var fs = require('fs')
 var mm = require('music-metadata')
 var get = require('lodash.get')
-
-exports.fromBuffer = fromBuffer
-
-function fromBuffer (buffer) {
-  return from(function (size, next) {
-    if (buffer.length <= 0) return next(null, null)
-    var chunk = buffer.slice(0, size)
-    buffer = buffer.slice(size)
-    next(null, chunk)
-  })
-}
+var fs = require('fs')
 
 function metadata (path, cb) {
-  var audioStream = fs.createReadStream(path)
-  var returned = false // TODO clean up racy code
-  audioStream.on('error', (err) => {
-    if (!returned) {
-      returned = true
+  fs.stat(path, function (err, stats) {
+    if (err) return cb(err)
+    mm.parseFile(path, {
+      native: true,
+      duration: true,
+      skipCovers: false
+    }).then(function (md) {
+      return cb(null, md)
+    }).catch(function (err) {
       return cb(err)
-    }
-  })
-  mm.parseStream(audioStream, {native: true}, function (err, metadata) {
-    // important note, the stream is not closed by default. To prevent leaks, you must close it yourself
-    audioStream.destroy()
-    if (!returned) {
-      returned = true
-      return cb(err, err ? null : metadata)
-    }
+    })
   })
 }
 
