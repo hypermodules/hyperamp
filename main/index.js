@@ -217,6 +217,38 @@ app.on('ready', function appReady () {
   }, 500)
 })
 
+autoUpdater.on('error', (err) => {
+  console.log(err)
+})
+
+autoUpdater.on('checking-for-update', () => {
+  console.log('autoUpdater: Checking for update...')
+})
+
+autoUpdater.on('update-available', (info) => {
+  console.log(`autoUpdater: Update available!`)
+  console.log(info)
+})
+
+autoUpdater.on('update-not-available', (info) => {
+  console.log(`autoUpdater: No update available`)
+  console.log(info)
+})
+
+autoUpdater.on('update-not-available', (info) => {
+  console.log(`autoUpdater: No update available`)
+  console.log(info)
+})
+
+autoUpdater.on('download-progress', (progress) => {
+  console.log(progress)
+})
+
+autoUpdater.on('update-downloaded', (info) => {
+  console.log(`autoUpdater: Update downloaded`)
+  console.log(info)
+})
+
 app.on('window-all-closed', function allWindowsClosed () {
   if (process.platform !== 'darwin') app.quit()
 })
