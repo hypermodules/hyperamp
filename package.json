@@ -61,7 +61,7 @@
     "lodash.throttle": "^4.1.1",
     "mkdirp": "^0.5.1",
     "mousetrap": "^1.6.1",
-    "music-metadata": "^0.6.1",
+    "music-metadata": "^0.8.7",
     "musicmetadata": "^2.0.4",
     "nanobus": "^4.1.0",
     "nanocomponent": "^6.0.0",

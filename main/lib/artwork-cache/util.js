@@ -1,11 +1,11 @@
 var from = require('from2')
-var fs = require('fs')
 var mm = require('music-metadata')
 var get = require('lodash.get')
 
 exports.fromBuffer = fromBuffer
 
 function fromBuffer (buffer) {
+  // TODO: Use https://github.com/rvagg/bl ?
   return from(function (size, next) {
     if (buffer.length <= 0) return next(null, null)
     var chunk = buffer.slice(0, size)
@@ -15,21 +15,14 @@ function fromBuffer (buffer) {
 }
 
 function metadata (path, cb) {
-  var audioStream = fs.createReadStream(path)
-  var returned = false // TODO clean up racy code
-  audioStream.on('error', (err) => {
-    if (!returned) {
-      returned = true
-      return cb(err)
-    }
-  })
-  mm.parseStream(audioStream, {native: true}, function (err, metadata) {
-    // important note, the stream is not closed by default. To prevent leaks, you must close it yourself
-    audioStream.destroy()
-    if (!returned) {
-      returned = true
-      return cb(err, err ? null : metadata)
-    }
+  mm.parseFile(path, {
+    native: true,
+    duration: true,
+    skipCovers: false
+  }).then(function (md) {
+    return cb(null, md)
+  }).catch(function (err) {
+    return cb(err)
   })
 }
 
