@@ -4,7 +4,8 @@ var path = require('path')
 var pump = require('pump')
 var crypto = require('crypto')
 var mkdirp = require('mkdirp')
-var { artwork, fromBuffer } = require('./util')
+var { artwork } = require('./util')
+var BufferList = require('bl')
 
 // var configPath = (electron.app || electron.remote.app).getPath('userData')
 // var artworkCachePath = path.join(configPath, 'artwork-cache')
@@ -37,7 +38,7 @@ class ArtworkCache {
           return cb(null, blobPath)
         } else {
           var writeStream = self._blobs.createWriteStream()
-          pump(fromBuffer(buff), writeStream, function (err) {
+          pump((new BufferList()).append(buff), writeStream, function (err) {
             if (err) return cb(err)
             return self._blobs.resolve(writeStream.key, cb)
           })

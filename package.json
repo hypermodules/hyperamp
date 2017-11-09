@@ -34,6 +34,7 @@
   ],
   "dependencies": {
     "@bret/truthy": "^1.0.1",
+    "bl": "^1.2.1",
     "choo": "^6.0.0",
     "choo-devtools": "^1.5.0",
     "choo-log": "^7.2.1",
@@ -53,7 +54,6 @@
     "flush-write-stream": "^1.0.2",
     "folder-walker": "^3.0.0",
     "format-duration": "^1.0.0",
-    "from2": "^2.3.0",
     "fy-shuffle": "^1.0.0",
     "global": "^4.3.2",
     "lodash.debounce": "^4.0.8",

@@ -1,28 +1,19 @@
-var from = require('from2')
 var mm = require('music-metadata')
 var get = require('lodash.get')
-
-exports.fromBuffer = fromBuffer
-
-function fromBuffer (buffer) {
-  // TODO: Use https://github.com/rvagg/bl ?
-  return from(function (size, next) {
-    if (buffer.length <= 0) return next(null, null)
-    var chunk = buffer.slice(0, size)
-    buffer = buffer.slice(size)
-    next(null, chunk)
-  })
-}
+var fs = require('fs')
 
 function metadata (path, cb) {
-  mm.parseFile(path, {
-    native: true,
-    duration: true,
-    skipCovers: false
-  }).then(function (md) {
-    return cb(null, md)
-  }).catch(function (err) {
-    return cb(err)
+  fs.stat(path, function (err, stats) {
+    if (err) return cb(err)
+    mm.parseFile(path, {
+      native: true,
+      duration: true,
+      skipCovers: false
+    }).then(function (md) {
+      return cb(null, md)
+    }).catch(function (err) {
+      return cb(err)
+    })
   })
 }
 
