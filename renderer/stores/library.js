@@ -16,8 +16,8 @@ function getInitialState () {
     currentIndex: mainState.al.index,
     search: mainState.al.searchTerm,
     selectedIndex: null,
-    isNewQuery: false,
-    loading: false,
+    isNewQuery: mainState.al.isNewQuery,
+    loading: mainState.loading,
     columns: Array.from(COLUMNS).reduce((obj, col) => {
       obj[col] = true
       return obj

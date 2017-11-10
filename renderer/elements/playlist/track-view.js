@@ -262,7 +262,7 @@ class TrackView extends Component {
     if (this.isNewQuery !== state.library.isNewQuery) return true
     if (shouldColumnsUpdate(this.columns, state.library.columns)) return true
     // Mutate
-    if (this.currentIndex !== state.library.currentIndex) {
+    if (this.currentIndex !== state.library.currentIndex && !this.isNewQuery) {
       this.mutateCurrentIndex(state.library.currentIndex)
     }
     if (this.selectedIndex !== state.library.selectedIndex) {

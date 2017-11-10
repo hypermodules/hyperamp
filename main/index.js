@@ -255,6 +255,7 @@ app.on('window-all-closed', function allWindowsClosed () {
 
 app.on('activate', function activate () {
   if (player.win === null) {
+    al.recall()
     player.init()
   }
   globalShortcuts.reregister()
