@@ -32,6 +32,7 @@ class Playlist extends Component {
   update (state, emit) {
     if (this.loading !== state.library.loading) return true
     this.trackView.render(state, emit)
+    this.header.render(state, emit)
     return false
   }
 }
