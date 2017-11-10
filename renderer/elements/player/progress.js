@@ -110,9 +110,10 @@ class Progress extends Component {
 
   update (state, emit) {
     this.emit = emit
+    if (this.disabled !== truthy(state.player.currentIndex)) return true
     if (this.key !== get(state, 'player.currentTrack.key')) return true
     if (this.position !== state.player.currentTime) return true
-    if (this.disabled !== truthy(state.player.currentIndex)) return true
+    if (this.duration !== get(state, 'player.currentTrack.duration')) return true
     return false
   }
 }
