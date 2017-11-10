@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Update choo devtools
 * Remove choo log
 * Fix header update function
+* Update electron
 
 ## 0.5.3 - 2017-11-09
 * Added this here changelog
