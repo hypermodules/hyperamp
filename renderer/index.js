@@ -14,7 +14,6 @@ ipcLogger(event => {
 var entypoSprite = require('entypo').getNode()
 document.body.insertAdjacentElement('afterbegin', entypoSprite)
 
-app.use(require('choo-log')())
 app.use(require('choo-devtools')())
 
 app.use(require('./stores/config'))
