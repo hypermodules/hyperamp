@@ -228,48 +228,45 @@ app.on('ready', function appReady () {
     })
   })
 
-  setTimeout(() => {
-    autoUpdater.checkForUpdatesAndNotify()
-  }, 500)
-
   if (process.platform !== 'darwin') { // TODO System tray on windows (maybe linux)
     // since window-all-closed doesn't fire with our hidden audio process
     player.win.once('closed', () => {
       app.quit()
     })
   }
-})
 
-autoUpdater.on('error', (err) => {
-  console.log(err)
-})
+  setTimeout(() => {
+    autoUpdater.checkForUpdatesAndNotify()
+  }, 500)
 
-autoUpdater.on('checking-for-update', () => {
-  console.log('autoUpdater: Checking for update...')
-})
+  autoUpdater.on('error', (err) => {
+    console.log(err)
+    broadcast('au:error', err)
+  })
 
-autoUpdater.on('update-available', (info) => {
-  console.log(`autoUpdater: Update available!`)
-  console.log(info)
-})
+  autoUpdater.on('checking-for-update', () => {
+    console.log('autoUpdater: Checking for update...')
+    broadcast('au:checking-for-update')
+  })
 
-autoUpdater.on('update-not-available', (info) => {
-  console.log(`autoUpdater: No update available`)
-  console.log(info)
-})
+  autoUpdater.on('update-available', (info) => {
+    console.log(`autoUpdater: Update available!`)
+    broadcast('au:update-available', info)
+  })
 
-autoUpdater.on('update-not-available', (info) => {
-  console.log(`autoUpdater: No update available`)
-  console.log(info)
-})
+  autoUpdater.on('update-not-available', (info) => {
+    console.log(`autoUpdater: No update available`)
+    broadcast('au:update-not-available', info)
+  })
 
-autoUpdater.on('download-progress', (progress) => {
-  console.log(progress)
-})
+  autoUpdater.on('download-progress', (progress) => {
+    broadcast('au:progress', progress)
+  })
 
-autoUpdater.on('update-downloaded', (info) => {
-  console.log(`autoUpdater: Update downloaded`)
-  console.log(info)
+  autoUpdater.on('update-downloaded', (info) => {
+    console.log(`autoUpdater: Update downloaded`)
+    broadcast('au:update-downloaded', info)
+  })
 })
 
 app.on('activate', function activate () {
