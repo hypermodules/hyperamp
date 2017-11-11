@@ -35,6 +35,22 @@ var al = new AudioLibrary(libraryPersist.store)
 module.exports = state
 module.exports.al = al
 
+var shouldQuit = app.makeSingleInstance(function (commandLine, workingDirectory) {
+  // https://github.com/electron/electron/blob/v0.36.10/docs/api/app.md#appmakesingleinstancecallback
+  // Someone tried to run a second instance, we should focus our window.
+  if (player.win) {
+    if (player.win.isMinimized()) player.win.restore()
+    player.win.focus()
+  } else {
+    al.recall()
+    player.init()
+  }
+})
+
+if (shouldQuit) {
+  app.exit()
+}
+
 app.on('ready', function appReady () {
   menu.init()
   audio.init()
@@ -216,7 +232,7 @@ app.on('ready', function appReady () {
     autoUpdater.checkForUpdatesAndNotify()
   }, 500)
 
-  if (process.platform !== 'darwin') {
+  if (process.platform !== 'darwin') { // TODO System tray on windows (maybe linux)
     // since window-all-closed doesn't fire with our hidden audio process
     player.win.once('closed', () => {
       app.quit()
