@@ -1,7 +1,7 @@
 {
   "name": "hyperamp",
   "description": "Indescribable music player",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "author": "Hypermodules (https://github.com/hypermodules)",
   "browserify": {
     "transform": [
