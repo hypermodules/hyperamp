@@ -13,7 +13,7 @@
   <audio id="needle"></audio>
   <script>
     var isDev = require('electron-is-dev')
-    if (!isDev) require('../sentry.js')('audio')
+    if (!isDev) require('../sentry.js')
     require('./audio/index.js')
   </script>
 </body>

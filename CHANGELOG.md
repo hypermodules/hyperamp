@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.6 - 2017-11-11
+* Report auto update errors to sentry
+* Switch to a shared thread sentry for easier importing to unrelated modules
+
 ## 0.5.5 - 2017-11-11
 * Add sentry
 * Expose auto-update events to player

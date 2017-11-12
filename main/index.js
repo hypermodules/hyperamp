@@ -1,6 +1,7 @@
 var isDev = require('electron-is-dev')
+var sentry
 if (!isDev) {
-  require('../sentry')('main')
+  sentry = require('../sentry')
 }
 var { app, ipcMain } = require('electron')
 var Config = require('electron-store')
@@ -246,8 +247,8 @@ app.on('ready', function appReady () {
   }
 
   autoUpdater.on('error', (err) => {
-    console.log(err)
     broadcast('au:error', err)
+    if (sentry) sentry.captureException(err)
   })
 
   autoUpdater.on('checking-for-update', () => {
