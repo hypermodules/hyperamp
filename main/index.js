@@ -1,6 +1,6 @@
 var isDev = require('electron-is-dev')
 if (!isDev) {
-  require('../sentry')()
+  require('../sentry')('main')
 }
 var { app, ipcMain } = require('electron')
 var Config = require('electron-store')

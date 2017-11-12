@@ -8,10 +8,10 @@ var RAVEN_C = '243594'
 var MAIN_THREAD = 'browser'
 var RENDERER = 'renderer'
 
-function getopts (processtype) {
+function getopts (processtype, name) {
   return {
     captureUnhandledRejections: true,
-    name: 'Hyperamp',
+    name: name || 'Hyperamp',
     release: require('./package.json').version,
     extra: {
       platform: os.platform(),
@@ -26,7 +26,7 @@ function getopts (processtype) {
   }
 }
 
-function setup () {
+function setup (name) {
   // process.type === 'browser' : main thread
   // process.type === 'renderer' : electron window
   var raven = process.type === MAIN_THREAD ? require('raven') : require('raven-js')
@@ -54,7 +54,7 @@ The app may now quit - you can safely reopen it.`,
     // Renderer stuff only
   }
 
-  var sentry = raven.config(url, getopts(process.type)).install()
+  var sentry = raven.config(url, getopts(process.type), name).install()
   console.log('Sentry installed')
   return sentry
 }
