@@ -1,3 +1,7 @@
+var isDev = require('electron-is-dev')
+if (!isDev) {
+  require('../sentry')('main')
+}
 var { app, ipcMain } = require('electron')
 var Config = require('electron-store')
 var get = require('lodash.get')
@@ -235,9 +239,11 @@ app.on('ready', function appReady () {
     })
   }
 
-  setTimeout(() => {
-    autoUpdater.checkForUpdatesAndNotify()
-  }, 500)
+  if (!process.env.DEV_SERVER) {
+    setTimeout(() => {
+      autoUpdater.checkForUpdatesAndNotify()
+    }, 500)
+  }
 
   autoUpdater.on('error', (err) => {
     console.log(err)

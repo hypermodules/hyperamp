@@ -11,6 +11,10 @@
   <h1>🎵</h1>
   <audio id="audio"></audio>
   <audio id="needle"></audio>
-  <script>require('./audio/index.js')</script>
+  <script>
+    var isDev = require('electron-is-dev')
+    if (!isDev) require('../sentry.js')('audio')
+    require('./audio/index.js')
+  </script>
 </body>
 </html>
