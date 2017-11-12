@@ -3,7 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.5.5 - 2017-11-10
-* Fix window (and linux?) lifecycle bug
+* Add sentry
+* Expose auto-update events to player
+* Fix windows bugs
+* Prevent multiple instances of the app
+
 
 ## 0.5.4 - 2017-11-10
 * Update choo devtools
