@@ -2,9 +2,9 @@
 
 Experimental audio player built with web technologies ([choo](https://github.com/yoshuawuyts/choo) + [electron](https://github.com/electron/electron)).
 
-Mac/Linux        | Windows      | Version     | IRC
--------------- | ------------ | -------------| ------------
-[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![stability][stability-img]][stability-url] | [![irc][irc-img]][irc-url]
+Mac/Linux      | Windows      | Version      | IRC         | Deps | Dev Deps
+-------------- | ------------ | -------------| ------------| -----|---------
+[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![stability][stability-img]][stability-url] | [![irc][irc-img]][irc-url] | [![dependencies Status](https://david-dm.org/hypermodules/hyperamp/status.svg)](https://david-dm.org/hypermodules/hyperamp) | [![devDependencies Status](https://david-dm.org/hypermodules/hyperamp/dev-status.svg)](https://david-dm.org/hypermodules/hyperamp?type=dev)
 
 
 
@@ -31,7 +31,7 @@ Currently under active development. macOS build coming soon!
 
 ## License
 
-© HYPERMODULES LLC 
+© HYPERMODULES LLC
 [GPLv3](license.md)
 
 [stability-img]: https://img.shields.io/badge/stability-experimental-orange.svg
