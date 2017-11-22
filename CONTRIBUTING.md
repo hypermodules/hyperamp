@@ -1,5 +1,7 @@
 # Contributing Guidelines
 
+Thanks for wanting to help make Hyperamp better! Here are some general guidelines for helping out.
+
 ## Code of Conduct
 
 This project is intended to be a safe, welcoming space for collaboration. All contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct. Thank you for being kind to each other!
@@ -29,7 +31,19 @@ This repository uses [`standard`][standard-url] to maintain code style and consi
 
 ## Developing
 
-Before getting started, make sure to run `npm install`.
+Hyperamp is an experimental audio player built with web technologies ([choo](https://github.com/yoshuawuyts/choo) + [electron](https://github.com/electron/electron)). We recommend getting familiar with JavaScript, HTML, and CSS before jumping into coding.
+
+### Install
+
+This project is a [module party](http://module.party). That just means everything you should need to get it up and running after cloning the repository is summed up by these three lines:
+
+```
+npm install
+npm test
+npm start
+```
+
+**TL;DR:** before getting started, make sure to run `npm install`.
 
 ### Scripts
 
@@ -38,6 +52,15 @@ Before getting started, make sure to run `npm install`.
 - `test` - run all tests
 - `build` - create a test build of the app for debugging purposes
 - `pkg` - package the production version of the app for release
+
+### Directory Structure
+
+- `dist` - this is where the app gets built to when packaging the app
+- `main` - files for the main electron process
+- `renderer` - files for the renderer processes (player & audio)
+- `scripts` - miscellaneous scripts for development tasks
+- `static` - static assets (icons, screenshots, documents, etc.)
+- `test` - files for testing the application
 
 ## Project Governance
 
@@ -49,7 +72,7 @@ Individuals making significant and valuable contributions are given commit acces
 
 There are a few basic ground rules for collaborators:
 
-1. **No `--force` pushes** or modifying the Git history in any way.
+1. **No `--force` pushes to master** or modifying the Git history in any way.
 1. **Non-master branches** ought to be used for ongoing work.
 1. **External API changes and significant modifications** ought to be subject to an **internal pull request** to solicit feedback from other contributors.
 1. Internal pull requests to solicit feedback are *encouraged* for any other non-trivial contribution but left to the discretion of the contributor.

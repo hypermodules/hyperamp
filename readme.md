@@ -1,26 +1,19 @@
-![Hyper Amp](static/splash.jpg)
+<h1 align="center">
+  <br>
+  <a href="https://webtorrent.io">
+    <img src="./static/hyperamp-icon.png" alt="Hyperamp" width="200">
+  </a>
+  <br>
+  Hyperamp
+</h1>
 
-Experimental audio player built with web technologies ([choo](https://github.com/yoshuawuyts/choo) + [electron](https://github.com/electron/electron)).
+<h4 align="center">
+  a humble music player
+  <br>
+  <br>
+</h4>
 
-Mac/Linux      | Windows      | Version      | IRC         | Deps | Dev Deps
--------------- | ------------ | -------------| ------------| -----|---------
-[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![stability][stability-img]][stability-url] | [![irc][irc-img]][irc-url] | [![dependencies Status](https://david-dm.org/hypermodules/hyperamp/status.svg)](https://david-dm.org/hypermodules/hyperamp) | [![devDependencies Status](https://david-dm.org/hypermodules/hyperamp/dev-status.svg)](https://david-dm.org/hypermodules/hyperamp?type=dev)
-
-
-
-## Install
-
-This project is a [module party](http://module.party).
-
-```
-npm install
-npm test
-npm start
-```
-
-Currently under active development. macOS build coming soon!
-
-## Screenshots
+**Hyperamp** is a project by the [hypermodules](https://hypermodul.es/) team to make a simple and free audio player that anyone can improve. We designed it to be fast and compact, with no strings attached to a store or anything else. Here's what it looks like:
 
 <div align="center">
 
@@ -29,9 +22,21 @@ Currently under active development. macOS build coming soon!
 
 </div>
 
+Mac/Linux | Windows | Version | IRC | Deps | Dev Deps
+--------- | ------- | ------- | --- | ---- | --------
+[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![stability][stability-img]][stability-url] | [![irc][irc-img]][irc-url] | [![dependencies Status](https://david-dm.org/hypermodules/hyperamp/status.svg)](https://david-dm.org/hypermodules/hyperamp) | [![devDependencies Status](https://david-dm.org/hypermodules/hyperamp/dev-status.svg)](https://david-dm.org/hypermodules/hyperamp?type=dev)
+
+## Download
+
+See the [releases](https://github.com/hypermodules/hyperamp/releases) page to download the latest version for your platform.
+
+## Contributing
+
+Want to help make Hyperamp better? Great! Head over to the [contributing guidelines](CONTRIBUTING.md) to get started.
+
 ## License
 
-© HYPERMODULES LLC
+© [HYPERMODULES LLC](https://hypermodul.es)
 [GPLv3](license.md)
 
 [stability-img]: https://img.shields.io/badge/stability-experimental-orange.svg
