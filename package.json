@@ -15,7 +15,9 @@
   },
   "build": {
     "appId": "com.hypermodules.hyperamp",
-    "buildResources": "static",
+    "directories": {
+      "buildResources": "static"
+    },
     "mac": {
       "category": "public.app-category.music",
       "target": [
