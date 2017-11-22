@@ -37,7 +37,7 @@ Want to help make Hyperamp better? Great! Head over to the [contributing guideli
 ## License
 
 © [HYPERMODULES LLC](https://hypermodul.es)
-[GPLv3](license.md)
+[GPLv3](LICENSE.md)
 
 [stability-img]: https://img.shields.io/badge/stability-experimental-orange.svg
 [stability-url]: https://nodejs.org/api/documentation.html#documentation_stability_index
