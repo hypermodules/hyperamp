@@ -12,7 +12,7 @@ config.clear()
 console.log('clearing %s', persist.path)
 persist.clear()
 
-console.log('clearning %s', library.path)
+console.log('clearing %s', library.path)
 library.clear()
 
 process.exit(0)
