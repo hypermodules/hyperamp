@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.7 - 2017-12-03
+* Fix range sliders getting stuck in a disabled state (🙏nickpeihl🙏)
+* Disable nanotiming in production
+
 ## 0.5.6 - 2017-11-11
 * Report auto update errors to sentry
 * Switch to a shared thread sentry for easier importing to unrelated modules
