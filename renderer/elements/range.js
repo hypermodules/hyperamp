@@ -41,7 +41,7 @@ class Range extends Component {
     this._onchange = onchange
     this._value = value
     if (className !== undefined) this._className = className
-    if (disabled !== undefined) this._disabled = disabled
+    this._disabled = disabled
 
     return html`
       <input type='range'
@@ -50,14 +50,14 @@ class Range extends Component {
           min='${this._opts.min}'
           max='${this._opts.max}'
           step='${this._opts.step}'
-          disabled=${this._disabled}
+          ${this._disabled ? 'disabled' : ''}
           oninput=${this._handleInput}
           value='${this._value}'>
     `
   }
 
   // Lets mutate!
-  update ({value, onchange, className}) {
+  update ({value, onchange, className, disabled}) {
     assert.equal(typeof onchange, 'function', 'Range: onchange should be a function')
 
     if (this._onchange !== onchange) {
@@ -71,6 +71,14 @@ class Range extends Component {
       // Mutate value changes
       this._value = value
       this.element.value = this._value
+    }
+    if (this._disabled !== disabled) {
+      this._disabled = disabled
+      if (this._disabled) {
+        this.element.setAttribute('disabled', '')
+      } else {
+        this.element.removeAttribute('disabled')
+      }
     }
     return false
   }
