@@ -46,7 +46,7 @@ function concatTrackDict (obj) {
 function parseMetadata (data, cb) {
   var { filepath } = data
   mm.parseFile(filepath, {
-    duration: true,
+    duration: false,
     native: false,
     skipCovers: true
   }).then(meta => {
