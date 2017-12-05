@@ -199,14 +199,16 @@ app.on('ready', function appReady () {
     if (err) return console.warn(err)
     var newState = al.load(newTrackDict)
     if (player.win) player.win.send('track-dict', newState.trackDict, newState.order, state.paths)
-    console.log('done scanning. found ' + Object.keys(newState.trackDict).length + ' tracks')
+    console.timeEnd('update-library')
+    console.log('Done scanning. Found ' + Object.keys(newState.trackDict).length + ' tracks.')
   }
 
   ipcMain.on('update-library', function (ev, paths) {
     if (state.loading) state.loading.destroy()
+    console.log('Updating library with new path(s): ' + paths)
+    console.time('update-library')
     state.paths = paths
     state.loading = makeTrackDict(paths, handleNewTracks)
-    console.log('scanning ' + paths)
     broadcast('loading', true)
   })
 
