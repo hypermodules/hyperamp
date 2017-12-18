@@ -5,6 +5,10 @@ function sort ([keyA, aObj], [keyB, bObj]) {
   // if (aObj.albumartist[0] < bObj.albumartist[0]) return -1
   // if (aObj.albumartist[0] > bObj.albumartist[0]) return 1
 
+  // send tracks with no artist to bottom
+  if (isEmpty(aObj.artist) && !isEmpty(bObj.artist)) return 1
+  if (!isEmpty(aObj.artist) && isEmpty(bObj.artist)) return -1
+
   // sort by artist
   if (aObj.artist < bObj.artist) return -1
   if (aObj.artist > bObj.artist) return 1
@@ -40,6 +44,10 @@ function sort ([keyA, aObj], [keyB, bObj]) {
   if (aObj.filepath > bObj.filepath) return 1
 
   return 0
+}
+
+function isEmpty (val) {
+  return !existy(val) || val === ''
 }
 
 module.exports = sort
