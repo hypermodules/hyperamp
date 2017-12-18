@@ -6,7 +6,7 @@ var document = require('global/document')
 var { formatCount } = require('./lib')
 var { COLUMNS } = require('../../lib/constants')
 var styles = require('./styles')
-const { Menu, MenuItem, getCurrentWindow } = require('electron').remote
+const { Menu, MenuItem, getCurrentWindow, shell } = require('electron').remote
 
 var OFFSET_BUFFER = 50
 
@@ -152,7 +152,10 @@ class TrackView extends Component {
     })
 
     return html`
-      <tr id="track-${idx + this.sliceStartIndex}" data-key=${key} class=${classes}>
+      <tr id="track-${idx + this.sliceStartIndex}"
+        data-key=${key}
+        class=${classes}
+        oncontextmenu=${trackMenu(track.filepath)}>
         ${columns.map(col => html`
           <td class=${styles[col]}>${meta[col]}</td>
         `)}
@@ -286,6 +289,19 @@ function shouldColumnsUpdate (cols, newCols) {
 
 function capitalize (string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+function trackMenu (filepath) {
+  return function onTrackContextMenu (event) {
+    event.preventDefault()
+    const menu = new Menu()
+    menu.append(new MenuItem({
+      // TODO: show appropriate labels for windows & linux
+      label: 'Reveal in Finder',
+      click: () => shell.showItemInFolder(filepath)
+    }))
+    menu.popup(getCurrentWindow())
+  }
 }
 
 module.exports = TrackView
