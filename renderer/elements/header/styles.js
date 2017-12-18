@@ -18,6 +18,7 @@ module.exports = css`
   .rightCluster { margin-left: auto }
 
   .searchInput {
+    -webkit-app-region: no-drag;
     width: 100%;
     padding: 1px 5px;
     vertical-align: middle;
