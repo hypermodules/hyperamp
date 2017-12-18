@@ -52,6 +52,7 @@
     "electron-updater": "^2.16.2",
     "electron-window-state": "^4.0.2",
     "entypo": "^2.1.0",
+    "existy": "^1.0.1",
     "file-url": "^2.0.2",
     "flush-write-stream": "^1.0.2",
     "folder-walker": "^3.0.0",
