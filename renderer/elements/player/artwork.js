@@ -2,7 +2,7 @@ var html = require('choo/html')
 var Component = require('nanocomponent')
 var fileUrlFromPath = require('file-url')
 var path = require('path')
-var defaultBG = path.resolve(window.__dirname, '../static/splash.jpg')
+var defaultBG = path.resolve(window.__dirname, '../static/default-artwork.png')
 var compare = require('nanocomponent/compare')
 var css = require('csjs-inject')
 

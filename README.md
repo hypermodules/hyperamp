@@ -1,7 +1,7 @@
 <h1 align="center">
   <br>
   <a href="https://webtorrent.io">
-    <img src="./static/hyperamp-icon.png" alt="Hyperamp" width="200">
+    <img src="./docs/hyperamp-icon.png" alt="Hyperamp" width="200">
   </a>
   <br>
   Hyperamp
@@ -17,8 +17,8 @@
 
 <div align="center">
 
-![](static/screenshot.png)
-![](static/screenshot-2.png)
+![](docs/screenshot.png)
+![](docs/screenshot-2.png)
 
 </div>
 

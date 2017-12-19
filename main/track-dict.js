@@ -4,6 +4,7 @@ var mm = require('music-metadata')
 var writer = require('flush-write-stream')
 var filter = require('through2-filter')
 var pump = require('pump')
+var log = require('electron-log')
 var validExtensions = ['m4a', 'mp3', 'ogg']
 
 module.exports = makeTrackDict
@@ -17,7 +18,7 @@ function makeTrackDict (paths, cb) {
 
   function handleEos (err) {
     if (err) return cb(err)
-    console.log('')
+    log.info('')
     cb(null, newTrackDict)
   }
 }
@@ -31,7 +32,7 @@ function isValidFile (data, enc, cb) {
 
 function concatTrackDict (obj) {
   function writeTrackDict (data, enc, cb) {
-    console.log(`Scanning ${data.filepath}`)
+    log.info(`Scanning ${data.filepath}`)
     parseMetadata(data, handleMeta)
 
     function handleMeta (err, meta) {
@@ -82,7 +83,7 @@ function parseMetadata (data, cb) {
     })
   }).catch(err => {
     // Ignore errors
-    console.log(err.message += ` (file: ${filepath})`)
+    log.info(err.message += ` (file: ${filepath})`)
     var { basename } = data
     var ext = path.extname(basename)
     var title = path.basename(basename, ext)
