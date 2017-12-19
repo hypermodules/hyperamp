@@ -5,8 +5,35 @@ var Component = require('nanocomponent')
 var Search = require('./search')
 var button = require('../button')
 var config = remote.require('./config.js')
-var buttonStyles = require('../button/styles')
-var styles = require('./styles')
+var css = require('csjs-inject')
+
+const styles = css`
+  .toolbar {
+    -webkit-app-region: drag;
+    height: 40px;
+    padding: 0 .5em 0 6.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .toolbarLeft, .toolbarRight {
+    display: flex;
+    align-items: center;
+  }
+  .toolbarLeft { flex: 1 }
+  .toolbarRight {
+    font-size: 1.5em;
+    margin-left: auto;
+  }
+
+  @keyframes ckw {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
+  }
+
+  .spin { animation: ckw 4s infinite linear }
+`
 
 class Header extends Component {
   constructor (opts) {
@@ -73,20 +100,18 @@ class Header extends Component {
 
     return html`
       <header class="${styles.toolbar}">
-        <div class="${styles.leftCluster}">
+        <div class="${styles.toolbarLeft}">
           ${this.searchComp.render({
             onchange: this.handleSearch,
             value: this.search
           })}
         </div>
-        <div class="${styles.rightCluster}">
-          <div class="${buttonStyles.btnGroup}">
-            ${button({
-              className: this.loading ? styles.spin : null,
-              onclick: this.handleAddButton,
-              iconName: 'entypo-plus'
-            })}
-          </div>
+        <div class="${styles.toolbarRight}">
+          ${button({
+            className: this.loading ? styles.spin : null,
+            onclick: this.handleAddButton,
+            iconName: this.loading ? 'entypo-cog' : 'entypo-folder-music'
+          })}
         </div>
       </header>
     `
