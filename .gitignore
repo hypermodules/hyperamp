@@ -41,7 +41,7 @@ jspm_packages
 .node_repl_history
 
 # Our stuff
-renderer/dist/*
+renderer/**/bundle.js
 
 !.keep
 
