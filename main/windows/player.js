@@ -1,4 +1,4 @@
-var { BrowserWindow } = require('electron')
+var { BrowserWindow, app } = require('electron')
 var windowStateKeeper = require('electron-window-state')
 var path = require('path')
 var PLAYER_WINDOW = 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'player', 'index.html')
@@ -38,4 +38,11 @@ function init () {
   win.on('closed', () => {
     player.win = null
   })
+
+  if (process.platform !== 'darwin') { // TODO System tray on windows (maybe linux)
+    // since window-all-closed doesn't fire with our hidden audio process
+    player.win.once('closed', () => {
+      app.quit()
+    })
+  }
 }
