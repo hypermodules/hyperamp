@@ -1,7 +1,7 @@
 var Component = require('nanocomponent')
-var html = require('choo/html')
 var button = require('../button')
-var bts = require('../button/styles')
+var buttonGroup = require('../button/button-group')
+var buttonStyles = require('../button/styles')
 var css = require('csjs-inject')
 
 var styles = css`
@@ -53,27 +53,27 @@ class PlayerControls extends Component {
     this.playing = playing
     this.shuffling = shuffling
 
-    return html`
-      <div class=${styles.controls} ${bts.btnGroup}>
-        ${button({
+    return buttonGroup({ className: styles.controls },
+      [
+        button({
           onclick: this.handlePrev,
           iconName: 'entypo-controller-fast-backward'
-        })}
-        ${button({
+        }),
+        button({
           onclick: this.handlePlayPause,
           iconName: `entypo-controller-${this.playing ? 'paus' : 'play'}`
-        })}
-        ${button({
+        }),
+        button({
           onclick: this.handleNext,
           iconName: 'entypo-controller-fast-forward'
-        })}
-        ${button({
+        }),
+        button({
           onclick: this.shuffleToggle,
           iconName: 'entypo-shuffle',
-          className: shuffling ? bts.active : null
-        })}
-      </div>
-  `
+          className: shuffling ? buttonStyles.active : null
+        })
+      ]
+    )
   }
 
   update (state, emit) {
