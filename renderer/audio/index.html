@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>HyperAmp Audio</title>
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="../shared/css/index.css">
   <style>
     h1 { text-align: center }
   </style>
@@ -13,8 +13,8 @@
   <audio id="needle"></audio>
   <script>
     var isDev = require('electron-is-dev')
-    if (!isDev) require('../lib/sentry.js')
-    require('./audio/index.js')
+    if (!isDev) require('../../lib/sentry.js')
+    require('./index.js')
   </script>
 </body>
 </html>

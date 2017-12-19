@@ -19,8 +19,7 @@
       "lib/",
       "main/",
       "node_modules/",
-      "renderer/",
-      "static/"
+      "renderer/"
     ],
     "mac": {
       "category": "public.app-category.music",
@@ -127,23 +126,23 @@
   },
   "scripts": {
     "build": "run-s clean build:*",
-    "build:assets": "browserify --no-bundle-external --debug renderer/index.js -o renderer/dist/bundle.js",
+    "build:assets": "browserify --no-bundle-external --debug renderer/player/index.js -o renderer/dist/bundle.js",
     "build:electron": "build --dir",
     "clean": "rimraf dist renderer/dist && mkdirp dist renderer/dist",
     "clear": "electron scripts/clear.js",
     "pkg": "run-s clean pkg:*",
-    "pkg:assets": "browserify --no-bundle-external -g unassertify -p common-shakeify -p bundle-collapser/plugin --debug renderer/index.js -o renderer/dist/bundle.js",
+    "pkg:assets": "browserify --no-bundle-external -g unassertify -p common-shakeify -p bundle-collapser/plugin --debug renderer/player/index.js -o renderer/dist/bundle.js",
     "pkg:electron": "build",
     "prod": "ELECTRON_IS_DEV=0 DEV_SERVER=1 npm start",
     "start": "run-s watch",
     "test": "run-s test:*",
     "test-skip:tape": "xvfb-maybe tape test/* | tap-format-spec",
-    "test:deps": "dependency-check ./package.json --entry renderer/index.js --no-dev --ignore-module electron",
+    "test:deps": "dependency-check ./package.json --entry renderer/player/index.js --no-dev --ignore-module electron",
     "test:lint": "standard | snazzy",
     "test:main": "tape main/lib/**/test.js | tap-format-spec",
     "test:renderer": "tape renderer/**/test.js | tap-format-spec",
     "watch": "run-s clean && run-p watch:*",
     "watch:electron": "electron main",
-    "watch:js": "budo renderer/index.js:bundle.js -- --no-bundle-external"
+    "watch:js": "budo renderer/player/index.js:bundle.js -- --no-bundle-external"
   }
 }

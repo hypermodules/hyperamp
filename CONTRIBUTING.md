@@ -60,7 +60,6 @@ These directories are included in the packaged application.
 - `lib` - files shared by `main` and `renderer`
 - `main` - files for the main electron process
 - `renderer` - files for the renderer processes (player & audio)
-- `static` - static assets to be included with the build
 
 #### Excluded from Build
 
