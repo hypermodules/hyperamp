@@ -6,6 +6,7 @@ var ipcLogger = require('electron-ipc-log')
 
 ipcLogger(event => {
   var { channel, data, sent, sync } = event
+  if (channel === 'timeupdate') return
   var args = [sent ? '⬆️' : '⬇️', channel, ...data]
   if (sync) args.unshift('sync')
   ipcLog.info(...args)

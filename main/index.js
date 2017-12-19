@@ -22,6 +22,7 @@ var log = require('electron-log')
 
 ipcLogger(event => {
   var { channel, data } = event
+  if (channel === 'timeupdate') return
   log.info('✨  ipc', channel, ...data)
 })
 
