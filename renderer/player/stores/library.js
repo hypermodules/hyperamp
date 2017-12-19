@@ -1,7 +1,7 @@
-var ipcRenderer = require('electron').ipcRenderer
+var { ipcRenderer } = require('electron')
 var mousetrap = require('mousetrap')
 var { COLUMNS } = require('../lib/constants')
-var trackView = require('../pages/main').playlist.trackView
+var { trackView } = require('../pages/main').playlist
 
 window.trackView = trackView
 

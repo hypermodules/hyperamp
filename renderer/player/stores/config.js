@@ -1,6 +1,5 @@
-var electron = require('electron')
-var config = electron.remote.require('./config.js')
-var ipcRenderer = electron.ipcRenderer
+var { ipcRenderer, remote } = require('electron')
+var config = remote.require('./config.js')
 var mutate = require('xtend/mutable')
 
 function configStore (state, emitter) {

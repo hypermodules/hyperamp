@@ -1,6 +1,6 @@
 var { ipcRenderer } = require('electron')
 var mousetrap = require('mousetrap')
-var trackView = require('../pages/main').playlist.trackView
+var { trackView } = require('../pages/main').playlist
 
 module.exports = playerStore
 

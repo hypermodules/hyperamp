@@ -1,5 +1,5 @@
 var choo = require('choo')
-var ipcRenderer = require('electron').ipcRenderer
+var { ipcRenderer } = require('electron')
 var ipcLog = require('nanologger')('ipc')
 var app = window.hyperamp = choo()
 var ipcLogger = require('electron-ipc-log')
