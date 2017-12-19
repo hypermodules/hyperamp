@@ -1,3 +1,5 @@
+// NOTE: this page is not currently in use
+
 var html = require('choo/html')
 var Header = require('../elements/header')
 var button = require('../elements/button')
