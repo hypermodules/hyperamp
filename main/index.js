@@ -1,7 +1,7 @@
 var isDev = require('electron-is-dev')
 var sentry
 if (!isDev) {
-  sentry = require('../sentry')
+  sentry = require('../lib/sentry')
 }
 var { app, ipcMain } = require('electron')
 var Config = require('electron-store')
@@ -18,10 +18,11 @@ var AudioLibrary = require('./lib/audio-library')
 var ipcLogger = require('electron-ipc-log')
 var globalShortcuts = new GlobalShortcuts()
 var autoUpdater = require('electron-updater').autoUpdater
+var log = require('electron-log')
 
 ipcLogger(event => {
   var { channel, data } = event
-  console.log('✨  ipc', channel, ...data)
+  log.info('✨  ipc', channel, ...data)
 })
 
 var persist = new Config({ name: 'hyperamp-persist' })
@@ -86,7 +87,7 @@ app.on('ready', function appReady () {
 
   function queue (ev, newIndex) {
     var newTrack = al.queue(newIndex)
-    console.log(newTrack)
+    log.info(newTrack)
     broadcast('new-track', newTrack)
     if (player.win) {
       player.win.send('new-index', al.index)
@@ -103,7 +104,7 @@ app.on('ready', function appReady () {
   }
 
   function handleGetPath (err, blobPath) {
-    if (err) return console.error(err)
+    if (err) return log.error(err)
     al.currentTrack.artwork = blobPath
     if (player.win) {
       player.win.send('new-track', al.currentTrack)
@@ -196,16 +197,16 @@ app.on('ready', function appReady () {
   function handleNewTracks (err, newTrackDict) {
     state.loading = false
     broadcast('loading', false)
-    if (err) return console.warn(err)
+    if (err) return log.warn(err)
     var newState = al.load(newTrackDict)
     if (player.win) player.win.send('track-dict', newState.trackDict, newState.order, state.paths)
     console.timeEnd('update-library')
-    console.log('Done scanning. Found ' + Object.keys(newState.trackDict).length + ' tracks.')
+    log.info('Done scanning. Found ' + Object.keys(newState.trackDict).length + ' tracks.')
   }
 
   ipcMain.on('update-library', function (ev, paths) {
     if (state.loading) state.loading.destroy()
-    console.log('Updating library with new path(s): ' + paths)
+    log.info('Updating library with new path(s): ' + paths)
     console.time('update-library')
     state.paths = paths
     state.loading = makeTrackDict(paths, handleNewTracks)
@@ -254,17 +255,17 @@ app.on('ready', function appReady () {
   })
 
   autoUpdater.on('checking-for-update', () => {
-    console.log('autoUpdater: Checking for update...')
+    log.info('autoUpdater: Checking for update...')
     broadcast('au:checking-for-update')
   })
 
   autoUpdater.on('update-available', (info) => {
-    console.log(`autoUpdater: Update available!`)
+    log.info(`autoUpdater: Update available!`)
     broadcast('au:update-available', info)
   })
 
   autoUpdater.on('update-not-available', (info) => {
-    console.log(`autoUpdater: No update available`)
+    log.info(`autoUpdater: No update available`)
     broadcast('au:update-not-available', info)
   })
 
@@ -273,7 +274,7 @@ app.on('ready', function appReady () {
   })
 
   autoUpdater.on('update-downloaded', (info) => {
-    console.log(`autoUpdater: Update downloaded`)
+    log.info(`autoUpdater: Update downloaded`)
     broadcast('au:update-downloaded', info)
   })
 })
@@ -296,7 +297,7 @@ app.on('before-quit', function beforeQuit (e) {
   app.isQuitting = true
   e.preventDefault()
   setTimeout(function () {
-    console.error('Saving state took too long. Quitting.')
+    log.error('Saving state took too long. Quitting.')
     app.quit()
   }, 5000) // quit after 5 secs, at most
   persist.set({
@@ -308,5 +309,5 @@ app.on('before-quit', function beforeQuit (e) {
 })
 
 process.on('uncaughtException', (err) => {
-  console.log(err)
+  log.info(err)
 })

@@ -55,11 +55,21 @@ npm start
 
 ### Directory Structure
 
-- `dist` - this is where the app gets built to when packaging the app
+These directories are included in the packaged application.
+
+- `lib` - files shared by `main` and `renderer`
 - `main` - files for the main electron process
 - `renderer` - files for the renderer processes (player & audio)
+- `static` - static assets to be included with the build
+
+#### Excluded from Build
+
+These directories are **not** included in the packaged application.
+
+- `build` - build resources for `electron-builder`
+- `dist` - this is where the app gets built to when packaging the app
+- `docs` - any files related to documentation
 - `scripts` - miscellaneous scripts for development tasks
-- `static` - static assets (icons, screenshots, documents, etc.)
 - `test` - files for testing the application
 
 ## Project Governance

@@ -15,9 +15,13 @@
   },
   "build": {
     "appId": "com.hypermodules.hyperamp",
-    "directories": {
-      "buildResources": "static"
-    },
+    "files": [
+      "lib/",
+      "main/",
+      "node_modules/",
+      "renderer/",
+      "static/"
+    ],
     "mac": {
       "category": "public.app-category.music",
       "target": [
@@ -48,6 +52,7 @@
     "electron-default-menu": "^1.0.1",
     "electron-ipc-log": "^3.0.0",
     "electron-is-dev": "^0.3.0",
+    "electron-log": "^2.2.12",
     "electron-store": "^1.1.0",
     "electron-updater": "^2.16.2",
     "electron-window-state": "^4.0.2",

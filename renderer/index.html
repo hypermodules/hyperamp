@@ -8,7 +8,7 @@
   <main id="app"></main>
   <script>
     var isDev = require('electron-is-dev')
-    if (!isDev) window.raven = require('../sentry.js')
+    if (!isDev) window.raven = require('../lib/sentry.js')
     if (isDev || process.env.DEV_SERVER) {
       var bundle = document.createElement('script')
       bundle.src = 'http://localhost:9966/bundle.js'
