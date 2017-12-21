@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.8 - 2017-12-21
+* Disable slow duration extraction.  Some songs may lack a duration but this will avoid slow metadata extraction.  We have a solution that is almost done to alleviate this issue, hold tight.
+* Better library scan timing.
+* Search header is now selectable and wont drag the window.
+* feat(playlist): add "Reveal in Finder" context menu option to tracks
+* fix(scanning): uncaught TypeError from missing "no" prop (#289)
+* fix(sort): send tracks with no artist to bottom
+* refactor(log): ignore timeupdate channel
+* update add button, refactor button groups
+* Fix missing artwork due to a build regression
+
 ## 0.5.7 - 2017-12-03
 * Fix range sliders getting stuck in a disabled state (🙏nickpeihl🙏)
 * Disable nanotiming in production
