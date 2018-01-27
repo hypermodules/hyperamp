@@ -89,7 +89,7 @@
     "common-shakeify": "^0.4.4",
     "concat-stream": "^1.6.0",
     "dependency-check": "^2.8.0",
-    "electron": "1.7.10",
+    "electron": "1.7.11",
     "electron-builder": "^19.45.5",
     "electron-renderify": "0.0.2",
     "envify": "^4.1.0",
