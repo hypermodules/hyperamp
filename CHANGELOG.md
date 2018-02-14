@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.10 - 2018-02-14
+* Update internal deps:
+  * Update music-metadata@0.9.2
+  * Update pump@3.0.0
+  * Update browserify@16.1.0
+  * Update electron@1.8.2
+  * Update electron-builder@20.0.4
+
+## 0.5.9 - 2018-01-27
+* Update electron due to security fixes
+
 ## 0.5.8 - 2017-12-21
 * Disable slow duration extraction.  Some songs may lack a duration but this will avoid slow metadata extraction.  We have a solution that is almost done to alleviate this issue, hold tight.
 * Better library scan timing.
