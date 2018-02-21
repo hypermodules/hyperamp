@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://webtorrent.io">
+  <a href="https://hypermodul.es">
     <img src="./docs/hyperamp-icon.png" alt="Hyperamp" width="200">
   </a>
   <br>
