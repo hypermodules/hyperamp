@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.11 - 2018-02-23
+
+### Fixes
+* **menu**: do not strip "bugs" from package (#304) (#305)
+  * fixed by bumping electron-builder@20.0.8
+
 ## 0.5.10 - 2018-02-14
 * Update internal deps:
   * Update music-metadata@0.9.2
