@@ -52,6 +52,7 @@ npm start
 - `test` - run all tests
 - `build` - create a test build of the app for debugging purposes
 - `pkg` - package the production version of the app for release
+- `release` - create a new release
 
 ### Directory Structure
 
@@ -70,6 +71,20 @@ These directories are **not** included in the packaged application.
 - `docs` - any files related to documentation
 - `scripts` - miscellaneous scripts for development tasks
 - `test` - files for testing the application
+
+### Release Process
+
+1. Ensure all tests are passing.
+1. Create the new version section in `CHANGELOG.md`.
+1. Bump the version in `package.json`. Should match the version you just created in `CHANGELOG.md`.
+1. Run `npm run release`. This will create a github release draft.
+1. Travis-CI (for Linux and Mac) and Appveyor (for Windows) will start uploading builds to the release draft.
+1. Wait for uploads to finish. Check that everything worked during build by checking CI logs.
+1. Make sure tag format is `vX.X.X` (auto-update is picky about URL names).
+1. Publish the draft.
+1. Clients will automatically download the new version next time they start.
+
+Our release process is based on [electron-builder](https://github.com/electron-userland/electron-builder)'s [Recommended GitHub Releases Workflow](https://github.com/electron-userland/electron-builder/blob/master/docs/configuration/publish.md#recommended-github-releases-workflow).
 
 ## Project Governance
 
