@@ -90,7 +90,7 @@
     "concat-stream": "^1.6.0",
     "dependency-check": "^3.0.0",
     "electron": "1.8.2",
-    "electron-builder": "20.0.4",
+    "electron-builder": "20.0.8",
     "electron-renderify": "0.0.2",
     "envify": "^4.1.0",
     "is-buffer": "^2.0.0",
