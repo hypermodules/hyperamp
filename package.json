@@ -28,7 +28,8 @@
       ]
     },
     "linux": {
-      "category": "Audio"
+      "category": "Audio",
+      "target": "AppImage"
     },
     "nsis": {
       "perMachine": true
