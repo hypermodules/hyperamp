@@ -10,7 +10,8 @@ const COLUMNS = new Set([
   'album',
   'track',
   'disk',
-  'year'
+  'year',
+  'genre'
 ])
 
 module.exports = {
