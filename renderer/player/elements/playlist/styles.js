@@ -74,5 +74,6 @@ module.exports = css`
   .mediaList .track { width: 4em }
   .mediaList .disk { width: 4em }
   .mediaList .year { width: 4em }
+  .mediaList .genre { width: 4em }
   .playing { font-weight: 500 }
 `

@@ -157,7 +157,7 @@ class TrackView extends Component {
         class=${classes}
         oncontextmenu=${trackMenu(track.filepath)}>
         ${columns.map(col => html`
-          <td class=${styles[col]}>${meta[col]}</td>
+          <td class=${styles[col]}>${arrToStr(meta[col])}</td>
         `)}
       </tr>
     `
@@ -302,6 +302,11 @@ function trackMenu (filepath) {
     }))
     menu.popup(getCurrentWindow())
   }
+}
+
+function arrToStr (arr) {
+  if (Array.isArray(arr)) return arr.join(', ')
+  return arr
 }
 
 module.exports = TrackView
