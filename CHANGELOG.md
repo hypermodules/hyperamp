@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.13 - 2018-03-06
+
+### Features
+* add genre to columns & search (#307) (#309)
+
 ## 0.5.12 - 2018-03-03
 
 ### Fixes
