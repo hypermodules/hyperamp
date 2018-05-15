@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.14 - 2018-05-15
+* Update deps
+  * `bl@2.0.0`
+  * `music-metadata@0.11.5`
+  * `electron@2.0.0`
+  * `electron-builder@20.13.4`
+  * `electron-updater@2.21.10`
+  * `standard@11.0.1`
+
 ## 0.5.13 - 2018-03-06
 
 ### Features

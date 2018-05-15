@@ -22,7 +22,7 @@ function init () {
     height: player.windowState.height,
     minWidth: 580,
     minHeight: 76,
-    titleBarStyle: 'hidden-inset',
+    titleBarStyle: 'hiddenInset',
     useContentSize: true,
     show: false,
     backgroundColor: '#fff',
