@@ -40,10 +40,10 @@ function preferences (state, emit) {
                     readonly="true">
               </div>
             </form>
-            ${button({
+            ${button({/* eslint-disable indent */
               onclick: () => emit('pushState', '#'),
               iconName: 'entypo-chevron-left'
-            }, 'Back')}
+            }, 'Back')/* eslint-disable indent */}
           </div>
         </div>
       </div>

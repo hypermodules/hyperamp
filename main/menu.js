@@ -29,8 +29,8 @@ viewMenu.splice(1, 0, {
 viewMenu.push({
   label: 'Show Audio Process',
   accelerator: process.platform === 'darwin'
-            ? 'Alt+Command+P'
-            : 'Ctrl+Shift+P',
+    ? 'Alt+Command+P'
+    : 'Ctrl+Shift+P',
   click: () => audio.toggleDevTools()
 })
 

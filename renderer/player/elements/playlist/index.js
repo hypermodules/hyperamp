@@ -22,9 +22,9 @@ class Playlist extends Component {
     return html`
       <div class="${styles.playlist}">
         ${this.header.render(state, emit)}
-        ${this.loading
+        ${this.loading /* eslint-disable indent */
           ? loader()
-          : this.trackView.render(state, emit)}
+          : this.trackView.render(state, emit)/* eslint-enable indent */}
       </div>
     `
   }

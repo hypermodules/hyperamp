@@ -62,12 +62,12 @@ class Meta extends Component {
         ${this.artwork.render(track.artwork)}
 
         <div class=${styles.meta} onclick=${this.handleClick}>
-          ${artist != null && artist !== '' && artist.length > 0
+          ${artist != null && artist !== '' && artist.length > 0 /* eslint-disable indent */
             ? html`<div class=${styles.artist}>${Array.isArray(artist) ? artist.join(', ') : artist}</div>`
-            : ''}
-          ${title != null
+            : ''/* eslint-enable indent */}
+          ${title != null/* eslint-disable indent */
             ? html`<div class=${styles.title}>${title}</div>`
-            : html`<div>No Track Selected</div>`}
+            : html`<div>No Track Selected</div>`/* eslint-enable indent */} 
         </div>
       </div>
     `

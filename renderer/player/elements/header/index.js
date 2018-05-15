@@ -101,17 +101,17 @@ class Header extends Component {
     return html`
       <header class="${styles.toolbar}">
         <div class="${styles.toolbarLeft}">
-          ${this.searchComp.render({
+          ${this.searchComp.render({ /* eslint-disable indent */
             onchange: this.handleSearch,
             value: this.search
-          })}
+          })/* eslint-enable indent */}
         </div>
         <div class="${styles.toolbarRight}">
-          ${button({
+          ${button({ /* eslint-disable indent */
             className: this.loading ? styles.spin : null,
             onclick: this.handleAddButton,
             iconName: this.loading ? 'entypo-cog' : 'entypo-folder-music'
-          })}
+          })/* eslint-enable indent */}
         </div>
       </header>
     `

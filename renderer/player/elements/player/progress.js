@@ -95,14 +95,14 @@ class Progress extends Component {
     return html`
       <div class=${styles.progress}>
         <div class=${styles.time}>${fd(this.position * 1000)}</div>
-        ${button({ className: styles.range },
+        ${button({ className: styles.range }, /* eslint-disable indent */
           this.positionSlider.render({
             onchange: this.handleSeek,
             value: currentTrack ? this.scalePosition(this.position, currentTrack.duration) : 0,
             className: styles.scrubber,
             disabled: this.disabled
           })
-        )}
+        )/* eslint-enable indent */}
         <div class=${styles.time}>${fd(this.duration * 1000)}</div>
       </div>
     `
