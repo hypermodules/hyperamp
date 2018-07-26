@@ -1,13 +1,17 @@
 var { BrowserWindow, app } = require('electron')
 var windowStateKeeper = require('electron-window-state')
 var path = require('path')
+var log = require('electron-log')
 var PLAYER_WINDOW = 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'player', 'index.html')
 
 var player = module.exports = {
   init,
+  toggleAlwaysOnTop,
   win: null,
   windowState: null
 }
+
+var alwaysOnTop = false
 
 require('electron-debug')({ showDevTools: 'undocked' })
 require('electron-context-menu')()
@@ -26,7 +30,8 @@ function init () {
     useContentSize: true,
     show: false,
     backgroundColor: '#fff',
-    thickFrame: true
+    thickFrame: true,
+    alwaysOnTop: alwaysOnTop
   })
 
   player.windowState.manage(win)
@@ -44,5 +49,17 @@ function init () {
     player.win.once('closed', () => {
       app.quit()
     })
+  }
+}
+
+function toggleAlwaysOnTop () {
+  if (!player.win) return
+  log.info('[PLAYER] Toggling Always on Top')
+  if (player.win.isAlwaysOnTop()) {
+    alwaysOnTop = false
+    player.win.setAlwaysOnTop(alwaysOnTop)
+  } else {
+    alwaysOnTop = true
+    player.win.setAlwaysOnTop(alwaysOnTop)
   }
 }
