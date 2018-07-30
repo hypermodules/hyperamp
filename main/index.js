@@ -1,5 +1,6 @@
 var isDev = require('electron-is-dev')
-var { app, ipcMain } = require('electron')
+var electron = require('electron')
+var { app, ipcMain } = electron
 var Config = require('electron-store')
 var get = require('lodash.get')
 var xtend = require('xtend')
@@ -75,6 +76,11 @@ app.on('ready', function appReady () {
     MediaNextTrack: next,
     MediaPreviousTrack: prev,
     MediaPlayPause: playPause
+  })
+
+  electron.powerMonitor.on('resume', function pauseOnWake () {
+    log.info('Waking from sleep')
+    ipcMain.emit('pause')
   })
 
   // register IPC handlers
