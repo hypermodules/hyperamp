@@ -1,6 +1,7 @@
 var { app, shell, Menu } = require('electron')
 var defaultMenu = require('electron-default-menu')
 var audio = require('./windows/audio')
+var player = require('./windows/player')
 var pkg = require('../package.json')
 
 module.exports = {
@@ -32,6 +33,12 @@ viewMenu.push({
     ? 'Alt+Command+P'
     : 'Ctrl+Shift+P',
   click: () => audio.toggleDevTools()
+})
+
+viewMenu.push({
+  label: 'Always On Top',
+  type: 'checkbox',
+  click: () => player.toggleAlwaysOnTop()
 })
 
 helpMenu[0] = {
