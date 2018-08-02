@@ -78,8 +78,8 @@ app.on('ready', function appReady () {
     MediaPlayPause: playPause
   })
 
-  electron.powerMonitor.on('resume', function pauseOnWake () {
-    log.info('Waking from sleep')
+  electron.powerMonitor.on('suspend', function pauseOnWake () {
+    log.info('Entering sleep, pausing')
     ipcMain.emit('pause')
   })
 
