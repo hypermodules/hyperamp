@@ -66,7 +66,7 @@ if (shouldQuit) {
   app.exit()
 }
 
-app.commandLine.appendSwitch('no-user-gesture-required')
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required')
 
 app.on('ready', function appReady () {
   menu.init()
