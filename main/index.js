@@ -50,8 +50,14 @@ var al = new AudioLibrary(libraryPersist.store)
 module.exports = state
 module.exports.al = al
 
-var shouldQuit = app.makeSingleInstance(function (commandLine, workingDirectory) {
-  // https://github.com/electron/electron/blob/v0.36.10/docs/api/app.md#appmakesingleinstancecallback
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+  app.quit()
+}
+
+app.on('second-instance', (commandLine, workingDirectory) => {
+  //
   // Someone tried to run a second instance, we should focus our window.
   if (player.win) {
     if (player.win.isMinimized()) player.win.restore()
@@ -62,9 +68,7 @@ var shouldQuit = app.makeSingleInstance(function (commandLine, workingDirectory)
   }
 })
 
-if (shouldQuit) {
-  app.exit()
-}
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required')
 
 app.on('ready', function appReady () {
   menu.init()

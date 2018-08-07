@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.6.1 - 2018-08-02
+- Upgrade to electron 3
+- Add CSP to harden electron environment
+
+## 0.6.0 - 2018-08-02
+- Pause playback when entering sleep https://github.com/hypermodules/hyperamp/pull/314
+- add always-on-top view menu item https://github.com/hypermodules/hyperamp/pull/313
+- update deps
+  - "electron-context-menu": "^0.10.0",
+  - "electron-updater": "3.0.3",
+  - "music-metadata": "^2.4.2",
+  - "through2-filter": "^3.0.0",
+  - "electron": "2.0.6",
+  - "electron-builder": "20.26.1",
+
 ## 0.5.15 - 2018-05-22
 * Update deps
   * "electron": "2.0.2",

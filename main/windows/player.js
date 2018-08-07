@@ -31,7 +31,10 @@ function init () {
     show: false,
     backgroundColor: '#fff',
     thickFrame: true,
-    alwaysOnTop: alwaysOnTop
+    alwaysOnTop: alwaysOnTop,
+    contextIsolation: true,
+    nodeIntegration: false,
+    webSecurity: true
   })
 
   player.windowState.manage(win)
