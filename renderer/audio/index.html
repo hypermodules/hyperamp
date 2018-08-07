@@ -6,15 +6,12 @@
   <style>
     h1 { text-align: center }
   </style>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
 </head>
 <body>
   <h1>🎵</h1>
   <audio id="audio"></audio>
   <audio id="needle"></audio>
-  <script>
-    var isDev = require('electron-is-dev')
-    if (!isDev) require('../../lib/sentry.js')
-    require('./index.js')
-  </script>
+  <script src="./loader.js"></script>
 </body>
 </html>

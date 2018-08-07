@@ -23,7 +23,10 @@ function init () {
     show: false,
     skipTaskbar: true,
     useContentSize: true,
-    width: 200
+    width: 200,
+    contextIsolation: true,
+    nodeIntegration: false,
+    webSecurity: true
   })
 
   win.loadURL(AUDIO_WINDOW)
