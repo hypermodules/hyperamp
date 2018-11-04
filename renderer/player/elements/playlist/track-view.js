@@ -49,7 +49,7 @@ class TrackView extends Component {
   }
 
   get bottomVisibleRowIndex () {
-    var {clientHeight} = this.element
+    var { clientHeight } = this.element
     return Math.floor(clientHeight / this.rowHeight) + this.topVisibleRowIndex
   }
 

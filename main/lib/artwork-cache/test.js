@@ -1,5 +1,5 @@
 var test = require('tape')
-var {artwork} = require('./util')
+var { artwork } = require('./util')
 var path = require('path')
 var concatStream = require('concat-stream')
 var isBuffer = require('is-buffer')

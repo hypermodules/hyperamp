@@ -161,7 +161,7 @@ function libraryStore (state, emitter) {
     trackView.scrollCurrent()
   })
   ipcRenderer.on('sync-state', (ev, data) => {
-    var {trackDict, order, paths} = data
+    var { trackDict, order, paths } = data
     window.requestAnimationFrame(() => {
       emitter.emit('library:track-dict', trackDict)
       emitter.emit('library:track-order', order)

@@ -36,7 +36,7 @@ function getRandomInt (min, max) {
   return Math.floor(Math.random() * (max - min)) + min // The maximum is exclusive and the minimum is inclusive
 }
 
-test('instantiate and queue', {timeout: 500}, function (t) {
+test('instantiate and queue', { timeout: 500 }, function (t) {
   var al = new AudioLibrary(libraryA)
 
   t.plan(2)
@@ -48,7 +48,7 @@ test('instantiate and queue', {timeout: 500}, function (t) {
   t.deepEqual(al.visibleOrder, al.order, 'visible order is showing the correct order')
 })
 
-test('visibleOrder and search', {timeout: 500}, function (t) {
+test('visibleOrder and search', { timeout: 500 }, function (t) {
   var al = new AudioLibrary(libraryA)
   t.deepEqual(al.visibleOrder, al.order, 'visible order is showing the intial order')
   t.equal(al.query, null, 'query is null')
