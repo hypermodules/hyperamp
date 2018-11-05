@@ -24,7 +24,7 @@
 
 Mac/Linux | Windows | Version | IRC | Deps | Dev Deps
 --------- | ------- | ------- | --- | ---- | --------
-[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![stability][stability-img]][stability-url] | [![irc][irc-img]][irc-url] | [![dependencies Status](https://david-dm.org/hypermodules/hyperamp/status.svg)](https://david-dm.org/hypermodules/hyperamp) | [![devDependencies Status](https://david-dm.org/hypermodules/hyperamp/dev-status.svg)](https://david-dm.org/hypermodules/hyperamp?type=dev)
+[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![Github release][git-img]][git] | [![irc][irc-img]][irc-url] | [![dependencies Status](https://david-dm.org/hypermodules/hyperamp/status.svg)](https://david-dm.org/hypermodules/hyperamp) | [![devDependencies Status](https://david-dm.org/hypermodules/hyperamp/dev-status.svg)](https://david-dm.org/hypermodules/hyperamp?type=dev)
 
 ## Download
 
@@ -49,3 +49,5 @@ Want to help make Hyperamp better? Great! Head over to the [contributing guideli
 [appveyor-url]: https://ci.appveyor.com/project/bcomnes/hyperamp/branch/master
 [irc-url]: https://www.irccloud.com/invite?channel=%23hypermodules&amp;hostname=irc.freenode.net&amp;port=6697&amp;ssl=1
 [irc-img]: https://img.shields.io/badge/freenode-%23hypermodules-1e72ff.svg
+[git-img]: https://img.shields.io/github/release/hypermodules/hyperamp.svg
+[git]: https://github.com/hypermodules/hyperamp/releases/latest
