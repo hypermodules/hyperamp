@@ -1,7 +1,7 @@
 var html = require('choo/html')
 var assert = require('assert')
 
-assert.equal(document.body.firstChild.tagName, 'svg', 'svg sprite sheet must be mounted before icons work')
+assert.strict.equal(document.body.firstChild.tagName, 'svg', 'svg sprite sheet must be mounted before icons work')
 
 function icon (opts) {
   var name = opts.name

@@ -33,7 +33,7 @@ class Search extends Component {
   }
 
   createElement ({ onchange, value, className }) {
-    assert.equal(typeof onchange, 'function', 'Search: onchange should be a function')
+    assert.strict.equal(typeof onchange, 'function', 'Search: onchange should be a function')
 
     this.onchange = onchange
     this.value = value
@@ -49,8 +49,8 @@ class Search extends Component {
   }
 
   // Lets mutate!
-  update ({value, onchange, className}) {
-    assert.equal(typeof onchange, 'function', 'Range: onchange should be a function')
+  update ({ value, onchange, className }) {
+    assert.strict.equal(typeof onchange, 'function', 'Range: onchange should be a function')
     if (this.onchange !== onchange) {
       this.onchange = onchange
     }

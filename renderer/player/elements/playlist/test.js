@@ -1,5 +1,5 @@
 var test = require('tape')
-var {formatCount} = require('./lib')
+var { formatCount } = require('./lib')
 
 test('format disk and track objects correctly', function (t) {
   var tests = [

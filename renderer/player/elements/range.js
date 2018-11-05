@@ -35,8 +35,8 @@ class Range extends Component {
     if (this._onchange) this._onchange(this.element.value)
   }
 
-  createElement ({value, onchange, className, disabled}) {
-    assert.equal(typeof onchange, 'function', 'Range: onchange should be a function')
+  createElement ({ value, onchange, className, disabled }) {
+    assert.strict.equal(typeof onchange, 'function', 'Range: onchange should be a function')
 
     this._onchange = onchange
     this._value = value
@@ -57,8 +57,8 @@ class Range extends Component {
   }
 
   // Lets mutate!
-  update ({value, onchange, className, disabled}) {
-    assert.equal(typeof onchange, 'function', 'Range: onchange should be a function')
+  update ({ value, onchange, className, disabled }) {
+    assert.strict.equal(typeof onchange, 'function', 'Range: onchange should be a function')
 
     if (this._onchange !== onchange) {
       this._onchange = onchange

@@ -1,5 +1,5 @@
 var path = require('path')
-var {app} = require('electron')
+var { app } = require('electron')
 var ArtworkCache = require('./lib/artwork-cache')
 var artwork = module.exports = {
   cache: null,
