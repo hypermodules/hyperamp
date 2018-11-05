@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.6.2 - 2018-11-04
+- Update to music-metadata@^3.1.6
+- Update electron-is-dev@^1.0.1
+- Update electron-window-state@^5.0.2
+- Update electron-builder@^20.31.2
+- New signing certificate
+
 ## 0.6.1 - 2018-08-02
 - Upgrade to electron 3
 - Add CSP to harden electron environment
