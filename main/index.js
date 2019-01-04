@@ -305,7 +305,7 @@ app.on('before-quit', function beforeQuit (e) {
   setTimeout(function () {
     log.error('Saving state took too long. Quitting.')
     app.quit()
-  }, 5000) // quit after 5 secs, at most
+  }, 20000) // quit after 5 secs, at most
   persist.set({
     volume: state.volume
   })
