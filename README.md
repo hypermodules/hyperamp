@@ -24,11 +24,13 @@
 
 Mac/Linux | Windows | Version | IRC | Deps | Dev Deps
 --------- | ------- | ------- | --- | ---- | --------
-[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![Github release][git-img]][git] | [![irc][irc-img]][irc-url] | [![dependencies Status](https://david-dm.org/hypermodules/hyperamp/status.svg)](https://david-dm.org/hypermodules/hyperamp) | [![devDependencies Status](https://david-dm.org/hypermodules/hyperamp/dev-status.svg)](https://david-dm.org/hypermodules/hyperamp?type=dev)
+[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![Github release][release-version-img]][release-url] | [![irc][irc-img]][irc-url] | [![dependencies Status](https://david-dm.org/hypermodules/hyperamp/status.svg)](https://david-dm.org/hypermodules/hyperamp) | [![devDependencies Status](https://david-dm.org/hypermodules/hyperamp/dev-status.svg)](https://david-dm.org/hypermodules/hyperamp?type=dev)
 
 ## Download
 
-See the [releases](https://github.com/hypermodules/hyperamp/releases) page to download the latest version for your platform.
+See the [releases][release-url] page to download the latest version for your platform.
+
+[![Total Downloads][release-downloads-img]][release-url]
 
 ## Contributing
 
@@ -49,5 +51,6 @@ Want to help make Hyperamp better? Great! Head over to the [contributing guideli
 [appveyor-url]: https://ci.appveyor.com/project/bcomnes/hyperamp/branch/master
 [irc-url]: https://www.irccloud.com/invite?channel=%23hypermodules&amp;hostname=irc.freenode.net&amp;port=6697&amp;ssl=1
 [irc-img]: https://img.shields.io/badge/freenode-%23hypermodules-1e72ff.svg
-[git-img]: https://img.shields.io/github/release/hypermodules/hyperamp.svg
-[git]: https://github.com/hypermodules/hyperamp/releases/latest
+[release-version-img]: https://img.shields.io/github/release/hypermodules/hyperamp.svg
+[release-downloads-img]: https://img.shields.io/github/downloads/hypermodules/hyperamp/total.svg
+[release-url]: https://github.com/hypermodules/hyperamp/releases/latest
