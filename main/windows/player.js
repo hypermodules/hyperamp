@@ -33,7 +33,9 @@ function init () {
     thickFrame: true,
     alwaysOnTop: alwaysOnTop,
     contextIsolation: true,
-    nodeIntegration: false,
+    webPreferences: {
+      nodeIntegration: true
+    },
     webSecurity: true
   })
 

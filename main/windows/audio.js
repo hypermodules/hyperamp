@@ -25,7 +25,9 @@ function init () {
     useContentSize: true,
     width: 200,
     contextIsolation: true,
-    nodeIntegration: false,
+    webPreferences: {
+      nodeIntegration: true
+    },
     webSecurity: true
   })
 
