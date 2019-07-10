@@ -2,11 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 0.6.3 - 2019-07-10
 - Bump deps
-  - Update to Electron 4
-  - Update to electron-updater 4
-  - Update concat stream
+  - Update all deps
+  - Update to electron 5
 
 ## 0.6.2 - 2018-11-04
 - Update to music-metadata@^3.1.6
