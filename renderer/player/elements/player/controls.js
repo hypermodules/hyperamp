@@ -33,6 +33,7 @@ class PlayerControls extends Component {
   }
 
   handlePrev () { this.emit('player:prev') }
+
   handleNext () { this.emit('player:next') }
 
   handlePlayPause () {

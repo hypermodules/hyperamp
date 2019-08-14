@@ -68,7 +68,7 @@ class Volume extends Component {
     this.emit = emit
     return html`
       <div class="${buttonStyles.btnGroup} ${styles.volumeGroup}">
-        ${button({/* eslint-disable indent */
+        ${button({ /* eslint-disable indent */
           onclick: this.toggleMute,
           iconName: muted ? 'entypo-sound-mute' : 'entypo-sound',
           className: styles.volumeButton
