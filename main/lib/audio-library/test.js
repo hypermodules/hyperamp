@@ -54,7 +54,7 @@ test('visibleOrder and search', { timeout: 500 }, function (t) {
   t.equal(al.query, null, 'query is null')
   t.equal(al.isNewQuery, false, 'not in a new query state')
 
-  var expectedResults = [ '/Users/bret/Resilio Sync/Music/BLVCK CEILING/meridian/08 25 cobainen.mp3' ]
+  var expectedResults = ['/Users/bret/Resilio Sync/Music/BLVCK CEILING/meridian/08 25 cobainen.mp3']
   console.log('search for 25 cobainen')
   var results = al.search('25 cobainen')
 
