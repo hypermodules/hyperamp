@@ -123,12 +123,12 @@ app.on('ready', function appReady () {
   })
 
   autoUpdater.on('update-available', (info) => {
-    log.info(`autoUpdater: Update available!`)
+    log.info('autoUpdater: Update available!')
     broadcast('au:update-available', info)
   })
 
   autoUpdater.on('update-not-available', (info) => {
-    log.info(`autoUpdater: No update available`)
+    log.info('autoUpdater: No update available')
     broadcast('au:update-not-available', info)
   })
 
@@ -137,7 +137,7 @@ app.on('ready', function appReady () {
   })
 
   autoUpdater.on('update-downloaded', (info) => {
-    log.info(`autoUpdater: Update downloaded`)
+    log.info('autoUpdater: Update downloaded')
     broadcast('au:update-downloaded', info)
   })
 
@@ -172,7 +172,7 @@ app.on('ready', function appReady () {
   }
 
   function updateArtwork () {
-    if (!get(al, `currentTrack.artwork`)) {
+    if (!get(al, 'currentTrack.artwork')) {
       artwork.cache.getPath(al.currentKey, handleGetPath)
     }
   }
