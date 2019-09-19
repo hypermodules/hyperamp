@@ -41,7 +41,7 @@
   ],
   "dependencies": {
     "@bret/truthy": "^1.0.1",
-    "bl": "^3.0.0",
+    "bl": "^4.0.0",
     "choo": "^7.0.0",
     "choo-devtools": "^3.0.0",
     "classnames": "^2.2.6",
