@@ -67,7 +67,7 @@
     "lodash.get": "^4.4.2",
     "mkdirp": "^0.5.1",
     "mousetrap": "^1.6.3",
-    "music-metadata": "^4.2.0",
+    "music-metadata": "^4.8.0",
     "nanobus": "^4.4.0",
     "nanocomponent": "^6.5.2",
     "nanologger": "^2.0.0",
