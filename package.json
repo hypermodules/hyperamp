@@ -139,8 +139,8 @@
     "test-skip:tape": "xvfb-maybe tape test/* | tap-format-spec",
     "test:deps": "dependency-check ./package.json renderer/player/index.js renderer/audio/index.js --no-dev --ignore-module electron",
     "test:lint": "standard | snazzy",
-    "test:main": "tape main/lib/**/test.js | tap-format-spec",
-    "test:renderer": "tape renderer/**/test.js | tap-format-spec",
+    "test:main": "tape main/lib/**/test.js",
+    "test:renderer": "tape renderer/**/test.js",
     "watch": "run-s clean && run-p watch:*",
     "watch:electron": "electron main",
     "watch:js": "budo renderer/player/index.js:bundle.js -- --no-bundle-external"
