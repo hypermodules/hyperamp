@@ -87,7 +87,7 @@
     "concat-stream": "^2.0.0",
     "dependency-check": "^4.1.0",
     "electron": "^6.0.8",
-    "electron-builder": "^21.2.0",
+    "electron-builder": "^22.1.0",
     "electron-renderify": "0.0.2",
     "envify": "^4.1.0",
     "gh-release": "^3.5.0",
