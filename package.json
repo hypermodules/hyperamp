@@ -54,7 +54,7 @@
     "electron-is-dev": "^1.1.0",
     "electron-log": "^3.0.6",
     "electron-store": "^5.0.0",
-    "electron-updater": "^4.0.14",
+    "electron-updater": "^4.2.0",
     "electron-window-state": "^5.0.2",
     "entypo": "^2.1.0",
     "existy": "^1.0.1",
