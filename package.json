@@ -52,7 +52,7 @@
     "electron-default-menu": "^1.0.1",
     "electron-ipc-log": "^3.0.1",
     "electron-is-dev": "^1.1.0",
-    "electron-log": "^3.0.6",
+    "electron-log": "^4.0.0",
     "electron-store": "^5.0.0",
     "electron-updater": "^4.0.14",
     "electron-window-state": "^5.0.2",
