@@ -22,9 +22,9 @@
 
 </div>
 
-Mac/Linux | Windows | Version | IRC | Deps | Dev Deps
---------- | ------- | ------- | --- | ---- | --------
-[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![Github release][release-version-img]][release-url] | [![irc][irc-img]][irc-url] | [![dependencies Status](https://david-dm.org/hypermodules/hyperamp/status.svg)](https://david-dm.org/hypermodules/hyperamp) | [![devDependencies Status](https://david-dm.org/hypermodules/hyperamp/dev-status.svg)](https://david-dm.org/hypermodules/hyperamp?type=dev)
+Mac/Linux | Windows | Version
+--------- | ------- | -------
+[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![Github release][release-version-img]][release-url]
 
 ## Download
 
