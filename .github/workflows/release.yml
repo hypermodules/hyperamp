@@ -19,7 +19,7 @@ jobs:
   version_and_release:
     runs-on: ubuntu-latest
     outputs:
-      tagName: ${{ steps.tagName.outputs.tag }}
+      tagName: ${{ steps.npm-bump.outputs.release_tag }}
     steps:
     - uses: actions/checkout@v3
       with:
@@ -34,6 +34,7 @@ jobs:
     - run: npm i
     - run: npm test
     - name: npm version && npm publish
+      id: npm-bump
       uses: bcomnes/npm-bump@v2
       with:
         git_email: bcomnes@gmail.com
@@ -41,8 +42,6 @@ jobs:
         newversion: ${{ github.event.inputs.newversion }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_cmd: npm run release
-    - uses: bcomnes/get-git-tag@v3
-      id: tagName
     - name: Archive lockfile
       uses: actions/upload-artifact@v3
       with:
@@ -63,6 +62,7 @@ jobs:
       pull-requests: write
       contents: write
     steps:
+    - run: echo ${{needs.version_and_release.outputs.tagName}}
     - uses: actions/checkout@v3
       with:
         ref: ${{needs.version_and_release.outputs.tagName}}
