@@ -56,7 +56,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        node: [19]
 
     permissions:
       pull-requests: write
@@ -69,7 +68,7 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ env.node_version }}
     - run: npm i
     - run: npm run pkg
       env:

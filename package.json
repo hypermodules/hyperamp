@@ -15,6 +15,10 @@
   },
   "build": {
     "appId": "com.hypermodules.hyperamp",
+    "publish": {
+      "provider": "github",
+      "releaseType": "release"
+    },
     "files": [
       "lib/",
       "main/",
