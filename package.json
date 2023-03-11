@@ -29,14 +29,41 @@
       "category": "public.app-category.music",
       "target": [
         "default"
+      ],
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
       ]
     },
     "linux": {
       "category": "Audio",
-      "target": "AppImage"
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "armv7l",
+            "arm64"
+          ]
+        }
+      ]
     },
     "nsis": {
       "perMachine": true
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
     }
   },
   "contributors": [
@@ -125,7 +152,7 @@
   "scripts": {
     "build": "run-s clean build:*",
     "build:assets": "browserify --no-bundle-external --debug renderer/player/index.js -o renderer/player/bundle.js",
-    "build:electron": "electron-builder --dir",
+    "build:electron": "electron-builder",
     "clean": "rm -rf renderer/**/bundle.js && mkdir -p dist",
     "clear": "electron scripts/clear.js",
     "pkg": "run-s clean pkg:*",
