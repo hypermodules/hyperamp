@@ -18,6 +18,8 @@ concurrency: # prevent concurrent releases
 jobs:
   version_and_release:
     runs-on: ubuntu-latest
+    outputs:
+      tagName: ${{ steps.tagName.outputs.tag }}
     steps:
     - uses: actions/checkout@v3
       with:
@@ -33,16 +35,48 @@ jobs:
     - run: npm test
     - name: npm version && npm publish
       uses: bcomnes/npm-bump@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
       with:
         git_email: bcomnes@gmail.com
         git_username: ${{ github.actor }}
         newversion: ${{ github.event.inputs.newversion }}
-        github_token: ${{ secrets.GH_RELEASE_TOKEN }} # built in actions token. 
+        github_token: ${{ secrets.GH_RELEASE_TOKEN }} # built in actions token.
         publish_cmd: npm run release
+    - uses: bcomnes/get-git-tag@v3
+      id: tagName
     - name: Archive lockfile
       uses: actions/upload-artifact@v3
       with:
         name: pacakge-lock.json
         path: package-lock.json
+
+
+  build-release:
+    needs: version_and_release
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [19]
+
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{needs.version_and_release.outputs.tagName}}
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i
+    - run: npm run pkg
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # built in actions token.  Passed tp gh-release if in use.
+    - name: Archive lockfile
+      uses: actions/upload-artifact@v3
+      with:
+        name: pacakge-lock.json
+        path: package-lock.json
+

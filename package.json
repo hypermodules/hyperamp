@@ -128,7 +128,7 @@
     "clear": "electron scripts/clear.js",
     "pkg": "run-s clean pkg:*",
     "pkg:assets": "browserify --no-bundle-external -g unassertify -p common-shakeify -p bundle-collapser/plugin --debug renderer/player/index.js -o renderer/player/bundle.js",
-    "pkg:electron": "electron-builder --publush onTag",
+    "pkg:electron": "electron-builder --publish always",
     "prod": "ELECTRON_IS_DEV=0 DEV_SERVER=1 npm start",
     "start": "run-s watch",
     "test": "run-s test:*",
