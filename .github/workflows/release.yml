@@ -39,3 +39,8 @@ jobs:
         newversion: ${{ github.event.inputs.newversion }}
         github_token: ${{ secrets.GITHUB_TOKEN }} # built in actions token.  Passed tp gh-release if in use.
         publish_cmd: npm run release
+    - name: Archive lockfile
+      uses: actions/upload-artifact@v3
+      with:
+        name: pacakge-lock.json
+        path: package-lock.json

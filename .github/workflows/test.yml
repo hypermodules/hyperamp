@@ -23,6 +23,11 @@ jobs:
     - run: npm i
     - run: npm test --color=always
     - run: npm run build
+    - name: Archive lockfile
+      uses: actions/upload-artifact@v3
+      with:
+        name: pacakge-lock.json
+        path: package-lock.json
 
 
   automerge:
