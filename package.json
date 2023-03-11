@@ -60,7 +60,7 @@
     "electron-window-state": "^5.0.2",
     "entypo": "^2.1.0",
     "existy": "^1.0.1",
-    "file-url": "^3.0.0",
+    "file-url": "^4.0.0",
     "flush-write-stream": "^2.0.0",
     "folder-walker": "^3.2.0",
     "format-duration": "^3.0.2",
