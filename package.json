@@ -1,7 +1,7 @@
 {
   "name": "hyperamp",
   "description": "Indescribable music player",
-  "version": "0.6.10",
+  "version": "0.6.11",
   "author": "Hypermodules (https://github.com/hypermodules)",
   "browserify": {
     "transform": [
@@ -27,9 +27,6 @@
     ],
     "mac": {
       "category": "public.app-category.music",
-      "target": [
-        "default"
-      ],
       "target": [
         {
           "target": "dmg",
