@@ -1,3 +1,5 @@
+name: post-release builder
+
 on:
   push:
     tags:
