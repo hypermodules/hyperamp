@@ -1,10 +1,10 @@
-var test = require('tape')
-var AudioLibrary = require('./index')
-var libraryA = require('./test-data/library-a.json')
-var libraryB = require('./test-data/library-b.json')
+const test = require('tape')
+const AudioLibrary = require('./index')
+const libraryA = require('./test-data/library-a.json')
+const libraryB = require('./test-data/library-b.json')
 
 test('instantiate, next, prev AudioLibrary', function (t) {
-  var al = new AudioLibrary(libraryA)
+  const al = new AudioLibrary(libraryA)
 
   t.ok(al, 'AudioLibrary can instantiate with library object')
   t.equal(al.index, libraryA.index, 'index is instantiated from state correctly')
@@ -37,11 +37,11 @@ function getRandomInt (min, max) {
 }
 
 test('instantiate and queue', { timeout: 500 }, function (t) {
-  var al = new AudioLibrary(libraryA)
+  const al = new AudioLibrary(libraryA)
 
   t.plan(2)
 
-  var newIndex = getRandomInt(0, libraryA.length - 1)
+  const newIndex = getRandomInt(0, libraryA.length - 1)
 
   al.queue(newIndex)
   t.deepEqual(al.currentTrack, libraryA.trackDict[libraryA.order[newIndex]], 'can queue a track when not searching or sorting')
@@ -49,14 +49,14 @@ test('instantiate and queue', { timeout: 500 }, function (t) {
 })
 
 test('visibleOrder and search', { timeout: 500 }, function (t) {
-  var al = new AudioLibrary(libraryA)
+  const al = new AudioLibrary(libraryA)
   t.deepEqual(al.visibleOrder, al.order, 'visible order is showing the intial order')
   t.equal(al.query, null, 'query is null')
   t.equal(al.isNewQuery, false, 'not in a new query state')
 
-  var expectedResults = ['/Users/bret/Resilio Sync/Music/BLVCK CEILING/meridian/08 25 cobainen.mp3']
+  const expectedResults = ['/Users/bret/Resilio Sync/Music/BLVCK CEILING/meridian/08 25 cobainen.mp3']
   console.log('search for 25 cobainen')
-  var results = al.search('25 cobainen')
+  const results = al.search('25 cobainen')
 
   t.deepEqual(results, expectedResults, 'search returns a new order with results')
   t.deepEqual(al.query.order, expectedResults, 'there is a new order')
@@ -114,11 +114,11 @@ test('visibleOrder and search', { timeout: 500 }, function (t) {
 })
 
 test('truffle shuffle', function (t) {
-  var al = new AudioLibrary(libraryA)
+  const al = new AudioLibrary(libraryA)
 
   console.log('shuffle()')
   al.shuffle()
-  var initialShuffleIndex = al.shuffleIndex
+  const initialShuffleIndex = al.shuffleIndex
   console.log('next()')
   console.log('next()')
   al.next()
@@ -132,7 +132,7 @@ test('truffle shuffle', function (t) {
 
   t.equal(al.shuffleIndex, initialShuffleIndex + 1, 'go back in shuffle order')
   t.deepEqual(al.currentTrack, al.trackDict[al.order[al.shuffleOrder[al.shuffleIndex]]], 'prev returns the previous track')
-  var preUnshuffleIndex = al.index
+  const preUnshuffleIndex = al.index
 
   console.log('unshuffle()')
   al.unshuffle()
@@ -147,7 +147,7 @@ test('truffle shuffle', function (t) {
 
 test('just a track dict', function (t) {
   console.log('create a AL with just a trackDict')
-  var al = new AudioLibrary(libraryB)
+  const al = new AudioLibrary(libraryB)
   t.equal(al.index, 0, 'index === 0')
   t.deepEqual(al.visibleOrder, al.order, 'visible order returns the play order')
   t.equal(al.shuffling, false, 'not shuffling')
@@ -169,7 +169,7 @@ test('just a track dict', function (t) {
 
 test('no state zone!', function (t) {
   console.log('create a AL with no state provided')
-  var al = new AudioLibrary()
+  const al = new AudioLibrary()
 
   t.deepEqual(al.trackDict, {}, 'trackDict === {}')
   t.deepEqual(al.order, [], 'order === []')
@@ -226,7 +226,7 @@ test('no state zone!', function (t) {
 })
 
 test('load more state', function (t) {
-  var al = new AudioLibrary()
+  const al = new AudioLibrary()
 
   al.load(libraryA.trackDict)
 

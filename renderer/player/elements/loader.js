@@ -1,7 +1,7 @@
-var html = require('choo/html')
-var css = require('csjs-inject')
+const html = require('choo/html')
+const css = require('csjs-inject')
 
-var styles = css`
+const styles = css`
   .loading {
     height: 100%;
     width: 100%;

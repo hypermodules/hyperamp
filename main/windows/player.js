@@ -1,24 +1,25 @@
-var { BrowserWindow, app } = require('electron')
-var windowStateKeeper = require('electron-window-state')
-var path = require('path')
-var log = require('electron-log')
-var PLAYER_WINDOW = 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'player', 'index.html')
+const { BrowserWindow, app } = require('electron')
+const windowStateKeeper = require('electron-window-state')
+const path = require('path')
+const log = require('electron-log')
+const remoteMain = require('@electron/remote/main')
+const PLAYER_WINDOW = 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'player', 'index.html')
 
-var player = module.exports = {
+const player = module.exports = {
   init,
   toggleAlwaysOnTop,
   win: null,
   windowState: null
 }
 
-var alwaysOnTop = false
+let alwaysOnTop = false
 
 require('electron-debug')({ showDevTools: 'undocked' })
 require('electron-context-menu')()
 
 function init () {
   player.windowState = windowStateKeeper({ width: 800, height: 600 })
-  var win = player.win = new BrowserWindow({
+  const win = player.win = new BrowserWindow({
     title: 'Hyper Amp',
     x: player.windowState.x,
     y: player.windowState.y,
@@ -31,13 +32,16 @@ function init () {
     show: false,
     backgroundColor: '#fff',
     thickFrame: true,
-    alwaysOnTop: alwaysOnTop,
-    contextIsolation: true,
+    alwaysOnTop,
     webPreferences: {
-      nodeIntegration: true
-    },
-    webSecurity: true
+      nodeIntegration: true,
+      nodeIntegrationInWorker: true,
+      webSecurity: true,
+      contextIsolation: false
+    }
   })
+
+  remoteMain.enable(win.webContents)
 
   player.windowState.manage(win)
 

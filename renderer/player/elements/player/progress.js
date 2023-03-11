@@ -1,13 +1,13 @@
-var Component = require('nanocomponent')
-var html = require('choo/html')
-var truthy = require('@bret/truthy')
-var button = require('../button')
-var Range = require('../range')
-var fd = require('format-duration')
-var css = require('csjs-inject')
-var get = require('lodash.get')
+const Component = require('nanocomponent')
+const html = require('choo/html')
+const truthy = require('@bret/truthy')
+const button = require('../button')
+const Range = require('../range')
+const fd = require('format-duration')
+const css = require('csjs-inject')
+const get = require('lodash.get')
 
-var styles = css`
+const styles = css`
   .progress {
     display: flex;
     width: 100%;
@@ -77,13 +77,13 @@ class Progress extends Component {
   }
 
   handleSeek (val) {
-    var newTime = (val / this.opts.max) * this.duration
+    const newTime = (val / this.opts.max) * this.duration
     this.emit('player:seek', newTime)
     this.position = newTime
   }
 
   createElement (state, emit) {
-    var { currentTrack, currentTime } = state.player
+    const { currentTrack, currentTime } = state.player
 
     this.emit = emit
     this.key = get(currentTrack, 'key')

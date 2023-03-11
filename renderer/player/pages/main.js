@@ -1,9 +1,9 @@
-var html = require('choo/html')
-var Playlist = require('../elements/playlist')
-var Player = require('../elements/player')
-var css = require('csjs-inject')
+const html = require('choo/html')
+const Playlist = require('../elements/playlist')
+const Player = require('../elements/player')
+const css = require('csjs-inject')
 
-var styles = css`
+const styles = css`
   .window {
     position: absolute;
     top: 0;
@@ -13,8 +13,8 @@ var styles = css`
   }
 `
 
-var playlist = new Playlist()
-var player = new Player()
+const playlist = new Playlist()
+const player = new Player()
 
 function main (state, emit) {
   return html`

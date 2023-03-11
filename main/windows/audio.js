@@ -1,8 +1,9 @@
-var { app, BrowserWindow } = require('electron')
-var path = require('path')
-var log = require('electron-log')
-var AUDIO_WINDOW = 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'audio', 'index.html')
-var audio = module.exports = {
+const { app, BrowserWindow } = require('electron')
+const path = require('path')
+const log = require('electron-log')
+const remoteMain = require('@electron/remote/main')
+const AUDIO_WINDOW = 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'audio', 'index.html')
+const audio = module.exports = {
   init,
   show,
   toggleDevTools,
@@ -10,7 +11,7 @@ var audio = module.exports = {
 }
 
 function init () {
-  var win = audio.win = new BrowserWindow({
+  const win = audio.win = new BrowserWindow({
     title: 'hyperamp-hidden-window',
     backgroundColor: '#1E1E1E',
     center: true,
@@ -24,12 +25,16 @@ function init () {
     skipTaskbar: true,
     useContentSize: true,
     width: 200,
-    contextIsolation: true,
     webPreferences: {
-      nodeIntegration: true
-    },
-    webSecurity: true
+      nodeIntegration: true,
+      nodeIntegrationInWorker: true,
+      webSecurity: true,
+      contextIsolation: false,
+      enableRemoteModule: true
+    }
   })
+
+  remoteMain.enable(win.webContents)
 
   win.loadURL(AUDIO_WINDOW)
 

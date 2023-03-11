@@ -1,8 +1,8 @@
-var { app, shell, Menu } = require('electron')
-var defaultMenu = require('electron-default-menu')
-var audio = require('./windows/audio')
-var player = require('./windows/player')
-var pkg = require('../package.json')
+const { app, shell, Menu } = require('electron')
+const defaultMenu = require('electron-default-menu')
+const audio = require('./windows/audio')
+const player = require('./windows/player')
+const pkg = require('../package.json')
 
 module.exports = {
   init
@@ -15,9 +15,9 @@ function getSubmenu (menus, label) {
   }, null).submenu
 }
 
-var menuTemplate = defaultMenu(app, shell)
-var viewMenu = getSubmenu(menuTemplate, 'View')
-var helpMenu = getSubmenu(menuTemplate, 'Help')
+const menuTemplate = defaultMenu(app, shell)
+const viewMenu = getSubmenu(menuTemplate, 'View')
+const helpMenu = getSubmenu(menuTemplate, 'Help')
 
 viewMenu.splice(1, 0, {
   label: 'Hard Reload (Clear Cache)',
@@ -52,6 +52,6 @@ helpMenu[1] = {
 }
 
 function init () {
-  var menu = Menu.buildFromTemplate(menuTemplate)
+  const menu = Menu.buildFromTemplate(menuTemplate)
   Menu.setApplicationMenu(menu)
 }

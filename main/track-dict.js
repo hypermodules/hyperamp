@@ -1,17 +1,19 @@
-var path = require('path')
-var walker = require('folder-walker')
-var mm = require('music-metadata')
-var writer = require('flush-write-stream')
-var filter = require('through2-filter')
-var pump = require('pump')
-var log = require('electron-log')
-var validExtensions = ['m4a', 'mp3', 'ogg']
+const path = require('path')
+const walker = require('folder-walker')
+const mm = require('music-metadata')
+const writer = require('flush-write-stream')
+const filter = require('through2-filter')
+const pump = require('pump')
+const log = require('electron-log')
+const validExtensions = ['m4a', 'mp3', 'ogg']
 
 module.exports = makeTrackDict
 
+const FileFilter = filter.objCtor(isValidFile)
+
 function makeTrackDict (paths, cb) {
-  var newTrackDict = {}
-  var dest = concatTrackDict(newTrackDict)
+  const newTrackDict = {}
+  const dest = concatTrackDict(newTrackDict)
   pump(walker(paths), FileFilter(), dest, handleEos)
   // Return dest so we can destroy it
   return dest
@@ -22,11 +24,9 @@ function makeTrackDict (paths, cb) {
     cb(null, newTrackDict)
   }
 }
-var FileFilter = filter.objCtor(isValidFile)
-
 function isValidFile (data, enc, cb) {
   if (data.type !== 'file') return false
-  var ext = path.extname(data.basename).substring(1)
+  const ext = path.extname(data.basename).substring(1)
   return validExtensions.includes(ext)
 }
 
@@ -45,13 +45,13 @@ function concatTrackDict (obj) {
 }
 
 function parseMetadata (data, cb) {
-  var { filepath } = data
+  const { filepath } = data
   mm.parseFile(filepath, {
     duration: false,
     native: false,
     skipCovers: true
   }).then(meta => {
-    var {
+    let {
       albumartist,
       title,
       artist,
@@ -62,10 +62,10 @@ function parseMetadata (data, cb) {
       genre
     } = meta.common
 
-    var { duration } = meta.format
+    const { duration } = meta.format
     if (!title) {
-      var { basename } = data
-      var ext = path.extname(basename)
+      const { basename } = data
+      const ext = path.extname(basename)
       title = path.basename(basename, ext)
     }
 
@@ -84,9 +84,9 @@ function parseMetadata (data, cb) {
   }).catch(err => {
     // Ignore errors
     log.info(err.message += ` (file: ${filepath})`)
-    var { basename } = data
-    var ext = path.extname(basename)
-    var title = path.basename(basename, ext)
+    const { basename } = data
+    const ext = path.extname(basename)
+    const title = path.basename(basename, ext)
     return Promise.resolve({ title, filepath })
   }).then(meta => {
     cb(null, meta)

@@ -1,11 +1,11 @@
-var html = require('choo/html')
-var button = require('../button')
-var buttonStyles = require('../button/styles')
-var Component = require('nanocomponent')
-var Range = require('../range')
-var css = require('csjs-inject')
+const html = require('choo/html')
+const button = require('../button')
+const buttonStyles = require('../button/styles')
+const Component = require('nanocomponent')
+const Range = require('../range')
+const css = require('csjs-inject')
 
-var styles = css`
+const styles = css`
   .volumeGroup {
     flex: 1 1 30%;
     max-width: 110px;
@@ -62,7 +62,7 @@ class Volume extends Component {
   }
 
   createElement (state, emit) {
-    var { muted, volume } = state.player
+    const { muted, volume } = state.player
     this.muted = muted
     this.volume = volume
     this.emit = emit
@@ -85,7 +85,7 @@ class Volume extends Component {
   }
 
   update (state) {
-    var { muted, volume } = state.player
+    const { muted, volume } = state.player
     if (this.muted !== muted || this.volume !== volume) {
       return true
     }

@@ -1,11 +1,11 @@
-var { remote } = require('electron')
-var { app, dialog } = remote
-var html = require('choo/html')
-var Component = require('nanocomponent')
-var Search = require('./search')
-var button = require('../button')
-var config = remote.require('./config.js')
-var css = require('csjs-inject')
+const remote = require('@electron/remote')
+const { app, dialog } = remote
+const html = require('choo/html')
+const Component = require('nanocomponent')
+const Search = require('./search')
+const button = require('../button')
+const config = remote.require('./config.js')
+const css = require('csjs-inject')
 
 const styles = css`
   .toolbar {
@@ -60,10 +60,10 @@ class Header extends Component {
   handleAddButton () {
     if (!this.dialogOpen) {
       this.dialogOpen = true
-      var paths = config.get('paths')
-      var defaultPath = paths ? paths[paths.length - 1] : app.getPath('music')
+      const paths = config.get('paths')
+      const defaultPath = paths ? paths[paths.length - 1] : app.getPath('music')
       dialog.showOpenDialog({
-        defaultPath: defaultPath,
+        defaultPath,
         properties: ['openFile', 'openDirectory', 'multiSelections']
       },
       this.handlePaths)
@@ -73,7 +73,7 @@ class Header extends Component {
   handlePaths (paths) {
     this.dialogOpen = false
     if (paths) {
-      this.emit('config:set', { paths: paths })
+      this.emit('config:set', { paths })
       this.emit('library:update-library', paths)
     }
   }
@@ -85,7 +85,7 @@ class Header extends Component {
   handleDrop (event) {
     event.preventDefault()
     const { files } = event.dataTransfer
-    var paths = Array(files.length).fill(0).map((_, i) => files.item(i).path)
+    const paths = Array(files.length).fill(0).map((_, i) => files.item(i).path)
     this.handlePaths(paths)
   }
 

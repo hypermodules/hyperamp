@@ -1,12 +1,12 @@
-var html = require('choo/html')
-var Component = require('nanocomponent')
-var Controls = require('./controls')
-var Progress = require('./progress')
-var Volume = require('./volume')
-var Meta = require('./meta')
-var css = require('csjs-inject')
+const html = require('choo/html')
+const Component = require('nanocomponent')
+const Controls = require('./controls')
+const Progress = require('./progress')
+const Volume = require('./volume')
+const Meta = require('./meta')
+const css = require('csjs-inject')
 
-var styles = css`
+const styles = css`
   .player {
     -webkit-app-region: drag;
     border-top: var(--border);
@@ -45,7 +45,7 @@ class Player extends Component {
   }
 
   createElement (state, emit) {
-    var { currentTrack = {} } = state.player
+    const { currentTrack = {} } = state.player
 
     this.emit = emit
     this.key = currentTrack.key
@@ -63,7 +63,7 @@ class Player extends Component {
   update (state, emit) {
     this.emit = emit
 
-    var { currentTrack = {} } = state.player
+    const { currentTrack = {} } = state.player
 
     if (this.key !== currentTrack.key) return true
 

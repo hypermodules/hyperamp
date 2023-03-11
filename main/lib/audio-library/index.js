@@ -1,7 +1,7 @@
-var Nanobus = require('nanobus')
-var shuffleArray = require('fy-shuffle')
-var filter = require('./filter')
-var sort = require('./sort')
+const Nanobus = require('nanobus')
+const shuffleArray = require('fy-shuffle')
+const filter = require('./filter')
+const sort = require('./sort')
 
 class AudioLibrary extends Nanobus {
   constructor (state) {
@@ -77,14 +77,14 @@ class AudioLibrary extends Nanobus {
   }
 
   _nextShuffle () {
-    var newShuffleIndex = this.shuffleIndex < this.shuffleOrder.length - 1 ? this.shuffleIndex + 1 : 0
+    const newShuffleIndex = this.shuffleIndex < this.shuffleOrder.length - 1 ? this.shuffleIndex + 1 : 0
     this.index = this.shuffleOrder[newShuffleIndex]
     this.shuffleIndex = newShuffleIndex
     return this.currentTrack
   }
 
   _next () {
-    var newIndex = this.index < this.order.length - 1 ? this.index + 1 : 0
+    const newIndex = this.index < this.order.length - 1 ? this.index + 1 : 0
     this.index = newIndex
     return this.currentTrack
   }

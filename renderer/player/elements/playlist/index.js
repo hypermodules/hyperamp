@@ -1,9 +1,9 @@
-var html = require('choo/html')
-var Component = require('nanocomponent')
-var Header = require('../../elements/header')
-var styles = require('./styles')
-var TrackView = require('./track-view')
-var loader = require('../loader')
+const html = require('choo/html')
+const Component = require('nanocomponent')
+const Header = require('../../elements/header')
+const styles = require('./styles')
+const TrackView = require('./track-view')
+const loader = require('../loader')
 
 class Playlist extends Component {
   constructor (opts) {

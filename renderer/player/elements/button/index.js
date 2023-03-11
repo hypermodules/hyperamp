@@ -1,9 +1,9 @@
-var html = require('choo/html')
-var icon = require('../icon')
-var styles = require('./styles')
+const html = require('choo/html')
+const icon = require('../icon')
+const styles = require('./styles')
 
 function button (props, children) {
-  var { className, onclick, iconName, disabled } = props
+  const { className, onclick, iconName, disabled } = props
   return html`
     <button class="${styles.btn} ${className || ''}"
       disabled=${disabled || false}

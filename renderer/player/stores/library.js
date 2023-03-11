@@ -1,14 +1,15 @@
-var { ipcRenderer } = require('electron')
-var mousetrap = require('mousetrap')
-var { COLUMNS } = require('../lib/constants')
-var { trackView } = require('../pages/main').playlist
+const { ipcRenderer } = require('electron')
+const mousetrap = require('mousetrap')
+const { COLUMNS } = require('../lib/constants')
+const { trackView } = require('../pages/main').playlist
+const remote = require('@electron/remote')
 
 window.trackView = trackView
 
 module.exports = libraryStore
 
 function getInitialState () {
-  var mainState = require('electron').remote.require('./index.js')
+  const mainState = remote.require('./index.js')
   return {
     paths: mainState.paths,
     trackDict: {},
@@ -26,13 +27,13 @@ function getInitialState () {
 }
 
 function libraryStore (state, emitter) {
-  var localState = state.library
+  let localState = state.library
   if (!localState) localState = state.library = getInitialState()
 
   mousetrap.bind('up', e => {
     e.preventDefault()
-    var idx = localState.selectedIndex
-    var newIdx = idx == null || idx === 0
+    const idx = localState.selectedIndex
+    const newIdx = idx == null || idx === 0
       ? 0
       : idx - 1
     emitter.emit('library:select', newIdx)
@@ -40,8 +41,8 @@ function libraryStore (state, emitter) {
   })
   mousetrap.bind('down', e => {
     e.preventDefault()
-    var idx = localState.selectedIndex
-    var newIdx = idx == null
+    const idx = localState.selectedIndex
+    const newIdx = idx == null
       ? 0
       : idx === localState.trackOrder.length - 1
         ? localState.trackOrder.length - 1
@@ -51,7 +52,7 @@ function libraryStore (state, emitter) {
   })
   mousetrap.bind('enter', e => {
     e.preventDefault()
-    var idx = localState.selectedIndex
+    const idx = localState.selectedIndex
     if (idx != null) {
       emitter.emit('library:queue', idx)
       emitter.emit('player:play')
@@ -161,7 +162,7 @@ function libraryStore (state, emitter) {
     trackView.scrollCurrent()
   })
   ipcRenderer.on('sync-state', (ev, data) => {
-    var { trackDict, order, paths } = data
+    const { trackDict, order, paths } = data
     window.requestAnimationFrame(() => {
       emitter.emit('library:track-dict', trackDict)
       emitter.emit('library:track-order', order)

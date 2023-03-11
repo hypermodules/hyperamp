@@ -1,15 +1,16 @@
 // NOTE: this page is not currently in use
 
-var html = require('choo/html')
-var Header = require('../elements/header')
-var button = require('../elements/button')
-var Player = require('../elements/player')
-var player = new Player()
-var formStyles = require('../elements/form/styles')
-var { app, dialog } = require('electron').remote
-var styles = require('./styles')
+const html = require('choo/html')
+const Header = require('../elements/header')
+const button = require('../elements/button')
+const Player = require('../elements/player')
+const player = new Player()
+const formStyles = require('../elements/form/styles')
+const remote = require('@electron/remote')
+const { app, dialog } = remote
+const styles = require('./styles')
 
-var header = new Header()
+const header = new Header()
 
 function preferences (state, emit) {
   function showDialog () {

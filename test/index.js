@@ -1,9 +1,9 @@
-var Application = require('spectron').Application
-var test = require('tape')
-var path = require('path')
+const Application = require('spectron').Application
+const test = require('tape')
+const path = require('path')
 
 test('does the thing turn on?', t => {
-  var app = new Application({
+  const app = new Application({
     path: require('electron'),
     args: [path.join(__dirname, '..', 'main', 'index.js')]
   })

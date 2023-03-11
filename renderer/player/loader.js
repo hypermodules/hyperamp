@@ -1,7 +1,9 @@
-var isDev = require('electron-is-dev')
-if (!isDev) window.raven = require('../../lib/sentry.js')
+const remote = require('@electron/remote')
+const isPackaged = remote.app.isPackaged
+const isDev = !isPackaged
+
 if (isDev || process.env.DEV_SERVER) {
-  var bundle = document.createElement('script')
+  const bundle = document.createElement('script')
   bundle.src = 'http://localhost:9966/bundle.js'
   document.body.appendChild(bundle)
 } else {

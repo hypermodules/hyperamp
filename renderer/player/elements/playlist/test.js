@@ -1,8 +1,8 @@
-var test = require('tape')
-var { formatCount } = require('./lib')
+const test = require('tape')
+const { formatCount } = require('./lib')
 
 test('format disk and track objects correctly', function (t) {
-  var tests = [
+  const tests = [
     {
       in: { no: 14, of: 17 },
       expect: '14 of 17'

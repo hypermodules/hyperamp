@@ -1,6 +1,6 @@
-var mm = require('music-metadata')
-var get = require('lodash.get')
-var fs = require('fs')
+const mm = require('music-metadata')
+const get = require('lodash.get')
+const fs = require('fs')
 
 function metadata (path, cb) {
   fs.stat(path, function (err, stats) {
@@ -24,7 +24,7 @@ function artwork (path, cb) {
 
   function lookupArtwork (err, meta) {
     if (err) return cb(err)
-    var artBuff = get(meta, 'common.picture[0].data')
+    const artBuff = get(meta, 'common.picture[0].data')
     if (!artBuff) return cb(null, null)
     return cb(null, artBuff)
   }

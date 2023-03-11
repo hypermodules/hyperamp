@@ -1,43 +1,32 @@
-var isDev = require('electron-is-dev')
-var electron = require('electron')
-var { app, ipcMain } = electron
-var Config = require('electron-store')
-var get = require('lodash.get')
-var xtend = require('xtend')
-var userConfig = require('./config')
-var menu = require('./menu')
-var artwork = require('./artwork')
-var GlobalShortcuts = require('./global-shortcuts')
-var makeTrackDict = require('./track-dict')
-var audio = require('./windows/audio')
-var player = require('./windows/player')
-var AudioLibrary = require('./lib/audio-library')
-var ipcLogger = require('electron-ipc-log')
-var autoUpdater = require('electron-updater').autoUpdater
-var log = require('electron-log')
+const electron = require('electron')
+const { app, ipcMain } = electron
+const remoteMain = require('@electron/remote/main')
+remoteMain.initialize()
+const Config = require('electron-store')
+const get = require('lodash.get')
+const xtend = require('xtend')
+const userConfig = require('./config')
+const menu = require('./menu')
+const artwork = require('./artwork')
+const GlobalShortcuts = require('./global-shortcuts')
+const makeTrackDict = require('./track-dict')
+const audio = require('./windows/audio')
+const player = require('./windows/player')
+const AudioLibrary = require('./lib/audio-library')
+const log = require('electron-log')
 
 // handle uncaught exceptions before calling any functions
 process.on('uncaughtException', (err) => {
   log.error(err)
 })
 
-// register sentry if in production
-var sentry = isDev ? null : require('../lib/sentry')
+const globalShortcuts = new GlobalShortcuts()
+const windows = [player, audio]
 
-// log IPC events
-ipcLogger(event => {
-  var { channel, data } = event
-  if (channel === 'timeupdate') return
-  log.info('✨  ipc', channel, ...data)
-})
+const persist = new Config({ name: 'hyperamp-persist' })
+const libraryPersist = new Config({ name: 'hyperamp-library' })
 
-var globalShortcuts = new GlobalShortcuts()
-var windows = [player, audio]
-
-var persist = new Config({ name: 'hyperamp-persist' })
-var libraryPersist = new Config({ name: 'hyperamp-library' })
-
-var state = xtend({
+const state = xtend({
   paths: [], // USERCONFIG: Paths for searching for songs
   loading: false, // Mutex for performing a scan for new tracks
   volume: 0.50,
@@ -45,7 +34,7 @@ var state = xtend({
   muted: false
 }, persist.store, userConfig.store)
 
-var al = new AudioLibrary(libraryPersist.store)
+const al = new AudioLibrary(libraryPersist.store)
 
 module.exports = state
 module.exports.al = al
@@ -105,49 +94,13 @@ app.on('ready', function appReady () {
   ipcMain.on('recall', recall)
   ipcMain.on('sync-state', syncState)
 
-  // register autoUpdater
-  if (!process.env.DEV_SERVER) {
-    setTimeout(() => {
-      autoUpdater.checkForUpdatesAndNotify()
-    }, 500)
-  }
-
-  autoUpdater.on('error', (err) => {
-    broadcast('au:error', err)
-    if (sentry) sentry.captureException(err)
-  })
-
-  autoUpdater.on('checking-for-update', () => {
-    log.info('autoUpdater: Checking for update...')
-    broadcast('au:checking-for-update')
-  })
-
-  autoUpdater.on('update-available', (info) => {
-    log.info('autoUpdater: Update available!')
-    broadcast('au:update-available', info)
-  })
-
-  autoUpdater.on('update-not-available', (info) => {
-    log.info('autoUpdater: No update available')
-    broadcast('au:update-not-available', info)
-  })
-
-  autoUpdater.on('download-progress', (progress) => {
-    broadcast('au:progress', progress)
-  })
-
-  autoUpdater.on('update-downloaded', (info) => {
-    log.info('autoUpdater: Update downloaded')
-    broadcast('au:update-downloaded', info)
-  })
-
   // ACTIONS
   // NOTE: I really don't like having all of these actions stuck in this scope.
   // Would be nice to move this to a separate file eventually. -ungoldman
 
   // Emit things to all windows
   function broadcast (/* args */) {
-    var args = [].slice.call(arguments, 0)
+    const args = [].slice.call(arguments, 0)
     windows.forEach((winObj) => {
       if (winObj.win) winObj.win.send.apply(winObj.win, args)
     })
@@ -160,7 +113,7 @@ app.on('ready', function appReady () {
   }
 
   function queue (ev, newIndex) {
-    var newTrack = al.queue(newIndex)
+    const newTrack = al.queue(newIndex)
     log.info(newTrack)
     broadcast('new-track', newTrack)
     if (player.win) {
@@ -250,7 +203,7 @@ app.on('ready', function appReady () {
     state.loading = false
     broadcast('loading', false)
     if (err) return log.warn(err)
-    var newState = al.load(newTrackDict)
+    const newState = al.load(newTrackDict)
     if (player.win) player.win.send('track-dict', newState.trackDict, newState.order, state.paths)
     console.timeEnd('update-library')
     log.info('Done scanning. Found ' + Object.keys(newState.trackDict).length + ' tracks.')
