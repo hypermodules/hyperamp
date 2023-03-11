@@ -1,17 +1,17 @@
 // var electron = require('electron')
-var path = require('path')
+const path = require('path')
 // var mkdirp = require('mkdirp')
-var pump = require('pump')
-var crypto = require('crypto')
-var mkdirp = require('mkdirp')
-var { artwork } = require('./util')
-var BufferList = require('bl')
+const pump = require('pump')
+const crypto = require('crypto')
+const mkdirp = require('mkdirp')
+const { artwork } = require('./util')
+const BufferList = require('bl')
 
 // var configPath = (electron.app || electron.remote.app).getPath('userData')
 // var artworkCachePath = path.join(configPath, 'artwork-cache')
 //
 // mkdirp.sync(artworkCachePath)
-var blobs = require('content-addressable-blob-store')
+const blobs = require('content-addressable-blob-store')
 
 class ArtworkCache {
   // TODO refeactor callback hexell
@@ -27,17 +27,17 @@ class ArtworkCache {
   }
 
   getPath (filePath, cb) {
-    var self = this
+    const self = this
     artwork(filePath, function (err, buff) {
       if (err) return cb(err)
       if (buff === null) return cb(null, null)
-      var digest = crypto.createHash(self._algo).update(buff).digest('hex')
+      const digest = crypto.createHash(self._algo).update(buff).digest('hex')
       self._blobs.resolve(digest, function (err, blobPath) {
         if (err) return cb(err)
         if (blobPath) {
           return cb(null, blobPath)
         } else {
-          var writeStream = self._blobs.createWriteStream()
+          const writeStream = self._blobs.createWriteStream()
           pump((new BufferList()).append(buff), writeStream, function (err) {
             if (err) return cb(err)
             return self._blobs.resolve(writeStream.key, cb)

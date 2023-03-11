@@ -1,10 +1,10 @@
 #!/usr/bin/env electron
 
-var Store = require('electron-store')
+const Store = require('electron-store')
 
-var config = new Store({ name: 'hyperamp-config' })
-var persist = new Store({ name: 'hyperamp-persist' })
-var library = new Store({ name: 'hyperamp-library' })
+const config = new Store({ name: 'hyperamp-config' })
+const persist = new Store({ name: 'hyperamp-persist' })
+const library = new Store({ name: 'hyperamp-library' })
 
 console.log('clearing %s', config.path)
 config.clear()

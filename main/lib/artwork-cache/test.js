@@ -1,14 +1,14 @@
-var test = require('tape')
-var { artwork } = require('./util')
-var path = require('path')
-var concatStream = require('concat-stream')
-var isBuffer = require('is-buffer')
-var pump = require('pump')
-var bufferEqual = require('buffer-equal')
-var tmp = require('temporary-directory')
-var ArtworkCache = require('./index.js')
-var testData = require('./test-data')
-var BufferList = require('bl')
+const test = require('tape')
+const { artwork } = require('./util')
+const path = require('path')
+const concatStream = require('concat-stream')
+const isBuffer = require('is-buffer')
+const pump = require('pump')
+const bufferEqual = require('buffer-equal')
+const tmp = require('p-temporary-directory/cb')
+const ArtworkCache = require('./index.js')
+const testData = require('./test-data')
+const BufferList = require('bl')
 
 test('get artwork from file', function (t) {
   artwork(testData.mp3WithArtwork, function (err, imageBuf) {
@@ -23,10 +23,10 @@ test('can stream buffers', function (t) {
 
   function bufferTests (err, imageBuf) {
     t.error(err, 'got artwork buffer')
-    var imageBufferStream = new BufferList()
+    const imageBufferStream = new BufferList()
     imageBufferStream.append(imageBuf)
-    var concat = concatStream(gotPic)
-    var streamedBuff
+    const concat = concatStream(gotPic)
+    let streamedBuff
 
     function gotPic (buf) {
       streamedBuff = buf
@@ -47,7 +47,7 @@ test('artwork cache for existing file', function (t) {
 
   function created (err, dir, cleanup) {
     t.error(err, 'created temp dir')
-    var cache = new ArtworkCache(path.join(dir))
+    const cache = new ArtworkCache(path.join(dir))
     cache.getPath(testData.mp3WithArtwork, handlePath)
 
     function handlePath (err, blobPath) {
@@ -75,7 +75,7 @@ test('artwork cache for missing file', function (t) {
 
   function created (err, dir, cleanup) {
     t.error(err, 'created temp dir')
-    var cache = new ArtworkCache(path.join(dir))
+    const cache = new ArtworkCache(path.join(dir))
     cache.getPath(path.join(__dirname, 'foo'), handlePath)
 
     function handlePath (err, blobPath) {
@@ -100,7 +100,7 @@ test('artwork cache for existing file without art', function (t) {
 
   function created (err, dir, cleanup) {
     t.error(err, 'created temp dir')
-    var cache = new ArtworkCache(path.join(dir))
+    const cache = new ArtworkCache(path.join(dir))
     cache.getPath(testData.mp3WithoutArtowork, handlePath)
 
     function handlePath (err, blobPath) {

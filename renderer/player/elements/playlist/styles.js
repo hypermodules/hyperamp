@@ -1,4 +1,4 @@
-var css = require('csjs-inject')
+const css = require('csjs-inject')
 
 module.exports = css`
   .playlist {

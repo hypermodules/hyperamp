@@ -1,4 +1,4 @@
-var existy = require('existy')
+const existy = require('existy')
 
 function sort ([keyA, aObj], [keyB, bObj]) {
   // sort by albumartist
@@ -18,8 +18,8 @@ function sort ([keyA, aObj], [keyB, bObj]) {
   if (aObj.album > bObj.album) return 1
 
   // then by disc no
-  var aHasDisk = existy(aObj.disk)
-  var bHasDisk = existy(bObj.disk)
+  const aHasDisk = existy(aObj.disk)
+  const bHasDisk = existy(bObj.disk)
 
   if (aHasDisk && bHasDisk) {
     if (aObj.disk.no < bObj.disk.no) return -1
@@ -27,8 +27,8 @@ function sort ([keyA, aObj], [keyB, bObj]) {
   }
 
   // then by track no
-  var aHasTrack = existy(aObj.track)
-  var bHasTrack = existy(bObj.track)
+  const aHasTrack = existy(aObj.track)
+  const bHasTrack = existy(bObj.track)
 
   if (aHasTrack && bHasTrack) {
     if (aObj.track.no < bObj.track.no) return -1

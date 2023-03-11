@@ -1,10 +1,10 @@
-var Component = require('nanocomponent')
-var button = require('../button')
-var buttonGroup = require('../button/button-group')
-var buttonStyles = require('../button/styles')
-var css = require('csjs-inject')
+const Component = require('nanocomponent')
+const button = require('../button')
+const buttonGroup = require('../button/button-group')
+const buttonStyles = require('../button/styles')
+const css = require('csjs-inject')
 
-var styles = css`
+const styles = css`
   .controls {
     font-size: 1.5em;
     flex-direction: column;
@@ -47,7 +47,7 @@ class PlayerControls extends Component {
   }
 
   createElement (state, emit) {
-    var { playing, shuffling, currentTrack = {} } = state.player
+    const { playing, shuffling, currentTrack = {} } = state.player
 
     this.emit = emit
     this.key = currentTrack.key
@@ -78,7 +78,7 @@ class PlayerControls extends Component {
   }
 
   update (state, emit) {
-    var { currentTrack = {}, playing, shuffling } = state.player
+    const { currentTrack = {}, playing, shuffling } = state.player
     this.emit = emit
     if (this.key !== currentTrack.key) return true
     if (this.playing !== playing) return true

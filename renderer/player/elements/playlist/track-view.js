@@ -1,14 +1,15 @@
-var html = require('choo/html')
-var fd = require('format-duration')
-var cn = require('classnames')
-var Component = require('nanocomponent')
-var document = require('global/document')
-var { formatCount } = require('./lib')
-var { COLUMNS } = require('../../lib/constants')
-var styles = require('./styles')
-const { Menu, MenuItem, getCurrentWindow, shell } = require('electron').remote
+const html = require('choo/html')
+const fd = require('format-duration')
+const cn = require('classnames')
+const Component = require('nanocomponent')
+const document = require('global/document')
+const { formatCount } = require('./lib')
+const { COLUMNS } = require('../../lib/constants')
+const styles = require('./styles')
+const remote = require('@electron/remote')
+const { Menu, MenuItem, getCurrentWindow, shell } = remote
 
-var OFFSET_BUFFER = 50
+const OFFSET_BUFFER = 50
 
 class TrackView extends Component {
   constructor (opts) {
@@ -49,7 +50,7 @@ class TrackView extends Component {
   }
 
   get bottomVisibleRowIndex () {
-    var { clientHeight } = this.element
+    const { clientHeight } = this.element
     return Math.floor(clientHeight / this.rowHeight) + this.topVisibleRowIndex
   }
 
@@ -62,7 +63,7 @@ class TrackView extends Component {
   }
 
   get bottomOffset () {
-    var lastRenderedIndex = this.sliceStartIndex + this.sliceLength
+    const lastRenderedIndex = this.sliceStartIndex + this.sliceLength
     return lastRenderedIndex - this.bottomVisibleRowIndex
   }
 
@@ -72,7 +73,7 @@ class TrackView extends Component {
 
   scrollTo (index) {
     window.requestAnimationFrame(() => {
-      var middleScrollTop = ((index - this.midIndexOffset) * this.rowHeight)
+      let middleScrollTop = ((index - this.midIndexOffset) * this.rowHeight)
       if (middleScrollTop < 0) middleScrollTop = 0
       if (middleScrollTop > this.maxScrollTop) middleScrollTop = this.maxScrollTop
       if (index < this.topVisibleRowIndex + 1 || index > this.bottomVisibleRowIndex - 1) {
@@ -86,29 +87,29 @@ class TrackView extends Component {
   }
 
   selectTrack (ev) {
-    var t = ev.target
+    let t = ev.target
     while (t && !t.id) t = t.parentNode // Bubble up
     if (t && t.tagName === 'TR') {
       ev.stopPropagation()
-      var index = Number(t.id.replace('track-', ''))
+      const index = Number(t.id.replace('track-', ''))
       this.emit('library:select', index)
     }
   }
 
   playTrack (ev) {
-    var t = ev.target
+    let t = ev.target
     while (t && !t.id) t = t.parentNode // Bubble up
     if (t && t.tagName === 'TR') {
-      var index = Number(t.id.replace('track-', ''))
+      const index = Number(t.id.replace('track-', ''))
       this.emit('library:queue', index)
       this.emit('player:play')
     }
   }
 
   mutateCurrentIndex (newIndex) {
-    var oldIndex = this.currentIndex
-    var oldEl = document.getElementById(`track-${oldIndex}`)
-    var newEl = document.getElementById(`track-${newIndex}`)
+    const oldIndex = this.currentIndex
+    const oldEl = document.getElementById(`track-${oldIndex}`)
+    const newEl = document.getElementById(`track-${newIndex}`)
 
     if (oldEl) oldEl.classList.toggle(styles.playing, false)
     if (newEl) newEl.classList.toggle(styles.playing, true)
@@ -117,9 +118,9 @@ class TrackView extends Component {
   }
 
   mutateSelectedIndex (newIndex) {
-    var oldIndex = this.selectedIndex
-    var oldEl = document.getElementById(`track-${oldIndex}`)
-    var newEl = document.getElementById(`track-${newIndex}`)
+    const oldIndex = this.selectedIndex
+    const oldEl = document.getElementById(`track-${oldIndex}`)
+    const newEl = document.getElementById(`track-${newIndex}`)
 
     if (oldEl) oldEl.classList.toggle(styles.selected, false)
     if (newEl) newEl.classList.toggle(styles.selected, true)
@@ -135,18 +136,18 @@ class TrackView extends Component {
   // TODO: figure out Y offset for top element when scrolling up
   rowMap (key, idx) {
     // Look up track info
-    var track = this.trackDict[key]
-    var columns = Object.keys(this.columns).filter(col => this.columns[col])
+    const track = this.trackDict[key]
+    const columns = Object.keys(this.columns).filter(col => this.columns[col])
 
     // create meta display values
-    var meta = Object.assign({}, track, {
+    const meta = Object.assign({}, track, {
       time: track.duration ? fd(track.duration * 1000) : '',
       track: track.track ? formatCount(track.track) : '',
       disk: track.disk ? formatCount(track.disk) : ''
     })
 
     // Generate state based styles
-    var classes = cn({
+    const classes = cn({
       [styles.playing]: this.currentIndex === idx + this.sliceStartIndex && !this.isNewQuery,
       [styles.selected]: this.selectedIndex === idx + this.sliceStartIndex
     })
@@ -179,13 +180,13 @@ class TrackView extends Component {
   }
 
   renderSlice () {
-    var sliceOffset = `top: ${this.sliceStartIndex * this.rowHeight}px;`
-    var tableContainerHeight = `height: ${this.trackOrder.length * this.rowHeight}px;`
-    var sliceEnd = this.sliceStartIndex + this.sliceLength < this.trackOrder.length
+    const sliceOffset = `top: ${this.sliceStartIndex * this.rowHeight}px;`
+    const tableContainerHeight = `height: ${this.trackOrder.length * this.rowHeight}px;`
+    const sliceEnd = this.sliceStartIndex + this.sliceLength < this.trackOrder.length
       ? this.sliceStartIndex + this.sliceLength
       : this.trackOrder.length
-    var tracks = this.trackOrder.slice(this.sliceStartIndex, sliceEnd).map(this.rowMap)
-    var columns = Object.keys(this.columns).filter(col => this.columns[col])
+    const tracks = this.trackOrder.slice(this.sliceStartIndex, sliceEnd).map(this.rowMap)
+    const columns = Object.keys(this.columns).filter(col => this.columns[col])
 
     return html`
       <div class=${styles.tableScrollWindow} onscroll=${this.handleOnScroll} onclick=${this.deselect}>
@@ -212,19 +213,19 @@ class TrackView extends Component {
   }
 
   handleOnScroll (ev) {
-    var self = this
+    const self = this
 
-    var maxStart = this.trackOrder.length - this.sliceLength > 0 ? this.trackOrder.length - this.sliceLength : 0
-    var closeToBottom = this.bottomOffset < OFFSET_BUFFER && this.sliceStartIndex !== maxStart
-    var closeToTop = this.topOffset < OFFSET_BUFFER && this.sliceStartIndex !== 0
+    const maxStart = this.trackOrder.length - this.sliceLength > 0 ? this.trackOrder.length - this.sliceLength : 0
+    const closeToBottom = this.bottomOffset < OFFSET_BUFFER && this.sliceStartIndex !== maxStart
+    const closeToTop = this.topOffset < OFFSET_BUFFER && this.sliceStartIndex !== 0
 
     if (closeToBottom) {
-      var frontSlice = this.topVisibleRowIndex - OFFSET_BUFFER
+      const frontSlice = this.topVisibleRowIndex - OFFSET_BUFFER
       this.sliceStartIndex = frontSlice > maxStart ? maxStart : frontSlice
     }
 
     if (closeToTop) {
-      var backSlice = this.bottomVisibleRowIndex + OFFSET_BUFFER - this.sliceLength
+      const backSlice = this.bottomVisibleRowIndex + OFFSET_BUFFER - this.sliceLength
       this.sliceStartIndex = backSlice > 0 ? backSlice : 0
     }
 
@@ -276,7 +277,7 @@ class TrackView extends Component {
   }
 
   beforerender (el) {
-    var self = this
+    const self = this
     window.requestAnimationFrame(function () {
       el.scrollTop = self.sliceStartIndex * self.rowHeight
     })

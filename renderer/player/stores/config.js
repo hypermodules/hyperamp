@@ -1,9 +1,11 @@
-var { ipcRenderer, remote } = require('electron')
-var config = remote.require('./config.js')
-var mutate = require('xtend/mutable')
+const remote = require('@electron/remote')
+const { ipcRenderer } = require('electron')
+
+const config = remote.require('./config.js')
+const mutate = require('xtend/mutable')
 
 function configStore (state, emitter) {
-  var localState = state.config
+  let localState = state.config
 
   if (!localState) {
     localState = state.config = {}

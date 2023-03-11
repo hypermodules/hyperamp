@@ -1,11 +1,12 @@
-var { ipcRenderer } = require('electron')
-var mousetrap = require('mousetrap')
-var { trackView } = require('../pages/main').playlist
+const { ipcRenderer } = require('electron')
+const mousetrap = require('mousetrap')
+const { trackView } = require('../pages/main').playlist
+const remote = require('@electron/remote')
 
 module.exports = playerStore
 
 function getInitialState () {
-  var mainState = require('electron').remote.require('./index.js')
+  const mainState = remote.require('./index.js')
   return {
     playing: mainState.playing,
     currentTime: 0.0,
@@ -17,7 +18,7 @@ function getInitialState () {
 }
 
 function playerStore (state, emitter) {
-  var localState = state.player
+  let localState = state.player
   if (!localState) localState = state.player = getInitialState()
 
   function render () {

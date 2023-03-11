@@ -1,7 +1,7 @@
-var Component = require('nanocomponent')
-var html = require('choo/html')
-var assert = require('assert')
-var css = require('csjs-inject')
+const Component = require('nanocomponent')
+const html = require('choo/html')
+const assert = require('assert')
+const css = require('csjs-inject')
 
 const styles = css`
   .range {

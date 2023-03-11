@@ -1,8 +1,8 @@
-var html = require('choo/html')
-var styles = require('./styles')
+const html = require('choo/html')
+const styles = require('./styles')
 
 function btnGroup (props, children) {
-  var { className } = props
+  const { className } = props
   return html`
     <div class="${styles.btnGroup} ${className || ''}">
       ${children || ''}

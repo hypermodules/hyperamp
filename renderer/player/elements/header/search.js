@@ -1,8 +1,8 @@
-var html = require('choo/html')
-var formStyles = require('../form/styles')
-var assert = require('assert')
-var Component = require('nanocomponent')
-var css = require('csjs-inject')
+const html = require('choo/html')
+const formStyles = require('../form/styles')
+const assert = require('assert')
+const Component = require('nanocomponent')
+const css = require('csjs-inject')
 
 const styles = css`
   .searchInput {

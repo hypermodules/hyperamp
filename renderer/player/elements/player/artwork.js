@@ -1,12 +1,12 @@
-var html = require('choo/html')
-var Component = require('nanocomponent')
-var fileUrlFromPath = require('file-url')
-var path = require('path')
-var defaultBG = path.resolve(window.__dirname, 'default-artwork.png')
-var compare = require('nanocomponent/compare')
-var css = require('csjs-inject')
+const html = require('choo/html')
+const Component = require('nanocomponent')
+const fileUrlFromPath = require('file-url')
+const path = require('path')
+const defaultBG = path.resolve(window.__dirname, 'default-artwork.png')
+const compare = require('nanocomponent/compare')
+const css = require('csjs-inject')
 
-var styles = css`
+const styles = css`
   .albumCover {
     position: relative;
     width: 76px;
@@ -42,8 +42,8 @@ class Artwork extends Component {
   createElement (artworkPath) {
     this.arguments = arguments
 
-    var fileUrl = fileUrlFromPath(artworkPath || defaultBG)
-    var style = fileUrl
+    const fileUrl = fileUrlFromPath(artworkPath || defaultBG)
+    const style = fileUrl
       ? `background-image: url(${fileUrl})`
       : ''
 

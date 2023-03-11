@@ -1,0 +1,34 @@
+on:
+  push:
+    tags:
+      - 'v*'
+
+# This runs after gh-release and npm create a tag and release
+
+env:
+  FORCE_COLOR: 1
+
+jobs:
+  test:
+    permissions:
+      pull-requests: write
+      contents: write
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [19]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i
+    - run: npm run pkg
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # built in actions token.  Passed tp gh-release if in use.
+

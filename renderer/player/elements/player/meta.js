@@ -1,10 +1,10 @@
-var Component = require('nanocomponent')
-var compare = require('nanocomponent/compare')
-var Artwork = require('./artwork')
-var html = require('choo/html')
-var css = require('csjs-inject')
+const Component = require('nanocomponent')
+const compare = require('nanocomponent/compare')
+const Artwork = require('./artwork')
+const html = require('choo/html')
+const css = require('csjs-inject')
 
-var styles = css`
+const styles = css`
   .nowPlaying {
     position: relative;
     min-width: 220px;
@@ -55,7 +55,7 @@ class Meta extends Component {
     this.arguments = arguments
     this.emit = emit
 
-    var { title, artist } = track
+    const { title, artist } = track
 
     return html`
       <div class=${styles.nowPlaying}>

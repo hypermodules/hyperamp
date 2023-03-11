@@ -1,18 +1,8 @@
-var choo = require('choo')
-var { ipcRenderer } = require('electron')
-var ipcLog = require('nanologger')('ipc')
-var app = window.hyperamp = choo()
-var ipcLogger = require('electron-ipc-log')
+const choo = require('choo')
+const { ipcRenderer } = require('electron')
+const app = window.hyperamp = choo()
 
-ipcLogger(event => {
-  var { channel, data, sent, sync } = event
-  if (channel === 'timeupdate') return
-  var args = [sent ? '⬆️' : '⬇️', channel, ...data]
-  if (sync) args.unshift('sync')
-  ipcLog.info(...args)
-})
-
-var entypoSprite = require('entypo').getNode()
+const entypoSprite = require('entypo').getNode()
 document.body.insertAdjacentElement('afterbegin', entypoSprite)
 
 app.use(require('choo-devtools')())

@@ -1,4 +1,4 @@
-var { globalShortcut } = require('electron')
+const { globalShortcut } = require('electron')
 
 class GlobalShortcuts {
   construtor () {

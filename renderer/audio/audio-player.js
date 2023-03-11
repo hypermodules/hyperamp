@@ -1,8 +1,8 @@
-var Nanobus = require('nanobus')
-var window = require('global/window')
-var get = require('lodash.get')
-var setTimeout = window.setTimeout
-var clearTimeout = window.clearTimeout
+const Nanobus = require('nanobus')
+const window = require('global/window')
+const get = require('lodash.get')
+const setTimeout = window.setTimeout
+const clearTimeout = window.clearTimeout
 
 class AudioPlayer extends Nanobus {
   constructor (audioNode, state) {
@@ -21,7 +21,7 @@ class AudioPlayer extends Nanobus {
 
     this._timeListener = this.audio.addEventListener('timeupdate', (ev) => {
       if (this.seeking) return
-      var timeupdate = Math.floor(this.audio.currentTime)
+      const timeupdate = Math.floor(this.audio.currentTime)
       if (this.timeupdate === timeupdate) return
       this.timeupdate = timeupdate
       this.emit('timeupdate', this.timeupdate)
