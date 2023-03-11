@@ -22,9 +22,7 @@
 
 </div>
 
-Mac/Linux | Windows | Version
---------- | ------- | -------
-[![build][build-img]][build-url] | [![appveyor-status][appveyor-img]][appveyor-url] |  [![Github release][release-version-img]][release-url]
+[![Test and Build](https://github.com/hypermodules/hyperamp/actions/workflows/test.yml/badge.svg)](https://github.com/hypermodules/hyperamp/actions/workflows/test.yml)
 
 ## Download
 
