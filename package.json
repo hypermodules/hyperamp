@@ -75,6 +75,7 @@
   },
   "devDependencies": {
     "@tap-format/spec": "^0.2.0",
+    "auto-changelog": "^2.4.0",
     "browserify": "^17.0.0",
     "budo": "^11.6.2",
     "buffer-equal": "^1.0.0",
