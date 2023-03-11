@@ -3,9 +3,9 @@ const path = require('path')
 // var mkdirp = require('mkdirp')
 const pump = require('pump')
 const crypto = require('crypto')
-const mkdirp = require('mkdirp')
 const { artwork } = require('./util')
 const BufferList = require('bl')
+const fs = require('fs')
 
 // var configPath = (electron.app || electron.remote.app).getPath('userData')
 // var artworkCachePath = path.join(configPath, 'artwork-cache')
@@ -17,7 +17,7 @@ class ArtworkCache {
   // TODO refeactor callback hexell
   constructor (dir) {
     this._directory = dir || path.join(process.cwd(), 'artwork-cache')
-    mkdirp.sync(this._directory)
+    fs.mkdirSync(this._directory, { recursive: true })
     this._algo = 'sha256'
     // this._db = level(path.join(this._directory, 'cache-db'))
     this._blobs = blobs({
