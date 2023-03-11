@@ -39,7 +39,7 @@ jobs:
         git_email: bcomnes@gmail.com
         git_username: ${{ github.actor }}
         newversion: ${{ github.event.inputs.newversion }}
-        github_token: ${{ secrets.GH_RELEASE_TOKEN }} # built in actions token.
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_cmd: npm run release
     - uses: bcomnes/get-git-tag@v3
       id: tagName
