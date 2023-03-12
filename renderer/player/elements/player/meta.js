@@ -24,6 +24,7 @@ const styles = css`
     text-align: left;
     padding-left: 10px;
     overflow: hidden;
+    -webkit-app-region: no-drag;
   }
   .title, .artist {
     margin: 0;
