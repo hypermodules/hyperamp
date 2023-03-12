@@ -149,7 +149,7 @@
   "scripts": {
     "build": "run-s clean build:*",
     "build:assets": "browserify --no-bundle-external --debug renderer/player/index.js -o renderer/player/bundle.js",
-    "build:electron": "electron-builder",
+    "build:electron": "electron-builder --dir --publish never",
     "clean": "rm -rf renderer/**/bundle.js && mkdir -p dist",
     "clear": "electron scripts/clear.js",
     "pkg": "run-s clean pkg:*",
