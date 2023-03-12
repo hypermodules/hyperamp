@@ -65,16 +65,20 @@ class Header extends Component {
       dialog.showOpenDialog({
         defaultPath,
         properties: ['openFile', 'openDirectory', 'multiSelections']
-      },
-      this.handlePaths)
+      })
+        .then(this.handlePaths)
+        .catch(err => {
+          this.dialogOpen = false
+          console.error(err)
+        })
     }
   }
 
-  handlePaths (paths) {
+  handlePaths ({ filePaths }) {
     this.dialogOpen = false
-    if (paths) {
-      this.emit('config:set', { paths })
-      this.emit('library:update-library', paths)
+    if (filePaths) {
+      this.emit('config:set', { filePaths })
+      this.emit('library:update-library', filePaths)
     }
   }
 
@@ -86,7 +90,7 @@ class Header extends Component {
     event.preventDefault()
     const { files } = event.dataTransfer
     const paths = Array(files.length).fill(0).map((_, i) => files.item(i).path)
-    this.handlePaths(paths)
+    this.handlePaths({ filePaths: paths })
   }
 
   createElement (state, emit) {
