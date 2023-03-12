@@ -13,6 +13,8 @@
   <br>
 </h4>
 
+**NOTE:** This project was a lot of fun, but is thoroughly dead. The repo and builds will be kept around for historical reference as long as the maintenance automation and free hosting will afford. If you want to pick up this project, I recommend starting over however there are still a lot of interesting ideas and designs in this project and issues section. Have fun and happy hacking!
+
 **Hyperamp** is a project by the [hypermodules](https://hypermodul.es/) team to make a simple and free audio player that anyone can improve. We designed it to be fast and compact, with no strings attached to a store or anything else. Here's what it looks like:
 
 <div align="center">
