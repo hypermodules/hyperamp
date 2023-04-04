@@ -58,6 +58,7 @@ app.on('second-instance', (commandLine, workingDirectory) => {
 })
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required')
+app.commandLine.appendSwitch('disable-features', 'HardwareMediaKeyHandling')
 
 app.on('ready', function appReady () {
   menu.init()
