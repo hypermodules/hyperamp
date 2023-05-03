@@ -76,7 +76,7 @@ class Header extends Component {
 
   handlePaths ({ filePaths }) {
     this.dialogOpen = false
-    if (filePaths) {
+    if (Array.isArray(filePaths) && filePaths.length > 0) {
       this.emit('config:set', { filePaths })
       this.emit('library:update-library', filePaths)
     }
