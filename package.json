@@ -117,7 +117,7 @@
     "gh-release": "^7.0.2",
     "is-buffer": "^2.0.3",
     "npm-run-all2": "^6.0.0",
-    "p-temporary-directory": "^1.1.1",
+    "p-temporary-directory": "^2.0.1",
     "snazzy": "^9.0.0",
     "spectron": "^19.0.0",
     "standard": "^17.0.0",
