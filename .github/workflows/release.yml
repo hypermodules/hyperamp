@@ -21,7 +21,7 @@ jobs:
     outputs:
       tagName: ${{ steps.npm-bump.outputs.release_tag }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         # fetch full history so things like auto-changelog work properly
         fetch-depth: 0
@@ -62,7 +62,7 @@ jobs:
       contents: write
     steps:
     - run: echo ${{needs.version_and_release.outputs.tagName}}
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         ref: ${{needs.version_and_release.outputs.tagName}}
     - name: Use Node.js ${{ matrix.node-version }}
