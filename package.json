@@ -110,7 +110,7 @@
     "common-shakeify": "^1.1.2",
     "concat-stream": "^2.0.0",
     "dependency-check": "^4.1.0",
-    "electron": "^26.0.0",
+    "electron": "^27.0.0",
     "electron-builder": "^24.4.0",
     "electron-renderify": "0.0.2",
     "envify": "^4.1.0",
