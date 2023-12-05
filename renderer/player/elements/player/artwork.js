@@ -1,6 +1,6 @@
 const html = require('choo/html')
 const Component = require('nanocomponent')
-const fileUrlFromPath = require('file-url')
+const fileUrlFromPath = require('../../../shared/file-url')
 const path = require('path')
 const defaultBG = path.resolve(window.__dirname, 'default-artwork.png')
 const compare = require('nanocomponent/compare')
