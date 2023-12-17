@@ -70,8 +70,17 @@ jobs:
       with:
         node-version: ${{ env.node_version }}
     - run: npm i
-    - run: npm run pkg
+    - name: Build unsigned
+      run: npm run pkg
+      if: matrix.os != 'macos-latest'
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # built in actions token.  Passed tp gh-release if in use.
+    - name: Build signed
+      run: npm run pkg
+      if: matrix.os == 'macos-latest'
+      env:
+        CSC_LINK: ${{ secrets.APPLE_DEVELOPER_ID_APPLICATION }}
+        CSC_KEY_PASSWORD: ${{ secrets.APPLE_DEVELOPER_ID_APPLICATION_PASSWORD }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # built in actions token.  Passed tp gh-release if in use.
     - name: Archive lockfile
       uses: actions/upload-artifact@v4
