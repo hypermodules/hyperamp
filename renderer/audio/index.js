@@ -7,7 +7,7 @@ const path = require('path')
 const mainState = remote.require('./index.js')
 const needle = 'file://' + path.resolve(__dirname, 'needle.mp3')
 let startupNode = document.querySelector('#needle')
-const fileUrlFromPath = require('file-url')
+const fileUrlFromPath = require('../shared/file-url')
 
 needleSound(startupNode, needle, mainState.volume, mainState.muted)
 
