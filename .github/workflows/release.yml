@@ -8,7 +8,7 @@ on:
         required: true
 
 env:
-  node_version: '19'
+  node_version: 'lts/*'
   FORCE_COLOR: 1
 
 concurrency: # prevent concurrent releases
@@ -43,9 +43,9 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_cmd: npm run release
     - name: Archive lockfile
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: pacakge-lock.json
+        name: pacakge-lock-version-and-release.json
         path: package-lock.json
 
 
@@ -74,8 +74,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # built in actions token.  Passed tp gh-release if in use.
     - name: Archive lockfile
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: pacakge-lock.json
+        name: pacakge-lock-${{ matrix.os }}.json
         path: package-lock.json
 

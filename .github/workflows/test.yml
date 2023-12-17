@@ -4,6 +4,7 @@ on: [pull_request, push]
 
 env:
   FORCE_COLOR: 1
+  node_version: 'lts/*'
 
 jobs:
   test:
@@ -12,21 +13,20 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node: ['19']
 
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ env.node_version }}
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ env.node_version }}
     - run: npm i
     - run: npm test --color=always
     - run: npm run build
     - name: Archive lockfile
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: pacakge-lock.json
+        name: pacakge-lock-${{ matrix.os }}.json
         path: package-lock.json
 
 
