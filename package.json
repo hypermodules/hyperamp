@@ -27,6 +27,9 @@
     ],
     "mac": {
       "category": "public.app-category.music",
+      "appId": "com.hypermodules.hyperamp",
+      "notarize": true,
+      "hardenedRuntime": true,
       "target": [
         {
           "target": "dmg",
@@ -95,6 +98,7 @@
     "nanobus": "^4.4.0",
     "nanocomponent": "^6.5.2",
     "nanologger": "^2.0.0",
+    "patch-package": "^8.0.0",
     "pump": "^3.0.0",
     "through2-filter": "^3.0.0",
     "xtend": "^4.0.2"
@@ -108,7 +112,6 @@
     "bundle-collapser": "^1.3.0",
     "common-shakeify": "^1.1.2",
     "concat-stream": "^2.0.0",
-    "dependency-check": "^4.1.0",
     "electron": "^28.0.0",
     "electron-builder": "^24.4.0",
     "electron-renderify": "0.0.2",
@@ -158,7 +161,6 @@
     "start": "run-s watch",
     "test": "run-s test:*",
     "test-skip:tape": "xvfb-maybe tape test/* | tap-format-spec",
-    "test:deps": "dependency-check ./package.json renderer/player/index.js renderer/audio/index.js --no-dev --ignore-module electron",
     "test:lint": "standard | snazzy",
     "test:main": "tape main/lib/**/test.js | tap-format-spec",
     "test:renderer": "tape renderer/**/test.js | tap-format-spec",
@@ -168,6 +170,7 @@
     "version": "run-s version:*",
     "version:changelog": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:'",
     "version:git": "git add CHANGELOG.md",
-    "release": "git push --follow-tags && gh-release -y"
+    "release": "git push --follow-tags && gh-release -y",
+    "postinstall": "patch-package"
   }
 }

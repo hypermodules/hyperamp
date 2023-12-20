@@ -1,0 +1,13 @@
+diff --git a/node_modules/app-builder-lib/out/macPackager.js b/node_modules/app-builder-lib/out/macPackager.js
+index 98ca598..107a786 100644
+--- a/node_modules/app-builder-lib/out/macPackager.js
++++ b/node_modules/app-builder-lib/out/macPackager.js
+@@ -459,7 +459,7 @@ class MacPackager extends platformPackager_1.PlatformPackager {
+             return proj;
+         }
+         const { teamId } = options;
+-        if (teamId && (legacyLogin || notaryToolLogin)) {
++        if ((teamId || options === true) && (legacyLogin || notaryToolLogin)) {
+             const proj = {
+                 appPath,
+                 ...(legacyLogin !== null && legacyLogin !== void 0 ? legacyLogin : notaryToolLogin),
