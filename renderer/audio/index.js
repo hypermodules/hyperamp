@@ -27,10 +27,28 @@ player.on('timeupdate', function (time) {
   ipcRenderer.send('timeupdate', time)
 })
 
+player.on('playing', function () {
+  ipcRenderer.send('playing')
+})
+
+player.on('paused', function () {
+  ipcRenderer.send('paused')
+})
+
+player.on('next', function () {
+  ipcRenderer.send('next')
+})
+
+player.on('prev', function () {
+  ipcRenderer.send('prev')
+})
+
 ipcRenderer.on('new-track', function (ev, track = {}) {
-  // Might need to switch on different path format processing
-  const src = fileUrlFromPath(track.filepath)
-  player.load(src)
+  player.load(track)
+})
+
+ipcRenderer.on('new-artwork', (ev, track = {}) => {
+  player._updateArtwork(track)
 })
 
 ipcRenderer.on('play', function (ev, data) {

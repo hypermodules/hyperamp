@@ -1,6 +1,8 @@
 const Nanobus = require('nanobus')
 const window = require('global/window')
 const get = require('lodash.get')
+const fs = require('fs').promises
+const fileUrlFromPath = require('../shared/file-url')
 const setTimeout = window.setTimeout
 const clearTimeout = window.clearTimeout
 
@@ -15,6 +17,7 @@ class AudioPlayer extends Nanobus {
     this.seeking = false
     this.seekDebounceTimer = null
     this.timeupdate = null
+    this.currentTrack = null // Store current track
 
     this._endedListener = this.audio.addEventListener('ended',
       () => { if (!this.seeking) this.emit('ended') })
@@ -26,6 +29,8 @@ class AudioPlayer extends Nanobus {
       this.timeupdate = timeupdate
       this.emit('timeupdate', this.timeupdate)
     })
+
+    this._initMediaSession()
 
     this.emit('initialized', this)
   }
@@ -41,7 +46,10 @@ class AudioPlayer extends Nanobus {
     }, 1000)
   }
 
-  load (src) {
+  load (track) {
+    this.currentTrack = track // Update current track
+    this._updateMediaSessionMetadata()
+    const src = fileUrlFromPath(track.filepath)
     this.emit('loading', src)
     this.audio.src = src || ''
   }
@@ -49,11 +57,13 @@ class AudioPlayer extends Nanobus {
   play () {
     this.emit('playing')
     this.audio.play()
+    navigator.mediaSession.playbackState = 'playing'
   }
 
   pause () {
     this.emit('paused')
     this.audio.pause()
+    navigator.mediaSession.playbackState = 'paused'
   }
 
   volume (lev) {
@@ -76,6 +86,49 @@ class AudioPlayer extends Nanobus {
     this.emit('seek', newTime)
     this.audio.currentTime = newTime
   }
+
+  nextTrack () {
+    this.emit('next')
+  }
+
+  previousTrack () {
+    this.emit('prev')
+  }
+
+  _initMediaSession () {
+    navigator.mediaSession.setActionHandler('play', () => this.play())
+    navigator.mediaSession.setActionHandler('pause', () => this.pause())
+    navigator.mediaSession.setActionHandler('previoustrack', () => this.previousTrack())
+    navigator.mediaSession.setActionHandler('nexttrack', () => this.nextTrack())
+    navigator.mediaSession.setActionHandler('seekbackward', () => this.seek(this.audio.currentTime - 10)) // Example: seek back 10 seconds
+    navigator.mediaSession.setActionHandler('seekforward', () => this.seek(this.audio.currentTime + 10)) // Example: seek forward 10 seconds
+  }
+
+  _updateMediaSessionMetadata () {
+    if (this.currentTrack) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: this.currentTrack.title,
+        artist: this.currentTrack.artist,
+        album: this.currentTrack.album
+        // artwork: [{ src: fileUrlFromPath(this.currentTrack.artwork), sizes: '96x96', type: 'image/png' }]
+      })
+    }
+  }
+
+  async _updateArtwork (trackWithArt) {
+    if (this.currentTrack?.filepath === trackWithArt?.filepath && trackWithArt?.artwork) {
+      this.currentTrack = trackWithArt
+      const blob = await fileToBlobUrl(trackWithArt?.artwork)
+      if (blob) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: this.currentTrack.title,
+          artist: this.currentTrack.artist,
+          album: this.currentTrack.album,
+          artwork: [{ src: blob, sizes: '96x96', type: 'image/png' }]
+        })
+      }
+    }
+  }
 }
 
 module.exports = AudioPlayer
@@ -96,3 +149,21 @@ module.exports = AudioPlayer
 //     requireInteraction: false
 //   })
 // }
+
+async function fileToBlobUrl (filePath) {
+  try {
+    // Read file as buffer
+    const buffer = await fs.readFile(filePath)
+
+    // Convert buffer to blob (Electron specific)
+    const blob = new Blob([buffer], { type: 'image/png' }) // Adjust type based on your file's MIME type
+
+    // Create a blob URL (in renderer process of Electron)
+    const blobUrl = URL.createObjectURL(blob)
+
+    return blobUrl
+  } catch (error) {
+    console.error('Error converting file to Blob URL:', error)
+    return null
+  }
+}

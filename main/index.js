@@ -8,7 +8,6 @@ const xtend = require('xtend')
 const userConfig = require('./config')
 const menu = require('./menu')
 const artwork = require('./artwork')
-const GlobalShortcuts = require('./global-shortcuts')
 const makeTrackDict = require('./track-dict')
 const audio = require('./windows/audio')
 const player = require('./windows/player')
@@ -20,7 +19,6 @@ process.on('uncaughtException', (err) => {
   log.error(err)
 })
 
-const globalShortcuts = new GlobalShortcuts()
 const windows = [player, audio]
 
 const persist = new Config({ name: 'hyperamp-persist' })
@@ -58,19 +56,12 @@ app.on('second-instance', (commandLine, workingDirectory) => {
 })
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required')
-app.commandLine.appendSwitch('disable-features', 'HardwareMediaKeyHandling')
 
 app.on('ready', function appReady () {
   menu.init()
   audio.init()
   player.init()
   artwork.init()
-
-  globalShortcuts.init({
-    MediaNextTrack: next,
-    MediaPreviousTrack: prev,
-    MediaPlayPause: playPause
-  })
 
   electron.powerMonitor.on('suspend', function pauseOnWake () {
     log.info('Entering sleep, pausing')
@@ -81,7 +72,9 @@ app.on('ready', function appReady () {
   ipcMain.on('volume', volume)
   ipcMain.on('queue', queue)
   ipcMain.on('play', play)
+  ipcMain.on('playing', playing)
   ipcMain.on('pause', pause)
+  ipcMain.on('paused', paused)
   ipcMain.on('prev', prev)
   ipcMain.on('next', next)
   ipcMain.on('mute', mute)
@@ -138,6 +131,9 @@ app.on('ready', function appReady () {
       player.win.send('new-track', al.currentTrack)
       player.win.send('new-index', al.index)
     }
+    if (audio.win) {
+      audio.win.send('new-artwork', al.currentTrack)
+    }
   }
 
   function play () {
@@ -145,9 +141,19 @@ app.on('ready', function appReady () {
     broadcast('play')
   }
 
+  function playing () {
+    state.playing = true
+    broadcast('playing')
+  }
+
   function pause () {
     state.playing = false
     broadcast('pause')
+  }
+
+  function paused () {
+    state.playing = false
+    broadcast('paused')
   }
 
   function playPause () {
@@ -244,11 +250,10 @@ app.on('activate', function activate () {
     al.recall()
     player.init()
   }
-  globalShortcuts.reregister()
 })
 
 app.on('will-quit', function (e) {
-  globalShortcuts.unregisterAll()
+  // nothing
 })
 
 app.on('before-quit', function beforeQuit (e) {

@@ -141,7 +141,9 @@ function playerStore (state, emitter) {
   }
 
   ipcRenderer.on('play', () => playing(true))
+  ipcRenderer.on('playing', () => playing(true))
   ipcRenderer.on('pause', () => playing(false))
+  ipcRenderer.on('paused', () => playing(false))
   ipcRenderer.on('new-track', (ev, newTrack) => current(newTrack))
   ipcRenderer.on('mute', () => muted(true))
   ipcRenderer.on('unmute', () => muted(false))
