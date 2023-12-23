@@ -84,6 +84,7 @@
     "electron-default-menu": "^1.0.1",
     "electron-log": "^5.0.0-beta.16",
     "electron-store": "^8.1.0",
+    "electron-updater": "^6.1.7",
     "electron-window-state": "^5.0.2",
     "entypo": "^2.1.0",
     "existy": "^1.0.1",
@@ -127,6 +128,13 @@
     "unassertify": "^3.0.1",
     "xvfb-maybe": "^0.2.1",
     "yo-yoify": "^4.3.0"
+  },
+  "overrides": {
+    "electron-builder": {
+      "read-config-file": {
+        "config-file-ts": "0.2.4"
+      }
+    }
   },
   "engines": {
     "node": ">=19.0.0",

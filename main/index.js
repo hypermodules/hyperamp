@@ -13,6 +13,7 @@ const audio = require('./windows/audio')
 const player = require('./windows/player')
 const AudioLibrary = require('./lib/audio-library')
 const log = require('electron-log')
+const autoUpdater = require('electron-updater').autoUpdater
 
 // handle uncaught exceptions before calling any functions
 process.on('uncaughtException', (err) => {
@@ -88,6 +89,43 @@ app.on('ready', function appReady () {
   ipcMain.on('recall', recall)
   ipcMain.on('sync-state', syncState)
 
+  // register autoUpdater
+  if (!process.env.DEV_SERVER) {
+    setTimeout(() => {
+      log.info('autoUpdater: Auto update initalized...')
+      autoUpdater.checkForUpdatesAndNotify()
+    }, 1000 * 3)
+  }
+
+  autoUpdater.on('error', (err) => {
+    broadcast('au:error', err)
+    console.error(err)
+  })
+
+  autoUpdater.on('checking-for-update', () => {
+    log.info('autoUpdater: Checking for update...')
+    broadcast('au:checking-for-update')
+  })
+
+  autoUpdater.on('update-available', (info) => {
+    log.info('autoUpdater: Update available!')
+    broadcast('au:update-available', info)
+  })
+
+  autoUpdater.on('update-not-available', (info) => {
+    log.info('autoUpdater: No update available')
+    broadcast('au:update-not-available', info)
+  })
+
+  autoUpdater.on('download-progress', (progress) => {
+    broadcast('au:progress', progress)
+  })
+
+  autoUpdater.on('update-downloaded', (info) => {
+    log.info('autoUpdater: Update downloaded')
+    broadcast('au:update-downloaded', info)
+  })
+
   // ACTIONS
   // NOTE: I really don't like having all of these actions stuck in this scope.
   // Would be nice to move this to a separate file eventually. -ungoldman
@@ -156,9 +194,9 @@ app.on('ready', function appReady () {
     broadcast('paused')
   }
 
-  function playPause () {
-    state.playing ? pause() : play()
-  }
+  // function playPause () {
+  //   state.playing ? pause() : play()
+  // }
 
   function prev () {
     broadcast('new-track', al.prev())

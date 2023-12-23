@@ -1,3 +1,4 @@
+/* eslint-env browser */
 const Nanobus = require('nanobus')
 const window = require('global/window')
 const get = require('lodash.get')
