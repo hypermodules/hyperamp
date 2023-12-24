@@ -4,6 +4,7 @@ const mm = require('music-metadata')
 const writer = require('flush-write-stream')
 const filter = require('through2-filter')
 const pump = require('pump')
+const log = require('electron-log')
 const validExtensions = ['m4a', 'mp3', 'ogg']
 
 module.exports = makeTrackDict

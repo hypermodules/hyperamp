@@ -12,11 +12,12 @@ const makeTrackDict = require('./track-dict')
 const audio = require('./windows/audio')
 const player = require('./windows/player')
 const AudioLibrary = require('./lib/audio-library')
+const log = require('electron-log')
 const autoUpdater = require('electron-updater').autoUpdater
 
 // handle uncaught exceptions before calling any functions
 process.on('uncaughtException', (err) => {
-  console.error(err)
+  log.error(err)
 })
 
 const windows = [player, audio]
@@ -64,7 +65,7 @@ app.on('ready', function appReady () {
   artwork.init()
 
   electron.powerMonitor.on('suspend', function pauseOnWake () {
-    broadcast('log', 'Entering sleep, pausing')
+    log.info('Entering sleep, pausing')
     ipcMain.emit('pause')
   })
 
@@ -91,7 +92,7 @@ app.on('ready', function appReady () {
   // register autoUpdater
   if (!process.env.DEV_SERVER) {
     setTimeout(() => {
-      broadcast('log', 'autoUpdater: Auto update initalized...')
+      log.info('autoUpdater: Auto update initalized...')
       autoUpdater.checkForUpdatesAndNotify()
     }, 1000 * 3)
   }
@@ -103,16 +104,19 @@ app.on('ready', function appReady () {
 
   autoUpdater.on('checking-for-update', () => {
     broadcast('log', 'autoUpdater: Checking for update...')
+    log.info('autoUpdater: Checking for update...')
     broadcast('au:checking-for-update')
   })
 
   autoUpdater.on('update-available', (info) => {
     broadcast('log', 'autoUpdater: Update available!')
+    log.info('autoUpdater: Update available!')
     broadcast('au:update-available', info)
   })
 
   autoUpdater.on('update-not-available', (info) => {
     broadcast('log', 'autoUpdater: No update available')
+    log.info('autoUpdater: No update available')
     broadcast('au:update-not-available', info)
   })
 
@@ -122,6 +126,7 @@ app.on('ready', function appReady () {
 
   autoUpdater.on('update-downloaded', (info) => {
     broadcast('log', 'autoUpdater: Update downloaded')
+    log.info('autoUpdater: Update downloaded')
     broadcast('au:update-downloaded', info)
   })
 
@@ -146,6 +151,7 @@ app.on('ready', function appReady () {
   function queue (ev, newIndex) {
     const newTrack = al.queue(newIndex)
     broadcast('log', newTrack)
+    log.info(newTrack)
     broadcast('new-track', newTrack)
     if (player.win) {
       player.win.send('new-index', al.index)
@@ -163,6 +169,7 @@ app.on('ready', function appReady () {
 
   function handleGetPath (err, blobPath) {
     if (err) return broadcast('log', err)
+    if (err) return log.error(err)
     al.currentTrack.artwork = blobPath
     if (player.win) {
       player.win.send('new-track', al.currentTrack)
@@ -247,10 +254,12 @@ app.on('ready', function appReady () {
     state.loading = false
     broadcast('loading', false)
     if (err) return broadcast('log', err)
+    if (err) return log.warn(err)
     const newState = al.load(newTrackDict)
     if (player.win) player.win.send('track-dict', newState.trackDict, newState.order, state.paths)
     console.timeEnd('update-library')
     broadcast('log', 'Done scanning. Found ' + Object.keys(newState.trackDict).length + ' tracks.')
+    log.info('Done scanning. Found ' + Object.keys(newState.trackDict).length + ' tracks.')
   }
 
   function updateLibrary (ev, paths) {

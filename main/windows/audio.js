@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+const log = require('electron-log')
 const remoteMain = require('@electron/remote/main')
 const AUDIO_WINDOW = 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'audio', 'index.html')
 const audio = module.exports = {
@@ -52,7 +53,7 @@ function show () {
 
 function toggleDevTools () {
   if (!audio.win) return
-  console.log('[AUDIO] Toggling dev tools')
+  log.info('[AUDIO] Toggling dev tools')
   if (audio.win.webContents.isDevToolsOpened()) {
     audio.win.webContents.closeDevTools()
     audio.win.hide()
