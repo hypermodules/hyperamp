@@ -129,13 +129,6 @@
     "xvfb-maybe": "^0.2.1",
     "yo-yoify": "^4.3.0"
   },
-  "overrides": {
-    "electron-builder": {
-      "read-config-file": {
-        "config-file-ts": "0.2.4"
-      }
-    }
-  },
   "engines": {
     "node": ">=19.0.0",
     "npm": ">=9.0.0"
