@@ -1,3 +1,5 @@
+const log = require('electron-log')
+log.initialize()
 const electron = require('electron')
 const { app, ipcMain } = electron
 const remoteMain = require('@electron/remote/main')
@@ -12,8 +14,9 @@ const makeTrackDict = require('./track-dict')
 const audio = require('./windows/audio')
 const player = require('./windows/player')
 const AudioLibrary = require('./lib/audio-library')
-const log = require('electron-log')
 const autoUpdater = require('electron-updater').autoUpdater
+autoUpdater.logger = log
+autoUpdater.autoDownload = true
 
 // handle uncaught exceptions before calling any functions
 process.on('uncaughtException', (err) => {

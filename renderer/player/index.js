@@ -1,8 +1,10 @@
+const log = require('electron-log/renderer')
+log.info('Log from the player process')
 const choo = require('choo')
 const { ipcRenderer } = require('electron')
 const app = window.hyperamp = choo()
 
-ipcRenderer.on('log', (...args) => console.log(args))
+ipcRenderer.on('log', (ev, data) => console.log(data))
 
 const entypoSprite = require('entypo').getNode()
 document.body.insertAdjacentElement('afterbegin', entypoSprite)

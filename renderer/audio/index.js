@@ -1,3 +1,5 @@
+const el = require('electron-log/renderer')
+el.info('Log from the autio process')
 const { ipcRenderer } = require('electron')
 const log = require('nanologger')('player')
 const AudioPlayer = require('./audio-player')
