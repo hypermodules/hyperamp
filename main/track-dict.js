@@ -20,7 +20,7 @@ function makeTrackDict (paths, cb) {
 
   function handleEos (err) {
     if (err) return cb(err)
-    console.log('')
+    log.info('')
     cb(null, newTrackDict)
   }
 }
@@ -32,7 +32,7 @@ function isValidFile (data, enc, cb) {
 
 function concatTrackDict (obj) {
   function writeTrackDict (data, enc, cb) {
-    console.log(`Scanning ${data.filepath}`)
+    log.info(`Scanning ${data.filepath}`)
     parseMetadata(data, handleMeta)
 
     function handleMeta (err, meta) {
@@ -83,7 +83,7 @@ function parseMetadata (data, cb) {
     })
   }).catch(err => {
     // Ignore errors
-    console.log(err.message += ` (file: ${filepath})`)
+    log.info(err.message += ` (file: ${filepath})`)
     const { basename } = data
     const ext = path.extname(basename)
     const title = path.basename(basename, ext)
