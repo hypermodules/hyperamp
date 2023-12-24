@@ -1,7 +1,6 @@
 const { BrowserWindow, app } = require('electron')
 const windowStateKeeper = require('electron-window-state')
 const path = require('path')
-const log = require('electron-log')
 const remoteMain = require('@electron/remote/main')
 const PLAYER_WINDOW = 'file://' + path.resolve(__dirname, '..', '..', 'renderer', 'player', 'index.html')
 
@@ -63,7 +62,7 @@ function init () {
 
 function toggleAlwaysOnTop () {
   if (!player.win) return
-  log.info('[PLAYER] Toggling Always on Top')
+  console.log('[PLAYER] Toggling Always on Top')
   if (player.win.isAlwaysOnTop()) {
     alwaysOnTop = false
     player.win.setAlwaysOnTop(alwaysOnTop)

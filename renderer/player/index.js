@@ -2,6 +2,8 @@ const choo = require('choo')
 const { ipcRenderer } = require('electron')
 const app = window.hyperamp = choo()
 
+ipcRenderer.on('log', (...args) => console.log(args))
+
 const entypoSprite = require('entypo').getNode()
 document.body.insertAdjacentElement('afterbegin', entypoSprite)
 
