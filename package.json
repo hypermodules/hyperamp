@@ -101,7 +101,7 @@
     "nanologger": "^2.0.0",
     "patch-package": "^8.0.0",
     "pump": "^3.0.0",
-    "through2-filter": "^3.0.0",
+    "through2-filter": "^4.0.0",
     "xtend": "^4.0.2"
   },
   "devDependencies": {
