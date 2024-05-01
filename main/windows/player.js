@@ -14,8 +14,19 @@ const player = module.exports = {
 
 let alwaysOnTop = false
 
-require('electron-debug')({ showDevTools: 'undocked' })
-require('electron-context-menu')()
+import('electron-debug').then(({ default: debug }) => {
+  debug({ showDevTools: 'undocked' })
+}).catch(err => {
+  console.error('Failed to load electron-debug:', err)
+})
+
+import('electron-context-menu').then(({ default: contextMenu }) => {
+  contextMenu({
+    showSaveImageAs: true
+  })
+}).catch(err => {
+  console.error('Failed to load electron-context-menu:', err)
+})
 
 function init () {
   player.windowState = windowStateKeeper({ width: 800, height: 600 })
