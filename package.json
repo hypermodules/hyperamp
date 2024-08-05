@@ -95,7 +95,7 @@
     "global": "^4.4.0",
     "lodash.get": "^4.4.2",
     "mousetrap": "^1.6.3",
-    "music-metadata": "^7.0.0",
+    "music-metadata": "^10.0.1",
     "nanobus": "^4.4.0",
     "nanocomponent": "^6.5.2",
     "nanologger": "^2.0.0",
