@@ -37,7 +37,7 @@ const styles = css`
 `
 
 class Header extends Component {
-  constructor(opts) {
+  constructor (opts) {
     super(opts)
 
     this.emit = null
@@ -53,12 +53,12 @@ class Header extends Component {
     this.searchComp = new Search()
   }
 
-  handleSearch(val) {
+  handleSearch (val) {
     this.search = val
     this.emit('library:search', val)
   }
 
-  handleAddButton() {
+  handleAddButton () {
     if (!this.dialogOpen) {
       this.dialogOpen = true
       const paths = config.get('paths')
@@ -75,7 +75,7 @@ class Header extends Component {
     }
   }
 
-  handlePaths({ filePaths }) {
+  handlePaths ({ filePaths }) {
     this.dialogOpen = false
     if (Array.isArray(filePaths) && filePaths.length > 0) {
       this.emit('config:set', { filePaths })
@@ -83,11 +83,11 @@ class Header extends Component {
     }
   }
 
-  handleNav() {
+  handleNav () {
     this.emit('pushState', '#preferences')
   }
 
-  handleDrop(event) {
+  handleDrop (event) {
     event.preventDefault()
     const { files } = event.dataTransfer
 
@@ -95,7 +95,7 @@ class Header extends Component {
     this.handlePaths({ filePaths: paths })
   }
 
-  createElement(state, emit) {
+  createElement (state, emit) {
     this.emit = emit
     this.search = state.library.search
     this.loading = state.library.loading
@@ -123,7 +123,7 @@ class Header extends Component {
     `
   }
 
-  update(state, emit) {
+  update (state, emit) {
     if (this.search !== state.library.search) return true
     if (this.loading !== state.library.loading) return true
     return false
