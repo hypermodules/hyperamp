@@ -5,7 +5,7 @@ const writer = require('flush-write-stream')
 const filter = require('through2-filter')
 const pump = require('pump')
 const log = require('electron-log')
-const validExtensions = ['m4a', 'mp3', 'ogg']
+const validExtensions = ['m4a', 'mp3', 'ogg', 'flac']
 
 module.exports = makeTrackDict
 
