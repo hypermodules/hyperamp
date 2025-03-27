@@ -114,7 +114,7 @@
     "common-shakeify": "^1.1.2",
     "concat-stream": "^2.0.0",
     "electron": "^33.0.0",
-    "electron-builder": "^25.0.5",
+    "electron-builder": "^26.0.12",
     "electron-renderify": "0.0.2",
     "envify": "^4.1.0",
     "gh-release": "^7.0.2",
